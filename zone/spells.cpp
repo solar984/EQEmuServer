@@ -590,6 +590,7 @@ bool Mob::DoCastingChecksOnCaster(int32 spell_id, CastingSlot slot) {
 			return false;
 		}
 	}
+#if false // post titanium
 	/*
 		Spells that use caster_requirement_id field which requires specific conditions on caster to be met before casting.
 	*/
@@ -631,6 +632,7 @@ bool Mob::DoCastingChecksOnCaster(int32 spell_id, CastingSlot slot) {
 			}
 		}
 	}
+#endif
 	/*
 		Focus version of Silence will prevent spell casting
 	*/
@@ -794,6 +796,7 @@ bool Mob::DoCastingChecksOnTarget(bool check_on_casting, int32 spell_id, Mob *sp
 	if (!spell_target){
 		return false;
 	}
+#if false // post titanium
 	/*
 		Spells that use caster_restriction field which requires specific conditions on target to be met before casting.
 		[Insufficient mana first]
@@ -828,6 +831,7 @@ bool Mob::DoCastingChecksOnTarget(bool check_on_casting, int32 spell_id, Mob *sp
 			}
 		}
 	}
+#endif
 	/*
 		Prevent buffs from being cast on targets who don't meet level restriction
 	*/
@@ -2531,13 +2535,16 @@ bool Mob::SpellFinished(uint16 spell_id, Mob *spell_target, CastingSlot slot, in
 		//casting a spell on somebody but ourself, make sure they are in range
 		float dist2 = DistanceSquared(m_Position, spell_target->GetPosition());
 		float range2 = range * range;
+#if false // post titanium
 		float min_range2 = spells[spell_id].min_range * spells[spell_id].min_range;
+#endif
 		if(dist2 > range2) {
 			//target is out of range.
 			LogSpells("Spell [{}]: Spell target is out of range (squared: [{}] > [{}])", spell_id, dist2, range2);
 			MessageString(Chat::Red, TARGET_OUT_OF_RANGE);
 			return(false);
 		}
+#if false // post titanium
 		else if (dist2 < min_range2){
 			//target is too close range.
 			LogSpells("Spell [{}]: Spell target is too close (squared: [{}] < [{}])", spell_id, dist2, min_range2);
@@ -2546,27 +2553,34 @@ bool Mob::SpellFinished(uint16 spell_id, Mob *spell_target, CastingSlot slot, in
 		}
 
 		spell_target->CalcSpellPowerDistanceMod(spell_id, dist2);
+#endif
 	}
 	//AE Duration spells were ignoring distance check from item clickies
 	if(ae_center != nullptr && ae_center != this) {
 		//casting a spell on somebody but ourself, make sure they are in range
 		float dist2 = DistanceSquared(m_Position, ae_center->GetPosition());
 		float range2 = range * range;
+#if false // post titanium
 		float min_range2 = spells[spell_id].min_range * spells[spell_id].min_range;
+#endif
 		if(dist2 > range2) {
 			//target is out of range.
 			LogSpells("Spell [{}]: Spell target is out of range (squared: [{}] > [{}])", spell_id, dist2, range2);
 			MessageString(Chat::Red, TARGET_OUT_OF_RANGE);
 			return(false);
 		}
+#if false // post titanium
 		else if (dist2 < min_range2){
 			//target is too close range.
 			LogSpells("Spell [{}]: Spell target is too close (squared: [{}] < [{}])", spell_id, dist2, min_range2);
 			MessageString(Chat::Red, TARGET_TOO_CLOSE);
 			return(false);
 		}
+#endif
 
+#if false // post titanium
 		ae_center->CalcSpellPowerDistanceMod(spell_id, dist2);
+#endif
 	}
 
 	//
@@ -4806,6 +4820,7 @@ uint32 Mob::BuffCount(bool is_beneficial, bool is_detrimental) {
 	return active_buff_count;
 }
 
+#if false // post titanium
 bool Mob::HasBuffWithSpellGroup(int spell_group)
 {
 	for (int buff_slot = 0; buff_slot < GetMaxTotalSlots(); buff_slot++) {
@@ -4820,6 +4835,7 @@ bool Mob::HasBuffWithSpellGroup(int spell_group)
 
 	return false;
 }
+#endif
 
 void Mob::BuffFadeAll()
 {
@@ -4845,7 +4861,9 @@ void Mob::BuffFadeNonPersistDeath()
 		auto current_spell_id = buffs[buff_slot].spellid;
 		if (
 			IsValidSpell(current_spell_id) &&
+#if false // post titanium
 			!IsPersistDeathSpell(current_spell_id) &&
+#endif
 			!HasPersistDeathIllusion(current_spell_id)
 		) {
 			BuffFadeBySlot(buff_slot, false);
@@ -5364,7 +5382,11 @@ float Mob::ResistSpell(uint8 resist_type, uint16 spell_id, Mob *caster, bool use
 		}
 
 		// Check for Chance to Resist Spell bonuses (ie Sanctification Discipline)
-		if (!spells[spell_id].no_resist && resist_type != RESIST_NONE) {
+		if (
+#if false // post titanium
+			!spells[spell_id].no_resist &&
+#endif
+			resist_type != RESIST_NONE) {
 			int resist_bonuses = CalcResistChanceBonus();
 			if (resist_bonuses && zone->random.Roll(resist_bonuses) && !IsResurrectionSicknessSpell(spell_id)) {
 				LogSpells("Resisted spell in sanctification, had [{}] chance to resist", resist_bonuses);
@@ -5380,7 +5402,11 @@ float Mob::ResistSpell(uint8 resist_type, uint16 spell_id, Mob *caster, bool use
 	}
 
 	//Get the resist chance for the target
-	if (resist_type == RESIST_NONE || spells[spell_id].no_resist) {
+	if (resist_type == RESIST_NONE 
+#if false // post titanium
+		|| spells[spell_id].no_resist
+#endif
+		) {
 		LogSpells("Spell was unresistable");
 		return 100;
 	}
@@ -6139,6 +6165,7 @@ int Client::FindSpellBookSlotBySpellID(uint16 spellid) {
 	return -1;	//default
 }
 
+#if false // post titanium
 uint32 Client::GetHighestScribedSpellinSpellGroup(uint32 spell_group)
 {
 	//Typical live spells follow 1/5/10 rank value for actual ranks 1/2/3, but this can technically be set as anything.
@@ -6159,6 +6186,7 @@ uint32 Client::GetHighestScribedSpellinSpellGroup(uint32 spell_group)
 	}
 	return highest_spell_id;
 }
+#endif
 
 std::unordered_map<uint32, std::vector<uint16>> Client::LoadSpellGroupCache(uint8 min_level, uint8 max_level) {
 	std::unordered_map<uint32, std::vector<uint16>> spell_group_cache;
@@ -7007,7 +7035,13 @@ void Mob::BeamDirectional(uint16 spell_id, int16 resist_adjust)
 
 	std::list<Mob *> targets_in_range;
 
-	entity_list.GetTargetsForConeArea(this, spells[spell_id].min_range, spells[spell_id].range,
+	entity_list.GetTargetsForConeArea(this, 
+#if false // post titanium
+		spells[spell_id].min_range,
+#else
+		0,
+#endif
+		spells[spell_id].range,
 					  spells[spell_id].range / 2, spells[spell_id].pcnpc_only_flag, targets_in_range);
 	auto iter = targets_in_range.begin();
 
@@ -7068,14 +7102,18 @@ void Mob::BeamDirectional(uint16 spell_id, int16 resist_adjust)
 
 		if (d <= spells[spell_id].aoe_range) {
 			if (CheckLosFN((*iter)) || spells[spell_id].npc_no_los) {
+#if false // post titanium
 				(*iter)->CalcSpellPowerDistanceMod(spell_id, 0, this);
+#endif
 				SpellOnTarget(spell_id, (*iter), 0, true, resist_adjust);
 				maxtarget_count++;
 			}
 
+#if false // post titanium
 			// not sure if we need this check, but probably do, need to check if it should be default limited or not
 			if (spells[spell_id].aoe_max_targets && maxtarget_count >= spells[spell_id].aoe_max_targets)
 				return;
+#endif
 		}
 		++iter;
 	}
@@ -7102,7 +7140,13 @@ void Mob::ConeDirectional(uint16 spell_id, int16 resist_adjust)
 
 	std::list<Mob *> targets_in_range;
 
-	entity_list.GetTargetsForConeArea(this, spells[spell_id].min_range, spells[spell_id].aoe_range,
+	entity_list.GetTargetsForConeArea(this, 
+#if false // post titanium
+		spells[spell_id].min_range,
+#else
+		0,
+#endif
+		spells[spell_id].aoe_range,
 					  spells[spell_id].aoe_range / 2, spells[spell_id].pcnpc_only_flag, targets_in_range);
 	auto iter = targets_in_range.begin();
 
@@ -7159,7 +7203,9 @@ void Mob::ConeDirectional(uint16 spell_id, int16 resist_adjust)
 			if ((heading_to_target >= angle_start && heading_to_target <= 360.0f) ||
 				(heading_to_target >= 0.0f && heading_to_target <= angle_end)) {
 				if (CheckLosFN((*iter)) || spells[spell_id].npc_no_los) {
+#if false // post titanium
 					(*iter)->CalcSpellPowerDistanceMod(spell_id, 0, this);
+#endif
 					SpellOnTarget(spell_id, (*iter), 0, true, resist_adjust);
 					maxtarget_count++;
 				}
@@ -7167,16 +7213,20 @@ void Mob::ConeDirectional(uint16 spell_id, int16 resist_adjust)
 		} else {
 			if (heading_to_target >= angle_start && heading_to_target <= angle_end) {
 				if (CheckLosFN((*iter)) || spells[spell_id].npc_no_los) {
+#if false // post titanium
 					(*iter)->CalcSpellPowerDistanceMod(spell_id, 0, this);
+#endif
 					SpellOnTarget(spell_id, (*iter), 0, true, resist_adjust);
 					maxtarget_count++;
 				}
 			}
 		}
 
+#if false // post titanium
 		// my SHM breath could hit all 5 dummies I could summon in arena
 		if (spells[spell_id].aoe_max_targets && maxtarget_count >= spells[spell_id].aoe_max_targets)
 			return;
+#endif
 
 		++iter;
 	}

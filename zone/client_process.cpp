@@ -2063,6 +2063,7 @@ void Client::CalcRestState()
 	// so we don't have aggro, our timer has expired, we do not want this to cause issues
 	m_pp.RestTimer = 0;
 
+#if false // post titanium
 	uint32 buff_count = GetMaxTotalSlots();
 	for (unsigned int j = 0; j < buff_count; j++) {
 		if(IsValidSpell(buffs[j].spellid)) {
@@ -2071,6 +2072,7 @@ void Client::CalcRestState()
 					return;
 		}
 	}
+#endif
 
 	ooc_regen = true;
 }

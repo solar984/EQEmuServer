@@ -1868,6 +1868,7 @@ bool IsBuffSpell(uint16 spell_id)
 	);
 }
 
+#if false // post titanium
 bool IsPersistDeathSpell(uint16 spell_id)
 {
 	if (
@@ -1879,6 +1880,7 @@ bool IsPersistDeathSpell(uint16 spell_id)
 
 	return false;
 }
+#endif
 
 bool IsSuspendableSpell(uint16 spell_id)
 {
@@ -1907,6 +1909,7 @@ bool IsCastOnFadeDurationSpell(uint16 spell_id)
 	return false;
 }
 
+#if false // post titanium
 bool IsDistanceModifierSpell(uint16 spell_id)
 {
 	if (
@@ -1922,6 +1925,7 @@ bool IsDistanceModifierSpell(uint16 spell_id)
 
 	return false;
 }
+#endif
 
 int GetSpellPartialMeleeRuneReduction(uint16 spell_id)
 {
@@ -1967,6 +1971,7 @@ int GetSpellPartialMagicRuneAmount(uint16 spell_id)
 	return 0;
 }
 
+#if false // post titanium
 bool IsRestAllowedSpell(uint16 spell_id)
 {
 	if (!IsValidSpell(spell_id)) {
@@ -1975,6 +1980,7 @@ bool IsRestAllowedSpell(uint16 spell_id)
 
 	return spells[spell_id].allow_rest;
 }
+#endif
 
 bool IsNoDetrimentalSpellAggroSpell(uint16 spell_id)
 {
@@ -2483,6 +2489,7 @@ int GetSpellStatValue(uint16 spell_id, const char* stat_identifier, uint8 slot)
 	else if (id == "not_focusable") { return spells[spell_id].not_focusable; }
 	else if (id == "suspendable") { return spells[spell_id].suspendable; }
 	else if (id == "viral_range") { return spells[spell_id].viral_range; }
+#if false // post titanium
 	else if (id == "spellgroup") { return spells[spell_id].spell_group; }
 	else if (id == "rank") { return spells[spell_id].rank; }
 	else if (id == "no_resist") { return spells[spell_id].no_resist; }
@@ -2498,6 +2505,7 @@ int GetSpellStatValue(uint16 spell_id, const char* stat_identifier, uint8 slot)
 	else if (id == "max_dist") { return static_cast<int32>(spells[spell_id].max_distance); }
 	else if (id == "min_range") { return static_cast<int32>(spells[spell_id].min_range); }
 	else if (id == "damageshieldtype") { return spells[spell_id].damage_shield_type; }
+#endif
 
 	return 0;
 }

@@ -1831,6 +1831,7 @@ void SharedDatabase::LoadSpells(void *data, int max_spells) {
 		sp[tempid].suspendable = Strings::ToBool(row[200]);
 		sp[tempid].viral_range = Strings::ToInt(row[201]);
 		sp[tempid].song_cap = Strings::ToInt(row[202]);
+#if false // post titanium
 		sp[tempid].no_block = Strings::ToInt(row[205]);
 		sp[tempid].spell_group=Strings::ToInt(row[207]);
 		sp[tempid].rank = Strings::ToInt(row[208]);
@@ -1853,6 +1854,7 @@ void SharedDatabase::LoadSpells(void *data, int max_spells) {
 		sp[tempid].min_range = Strings::ToFloat(row[231]);
 		sp[tempid].no_remove = Strings::ToBool(row[232]);
 		sp[tempid].damage_shield_type = 0;
+#endif
 	}
 
 	LoadDamageShieldTypes(sp, max_spells);

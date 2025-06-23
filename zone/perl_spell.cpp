@@ -11,20 +11,24 @@ int Perl_Spell_GetActivated(SPDat_Spell_Struct* self)
 	return self->activated;
 }
 
+#if false // post titanium
 bool Perl_Spell_GetAllowRest(SPDat_Spell_Struct* self)
 {
 	return self->allow_rest;
 }
+#endif
 
 uint32_t Perl_Spell_GetAOEDuration(SPDat_Spell_Struct* self)
 {
 	return self->aoe_duration;
 }
 
+#if false // post titanium
 int Perl_Spell_GetAOEMaxTargets(SPDat_Spell_Struct* self)
 {
 	return self->aoe_max_targets;
 }
+#endif
 
 float Perl_Spell_GetAOERange(SPDat_Spell_Struct* self)
 {
@@ -56,6 +60,7 @@ uint32_t Perl_Spell_GetBuffDurationFormula(SPDat_Spell_Struct* self)
 	return self->buff_duration_formula;
 }
 
+#if false // post titanium
 bool Perl_Spell_GetCanCastInCombat(SPDat_Spell_Struct* self)
 {
 	return self->can_cast_in_combat;
@@ -65,6 +70,7 @@ bool Perl_Spell_GetCanCastOutOfCombat(SPDat_Spell_Struct* self)
 {
 	return self->can_cast_out_of_combat;
 }
+#endif
 
 bool Perl_Spell_GetCanMGB(SPDat_Spell_Struct* self)
 {
@@ -86,20 +92,24 @@ std::string Perl_Spell_GetCastOnYou(SPDat_Spell_Struct* self)
 	return self->cast_on_you;
 }
 
+#if false // post titanium
 int Perl_Spell_GetCastRestriction(SPDat_Spell_Struct* self)
 {
 	return self->cast_restriction;
 }
+#endif
 
 uint32_t Perl_Spell_GetCastTime(SPDat_Spell_Struct* self)
 {
 	return self->cast_time;
 }
 
+#if false // post titanium
 int Perl_Spell_GetCasterRequirementID(SPDat_Spell_Struct* self)
 {
 	return self->caster_requirement_id;
 }
+#endif
 
 int Perl_Spell_GetCastingAnimation(SPDat_Spell_Struct* self)
 {
@@ -236,6 +246,7 @@ int Perl_Spell_GetMana(SPDat_Spell_Struct* self)
 	return self->mana;
 }
 
+#if false // post titanium
 float Perl_Spell_GetMaxDistance(SPDat_Spell_Struct* self)
 {
 	return self->max_distance;
@@ -245,6 +256,7 @@ float Perl_Spell_GetMaxDistanceMod(SPDat_Spell_Struct* self)
 {
 	return self->max_distance_mod;
 }
+#endif
 
 int Perl_Spell_GetMaxResist(SPDat_Spell_Struct* self)
 {
@@ -256,6 +268,7 @@ int Perl_Spell_GetMaxValue(SPDat_Spell_Struct* self, uint8_t slot)
 	return self->max_value[slot];
 }
 
+#if false // post titanium
 float Perl_Spell_GetMinDistance(SPDat_Spell_Struct* self)
 {
 	return self->min_distance;
@@ -270,6 +283,7 @@ float Perl_Spell_GetMinRange(SPDat_Spell_Struct* self)
 {
 	return self->min_range;
 }
+#endif
 
 int Perl_Spell_GetMinResist(SPDat_Spell_Struct* self)
 {
@@ -291,10 +305,12 @@ int Perl_Spell_GetNimbusEffect(SPDat_Spell_Struct* self)
 	return self->nimbus_effect;
 }
 
+#if false // post titanium
 bool Perl_Spell_GetNoBlock(SPDat_Spell_Struct* self)
 {
 	return self->no_block;
 }
+#endif
 
 bool Perl_Spell_GetNoDetrimentalSpellAggro(SPDat_Spell_Struct* self)
 {
@@ -306,16 +322,19 @@ int Perl_Spell_GetNoExpendReagent(SPDat_Spell_Struct* self, uint8_t slot)
 	return self->no_expend_reagent[slot];
 }
 
+#if false // post titanium
 int Perl_Spell_GetNoHealDamageItemMod(SPDat_Spell_Struct* self)
 {
 	return self->no_heal_damage_item_mod;
 }
+#endif
 
 bool Perl_Spell_GetNoPartialResist(SPDat_Spell_Struct* self)
 {
 	return self->no_partial_resist;
 }
 
+#if false // post titanium
 bool Perl_Spell_GetNoRemove(SPDat_Spell_Struct* self)
 {
 	return self->no_remove;
@@ -325,6 +344,7 @@ int Perl_Spell_GetNoResist(SPDat_Spell_Struct* self)
 {
 	return self->no_resist;
 }
+#endif
 
 bool Perl_Spell_GetNotFocusable(SPDat_Spell_Struct* self)
 {
@@ -341,20 +361,24 @@ std::string Perl_Spell_GetOtherCasts(SPDat_Spell_Struct* self)
 	return self->other_casts;
 }
 
+#if false // post titanium
 int Perl_Spell_GetOverrideCritChance(SPDat_Spell_Struct* self)
 {
 	return self->override_crit_chance;
 }
+#endif
 
 int Perl_Spell_GetPCNPCOnlyFlag(SPDat_Spell_Struct* self)
 {
 	return self->pcnpc_only_flag;
 }
 
+#if false // post titanium
 bool Perl_Spell_GetPersistDeath(SPDat_Spell_Struct* self)
 {
 	return self->persist_death;
 }
+#endif
 
 std::string Perl_Spell_GetPlayer_1(SPDat_Spell_Struct* self)
 {
@@ -401,10 +425,12 @@ float Perl_Spell_GetRange(SPDat_Spell_Struct* self)
 	return self->range;
 }
 
+#if false // post titanium
 int Perl_Spell_GetRank(SPDat_Spell_Struct* self)
 {
 	return self->rank;
 }
+#endif
 
 uint32_t Perl_Spell_GetRecastTime(SPDat_Spell_Struct* self)
 {
@@ -466,16 +492,19 @@ int Perl_Spell_GetSpellCategory(SPDat_Spell_Struct* self)
 	return self->spell_category;
 }
 
+#if false // post titanium
 int Perl_Spell_GetSpellClass(SPDat_Spell_Struct* self)
 {
 	return self->spell_class;
 }
+#endif
 
 std::string Perl_Spell_GetSpellFades(SPDat_Spell_Struct* self)
 {
 	return self->spell_fades;
 }
 
+#if false // post titanium
 int Perl_Spell_GetSpellGroup(SPDat_Spell_Struct* self)
 {
 	return self->spell_group;
@@ -485,6 +514,7 @@ int Perl_Spell_GetSpellSubclass(SPDat_Spell_Struct* self)
 {
 	return self->spell_subclass;
 }
+#endif
 
 bool Perl_Spell_GetSuspendable(SPDat_Spell_Struct* self)
 {
@@ -557,24 +587,34 @@ void perl_register_spell()
 
 	auto package = perl.new_class<SPDat_Spell_Struct>("Spell");
 	package.add("GetActivated", &Perl_Spell_GetActivated);
+#if false // post titanium
 	package.add("GetAllowRest", &Perl_Spell_GetAllowRest);
+#endif
 	package.add("GetAOEDuration", &Perl_Spell_GetAOEDuration);
+#if false // post titanium
 	package.add("GetAOEMaxTargets", &Perl_Spell_GetAOEMaxTargets);
+#endif
 	package.add("GetAOERange", &Perl_Spell_GetAOERange);
 	package.add("GetBaseDifficulty", &Perl_Spell_GetBaseDifficulty);
 	package.add("GetBaseValue", &Perl_Spell_GetBaseValue);
 	package.add("GetBonusHate", &Perl_Spell_GetBonusHate);
 	package.add("GetBuffDuration", &Perl_Spell_GetBuffDuration);
 	package.add("GetBuffDurationFormula", &Perl_Spell_GetBuffDurationFormula);
+#if false // post titanium
 	package.add("GetCanCastInCombat", &Perl_Spell_GetCanCastInCombat);
 	package.add("GetCanCastOutOfCombat", &Perl_Spell_GetCanCastOutOfCombat);
+#endif
 	package.add("GetCanMGB", &Perl_Spell_GetCanMGB);
 	package.add("GetCastNotStanding", &Perl_Spell_GetCastNotStanding);
 	package.add("GetCastOnOther", &Perl_Spell_GetCastOnOther);
 	package.add("GetCastOnYou", &Perl_Spell_GetCastOnYou);
+#if false // post titanium
 	package.add("GetCastRestriction", &Perl_Spell_GetCastRestriction);
+#endif
 	package.add("GetCastTime", &Perl_Spell_GetCastTime);
+#if false // post titanium
 	package.add("GetCasterRequirementID", &Perl_Spell_GetCasterRequirementID);
+#endif
 	package.add("GetCastingAnimation", &Perl_Spell_GetCastingAnimation);
 	package.add("GetClasses", &Perl_Spell_GetClasses);
 	package.add("GetComponent", &Perl_Spell_GetComponent);
@@ -602,30 +642,44 @@ void perl_register_spell()
 	package.add("GetLDoNTrap", &Perl_Spell_GetLDoNTrap);
 	package.add("GetLimitValue", &Perl_Spell_GetLimitValue);
 	package.add("GetMana", &Perl_Spell_GetMana);
+#if false // post titanium
 	package.add("GetMaxDistance", &Perl_Spell_GetMaxDistance);
 	package.add("GetMaxDistanceMod", &Perl_Spell_GetMaxDistanceMod);
+#endif
 	package.add("GetMaxResist", &Perl_Spell_GetMaxResist);
 	package.add("GetMaxValue", &Perl_Spell_GetMaxValue);
+#if false // post titanium
 	package.add("GetMinDistance", &Perl_Spell_GetMinDistance);
 	package.add("GetMinDistanceMod", &Perl_Spell_GetMinDistanceMod);
 	package.add("GetMinRange", &Perl_Spell_GetMinRange);
+#endif
 	package.add("GetMinResist", &Perl_Spell_GetMinResist);
 	package.add("GetName", &Perl_Spell_GetName);
 	package.add("GetNewIcon", &Perl_Spell_GetNewIcon);
 	package.add("GetNimbusEffect", &Perl_Spell_GetNimbusEffect);
+#if false // post titanium
 	package.add("GetNoBlock", &Perl_Spell_GetNoBlock);
+#endif
 	package.add("GetNoDetrimentalSpellAggro", &Perl_Spell_GetNoDetrimentalSpellAggro);
 	package.add("GetNoExpendReagent", &Perl_Spell_GetNoExpendReagent);
+#if false // post titanium
 	package.add("GetNoHealDamageItemMod", &Perl_Spell_GetNoHealDamageItemMod);
+#endif
 	package.add("GetNoPartialResist", &Perl_Spell_GetNoPartialResist);
+#if false // post titanium
 	package.add("GetNoRemove", &Perl_Spell_GetNoRemove);
 	package.add("GetNoResist", &Perl_Spell_GetNoResist);
+#endif
 	package.add("GetNotFocusable", &Perl_Spell_GetNotFocusable);
 	package.add("GetNPCNoLOS", &Perl_Spell_GetNPCNoLOS);
 	package.add("GetOtherCasts", &Perl_Spell_GetOtherCasts);
+#if false // post titanium
 	package.add("GetOverrideCritChance", &Perl_Spell_GetOverrideCritChance);
+#endif
 	package.add("GetPCNPCOnlyFlag", &Perl_Spell_GetPCNPCOnlyFlag);
+#if false // post titanium
 	package.add("GetPersistDeath", &Perl_Spell_GetPersistDeath);
+#endif
 	package.add("GetPlayer_1", &Perl_Spell_GetPlayer_1);
 	package.add("GetPushBack", &Perl_Spell_GetPushBack);
 	package.add("GetPushUp", &Perl_Spell_GetPushUp);
@@ -635,7 +689,9 @@ void perl_register_spell()
 	package.add("GetPVPResistCap", &Perl_Spell_GetPVPResistCap);
 	package.add("GetPVPResistPerLevel", &Perl_Spell_GetPVPResistPerLevel);
 	package.add("GetRange", &Perl_Spell_GetRange);
+#if false // post titanium
 	package.add("GetRank", &Perl_Spell_GetRank);
+#endif
 	package.add("GetRecastTime", &Perl_Spell_GetRecastTime);
 	package.add("GetRecourseLink", &Perl_Spell_GetRecourseLink);
 	package.add("GetRecoveryTime", &Perl_Spell_GetRecoveryTime);
@@ -648,10 +704,14 @@ void perl_register_spell()
 	package.add("GetSongCap", &Perl_Spell_GetSongCap);
 	package.add("GetSpellAffectIndex", &Perl_Spell_GetSpellAffectIndex);
 	package.add("GetSpellCategory", &Perl_Spell_GetSpellCategory);
+#if false // post titanium
 	package.add("GetSpellClass", &Perl_Spell_GetSpellClass);
+#endif
 	package.add("GetSpellFades", &Perl_Spell_GetSpellFades);
+#if false // post titanium
 	package.add("GetSpellGroup", &Perl_Spell_GetSpellGroup);
 	package.add("GetSpellSubclass", &Perl_Spell_GetSpellSubclass);
+#endif
 	package.add("GetSuspendable", &Perl_Spell_GetSuspendable);
 	package.add("GetTargetType", &Perl_Spell_GetTargetType);
 	package.add("GetTeleportZone", &Perl_Spell_GetTeleportZone);

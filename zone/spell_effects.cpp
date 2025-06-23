@@ -216,7 +216,9 @@ bool Mob::SpellEffect(Mob* caster, uint16 spell_id, float partial, int level_ove
 	}
 
 
+#if false // post titanium
 	if (!IsDistanceModifierSpell(spell_id))
+#endif
 		SetSpellPowerDistanceMod(0);
 
 	bool spell_trigger_cast_complete = false; //Used with SE_Spell_Trigger and SE_Chance_Best_in_Spell_Grp, true when spell has been triggered.
@@ -845,11 +847,13 @@ bool Mob::SpellEffect(Mob* caster, uint16 spell_id, float partial, int level_ove
 
 				bool bBreak = false;
 
+#if false // post titanium
 				// define spells with fixed duration
 				// charm spells with -1 in field 209 are all of fixed duration, so lets use that instead of spell_ids
 				if (spells[spell_id].no_resist) {
 					bBreak = true;
 				}
+#endif
 
 				if (buffslot > -1) {
 					if (!bBreak) {
@@ -3026,6 +3030,7 @@ bool Mob::SpellEffect(Mob* caster, uint16 spell_id, float partial, int level_ove
 			}
 
 			case SE_Trigger_Best_in_Spell_Grp: {
+#if false // post titanium
 
 				if (caster && !caster->IsClient())
 					break;
@@ -3036,6 +3041,7 @@ bool Mob::SpellEffect(Mob* caster, uint16 spell_id, float partial, int level_ove
 					if (IsValidSpell(best_spell_id))
 						caster->SpellFinished(best_spell_id, this, EQ::spells::CastingSlot::Item, 0, -1, spells[best_spell_id].resist_difficulty);
 				}
+#endif
 				break;
 			}
 
@@ -4947,6 +4953,7 @@ int64 Mob::CalcAAFocus(focusType type, const AA::Rank &rank, uint16 spell_id)
 				break;
 
 			case SE_LimitSpellGroup:
+#if false // post titanium
 				if (base_value < 0) {
 					if (-base_value == spell.spell_group) { // Exclude
 						LimitFailure = true;
@@ -4958,6 +4965,7 @@ int64 Mob::CalcAAFocus(focusType type, const AA::Rank &rank, uint16 spell_id)
 						LimitInclude[IncludeFoundSELimitSpellGroup] = true;
 					}
 				}
+#endif
 				break;
 
 			case SE_LimitCastingSkill:
@@ -4975,6 +4983,7 @@ int64 Mob::CalcAAFocus(focusType type, const AA::Rank &rank, uint16 spell_id)
 				break;
 
 			case SE_LimitSpellClass:
+#if false // post titanium
 				if (base_value < 0) { // Exclude
 					if (-base_value == spell.spell_class) {
 						LimitFailure = true;
@@ -4986,9 +4995,11 @@ int64 Mob::CalcAAFocus(focusType type, const AA::Rank &rank, uint16 spell_id)
 						LimitInclude[IncludeFoundSELimitSpellClass] = true;
 					}
 				}
+#endif
 				break;
 
 			case SE_LimitSpellSubclass:
+#if false // post titanium
 				if (base_value < 0) { // Exclude
 					if (-base_value == spell.spell_subclass) {
 						LimitFailure = true;
@@ -5000,6 +5011,7 @@ int64 Mob::CalcAAFocus(focusType type, const AA::Rank &rank, uint16 spell_id)
 						LimitInclude[IncludeFoundSELimitSpellSubclass] = true;
 					}
 				}
+#endif
 				break;
 
 			case SE_LimitClass:
@@ -5674,6 +5686,7 @@ int64 Mob::CalcFocusEffect(focusType type, uint16 focus_id, uint16 spell_id, boo
 				break;
 
 			case SE_LimitSpellGroup:
+#if false // post titanium
 				if (focus_spell.base_value[i] < 0) {
 					if (-focus_spell.base_value[i] == spell.spell_group) { // Exclude
 						return 0;
@@ -5685,6 +5698,7 @@ int64 Mob::CalcFocusEffect(focusType type, uint16 focus_id, uint16 spell_id, boo
 						LimitInclude[IncludeFoundSELimitSpellGroup] = true;
 					}
 				}
+#endif
 				break;
 
 			case SE_LimitCastingSkill:
@@ -5734,6 +5748,7 @@ int64 Mob::CalcFocusEffect(focusType type, uint16 focus_id, uint16 spell_id, boo
 				break;
 
 			case SE_LimitSpellClass:
+#if false // post titanium
 				if (focus_spell.base_value[i] < 0) { // Exclude
 					if (-focus_spell.base_value[i] == spell.spell_class) {
 						return 0;
@@ -5745,9 +5760,11 @@ int64 Mob::CalcFocusEffect(focusType type, uint16 focus_id, uint16 spell_id, boo
 						LimitInclude[IncludeFoundSELimitSpellClass] = true;
 					}
 				}
+#endif
 				break;
 
 			case SE_LimitSpellSubclass:
+#if false // post titanium
 				if (focus_spell.base_value[i] < 0) { // Exclude
 					if (-focus_spell.base_value[i] == spell.spell_subclass) {
 						return 0;
@@ -5759,6 +5776,7 @@ int64 Mob::CalcFocusEffect(focusType type, uint16 focus_id, uint16 spell_id, boo
 						LimitInclude[IncludeFoundSELimitSpellSubclass] = true;
 					}
 				}
+#endif
 				break;
 
 			case SE_Ff_Same_Caster://hmm do i need to pass casterid from buff slot here
@@ -7862,12 +7880,16 @@ bool Mob::PassCastRestriction(int value)
 			break;
 
 		case FRENZIED_BURNOUT_ACTIVE:
+#if false // post titanium
 			if (HasBuffWithSpellGroup(SPELLGROUP_FRENZIED_BURNOUT))
+#endif
 				return true;
 			break;
 
 		case FRENZIED_BURNOUT_NOT_ACTIVE:
+#if false // post titanium
 			if (!HasBuffWithSpellGroup(SPELLGROUP_FRENZIED_BURNOUT))
+#endif
 				return true;
 			break;
 
@@ -8407,32 +8429,44 @@ bool Mob::PassCastRestriction(int value)
 			break;
 
 		case HAS_NO_ROGUES_FURY_BUFF:
+#if false // post titanium
 			if (!HasBuffWithSpellGroup(SPELLGROUP_ROGUES_FURY))
+#endif
 				return true;
 			break;
 
 		case HAS_NO_ILLUSIONS_OF_GRANDEUR_BUFF:
+#if false // post titanium
 			if (!HasBuffWithSpellGroup(SPELLGROUP_ILLUSION_OF_GRANDEUR))
+#endif
 				return true;
 			break;
 
 		case HAS_NO_HARMONIOUS_PRECISION_BUFF:
+#if false // post titanium
 			if (!HasBuffWithSpellGroup(SPELLGROUP_HARMONIOUS_PRECISION))
+#endif
 				return true;
 			break;
 
 		case HAS_NO_HARMONIOUS_EXPANSE_BUFF:
+#if false // post titanium
 			if (!HasBuffWithSpellGroup(SPELLGROUP_HARMONIOUS_EXPANSE))
+#endif
 				return true;
 			break;
 
 		case HAS_NO_FURIOUS_RAMPAGE_BUFF:
+#if false // post titanium
 			if (!HasBuffWithSpellGroup(SPELLGROUP_FURIOUS_RAMPAGE))
+#endif
 				return true;
 			break;
 
 		case HAS_NO_SHROUD_OF_PRAYER_BUFF:
+#if false // post titanium
 			if (!HasBuffWithSpellGroup(SPELLGROUP_SHROUD_OF_PRAYER))
+#endif
 				return true;
 			break;
 
@@ -9850,6 +9884,7 @@ void Mob::CastSpellOnLand(Mob* caster, int32 spell_id)
 	}
 }
 
+#if false // post titanium
 void Mob::CalcSpellPowerDistanceMod(uint16 spell_id, float range, Mob* caster)
 {
 	if (IsDistanceModifierSpell(spell_id)){
@@ -9872,6 +9907,7 @@ void Mob::CalcSpellPowerDistanceMod(uint16 spell_id, float range, Mob* caster)
 		SetSpellPowerDistanceMod(static_cast<int>(mod));
 	}
 }
+#endif
 
 void Mob::BreakInvisibleSpells()
 {

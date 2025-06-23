@@ -75,9 +75,11 @@ int64 Mob::GetActSpellDamage(uint16 spell_id, int64 value, Mob* target) {
 			 chance = 100;
 		}
 
+#if false // post titanium
 		if (spells[spell_id].override_crit_chance > 0 && chance > spells[spell_id].override_crit_chance) {
 			chance = spells[spell_id].override_crit_chance;
 		}
+#endif
 
 		if (zone->random.Roll(chance)) {
 			Critical = true;
@@ -135,12 +137,14 @@ int64 Mob::GetActSpellDamage(uint16 spell_id, int64 value, Mob* target) {
 				value -= GetSkillDmgAmt(spells[spell_id].skill) * ratio / 100;
 			}
 
+#if false // post titanium
 			if (RuleB(Spells, IgnoreSpellDmgLvlRestriction) && !spells[spell_id].no_heal_damage_item_mod && itembonuses.SpellDmg) {
 				value -= GetExtraSpellAmt(spell_id, itembonuses.SpellDmg, base_value) * ratio / 100;
 
 			} else if (!spells[spell_id].no_heal_damage_item_mod && itembonuses.SpellDmg && spells[spell_id].classes[(GetClass() % 17) - 1] >= GetLevel() - 5) {
 				value -= GetExtraSpellAmt(spell_id, itembonuses.SpellDmg, base_value) * ratio / 100;
 			}
+#endif
 
 			// legacy manaburn can crit, but is still held to the same cap
 			if (RuleB(Spells, LegacyManaburn) && spell_id == SPELL_MANA_BURN) {
@@ -184,11 +188,17 @@ int64 Mob::GetActSpellDamage(uint16 spell_id, int64 value, Mob* target) {
 		value -= GetSkillDmgAmt(spells[spell_id].skill);
 	}
 
-	if (RuleB(Spells, IgnoreSpellDmgLvlRestriction) && !spells[spell_id].no_heal_damage_item_mod && itembonuses.SpellDmg)
+	if (RuleB(Spells, IgnoreSpellDmgLvlRestriction) 
+#if false // post titanium
+		&& !spells[spell_id].no_heal_damage_item_mod
+#endif
+		&& itembonuses.SpellDmg)
 		value -= GetExtraSpellAmt(spell_id, itembonuses.SpellDmg, base_value);
 
 	else if (
+#if false // post titanium
 		!spells[spell_id].no_heal_damage_item_mod &&
+#endif
 		GetSpellDmg() &&
 		spells[spell_id].classes[(GetClass() % 17) - 1] >= GetLevel() - 5
 	) {
@@ -233,7 +243,11 @@ int64 Mob::GetActReflectedSpellDamage(uint16 spell_id, int64 value, int effectiv
 		value -= GetSkillDmgAmt(spells[spell_id].skill);
 	}
 
-	if (!spells[spell_id].no_heal_damage_item_mod && itembonuses.SpellDmg) {
+	if (
+#if false // post titanium
+		!spells[spell_id].no_heal_damage_item_mod &&
+#endif
+		itembonuses.SpellDmg) {
 		value -= GetExtraSpellAmt(spell_id, itembonuses.SpellDmg, base_spell_dmg);
 	}
 
@@ -265,8 +279,10 @@ int64 Mob::GetActDoTDamage(uint16 spell_id, int64 value, Mob* target, bool from_
 	if (spellbonuses.CriticalDotDecay)
 		chance += GetDecayEffectValue(spell_id, SE_CriticalDotDecay);
 
+#if false // post titanium
 	if (spells[spell_id].override_crit_chance > 0 && chance > spells[spell_id].override_crit_chance)
 		chance = spells[spell_id].override_crit_chance;
+#endif
 
 	if (!spells[spell_id].good_effect && chance > 0 && (zone->random.Roll(chance))) {
 		int64 ratio = 200;
@@ -286,13 +302,17 @@ int64 Mob::GetActDoTDamage(uint16 spell_id, int64 value, Mob* target, bool from_
 		if (RuleB(Spells, DOTsScaleWithSpellDmg)) {
 			if (
 				RuleB(Spells, IgnoreSpellDmgLvlRestriction) &&
+#if false // post titanium
 				!spells[spell_id].no_heal_damage_item_mod &&
+#endif
 				GetSpellDmg()
 			) {
 				extra_dmg += GetExtraSpellAmt(spell_id, GetSpellDmg(), base_value)*ratio/100;
 			}
 			else if (
+#if false // post titanium
 				!spells[spell_id].no_heal_damage_item_mod &&
+#endif
 				GetSpellDmg() &&
 				spells[spell_id].classes[(GetClass() % 17) - 1] >= GetLevel() - 5
 			) {
@@ -332,13 +352,17 @@ int64 Mob::GetActDoTDamage(uint16 spell_id, int64 value, Mob* target, bool from_
 		if (RuleB(Spells, DOTsScaleWithSpellDmg)) {
 			if (
 				RuleB(Spells, IgnoreSpellDmgLvlRestriction) &&
+#if false // post titanium
 				!spells[spell_id].no_heal_damage_item_mod &&
+#endif
 				GetSpellDmg()
 			) {
 				extra_dmg += GetExtraSpellAmt(spell_id, GetSpellDmg(), base_value);
 			}
 			else if (
+#if false // post titanium
 				!spells[spell_id].no_heal_damage_item_mod &&
+#endif
 				GetSpellDmg() &&
 				spells[spell_id].classes[(GetClass() % 17) - 1] >= GetLevel() - 5
 			) {
@@ -442,9 +466,11 @@ int64 Mob::GetActSpellHealing(uint16 spell_id, int64 value, Mob* target, bool fr
 
 	if (critical_chance) {
 
+#if false // post titanium
 		if (spells[spell_id].override_crit_chance > 0 && critical_chance > spells[spell_id].override_crit_chance) {
 			critical_chance = spells[spell_id].override_crit_chance;
 		}
+#endif
 
 		if (zone->random.Roll(critical_chance)) {
 			critical_modifier = 2; //At present time no critical heal amount modifier SPA exists.
@@ -474,13 +500,17 @@ int64 Mob::GetActSpellHealing(uint16 spell_id, int64 value, Mob* target, bool fr
 		//Using IgnoreSpellDmgLvlRestriction to also allow healing to scale
 		if (
 			RuleB(Spells, IgnoreSpellDmgLvlRestriction) &&
+#if false // post titanium
 			!spells[spell_id].no_heal_damage_item_mod &&
+#endif
 			GetHealAmt()
 		) {
 			value += GetExtraSpellAmt(spell_id, GetHealAmt(), base_value); //Item Heal Amt Add before critical
 		}
 		else if (
+#if false // post titanium
 			!spells[spell_id].no_heal_damage_item_mod &&
+#endif
 			GetHealAmt() &&
 			spells[spell_id].classes[(GetClass() % 17) - 1] >= GetLevel() - 5
 		) {
@@ -528,13 +558,17 @@ int64 Mob::GetActSpellHealing(uint16 spell_id, int64 value, Mob* target, bool fr
 		if (RuleB(Spells, HOTsScaleWithHealAmt)) {
 			if (
 				RuleB(Spells, IgnoreSpellDmgLvlRestriction) &&
+#if false // post titanium
 				!spells[spell_id].no_heal_damage_item_mod &&
+#endif
 				GetHealAmt()
 			) {
 				extra_heal += GetExtraSpellAmt(spell_id, GetHealAmt(), base_value);
 			}
 			else if (
+#if false // post titanium
 				!spells[spell_id].no_heal_damage_item_mod &&
+#endif
 				GetHealAmt() &&
 				spells[spell_id].classes[(GetClass() % 17) - 1] >= GetLevel() - 5
 			) {
@@ -1085,7 +1119,9 @@ void EntityList::AESpell(
 	bool      is_npc               = caster_mob->IsNPC();
 	float     distance             = caster_mob->GetAOERange(spell_id);
 	float     distance_squared     = distance * distance;
+#if false // post titanium
 	float     min_range_squared    = spells[spell_id].min_range * spells[spell_id].min_range;
+#endif
 	glm::vec2 min                  = { cast_target_position.x - distance, cast_target_position.y - distance };
 	glm::vec2 max                  = { cast_target_position.x + distance, cast_target_position.y + distance };
 
@@ -1099,8 +1135,10 @@ void EntityList::AESpell(
 	int max_targets_allowed = RuleI(Spells, DefaultAOEMaxTargets);;
 	if (max_targets) { // rains pass this in since they need to preserve the count through waves
 		max_targets_allowed = *max_targets;
+#if false // post titanium
 	} else if (spells[spell_id].aoe_max_targets) {
 		max_targets_allowed = spells[spell_id].aoe_max_targets;
+#endif
 	} else if (
 		IsTargetableAESpell(spell_id) &&
 		is_detrimental_spell &&
@@ -1172,9 +1210,11 @@ void EntityList::AESpell(
 			continue;
 		}
 
+#if false // post titanium
 		if (distance_to_target < min_range_squared) {
 			continue;
 		}
+#endif
 
 		if (
 			is_npc &&
@@ -1229,7 +1269,9 @@ void EntityList::AESpell(
 			}
 		}
 
+#if false // post titanium
 		current_mob->CalcSpellPowerDistanceMod(spell_id, distance_to_target);
+#endif
 		caster_mob->SpellOnTarget(spell_id, current_mob, 0, true, resist_adjust);
 
 		/**

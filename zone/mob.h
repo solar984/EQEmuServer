@@ -506,7 +506,9 @@ public:
 	inline float GetTargetRingZ() const { return m_TargetRing.z; }
 	inline bool HasEndurUpkeep() const { return endur_upkeep; }
 	inline void SetEndurUpkeep(bool val) { endur_upkeep = val; }
+#if false // post titanium
 	bool HasBuffWithSpellGroup(int spell_group);
+#endif
 	void SetAppearanceEffects(int32 slot, int32 value);
 	void ListAppearanceEffects(Client* c);
 	void ClearAppearanceEffects();
@@ -998,7 +1000,9 @@ public:
 	bool ImprovedTaunt();
 	bool TryRootFadeByDamage(int buffslot, Mob* attacker);
 	float GetSlowMitigation() const { return slow_mitigation; }
+#if false // post titanium
 	void CalcSpellPowerDistanceMod(uint16 spell_id, float range, Mob* caster = nullptr);
+#endif
 	inline int16 GetSpellPowerDistanceMod() const { return SpellPowerDistanceMod; };
 	inline void SetSpellPowerDistanceMod(int16 value) { SpellPowerDistanceMod = value; };
 	int32 GetSpellStat(uint32 spell_id, const char *identifier, uint8 slot = 0);

@@ -818,7 +818,9 @@ void HateList::SpellCast(Mob *caster, uint32 spell_id, float range, Mob* ae_cent
 	//So keep a list of entity ids and look up after
 	std::list<uint32> id_list;
 	range = range * range;
+#if false // post titanium
 	float min_range2 = spells[spell_id].min_range * spells[spell_id].min_range;
+#endif
 	float dist_targ = 0;
 	auto iterator = list.begin();
 	while (iterator != list.end())
@@ -827,16 +829,24 @@ void HateList::SpellCast(Mob *caster, uint32 spell_id, float range, Mob* ae_cent
 		if (range > 0)
 		{
 			dist_targ = DistanceSquared(center->GetPosition(), h->entity_on_hatelist->GetPosition());
-			if (dist_targ <= range && dist_targ >= min_range2)
+			if (dist_targ <= range 
+#if false // post titanium
+				&& dist_targ >= min_range2
+#endif
+				)
 			{
 				id_list.push_back(h->entity_on_hatelist->GetID());
+#if false // post titanium
 				h->entity_on_hatelist->CalcSpellPowerDistanceMod(spell_id, dist_targ);
+#endif
 			}
 		}
 		else
 		{
 			id_list.push_back(h->entity_on_hatelist->GetID());
+#if false // post titanium
 			h->entity_on_hatelist->CalcSpellPowerDistanceMod(spell_id, 0, caster);
+#endif
 		}
 		++iterator;
 	}

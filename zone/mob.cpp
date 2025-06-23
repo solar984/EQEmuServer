@@ -5878,6 +5878,7 @@ bool Mob::TrySpellTrigger(Mob *target, uint32 spell_id, int effect)
 			SpellFinished(spells[spell_id].limit_value[effect_slot], target, EQ::spells::CastingSlot::Item, 0, -1, spells[spells[spell_id].limit_value[effect_slot]].resist_difficulty);
 			return true;
 		}
+#if false // post titanium
 		else if (IsClient() && spells[spell_id].effect_id[effect_slot] == SE_Chance_Best_in_Spell_Grp) {
 			uint32 best_spell_id = CastToClient()->GetHighestScribedSpellinSpellGroup(spells[spell_id].limit_value[effect_slot]);
 			if (IsValidSpell(best_spell_id)) {
@@ -5885,6 +5886,7 @@ bool Mob::TrySpellTrigger(Mob *target, uint32 spell_id, int effect)
 			}
 			return true;//Do nothing if you don't have the any spell in spell group scribed.
 		}
+#endif
 	}
 
 	return false;

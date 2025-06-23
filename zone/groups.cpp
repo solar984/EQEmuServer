@@ -821,7 +821,9 @@ void Group::CastGroupSpell(Mob* caster, uint16 spell_id) {
 	range = caster->GetAOERange(spell_id);
 
 	float range2 = range*range;
+#if false // post titanium
 	float min_range2 = spells[spell_id].min_range * spells[spell_id].min_range;
+#endif
 
 	for(z=0; z < MAX_GROUP_MEMBERS; z++)
 	{
@@ -835,8 +837,14 @@ void Group::CastGroupSpell(Mob* caster, uint16 spell_id) {
 		else if(members[z] != nullptr)
 		{
 			distance = DistanceSquared(caster->GetPosition(), members[z]->GetPosition());
-			if(distance <= range2 && distance >= min_range2) {
+			if(distance <= range2 
+#if false // post titanium
+				&& distance >= min_range2
+#endif
+				) {
+#if false // post titanium
 				members[z]->CalcSpellPowerDistanceMod(spell_id, distance);
+#endif
 				caster->SpellOnTarget(spell_id, members[z]);
 #ifdef GROUP_BUFF_PETS
 				if(spells[spell_id].target_type != ST_GroupNoPets && members[z]->GetPet() && members[z]->HasPetAffinity() && !members[z]->GetPet()->IsCharmed())

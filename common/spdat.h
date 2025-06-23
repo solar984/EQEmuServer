@@ -1717,6 +1717,8 @@ struct SPDat_Spell_Struct
 /* 200 */	bool suspendable; // buff is suspended in suspended buff zones -- IS_COUNTDOWN_HELD
 /* 201 */	int viral_range; // -- SPREAD_RADIUS
 /* 202 */	int song_cap; // individual song cap -- BASE_EFFECTS_FOCUS_CAP
+/*** end of titanium client struct ***/
+#if false
 /* 203 */	//bool stacks_with_self; // -- STACKS_WITH_SELF
 /* 204 */	//int not_shown_to_player; // client skips this -- NOT_SHOWN_TO_PLAYER
 /* 205 */	bool no_block; // -- NO_BUFF_BLOCK
@@ -1758,6 +1760,7 @@ struct SPDat_Spell_Struct
 /* 234 */	//bool only_during_fast_regen; // -- ONLY_DURING_FAST_REGEN
 /* 235 */	//bool is_beta_only; // -- IS_BETA_ONLY
 /* 236 */	//int spell_subgroup; // -- SPELL_SUBGROUP
+#endif
 			uint8 damage_shield_type; // This field does not exist in spells_us.txt
 };
 
@@ -1871,10 +1874,14 @@ bool IsHateReduxSpell(uint16 spell_id);
 bool IsResistDebuffSpell(uint16 spell_id);
 bool IsSelfConversionSpell(uint16 spell_id);
 bool IsBuffSpell(uint16 spell_id);
+#if false // post titanium
 bool IsPersistDeathSpell(uint16 spell_id);
+#endif
 bool IsSuspendableSpell(uint16 spell_id);
 bool IsCastOnFadeDurationSpell(uint16 spell_id);
+#if false // post titanium
 bool IsDistanceModifierSpell(uint16 spell_id);
+#endif
 int GetSpellPartialMeleeRuneReduction(uint16 spell_id);
 int GetSpellPartialMagicRuneReduction(uint16 spell_id);
 int GetSpellPartialMeleeRuneAmount(uint16 spell_id);
@@ -1896,7 +1903,9 @@ int GetSpellProcLimitTimer(uint16 spell_id, int proc_type);
 bool IsCastNotStandingSpell(uint16 spell_id);
 int GetSpellEffectDescriptionNumber(uint16 spell_id);
 DmgShieldType GetDamageShieldType(uint16 spell_id, int damage_shield_type = 0);
+#if false // post titanium
 bool IsRestAllowedSpell(uint16 spell_id);
+#endif
 int GetSpellNimbusEffect(uint16 spell_id);
 int GetSpellFuriousBash(uint16 spell_id);
 bool IsShortDurationBuff(uint16 spell_id);

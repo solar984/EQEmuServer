@@ -408,6 +408,7 @@ float Lua_Spell::GetDirectionalEnd() {
 	return self->directional_end;
 }
 
+#if false // post titanium
 int Lua_Spell::GetSpellGroup() {
 	Lua_Safe_Call_Int();
 	return self->spell_group;
@@ -477,16 +478,19 @@ float Lua_Spell::GetMinRange() {
 	Lua_Safe_Call_Real();
 	return self->min_range;
 }
+#endif
 
 int Lua_Spell::GetDamageShieldType() {
 	Lua_Safe_Call_Int();
 	return self->damage_shield_type;
 }
 
+#if false // post titanium
 int Lua_Spell::GetRank() {
 	Lua_Safe_Call_Int();
 	return self->rank;
 }
+#endif
 
 luabind::scope lua_register_spell() {
 	return luabind::class_<Lua_Spell>("Spell")
@@ -495,9 +499,13 @@ luabind::scope lua_register_spell() {
 	.property("null", &Lua_Spell::Null)
 	.property("valid", &Lua_Spell::Valid)
 	.def("AEDuration", &Lua_Spell::GetAEDuration)
+#if false // post titanium
 	.def("AEMaxTargets", &Lua_Spell::GetAEMaxTargets)
+#endif
 	.def("Activated", &Lua_Spell::GetActivated)
+#if false // post titanium
 	.def("AllowRest", &Lua_Spell::GetAllowRest)
+#endif
 	.def("AoeRange", &Lua_Spell::GetAoeRange)
 	.def("Base", &Lua_Spell::GetBase)
 	.def("Base2", &Lua_Spell::GetBase2)
@@ -508,7 +516,9 @@ luabind::scope lua_register_spell() {
 	.def("CanMGB", &Lua_Spell::GetCanMGB)
 	.def("CastOnOther", &Lua_Spell::GetCastOnOther)
 	.def("CastOnYou", &Lua_Spell::GetCastOnYou)
+#if false // post titanium
 	.def("CastRestriction", &Lua_Spell::GetCastRestriction)
+#endif
 	.def("CastTime", &Lua_Spell::GetCastTime)
 	.def("CastingAnim", &Lua_Spell::GetCastingAnim)
 	.def("Classes", &Lua_Spell::GetClasses)
@@ -531,35 +541,49 @@ luabind::scope lua_register_spell() {
 	.def("GoodEffect", &Lua_Spell::GetGoodEffect)
 	.def("HateAdded", &Lua_Spell::GetHateAdded)
 	.def("ID", &Lua_Spell::GetID)
+#if false // post titanium
 	.def("InCombat", &Lua_Spell::GetInCombat)
+#endif
 	.def("Mana", &Lua_Spell::GetMana)
 	.def("Max", &Lua_Spell::GetMax)
+#if false // post titanium
 	.def("MaxDist", &Lua_Spell::GetMaxDist)
 	.def("MaxDistMod", &Lua_Spell::GetMaxDistMod)
+#endif
 	.def("MaxResist", &Lua_Spell::GetMaxResist)
+#if false // post titanium
 	.def("MaxTargets", &Lua_Spell::GetMaxTargets)
 	.def("MinDist", &Lua_Spell::GetMinDist)
 	.def("MinDistMod", &Lua_Spell::GetMinDistMod)
 	.def("MinRange", &Lua_Spell::GetMinRange)
+#endif
 	.def("MinResist", &Lua_Spell::GetMinResist)
 	.def("Name", &Lua_Spell::GetName)
 	.def("NimbusEffect", &Lua_Spell::GetNimbusEffect)
 	.def("NoexpendReagent", &Lua_Spell::GetNoexpendReagent)
 	.def("NumHits", &Lua_Spell::GetNumHits)
 	.def("OtherCasts", &Lua_Spell::GetOtherCasts)
+#if false // post titanium
 	.def("OutOfCombat", &Lua_Spell::GetOutOfCombat)
+#endif
 	.def("PVPDuration", &Lua_Spell::GetPVPDuration)
 	.def("PVPDurationCap", &Lua_Spell::GetPVPDurationCap)
 	.def("PVPResistBase", &Lua_Spell::GetPVPResistBase)
 	.def("PVPResistCalc", &Lua_Spell::GetPVPResistCalc)
 	.def("PVPResistCap", &Lua_Spell::GetPVPResistCap)
+#if false // post titanium
 	.def("PersistDeath", &Lua_Spell::GetPersistDeath)
+#endif
 	.def("Player1", &Lua_Spell::GetPlayer1)
+#if false // post titanium
 	.def("PowerfulFlag", &Lua_Spell::GetPowerfulFlag)
+#endif
 	.def("PushBack", &Lua_Spell::GetPushBack)
 	.def("PushUp", &Lua_Spell::GetPushUp)
 	.def("Range", &Lua_Spell::GetRange)
+#if false // post titanium
 	.def("Rank", &Lua_Spell::GetRank)
+#endif
 	.def("RecastTime", &Lua_Spell::GetRecastTime)
 	.def("RecourseLink", &Lua_Spell::GetRecourseLink)
 	.def("RecoveryTime", &Lua_Spell::GetRecoveryTime)
@@ -570,7 +594,9 @@ luabind::scope lua_register_spell() {
 	.def("SpellAffectIndex", &Lua_Spell::GetSpellAffectIndex)
 	.def("SpellCategory", &Lua_Spell::GetSpellCategory)
 	.def("SpellFades", &Lua_Spell::GetSpellFades)
+#if false // post titanium
 	.def("SpellGroup", &Lua_Spell::GetSpellGroup)
+#endif
 	.def("TargetType", &Lua_Spell::GetTargetType)
 	.def("TeleportZone", &Lua_Spell::GetTeleportZone)
 	.def("TimeOfDay", &Lua_Spell::GetTimeOfDay)

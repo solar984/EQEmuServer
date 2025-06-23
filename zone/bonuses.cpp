@@ -1655,6 +1655,7 @@ void Mob::ApplyAABonuses(const AA::Rank &rank, StatBonuses *newbon)
 
 		case SE_Weapon_Stance:
 		{
+#if false // post titanium
 			if (IsValidSpell(base_value)) { //base1 is the spell_id of buff
 				if (limit_value <= WEAPON_STANCE_TYPE_MAX) { //0=2H, 1=Shield, 2=DW
 					if (IsValidSpell(newbon->WeaponStance[limit_value])) { //Check if we already a spell_id saved for this effect
@@ -1669,6 +1670,7 @@ void Mob::ApplyAABonuses(const AA::Rank &rank, StatBonuses *newbon)
 					}
 				}
 			}
+#endif
 			break;
 		}
 
@@ -3839,6 +3841,7 @@ void Mob::ApplySpellsBonuses(uint16 spell_id, uint8 casterlevel, StatBonuses *ne
 				break;
 
 			case SE_Weapon_Stance: {
+#if false // post titanium
 				if (IsValidSpell(effect_value)) { //base1 is the spell_id of buff
 					if (limit_value <= WEAPON_STANCE_TYPE_MAX) { //0=2H, 1=Shield, 2=DW
 						if (IsValidSpell(new_bonus->WeaponStance[limit_value])) { //Check if we already a spell_id saved for this effect
@@ -3867,6 +3870,7 @@ void Mob::ApplySpellsBonuses(uint16 spell_id, uint8 casterlevel, StatBonuses *ne
 						}
 					}
 				}
+#endif
 				break;
 			}
 

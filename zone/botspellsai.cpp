@@ -2771,16 +2771,20 @@ bool Bot::IsValidSpellRange(uint16 spell_id, Mob* tar) {
 
 	float dist2 = DistanceSquared(m_Position, tar->GetPosition());
 	float range2 = range * range;
+#if false // post titanium
 	float min_range2 = spells[spell_id].min_range * spells[spell_id].min_range;
+#endif
 
 	if (dist2 > range2) {
 		//target is out of range.
 		return false;
 	}
+#if false // post titanium
 	else if (dist2 < min_range2) {
 		//target is too close range.
 		return false;
 	}
+#endif
 
 	return true;
 }

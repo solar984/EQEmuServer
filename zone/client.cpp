@@ -10799,6 +10799,7 @@ std::vector<int> Client::GetScribeableSpells(uint8 min_level, uint8 max_level) {
 			scribeable = false;
 		}
 
+#if false // post titanium
 		if (spells[spell_id].spell_group) {
 			const auto& g = spell_group_cache.find(spells[spell_id].spell_group);
 			if (g != spell_group_cache.end()) {
@@ -10813,7 +10814,9 @@ std::vector<int> Client::GetScribeableSpells(uint8 min_level, uint8 max_level) {
 					continue;
 				}
 			}
-		} else if (scribeable) {
+		} else 
+#endif
+		if (scribeable) {
 			scribeable_spells.push_back(spell_id);
 		}
 	}

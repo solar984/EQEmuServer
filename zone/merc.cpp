@@ -753,6 +753,7 @@ void Merc::CalcRestState() {
 	if(!rest_timer.Check(false))
 		return;
 
+#if false // post titanium
 	uint32 buff_count = GetMaxTotalSlots();
 	for (unsigned int j = 0; j < buff_count; j++) {
 		if(IsValidSpell(buffs[j].spellid)) {
@@ -761,6 +762,7 @@ void Merc::CalcRestState() {
 					return;
 		}
 	}
+#endif
 
 	RestRegenHP = 6 * (GetMaxHP() / zone->newzone_data.fast_regen_hp);
 

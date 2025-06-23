@@ -2110,10 +2110,12 @@ bool Perl__IsBuffSpell(uint16 spell_id)
 	return IsBuffSpell(spell_id);
 }
 
+#if false // post titanium
 bool Perl__IsPersistDeathSpell(uint16 spell_id)
 {
 	return IsPersistDeathSpell(spell_id);
 }
+#endif
 
 bool Perl__IsSuspendableSpell(uint16 spell_id)
 {
@@ -2125,15 +2127,19 @@ bool Perl__IsCastOnFadeDurationSpell(uint16 spell_id)
 	return IsCastOnFadeDurationSpell(spell_id);
 }
 
+#if false // post titanium
 bool Perl__IsDistanceModifierSpell(uint16 spell_id)
 {
 	return IsDistanceModifierSpell(spell_id);
 }
+#endif
 
+#if false // post titanium
 bool Perl__IsRestAllowedSpell(uint16 spell_id)
 {
 	return IsRestAllowedSpell(spell_id);
 }
+#endif
 
 bool Perl__IsNoDetrimentalSpellAggroSpell(uint16 spell_id)
 {
@@ -6216,7 +6222,9 @@ void perl_register_quest()
 	package.add("IsDiscipline", &Perl__IsDiscipline);
 	package.add("IsDisciplineBuff", &Perl__IsDisciplineBuff);
 	package.add("IsDiseaseCounterSpell", &Perl__IsDiseaseCounterSpell);
+#if false // post titanium
 	package.add("IsDistanceModifierSpell", &Perl__IsDistanceModifierSpell);
+#endif
 	package.add("IsEffectIgnoredInStacking", &Perl__IsEffectIgnoredInStacking);
 	package.add("IsEffectInSpell", &Perl__IsEffectInSpell);
 	package.add("IsFastHealSpell", &Perl__IsFastHealSpell);
@@ -6251,7 +6259,9 @@ void perl_register_quest()
 	package.add("IsPartialResistableSpell", &Perl__IsPartialResistableSpell);
 	package.add("IsPBAENukeSpell", &Perl__IsPBAENukeSpell);
 	package.add("IsPercentalHealSpell", &Perl__IsPercentalHealSpell);
+#if false // post titanium
 	package.add("IsPersistDeathSpell", &Perl__IsPersistDeathSpell);
+#endif
 	package.add("IsPetSpell", &Perl__IsPetSpell);
 	package.add("IsPoisonCounterSpell", &Perl__IsPoisonCounterSpell);
 	package.add("IsPulsingBardSong", &Perl__IsPulsingBardSong);
@@ -6261,7 +6271,9 @@ void perl_register_quest()
 	package.add("IsRegularSingleTargetHealSpell", &Perl__IsRegularSingleTargetHealSpell);
 	package.add("IsResistableSpell", &Perl__IsResistableSpell);
 	package.add("IsResistDebuffSpell", &Perl__IsResistDebuffSpell);
+#if false // post titanium
 	package.add("IsRestAllowedSpell", &Perl__IsRestAllowedSpell);
+#endif
 	package.add("IsResurrectionEffects", &Perl__IsResurrectionEffects);
 	package.add("IsRuneSpell", &Perl__IsRuneSpell);
 	package.add("IsRunning", &Perl__IsRunning);

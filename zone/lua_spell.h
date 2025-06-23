@@ -94,6 +94,7 @@ public:
 	int GetNimbusEffect();
 	float GetDirectionalStart();
 	float GetDirectionalEnd();
+#if false // post titanium
 	int GetSpellGroup();
 	int GetPowerfulFlag();
 	int GetCastRestriction();
@@ -108,8 +109,11 @@ public:
 	float GetMaxDist();
 	float GetMaxDistMod();
 	float GetMinRange();
+#endif
 	int GetDamageShieldType();
+#if false // post titanium
 	int GetRank();
+#endif
 };
 
 #endif

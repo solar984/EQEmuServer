@@ -172,9 +172,11 @@ void Beacon::AELocationSpell(Mob *caster, uint16 cast_spell_id, int16 in_resist_
 	spell_iterations = spells[spell_id].aoe_duration / 2500;
 	spell_iterations = spell_iterations < 1 ? 1 : spell_iterations;	// at least 1
 
+#if false // post titanium
 	if (spells[spell_id].aoe_max_targets) {
 		max_targets = spells[spell_id].aoe_max_targets;
 	}
+#endif
 
 	spell_timer.Start(2500);
 	spell_timer.Trigger();

@@ -4070,7 +4070,11 @@ void Client::Handle_OP_BlockedBuffs(const EQApplicationPacket *app)
 
 		for (unsigned int i = 0; i < BLOCKED_BUFF_COUNT; ++i)
 		{
-			if ((IsValidSpell(bbs->SpellID[i])) && IsBeneficialSpell(bbs->SpellID[i]) && !spells[bbs->SpellID[i]].no_block)
+			if ((IsValidSpell(bbs->SpellID[i])) && IsBeneficialSpell(bbs->SpellID[i]) 
+#if false // post titanium
+				&& !spells[bbs->SpellID[i]].no_block
+#endif
+				)
 			{
 				if (BlockedBuffs->find(bbs->SpellID[i]) == BlockedBuffs->end())
 					BlockedBuffs->insert(bbs->SpellID[i]);
@@ -4118,7 +4122,11 @@ void Client::Handle_OP_BlockedBuffs(const EQApplicationPacket *app)
 
 		for (unsigned int i = 0; i < BLOCKED_BUFF_COUNT; ++i)
 		{
-			if (!IsValidSpell(bbs->SpellID[i]) || !IsBeneficialSpell(bbs->SpellID[i]) || spells[bbs->SpellID[i]].no_block)
+			if (!IsValidSpell(bbs->SpellID[i]) || !IsBeneficialSpell(bbs->SpellID[i]) 
+#if false // post titanium
+				|| spells[bbs->SpellID[i]].no_block
+#endif
+				)
 				continue;
 
 			if ((BlockedBuffs->size() < BLOCKED_BUFF_COUNT) && (BlockedBuffs->find(bbs->SpellID[i]) == BlockedBuffs->end()))
@@ -4255,7 +4263,11 @@ void Client::Handle_OP_BuffRemoveRequest(const EQApplicationPacket *app)
 
 	uint16 SpellID = m->GetSpellIDFromSlot(brrs->SlotID);
 
-	if (SpellID && (GetGM() || ((IsBeneficialSpell(SpellID) || IsEffectInSpell(SpellID, SE_BindSight)) && !spells[SpellID].no_remove))) {
+	if (SpellID && (GetGM() || ((IsBeneficialSpell(SpellID) || IsEffectInSpell(SpellID, SE_BindSight)) 
+#if false // post titanium
+		&& !spells[SpellID].no_remove
+#endif
+		))) {
 		m->BuffFadeBySlot(brrs->SlotID, true);
 	}
 }
@@ -9578,6 +9590,7 @@ void Client::Handle_OP_ItemVerifyRequest(const EQApplicationPacket *app)
 				spell_id = item->Scroll.Effect;
 				if (RuleB(Spells, AllowSpellMemorizeFromItem))
 				{
+#if false // post titanium
 					int highest_spell_id = GetHighestScribedSpellinSpellGroup(spells[spell_id].spell_group);
 					if (spells[spell_id].spell_group > 0 && highest_spell_id > 0)
 					{
@@ -9595,6 +9608,7 @@ void Client::Handle_OP_ItemVerifyRequest(const EQApplicationPacket *app)
 							return;
 						}
 					}
+#endif
 					DeleteItemInInventory(slot_id, 1, true);
 					MemorizeSpellFromItem(item->ID);
 					return;

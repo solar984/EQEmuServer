@@ -1686,8 +1686,10 @@ bool Mob::PassCharismaCheck(Mob* caster, uint16 spell_id) {
 
 	if(IsCharmSpell(spell_id)) {
 
+#if false // post titanium
 		if (spells[spell_id].no_resist) //If charm spell has this set(-1), it can not break till end of duration.
 			return true;
+#endif
 
 		//1: The mob has a default 25% chance of being allowed a resistance check against the charm.
 		if (zone->random.Int(0, 99) > RuleI(Spells, CharmBreakCheckChance))

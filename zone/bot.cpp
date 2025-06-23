@@ -6657,6 +6657,7 @@ void Bot::CalcRestState() {
 	if (IsEngaged() || !IsSitting() || !rest_timer.Check(false))
 		return;
 
+#if false // post titanium
 	uint32 buff_count = GetMaxTotalSlots();
 	for (unsigned int j = 0; j < buff_count; j++) {
 		if (IsValidSpell(buffs[j].spellid)) {
@@ -6665,6 +6666,7 @@ void Bot::CalcRestState() {
 					return;
 		}
 	}
+#endif
 
 	RestRegenHP = 6 * (GetMaxHP() / zone->newzone_data.fast_regen_hp);
 	RestRegenMana = 6 * (GetMaxMana() / zone->newzone_data.fast_regen_mana);
@@ -9627,6 +9629,7 @@ bool Bot::CastChecks(uint16 spell_id, Mob* tar, uint16 spell_type, bool precheck
 		return false;
 	}
 
+#if false // post titanium
 	if (
 		spells[spell_id].caster_requirement_id &&
 		!PassCastRestriction(spells[spell_id].caster_requirement_id)
@@ -9657,6 +9660,7 @@ bool Bot::CastChecks(uint16 spell_id, Mob* tar, uint16 spell_type, bool precheck
 			}
 		}
 	}
+#endif
 
 	if (!IsDiscipline(spell_id)) {
 		int chance = GetFocusEffect(focusFcMute, spell_id);

@@ -5161,10 +5161,12 @@ bool lua_is_buff_spell(uint16 spell_id)
 	return IsBuffSpell(spell_id);
 }
 
+#if false // post titanium
 bool lua_is_persist_death_spell(uint16 spell_id)
 {
 	return IsPersistDeathSpell(spell_id);
 }
+#endif
 
 bool lua_is_suspendable_spell(uint16 spell_id)
 {
@@ -5176,15 +5178,19 @@ bool lua_is_cast_on_fade_duration_spell(uint16 spell_id)
 	return IsCastOnFadeDurationSpell(spell_id);
 }
 
+#if false // post titanium
 bool lua_is_distance_modifier_spell(uint16 spell_id)
 {
 	return IsDistanceModifierSpell(spell_id);
 }
+#endif
 
+#if false // post titanium
 bool lua_is_rest_allowed_spell(uint16 spell_id)
 {
 	return IsRestAllowedSpell(spell_id);
 }
+#endif
 
 bool lua_is_no_detrimental_spell_aggro_spell(uint16 spell_id)
 {
@@ -6407,11 +6413,15 @@ luabind::scope lua_register_general() {
 		luabind::def("is_resist_debuff_spell", &lua_is_resist_debuff_spell),
 		luabind::def("is_self_conversion_spell", &lua_is_self_conversion_spell),
 		luabind::def("is_buff_spell", &lua_is_buff_spell),
+#if false // post titanium
 		luabind::def("is_persist_death_spell", &lua_is_persist_death_spell),
+#endif
 		luabind::def("is_suspendable_spell", &lua_is_suspendable_spell),
 		luabind::def("is_cast_on_fade_duration_spell", &lua_is_cast_on_fade_duration_spell),
+#if false // post titanium
 		luabind::def("is_distance_modifier_spell", &lua_is_distance_modifier_spell),
 		luabind::def("is_rest_allowed_spell", &lua_is_rest_allowed_spell),
+#endif
 		luabind::def("is_no_detrimental_spell_aggro_spell", &lua_is_no_detrimental_spell_aggro_spell),
 		luabind::def("is_stackable_dot", &lua_is_stackable_dot),
 		luabind::def("is_short_duration_buff", &lua_is_short_duration_buff),
