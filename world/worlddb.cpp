@@ -738,6 +738,18 @@ void WorldDatabase::SetTitaniumDefaultStartZone(PlayerProfile_Struct* in_pp, Cha
 				in_pp->binds[0].zone_id = Zones::SHARVAHL;	// sharvahl
 				break;
 			}
+			case StartZoneIndex::RatheMtn:
+			{
+				if (!content_service.IsDepthsOfDarkhollowEnabled()) {
+					in_pp->zone_id = Zones::GROBB;
+					in_pp->binds[0].zone_id = Zones::INNOTHULE;
+				}
+				else {
+					in_pp->zone_id = Zones::RATHEMTN;
+					in_pp->binds[0].zone_id = Zones::RATHEMTN;
+				}
+				break;
+			}
 		}
 	}
 }

@@ -1816,14 +1816,8 @@ bool Client::OPCharCreate(char *name, CharCreate_Struct *cc)
 	}
 
 	if (!pp.zone_id) {
-		if (!content_service.IsDepthsOfDarkhollowEnabled()) {
-			if (cc->race == Race::Froglok2) {
-				pp.zone_id = Zones::GROBB;
-			}
-			else {
-				pp.zone_id = Zones::QEYNOS;
-			}
-		}
+		pp.zone_id = Zones::QEYNOS;
+
 		pp.x = pp.y = pp.z = -1;
 	}
 
