@@ -686,8 +686,14 @@ void WorldDatabase::SetTitaniumDefaultStartZone(PlayerProfile_Struct* in_pp, Cha
 			}
 			case StartZoneIndex::Grobb:
 			{
-				in_pp->zone_id = Zones::GROBB;	// grobb
-				in_pp->binds[0].zone_id = Zones::INNOTHULE;	// innothule
+				if (!content_service.IsDepthsOfDarkhollowEnabled()) {
+					in_pp->zone_id = Zones::NERIAKA;
+					in_pp->binds[0].zone_id = Zones::NEKTULOS;
+				}
+				else {
+					in_pp->zone_id = Zones::GROBB;	// grobb
+					in_pp->binds[0].zone_id = Zones::INNOTHULE;	// innothule
+				}
 				break;
 			}
 			case StartZoneIndex::Oggok:
