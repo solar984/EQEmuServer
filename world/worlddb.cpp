@@ -686,7 +686,7 @@ void WorldDatabase::SetTitaniumDefaultStartZone(PlayerProfile_Struct* in_pp, Cha
 			}
 			case StartZoneIndex::Grobb:
 			{
-				if (!content_service.IsDepthsOfDarkhollowEnabled()) {
+				if (!WorldContentService::Instance()->IsDepthsOfDarkhollowEnabled()) {
 					in_pp->zone_id = Zones::NERIAKA;
 					in_pp->binds[0].zone_id = Zones::NEKTULOS;
 				}
@@ -740,7 +740,7 @@ void WorldDatabase::SetTitaniumDefaultStartZone(PlayerProfile_Struct* in_pp, Cha
 			}
 			case StartZoneIndex::RatheMtn:
 			{
-				if (!content_service.IsDepthsOfDarkhollowEnabled()) {
+				if (!WorldContentService::Instance()->IsDepthsOfDarkhollowEnabled()) {
 					in_pp->zone_id = Zones::GROBB;
 					in_pp->binds[0].zone_id = Zones::INNOTHULE;
 				}
