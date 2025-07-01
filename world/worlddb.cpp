@@ -563,7 +563,13 @@ bool WorldDatabase::GetStartZone(
 
 	if (results.RowCount() == 0) {
 		printf("No start_zones entry in database, using defaults\n");
-		is_titanium ? SetTitaniumDefaultStartZone(pp, p_char_create_struct) : SetSoFDefaultStartZone(pp, p_char_create_struct);
+		if (!WorldContentService::Instance()->IsDepthsOfDarkhollowEnabled() && p_char_create_struct->race == Race::Froglok2 && p_char_create_struct->deity == Deity::Innoruuk) {
+			LogInfo("Class not available during this expansion");
+			return false;
+		}
+		else {
+			is_titanium ? SetTitaniumDefaultStartZone(pp, p_char_create_struct) : SetSoFDefaultStartZone(pp, p_char_create_struct);
+		}
     }
     else {
 		LogInfo("Found starting location in start_zones");
