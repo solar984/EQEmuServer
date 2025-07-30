@@ -109,6 +109,9 @@ void command_guild(Client* c, const Seperator* sep)
 				auto guild_id = guild_mgr.CreateGuild(sep->argplus[3], leader_id);
 				auto leader = entity_list.GetClientByCharID(leader_id);
 
+				// reload and resend list to clients so the new guild doesn't show up as <Unknown Guild>
+				guild_mgr.SendGuildRefresh(guild_id, true, true, true, true);
+				guild_mgr.SendToWorldSendGuildList();
 
 				LogGuilds(
 					"[{}]: Creating guild [{}] with leader [{}] with GM command. It was given id [{}]",
