@@ -5026,14 +5026,14 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 
 	CheckSendBulkNpcPositions();
 
-	int32 new_animation = ppu->animation;
-
 	/* Update internal server position from what the client has sent */
-	m_Position.x = cx;
-	m_Position.y = cy;
-	m_Position.z = cz;
-	/* Update internal state */
+	glm::vec4 prevPosition = m_Position;
+	m_Position = glm::vec4(cx, cy, cz, new_heading);
+	glm::vec4 prevDelta = m_Delta;
 	m_Delta = glm::vec4(ppu->delta_x, ppu->delta_y, ppu->delta_z, EQ10toFloat(ppu->delta_heading));
+	int32 prevAnimation = ppu->animation;
+	animation = ppu->animation;
+	bool positionUpdated = glm::any(glm::notEqual(m_Position, prevPosition)) || glm::any(glm::notEqual(m_Delta, prevDelta)) || glm::any(glm::notEqual(m_Delta, glm::vec4(0.0f))) || prevAnimation != animation;
 
 	/* Visual Debugging */
 	if (RuleB(Character, OPClientUpdateVisualDebug)) {
@@ -5043,12 +5043,7 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 	}
 
 	/* Only feed real time updates when client is moving */
-	bool hasDelta = glm::any(glm::notEqual(m_Delta, glm::vec4(0.0f)));
-	if (hasDelta || IsMoving() || new_heading != m_Position.w || new_animation != animation) {
-
-		animation = ppu->animation;
-		m_Position.w = new_heading;
-
+	if (positionUpdated) {
 		/* Broadcast update to other clients */
 		static EQApplicationPacket outapp(OP_ClientUpdate, sizeof(PlayerPositionUpdateServer_Struct));
 		PlayerPositionUpdateServer_Struct *position_update = (PlayerPositionUpdateServer_Struct *) outapp.pBuffer;
@@ -5060,7 +5055,6 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 		} else {
 			entity_list.QueueCloseClients(this, &outapp, true, RuleI(Range, ClientPositionUpdates), nullptr, true);
 		}
-
 
 		/* Always send position updates to group - send when beyond normal ClientPositionUpdate range */
 		Group *group = GetGroup();
