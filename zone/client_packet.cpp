@@ -5087,14 +5087,6 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 	}
 
 	CheckVirtualZoneLines();
-
-#if 1 // just for debugging
-	static auto lastpos = glm::vec4();
-	float dist_moved = Distance(m_Position, lastpos);
-	lastpos = m_Position;
-	Message(Chat::Shout, "PositionUpdate for %s(%d): loc: %0.2f, %0.2f, %0.2f heading: %d  delta: %0.2f, %0.2f, %0.2f, %d  anim: %d, dist %0.2f", GetName(), ppu->spawn_id, ppu->x_pos, ppu->y_pos, ppu->z_pos, ppu->heading, ppu->delta_x, ppu->delta_y, ppu->delta_z, ppu->delta_heading, ppu->animation, dist_moved);
-#endif
-
 }
 
 void Client::Handle_OP_CombatAbility(const EQApplicationPacket *app)
