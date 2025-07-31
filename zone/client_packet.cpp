@@ -4979,9 +4979,6 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 		m_Proximity = glm::vec3(cx, cy, cz);
 	}
 
-	/* Update internal state */
-	m_Delta = glm::vec4(ppu->delta_x, ppu->delta_y, ppu->delta_z, EQ10toFloat(ppu->delta_heading));
-
 	if (RuleB(Skills, TrackingAutoRefreshSkillUps) && IsTracking() && ((m_Position.x != cx) || (m_Position.y != cy))) {
 		if (zone->random.Real(0, 100) < 70)//should be good
 			CheckIncreaseSkill(EQ::skills::SkillTracking, nullptr, -20);
@@ -5035,6 +5032,8 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 	m_Position.x = cx;
 	m_Position.y = cy;
 	m_Position.z = cz;
+	/* Update internal state */
+	m_Delta = glm::vec4(ppu->delta_x, ppu->delta_y, ppu->delta_z, EQ10toFloat(ppu->delta_heading));
 
 	/* Visual Debugging */
 	if (RuleB(Character, OPClientUpdateVisualDebug)) {
@@ -5044,7 +5043,8 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 	}
 
 	/* Only feed real time updates when client is moving */
-	if (IsMoving() || new_heading != m_Position.w || new_animation != animation) {
+	bool hasDelta = glm::any(glm::notEqual(m_Delta, glm::vec4(0.0f)));
+	if (hasDelta || IsMoving() || new_heading != m_Position.w || new_animation != animation) {
 
 		animation = ppu->animation;
 		m_Position.w = new_heading;
@@ -5087,6 +5087,13 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 	}
 
 	CheckVirtualZoneLines();
+
+#if 1 // just for debugging
+	static auto lastpos = glm::vec4();
+	float dist_moved = Distance(m_Position, lastpos);
+	lastpos = m_Position;
+	Message(Chat::Shout, "PositionUpdate for %s(%d): loc: %0.2f, %0.2f, %0.2f heading: %d  delta: %0.2f, %0.2f, %0.2f, %d  anim: %d, dist %0.2f", GetName(), ppu->spawn_id, ppu->x_pos, ppu->y_pos, ppu->z_pos, ppu->heading, ppu->delta_x, ppu->delta_y, ppu->delta_z, ppu->delta_heading, ppu->animation, dist_moved);
+#endif
 
 }
 
