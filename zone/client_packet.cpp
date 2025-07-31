@@ -5012,6 +5012,7 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 		rewind_timer.Start(30000, true);
 	}
 
+	glm::vec4 prevDelta = m_Delta; // SetMoving clears m_Delta
 	SetMoving(!(cy == m_Position.y && cx == m_Position.x));
 
 	if (RuleB(Character, EnableAutoAFK)) {
@@ -5029,11 +5030,10 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 	/* Update internal server position from what the client has sent */
 	glm::vec4 prevPosition = m_Position;
 	m_Position = glm::vec4(cx, cy, cz, new_heading);
-	glm::vec4 prevDelta = m_Delta;
 	m_Delta = glm::vec4(ppu->delta_x, ppu->delta_y, ppu->delta_z, EQ10toFloat(ppu->delta_heading));
 	int32 prevAnimation = ppu->animation;
 	animation = ppu->animation;
-	bool positionUpdated = glm::any(glm::notEqual(m_Position, prevPosition)) || glm::any(glm::notEqual(m_Delta, prevDelta)) || glm::any(glm::notEqual(m_Delta, glm::vec4(0.0f))) || prevAnimation != animation;
+	bool positionUpdated = m_Position != prevPosition || m_Delta != prevDelta || m_Delta != glm::vec4(0.0f) || prevAnimation != animation;
 
 	/* Visual Debugging */
 	if (RuleB(Character, OPClientUpdateVisualDebug)) {
