@@ -4545,23 +4545,23 @@ bool NPC::CheckHandin(
 
 	// check if npc is guildmaster
 	if (IsGuildmaster()) {
-		for (const auto &remove_item : items_to_remove) {
-			if (!remove_item.item) {
+		for (const auto &h_item : handin_items) {
+			if (!h_item.item) {
 				continue;
 			}
 
-			if (!IsDisciplineTome(remove_item.item->GetItem())) {
+			if (!IsDisciplineTome(h_item.item->GetItem())) {
 				continue;
 			}
 
 			if (IsGuildmasterForClient(c)) {
-				c->TrainDiscipline(remove_item.item->GetID());
+				c->TrainDiscipline(h_item.item->GetID());
 				m_hand_in.items.erase(
 					std::remove_if(
 						m_hand_in.items.begin(),
 						m_hand_in.items.end(),
 						[&](const HandinEntry &i) {
-							bool removed = i.item == remove_item.item;
+							bool removed = i.item == h_item.item;
 							if (removed) {
 								LogNpcHandin(
 									"{} Hand-in success, removing discipline tome [{}] from hand-in bucket",
