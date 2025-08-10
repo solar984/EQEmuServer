@@ -274,7 +274,7 @@ namespace RoF
 	namespace skills {
 		inline EQ::versions::ClientVersion GetSkillsRef() { return EQ::versions::ClientVersion::RoF; }
 
-		const size_t LastUsableSkill = EQ::skills::SkillTripleAttack;
+		const size_t LastUsableSkill = EQ::skills::SkillFrenzy;
 
 	} /*skills*/
 

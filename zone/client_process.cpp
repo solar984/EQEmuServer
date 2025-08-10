@@ -1653,9 +1653,9 @@ void Client::OPGMTraining(const EQApplicationPacket *app)
 		}
 	}
 
-	if (ClientVersion() < EQ::versions::ClientVersion::RoF2 && GetClass() == Class::Berserker) {
-		gmtrain->skills[EQ::skills::Skill1HPiercing] = gmtrain->skills[EQ::skills::Skill2HPiercing];
-		gmtrain->skills[EQ::skills::Skill2HPiercing] = 0;
+	if (GetClass() == Class::Berserker) {
+		gmtrain->skills[EQ::skills::Skill1HPiercing] = gmtrain->skills[EQ::skills::Skill1HPiercing];
+		gmtrain->skills[EQ::skills::Skill1HPiercing] = 0;
 	}
 //#pragma GCC pop_options
 

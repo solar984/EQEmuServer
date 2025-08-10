@@ -2176,9 +2176,9 @@ void Client::SetClassStartingSkills(PlayerProfile_Struct *pp)
 		}
 	}
 
-	if (cle->GetClientVersion() < static_cast<uint8>(EQ::versions::ClientVersion::RoF2) && pp->class_ == Class::Berserker) {
-		pp->skills[EQ::skills::Skill1HPiercing] = pp->skills[EQ::skills::Skill2HPiercing];
-		pp->skills[EQ::skills::Skill2HPiercing] = 0;
+	if (pp->class_ == Class::Berserker) {
+		pp->skills[EQ::skills::Skill1HPiercing] = pp->skills[EQ::skills::Skill1HPiercing];
+		pp->skills[EQ::skills::Skill1HPiercing] = 0;
 	}
 }
 

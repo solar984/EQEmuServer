@@ -1125,7 +1125,7 @@ bool Client::TradeskillExecute(DBTradeskillRecipe_Struct *spec) {
 
 	if (
 		(
-			spec->tradeskill == EQ::skills::SkillRemoveTraps ||
+			//spec->tradeskill == EQ::skills::SkillRemoveTraps ||
 			GetGM() ||
 			(chance > res)
 		) ||

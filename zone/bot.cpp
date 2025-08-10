@@ -1227,7 +1227,7 @@ uint16 Bot::GetPrimarySkillValue() {
 				skill = EQ::skills::Skill2HBlunt;
 				break;
 			case EQ::item::ItemType2HPiercing:
-				skill = EQ::skills::Skill2HPiercing;
+				skill = EQ::skills::Skill1HPiercing;
 				break;
 			case EQ::item::ItemTypeMartial:
 				skill = EQ::skills::SkillHandtoHand;
@@ -2074,9 +2074,6 @@ bool Bot::CheckTripleAttack()
 					break;
 			}
 		}
-	}
-	else {
-		chance = GetSkill(EQ::skills::SkillTripleAttack);
 	}
 
 	if (chance < 1) {

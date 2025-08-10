@@ -900,10 +900,10 @@ static const uint8 SkillDamageTypes[EQ::skills::HIGHEST_SKILL + 1] = // change t
 /*Intimidation*/			DamageTypeUnknown,
 /*Berserking*/				DamageTypeUnknown,
 /*Taunt*/					DamageTypeUnknown,
-/*Frenzy*/					74,
-/*RemoveTrap*/				DamageTypeUnknown,	// Needs research (set for SenseTrap value)
-/*TripleAttack*/			DamageTypeUnknown,	// Needs research (set for DoubleAttack value)
-/*2HPiercing*/				36					// Needs research (set for 1HPiercing value - similar to slash/blunt)
+/*Frenzy*/					74 //,
+/*RemoveTrap*/				//DamageTypeUnknown,	// Needs research (set for SenseTrap value)
+/*TripleAttack*/			//DamageTypeUnknown,	// Needs research (set for DoubleAttack value)
+/*2HPiercing*/				//36					// Needs research (set for 1HPiercing value - similar to slash/blunt)
 };
 
 /*

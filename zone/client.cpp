@@ -3189,11 +3189,10 @@ bool Client::HasSkill(EQ::skills::SkillType skill_id) const
 bool Client::CanHaveSkill(EQ::skills::SkillType skill_id) const
 {
 	if (
-		ClientVersion() < EQ::versions::ClientVersion::RoF2 &&
 		class_ == Class::Berserker &&
 		skill_id == EQ::skills::Skill1HPiercing
 	) {
-		skill_id = EQ::skills::Skill2HPiercing;
+		skill_id = EQ::skills::Skill1HPiercing;
 	}
 
 	return SkillCaps::Instance()->GetSkillCap(GetClass(), skill_id, RuleI(Character, MaxLevel)).cap > 0;
@@ -3202,11 +3201,11 @@ bool Client::CanHaveSkill(EQ::skills::SkillType skill_id) const
 uint16 Client::MaxSkill(EQ::skills::SkillType skill_id, uint8 class_id, uint8 level) const
 {
 	if (
-		ClientVersion() < EQ::versions::ClientVersion::RoF2 &&
+		
 		class_id == Class::Berserker &&
 		skill_id == EQ::skills::Skill1HPiercing
 	) {
-		skill_id = EQ::skills::Skill2HPiercing;
+		skill_id = EQ::skills::Skill1HPiercing;
 	}
 
 	return SkillCaps::Instance()->GetSkillCap(class_id, skill_id, level).cap;
@@ -3215,11 +3214,11 @@ uint16 Client::MaxSkill(EQ::skills::SkillType skill_id, uint8 class_id, uint8 le
 uint8 Client::GetSkillTrainLevel(EQ::skills::SkillType skill_id, uint8 class_id)
 {
 	if (
-		ClientVersion() < EQ::versions::ClientVersion::RoF2 &&
+		
 		class_id == Class::Berserker &&
 		skill_id == EQ::skills::Skill1HPiercing
 	) {
-		skill_id = EQ::skills::Skill2HPiercing;
+		skill_id = EQ::skills::Skill1HPiercing;
 	}
 
 	return SkillCaps::Instance()->GetSkillTrainLevel(class_id, skill_id, RuleI(Character, MaxLevel));
@@ -5261,10 +5260,7 @@ uint16 Client::GetPrimarySkillValue()
 			skill = EQ::skills::Skill2HBlunt;
 			break;
 		case EQ::item::ItemType2HPiercing: // 2H Piercing
-			if (IsClient() && CastToClient()->ClientVersion() < EQ::versions::ClientVersion::RoF2)
-				skill = EQ::skills::Skill1HPiercing;
-			else
-				skill = EQ::skills::Skill2HPiercing;
+			skill = EQ::skills::Skill1HPiercing;
 			break;
 		case EQ::item::ItemTypeMartial: // Hand to Hand
 			skill = EQ::skills::SkillHandtoHand;
@@ -6040,13 +6036,7 @@ void Client::ShowSkillsWindow()
 		auto current_skill = GetSkill(skill_id);
 		auto max_skill = MaxSkill(skill_id);
 		auto skill_maxed = current_skill >= max_skill;
-		if (
-			skill_id == EQ::skills::Skill2HPiercing &&
-			ClientVersion() < EQ::versions::ClientVersion::RoF2
-		) {
-			continue;
-		}
-
+		
 		if (
 			!can_have_skill ||
 			!current_skill ||

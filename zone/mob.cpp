@@ -2303,12 +2303,7 @@ void Mob::SendStatsWindow(Client* c, bool use_window)
 				skill = EQ::skills::Skill2HBlunt;
 				break;
 			case EQ::item::ItemType2HPiercing:
-				if (IsClient() && CastToClient()->ClientVersion() < EQ::versions::ClientVersion::RoF2) {
-					skill = EQ::skills::Skill1HPiercing;
-				} else {
-					skill = EQ::skills::Skill2HPiercing;
-				}
-
+				skill = EQ::skills::Skill1HPiercing;
 				break;
 			default:
 				break;
@@ -4687,8 +4682,7 @@ bool Mob::CanThisClassTripleAttack() const {
 		);
 	}
 
-	return IsClient() ? CastToClient()->HasSkill(EQ::skills::SkillTripleAttack)
-		: GetSkill(EQ::skills::SkillTripleAttack) > 0;
+	return false;
 }
 
 bool Mob::CanThisClassParry(void) const
@@ -7182,10 +7176,7 @@ EQ::skills::SkillType Mob::GetSkillByItemType(int ItemType)
 		case EQ::item::ItemType2HBlunt:
 			return EQ::skills::Skill2HBlunt;
 		case EQ::item::ItemType2HPiercing:
-			if (IsClient() && CastToClient()->ClientVersion() < EQ::versions::ClientVersion::RoF2)
-				return EQ::skills::Skill1HPiercing;
-			else
-				return EQ::skills::Skill2HPiercing;
+			return EQ::skills::Skill1HPiercing;
 		case EQ::item::ItemTypeBow:
 			return EQ::skills::SkillArchery;
 		case EQ::item::ItemTypeLargeThrowing:
@@ -7211,8 +7202,6 @@ uint8 Mob::GetItemTypeBySkill(EQ::skills::SkillType skill)
 			return EQ::item::ItemType2HSlash;
 		case EQ::skills::Skill1HPiercing:
 			return EQ::item::ItemType1HPiercing;
-		case EQ::skills::Skill2HPiercing: // watch for undesired client behavior
-			return EQ::item::ItemType2HPiercing;
 		case EQ::skills::Skill1HBlunt:
 			return EQ::item::ItemType1HBlunt;
 		case EQ::skills::Skill2HBlunt:
@@ -8235,7 +8224,6 @@ uint8 Mob::ConvertItemTypeToSkillID(uint8 item_type)
 		{ EQ::item::ItemType1HSlash, EQ::skills::Skill1HSlashing },
 		{ EQ::item::ItemType2HSlash, EQ::skills::Skill2HSlashing },
 		{ EQ::item::ItemType1HPiercing, EQ::skills::Skill1HPiercing },
-		{ EQ::item::ItemType2HPiercing, EQ::skills::Skill2HPiercing },
 		{ EQ::item::ItemType1HBlunt, EQ::skills::Skill1HBlunt },
 		{ EQ::item::ItemType2HBlunt, EQ::skills::Skill2HBlunt },
 		{ EQ::item::ItemTypeBow, EQ::skills::SkillArchery },

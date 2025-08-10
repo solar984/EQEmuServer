@@ -74,7 +74,7 @@ float EQ::skills::GetSkillMeleePushForce(SkillType skill)
 	case SkillEagleStrike:
 	case SkillKick:
 	case SkillTigerClaw:
-	case Skill2HPiercing:
+	//case Skill2HPiercing:
 		return 0.2f;
 	case SkillArchery:
 		return 0.15f;
@@ -231,10 +231,10 @@ const std::map<EQ::skills::SkillType, std::string>& EQ::skills::GetSkillTypeMap(
 		{ SkillIntimidation, "Intimidation" },
 		{ SkillBerserking, "Berserking" },
 		{ SkillTaunt, "Taunt" },
-		{ SkillFrenzy, "Frenzy" },
-		{ SkillRemoveTraps, "Remove Traps" },
-		{ SkillTripleAttack, "Triple Attack" },
-		{ Skill2HPiercing, "2H Piercing" }
+		{ SkillFrenzy, "Frenzy" }//,
+		//{ SkillRemoveTraps, "Remove Traps" },
+		//{ SkillTripleAttack, "Triple Attack" },
+		//{ Skill2HPiercing, "2H Piercing" }
 	};
 	return skill_type_map;
 }
@@ -258,7 +258,7 @@ const std::vector<EQ::skills::SkillType>& EQ::skills::GetExtraDamageSkills()
 
 std::string EQ::skills::GetSkillName(SkillType skill)
 {
-	if (skill >= Skill1HBlunt && skill <= Skill2HPiercing) {
+	if (skill >= Skill1HBlunt && skill <= SkillFrenzy) {
 		auto skills = GetSkillTypeMap();
 		return skills[skill];
 	}

@@ -83,10 +83,7 @@ EQ::skills::SkillType Mob::AttackAnimation(int Hand, const EQ::ItemInstance* wea
 			type = RuleB(Combat, Classic2HBAnimation) ? anim2HWeapon : anim2HSlashing;
 			break;
 		case EQ::item::ItemType2HPiercing: // 2H Piercing
-			if (IsClient() && CastToClient()->ClientVersion() < EQ::versions::ClientVersion::RoF2)
-				skillinuse = EQ::skills::Skill1HPiercing;
-			else
-				skillinuse = EQ::skills::Skill2HPiercing;
+			skillinuse = EQ::skills::Skill1HPiercing;
 			type = anim2HWeapon;
 			break;
 		case EQ::item::ItemTypeMartial:
@@ -111,9 +108,6 @@ EQ::skills::SkillType Mob::AttackAnimation(int Hand, const EQ::ItemInstance* wea
 				break;
 			case EQ::skills::Skill1HPiercing: // Piercing
 				type = anim1HPiercing;
-				break;
-			case EQ::skills::Skill2HPiercing: // 2H Piercing
-				type = anim2HWeapon;
 				break;
 			case EQ::skills::SkillHandtoHand:
 				type = animHand2Hand;
@@ -983,7 +977,6 @@ int Mob::GetBestMeleeSkill()
 		EQ::skills::Skill2HSlashing,
 		EQ::skills::SkillHandtoHand,
 		EQ::skills::Skill1HPiercing,
-		EQ::skills::Skill2HPiercing,
 		EQ::skills::SkillCount
 	};
 	int i;
@@ -2282,7 +2275,7 @@ bool NPC::Attack(Mob* other, int Hand, bool bRiposte, bool IsStrikethrough, bool
 				my_hit.skill = EQ::skills::Skill1HPiercing;
 				break;
 			case EQ::item::ItemType2HPiercing:
-				my_hit.skill = EQ::skills::Skill2HPiercing;
+				my_hit.skill = EQ::skills::Skill1HPiercing;
 				break;
 			case EQ::item::ItemType1HBlunt:
 				my_hit.skill = EQ::skills::Skill1HBlunt;
@@ -3972,8 +3965,6 @@ bool Client::CheckTripleAttack()
 					break;
 			}
 		}
-	} else {
-		chance = GetSkill(EQ::skills::SkillTripleAttack);
 	}
 
 	if (chance < 1) {
@@ -4497,7 +4488,7 @@ void Mob::CommonDamage(Mob* attacker, int64 &damage, const uint16 spell_id, cons
 			a->source = attacker->GetID();
 		}
 
-		a->type = (EQ::ValueWithin(skill_used, EQ::skills::Skill1HBlunt, EQ::skills::Skill2HPiercing)) ?
+		a->type = (EQ::ValueWithin(skill_used, EQ::skills::Skill1HBlunt, EQ::skills::SkillFrenzy)) ?
 				SkillDamageTypes[skill_used] : SkillDamageTypes[EQ::skills::SkillHandtoHand]; // was 0x1c
 		a->damage = damage;
 		a->spellid = spell_id;
@@ -6814,9 +6805,9 @@ void Client::DoAttackRounds(Mob *target, int hand, bool IsFromSpell)
 
 			// you can only triple from the main hand
 			if (hand == EQ::invslot::slotPrimary && CanThisClassTripleAttack()) {
-				if (!RuleB(Combat, ClassicTripleAttack)) {
-					CheckIncreaseSkill(EQ::skills::SkillTripleAttack, target, -10);
-				}
+				//if (!RuleB(Combat, ClassicTripleAttack)) {
+				//	CheckIncreaseSkill(EQ::skills::SkillTripleAttack, target, -10);
+				//}
 
 				if (CheckTripleAttack()) {
 					Attack(target, hand, false, false, IsFromSpell);

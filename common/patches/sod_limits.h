@@ -301,7 +301,7 @@ namespace SoD
 	namespace skills {
 		inline EQ::versions::ClientVersion GetSkillsRef() { return EQ::versions::ClientVersion::SoD; }
 
-		const size_t LastUsableSkill = EQ::skills::SkillTripleAttack;
+		const size_t LastUsableSkill = EQ::skills::SkillFrenzy;
 
 	} /*skills*/
 

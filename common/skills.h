@@ -108,11 +108,11 @@ namespace EQ
 /*05837*/	SkillFrenzy, // 74				// This appears to be the only listed one not grouped with the others
 
 // SoF+ specific skills
-/*03670*/	SkillRemoveTraps, // 75
-/*13049*/	SkillTripleAttack,
+/*03670*/	//SkillRemoveTraps, // 75
+/*13049*/	//SkillTripleAttack,
 
 // RoF2+ specific skills
-/*00789*/	Skill2HPiercing, // 77
+/*00789*/	//Skill2HPiercing, // 77
 // /*01216*/	SkillNone,					// This needs to move down as new skills are added
 
 /*00000*/	SkillCount						// move to last position of active enumeration labels
@@ -154,7 +154,7 @@ namespace EQ
 	};
 
 	// temporary until it can be sorted out...
-#define HIGHEST_SKILL	Skill2HPiercing
+#define HIGHEST_SKILL	SkillFrenzy
 	// Spell Effects use this value to determine if an effect applies to all skills.
 #define ALL_SKILLS	-1
 
@@ -290,7 +290,7 @@ namespace EQ
 
 		uint32* GetSkills() { return reinterpret_cast<uint32*>(&Skill); }
 
-		skills::SkillType GetLastUseableSkill() { return EQ::skills::Skill2HPiercing; }
+		skills::SkillType GetLastUseableSkill() { return EQ::skills::SkillFrenzy; }
 
 		size_t GetSkillsArraySize() { return PACKET_SKILL_ARRAY_SIZE; }
 		uint32 GetSkill(int skill_id);

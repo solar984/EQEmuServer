@@ -301,7 +301,7 @@ namespace SoF
 	namespace skills {
 		inline EQ::versions::ClientVersion GetSkillsRef() { return EQ::versions::ClientVersion::SoF; }
 
-		const size_t LastUsableSkill = EQ::skills::SkillTripleAttack;
+		const size_t LastUsableSkill = EQ::skills::SkillFrenzy;
 
 	} /*skills*/
 

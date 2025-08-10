@@ -7264,10 +7264,10 @@ luabind::scope lua_register_skills() {
 			luabind::value("Berserking", EQ::skills::SkillBerserking),
 			luabind::value("Taunt", EQ::skills::SkillTaunt),
 			luabind::value("Frenzy", EQ::skills::SkillFrenzy),
-			luabind::value("RemoveTraps", EQ::skills::SkillRemoveTraps),
-			luabind::value("TripleAttack", EQ::skills::SkillTripleAttack),
-			luabind::value("2HPiercing", EQ::skills::Skill2HPiercing),
-			luabind::value("Piercing2H", EQ::skills::Skill2HPiercing),
+			//luabind::value("RemoveTraps", EQ::skills::SkillRemoveTraps),
+			//luabind::value("TripleAttack", EQ::skills::SkillTripleAttack),
+			//luabind::value("2HPiercing", EQ::skills::Skill2HPiercing),
+			//luabind::value("Piercing2H", EQ::skills::Skill2HPiercing),
 			luabind::value("HIGHEST_SKILL", EQ::skills::HIGHEST_SKILL)
 		)];
 }

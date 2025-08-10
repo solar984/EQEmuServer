@@ -320,7 +320,7 @@ namespace RoF2
 	namespace skills {
 		inline EQ::versions::ClientVersion GetSkillsRef() { return EQ::versions::ClientVersion::RoF2; }
 
-		const size_t LastUsableSkill = EQ::skills::Skill2HPiercing;
+		const size_t LastUsableSkill = EQ::skills::SkillFrenzy;
 
 	} /*skills*/
 
