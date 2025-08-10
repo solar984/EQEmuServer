@@ -632,6 +632,10 @@ bool NPC::Process()
 	}
 
 	if (tic_timer.Check()) {
+		if (m_clear_wearchange_cache_timer.Check()) {
+			m_last_seen_wearchange.clear();
+		}
+
 		if (parse->HasQuestSub(GetNPCTypeID(), EVENT_TICK)) {
 			parse->EventNPC(EVENT_TICK, this, nullptr, "", 0);
 		}
@@ -858,6 +862,11 @@ void NPC::Depop(bool start_spawn_timer) {
 
 	if (parse->HasQuestSub(ZONE_CONTROLLER_NPC_ID, EVENT_DESPAWN_ZONE)) {
 		DispatchZoneControllerEvent(EVENT_DESPAWN_ZONE, this, "", 0, nullptr);
+	}
+
+	if (parse->ZoneHasQuestSub(EVENT_DESPAWN_ZONE)) {
+		std::vector<std::any> args = { this };
+		parse->EventZone(EVENT_DESPAWN_ZONE, zone, "", 0, &args);
 	}
 
 	p_depop = true;

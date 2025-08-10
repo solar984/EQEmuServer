@@ -795,6 +795,11 @@ void Client::CompleteConnect()
 		parse->EventPlayer(EVENT_ENTER_ZONE, this, "", 0);
 	}
 
+	if (parse->ZoneHasQuestSub(EVENT_ENTER_ZONE)) {
+		std::vector<std::any> args = { this };
+		parse->EventZone(EVENT_ENTER_ZONE, zone, "", 0, &args);
+	}
+
 	DeleteEntityVariable(SEE_BUFFS_FLAG);
 
 	// the way that the client deals with positions during the initial spawn struct
@@ -4721,6 +4726,12 @@ void Client::Handle_OP_ClickDoor(const EQApplicationPacket *app)
 			quest_return = parse->EventPlayer(EVENT_CLICK_DOOR, this, std::to_string(cd->doorid), 0, &args);
 		}
 
+		if (parse->ZoneHasQuestSub(EVENT_CLICK_DOOR)) {
+			std::vector<std::any> args = { currentdoor, this };
+
+			quest_return = parse->EventZone(EVENT_CLICK_DOOR, zone, std::to_string(cd->doorid), 0, &args);
+		}
+
 		if (quest_return == 0) {
 			currentdoor->HandleClick(this, 0);
 		}
@@ -4751,6 +4762,11 @@ void Client::Handle_OP_ClickObject(const EQApplicationPacket *app)
 		if (parse->PlayerHasQuestSub(EVENT_CLICK_OBJECT)) {
 			std::vector<std::any> args = { object };
 			parse->EventPlayer(EVENT_CLICK_OBJECT, this, std::to_string(click_object->drop_id), GetID(), &args);
+		}
+
+		if (parse->ZoneHasQuestSub(EVENT_CLICK_OBJECT)) {
+			std::vector<std::any> args = { object, this };
+			parse->EventZone(EVENT_CLICK_OBJECT, zone, std::to_string(click_object->drop_id), GetID(), &args);
 		}
 
 		if (IsDevToolsEnabled()) {
@@ -9780,7 +9796,7 @@ void Client::Handle_OP_Jump(const EQApplicationPacket *app)
 
 void Client::Handle_OP_KeyRing(const EQApplicationPacket *app)
 {
-	KeyRingList();
+	KeyRingList(this);
 }
 
 void Client::Handle_OP_KickPlayers(const EQApplicationPacket *app)
@@ -12047,6 +12063,11 @@ void Client::Handle_OP_PopupResponse(const EQApplicationPacket *app)
 
 	if (parse->PlayerHasQuestSub(EVENT_POPUP_RESPONSE)) {
 		parse->EventPlayer(EVENT_POPUP_RESPONSE, this, std::to_string(popup_response->popupid), 0);
+	}
+
+	if (parse->ZoneHasQuestSub(EVENT_POPUP_RESPONSE)) {
+		std::vector<std::any> args = { this };
+		parse->EventZone(EVENT_POPUP_RESPONSE, zone, std::to_string(popup_response->popupid), 0, &args);
 	}
 
 	auto t = GetTarget();
