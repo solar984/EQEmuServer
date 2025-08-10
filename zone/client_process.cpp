@@ -1653,10 +1653,6 @@ void Client::OPGMTraining(const EQApplicationPacket *app)
 		}
 	}
 
-	if (GetClass() == Class::Berserker) {
-		gmtrain->skills[EQ::skills::Skill1HPiercing] = gmtrain->skills[EQ::skills::Skill1HPiercing];
-		gmtrain->skills[EQ::skills::Skill1HPiercing] = 0;
-	}
 //#pragma GCC pop_options
 
 	uchar ending[]={0x34,0x87,0x8a,0x3F,0x01

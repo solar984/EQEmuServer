@@ -2175,11 +2175,6 @@ void Client::SetClassStartingSkills(PlayerProfile_Struct *pp)
 			pp->skills[i] = SkillCaps::Instance()->GetSkillCap(pp->class_, (EQ::skills::SkillType)i, 1).cap;
 		}
 	}
-
-	if (pp->class_ == Class::Berserker) {
-		pp->skills[EQ::skills::Skill1HPiercing] = pp->skills[EQ::skills::Skill1HPiercing];
-		pp->skills[EQ::skills::Skill1HPiercing] = 0;
-	}
 }
 
 void Client::SetRaceStartingSkills( PlayerProfile_Struct *pp )
