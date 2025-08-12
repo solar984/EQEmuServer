@@ -3433,7 +3433,7 @@ namespace Titanium
 		ob << '|' << StringFormat("%f", item->SellRate);
 
 		ob << '|' << "0";
-		ob << '|' << itoa(item->CastTime_);
+		ob << '|' << itoa(item->CastTime ? item->CastTime : item->CastTime_);
 		ob << '|' << "0";
 
 		ob << '|' << itoa(item->ProcRate);
