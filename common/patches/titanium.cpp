@@ -3406,7 +3406,7 @@ namespace Titanium
 		ob << '|' << itoa(item->BaneDmgBody);
 
 		ob << '|' << itoa(item->Magic);
-		ob << '|' << itoa(item->CastTime_);
+		ob << '|' << itoa(item->CastTime ? item->CastTime : item->CastTime_); // actual cast time on the item
 		ob << '|' << itoa(item->ReqLevel);
 		ob << '|' << itoa(item->BardType);
 		ob << '|' << itoa(item->BardValue);
@@ -3433,7 +3433,7 @@ namespace Titanium
 		ob << '|' << StringFormat("%f", item->SellRate);
 
 		ob << '|' << "0";
-		ob << '|' << itoa(item->CastTime ? item->CastTime : item->CastTime_);
+		ob << '|' << itoa(item->CastTime ? item->CastTime : item->CastTime_); // displayed cast time on the item
 		ob << '|' << "0";
 
 		ob << '|' << itoa(item->ProcRate);
