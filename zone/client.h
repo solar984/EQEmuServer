@@ -1142,7 +1142,6 @@ public:
 	bool PutItemInInventoryWithStacking(EQ::ItemInstance* inst);
 	bool FindNumberOfFreeInventorySlotsWithSizeCheck(std::vector<BuyerLineTradeItems_Struct> items);
 	bool PushItemOnCursor(const EQ::ItemInstance& inst, bool client_update = false);
-	void SendCursorBuffer();
 	void DeleteItemInInventory(int16 slot_id, int16 quantity = 0, bool client_update = false, bool update_db = true);
 	uint32 CountItem(uint32 item_id);
 	void ResetItemCooldown(uint32 item_id);
@@ -1767,11 +1766,6 @@ public:
 	void DeleteItemRecastTimer(uint32 item_id);
 	bool HasItemRecastTimer(int32 spell_id, uint32 inventory_slot);
 
-	inline bool AggroMeterAvailable() const { return ((m_ClientVersionBit & EQ::versions::maskRoF2AndLater)) && RuleB(Character, EnableAggroMeter); } // RoF untested
-	inline void SetAggroMeterLock(int in) { m_aggrometer.set_lock_id(in); }
-
-	void ProcessAggroMeter(); // builds packet and sends
-
 	void InitializeMercInfo();
 	bool CheckCanSpawnMerc(uint32 template_id);
 	bool CheckCanHireMerc(Mob* merchant, uint32 template_id);
@@ -2208,7 +2202,6 @@ private:
 	Timer anon_toggle_timer;
 	Timer afk_toggle_timer;
 	Timer helm_toggle_timer;
-	Timer aggro_meter_timer;
 	Timer consent_throttle_timer;
 	Timer dynamiczone_removal_timer;
 	Timer task_request_timer;
@@ -2333,8 +2326,6 @@ private:
 
 	XTargetAutoHaters m_autohatermgr;
 	XTargetAutoHaters *m_activeautohatermgr;
-
-	AggroMeter m_aggrometer;
 
 	Timer ItemQuestTimer;
 	std::map<std::string,std::string> accountflags;

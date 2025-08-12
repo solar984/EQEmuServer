@@ -690,8 +690,6 @@ bool Client::Process() {
 	if (client_state == CLIENT_CONNECTED) {
 		if (m_dirtyautohaters)
 			ProcessXTargetAutoHaters();
-		if (aggro_meter_timer.Check())
-			ProcessAggroMeter();
 	}
 
 	return ret;
@@ -857,7 +855,7 @@ void Client::BulkSendMerchantInventory(int merchant_id, int npcid) {
 		}
 	}
 
-	const int16 merchant_slots = (m_ClientVersionBit & EQ::versions::maskRoFAndLater) ? EQ::invtype::MERCHANT_SIZE : 80;
+	const int16 merchant_slots = 80;
 
 	auto temporary_merchant_list = zone->tmpmerchanttable[npcid];
 	uint32 slot_id = 1;

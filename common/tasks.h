@@ -95,28 +95,13 @@ struct ActivityInformation {
 		out.WriteInt32(0); // solo/group/raid request type? (no longer in live)
 		out.WriteString(target_name); // target name used in objective type string (max 64)
 
-		if (client_version >= EQ::versions::ClientVersion::RoF)
-		{
-			out.WriteLengthString(item_list);  // used in objective type string (can be empty for none)
-			out.WriteInt32(activity_type == TaskActivityType::GiveCash ? 1 : goal_count);
-			out.WriteLengthString(skill_list); // used in SkillOn objective type string, "-1" for none
-			out.WriteLengthString(spell_list); // used in CastOn objective type string, "0" for none
-			out.WriteString(zones);            // used in ui zone columns and task select "begins in" (may have multiple, invalid id for "Unknown Zone", empty for "ALL")
-		}
-		else
-		{
-			out.WriteString(item_list);
-			out.WriteInt32(activity_type == TaskActivityType::GiveCash ? 1 : goal_count);
-			out.WriteInt32(skill_id);
-			out.WriteInt32(spell_id);
-			out.WriteInt32(zone_ids.empty() ? 0 : zone_ids.front());
-		}
+		out.WriteString(item_list);
+		out.WriteInt32(activity_type == TaskActivityType::GiveCash ? 1 : goal_count);
+		out.WriteInt32(skill_id);
+		out.WriteInt32(spell_id);
+		out.WriteInt32(zone_ids.empty() ? 0 : zone_ids.front());
 
 		out.WriteString(description_override);
-
-		if (client_version >= EQ::versions::ClientVersion::RoF) {
-			out.WriteString(zones); // target zone version internal id (unused client side)
-		}
 	}
 
 	void SerializeObjective(SerializeBuffer& out, EQ::versions::ClientVersion client_version, int done_count) const
@@ -132,41 +117,23 @@ struct ActivityInformation {
 
 		out.WriteInt32(static_cast<int32_t>(activity_type));
 
-		if (client_version >= EQ::versions::ClientVersion::RoF) {
-			out.WriteInt8(optional ? 1 : 0);
-		} else {
-			out.WriteInt32(optional ? 1 : 0);
-		}
+		out.WriteInt32(optional ? 1 : 0);
 
 		out.WriteInt32(0); // solo/group/raid request type? (no longer in live)
 		out.WriteString(target_name); // target name used in objective type string (max 64)
 
-		if (client_version >= EQ::versions::ClientVersion::RoF)
-		{
-			out.WriteLengthString(item_list);  // used in objective type string (can be empty for none)
-			out.WriteInt32(real_goal_count);
-			out.WriteLengthString(skill_list); // used in SkillOn objective type string, "-1" for none
-			out.WriteLengthString(spell_list); // used in CastOn objective type string, "0" for none
-			out.WriteString(zones);            // used in objective zone column and task select "begins in" ("0" for "unknown zone", empty for "ALL")
-		}
-		else
-		{
-			out.WriteString(item_list);
-			out.WriteInt32(real_goal_count);
-			out.WriteInt32(skill_id);
-			out.WriteInt32(spell_id);
-			out.WriteInt32(zone_ids.empty() ? 0 : zone_ids.front());
-		}
+
+		out.WriteString(item_list);
+		out.WriteInt32(real_goal_count);
+		out.WriteInt32(skill_id);
+		out.WriteInt32(spell_id);
+		out.WriteInt32(zone_ids.empty() ? 0 : zone_ids.front());
 
 		out.WriteInt32(dz_switch_id);
 		out.WriteString(description_override);
 		out.WriteInt32(done_count);
 		out.WriteInt8(1); // unknown
 
-		if (client_version >= EQ::versions::ClientVersion::RoF)
-		{
-			out.WriteString(zones); // serialized again after description (seems unused)
-		}
 	}
 };
 

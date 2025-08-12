@@ -367,9 +367,6 @@ void ZoneGuildManager::ProcessWorldPacket(ServerPacket *pack)
 			else if (c && s->guild_id != GUILD_NONE) {
 				//char is in zone, and has changed into a new guild, send MOTD.
 				c->SendGuildMOTD();
-				if (c->ClientVersion() >= EQ::versions::ClientVersion::RoF) {
-					c->SendGuildRanks();
-				}
 			}
 			break;
 		}
@@ -735,65 +732,6 @@ void GuildBankManager::SendGuildBank(Client *c)
 	auto guild_bank = GetGuildBank(c->GuildID());
 	if (!guild_bank) {
 		LogError("Unable to find guild bank for guild ID <red>[{}]", c->GuildID());
-		return;
-	}
-
-	// RoF+ uses a bulk list packet -- This is also how the Action 0 of older clients basically works
-	if (c->ClientVersionBit() & EQ::versions::maskRoFAndLater) {
-
-		auto outapp = new EQApplicationPacket(OP_GuildBankItemList, sizeof(GuildBankItemListEntry_Struct) * 240);
-		for (int i = 0; i < c->GetInv().GetLookup()->InventoryTypeSize.GuildBankDeposit; i++) {
-			const EQ::ItemData *item = database.GetItem(guild_bank->items.deposit_area[i].item_id);
-			if (item) {
-				outapp->WriteUInt8(1);
-				outapp->WriteUInt32(guild_bank->items.deposit_area[i].permissions);
-				outapp->WriteString(guild_bank->items.deposit_area[i].who_for.c_str());
-				outapp->WriteString(guild_bank->items.deposit_area[i].donator.c_str());
-				outapp->WriteUInt32(item->ID);
-				outapp->WriteUInt32(item->Icon);
-				if (item->Stackable) {
-					outapp->WriteUInt32(guild_bank->items.deposit_area[i].quantity);
-					outapp->WriteUInt8(item->StackSize == guild_bank->items.deposit_area[i].quantity ? 1 : 1);
-				}
-				else {
-					outapp->WriteUInt32(1);
-					outapp->WriteUInt8(0);
-				}
-				outapp->WriteUInt8(item->IsEquipable(c->GetBaseRace(), c->GetBaseClass()) ? 1 : 0);
-				outapp->WriteString(item->Name);
-			}
-			else {
-				outapp->WriteUInt8(0); // empty
-			}
-		}
-
-		for (int i = 0; i < c->GetInv().GetLookup()->InventoryTypeSize.GuildBankMain; ++i) {
-			const EQ::ItemData *Item = database.GetItem(guild_bank->items.main_area[i].item_id);
-			if (Item) {
-				outapp->WriteUInt8(1);
-				outapp->WriteUInt32(guild_bank->items.main_area[i].permissions);
-				outapp->WriteString(guild_bank->items.main_area[i].who_for.c_str());
-				outapp->WriteString(guild_bank->items.main_area[i].donator.c_str());
-				outapp->WriteUInt32(Item->ID);
-				outapp->WriteUInt32(Item->Icon);
-				if (Item->Stackable) {
-					outapp->WriteUInt32(guild_bank->items.main_area[i].quantity);
-					outapp->WriteUInt8(Item->StackSize == guild_bank->items.main_area[i].quantity ? 1 : 1);
-				}
-				else {
-					outapp->WriteUInt32(1);
-					outapp->WriteUInt8(0);
-				}
-				outapp->WriteUInt8(Item->IsEquipable(c->GetBaseRace(), c->GetBaseClass()) ? 1 : 0);
-				outapp->WriteString(Item->Name);
-			}
-			else {
-				outapp->WriteUInt8(0); // empty
-			}
-		}
-
-		outapp->size = outapp->GetWritePosition(); // truncate to used size
-		c->FastQueuePacket(&outapp);
 		return;
 	}
 
@@ -1486,7 +1424,6 @@ uint8* ZoneGuildManager::MakeGuildMembers(uint32 guild_id, const char* prefix_na
 		e->banker = ci->banker + (ci->alt * 2);	// low bit is banker flag, next bit is 'alt' flag.
 		PutField(class_);
 		auto c = entity_list.GetClientByID(ci->char_id);
-		if (c && c->ClientVersion() < EQ::versions::ClientVersion::RoF) {
 			switch (ci->rank) {
 				case GUILD_RECRUIT:
 				case GUILD_INITIATE:
@@ -1510,7 +1447,6 @@ uint8* ZoneGuildManager::MakeGuildMembers(uint32 guild_id, const char* prefix_na
 					break;
 				}
 			}
-		}
 		PutField(rank);
 		PutField(time_last_on);
 		PutField(tribute_enable);

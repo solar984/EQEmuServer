@@ -94,7 +94,7 @@ bool BaseGuildManager::LoadGuilds()
 	ClearGuilds();
 	auto guilds             = GuildsRepository::GetWhere(
 		*m_db,
-		fmt::format("`id` < '{}'", RoF2::constants::MAX_GUILD_ID)
+		fmt::format("`id` < '{}'", Titanium::constants::MAX_GUILD_ID)
 	);
 	auto guilds_ranks       = GuildRanksRepository::LoadAll(*m_db);
 	auto guilds_permissions = GuildPermissionsRepository::LoadAll(*m_db);
@@ -102,7 +102,7 @@ bool BaseGuildManager::LoadGuilds()
 		*m_db,
 		fmt::format(
 			"`guild_id` < '{}'",
-			RoF2::constants::MAX_GUILD_ID
+			Titanium::constants::MAX_GUILD_ID
 		)
 	);
 

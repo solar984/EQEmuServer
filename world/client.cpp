@@ -238,12 +238,6 @@ void Client::SendCharInfo() {
 		cle->SetOnline(CLE_Status::CharSelect);
 	}
 
-	if (m_ClientVersionBit & EQ::versions::maskRoFAndLater) {
-		SendMaxCharCreate();
-		SendMembership();
-		SendMembershipSettings();
-	}
-
 	seen_character_select = true;
 
 	// Send OP_SendCharInfo
@@ -1008,12 +1002,6 @@ bool Client::HandleEnterWorldPacket(const EQApplicationPacket *app) {
 			case EQ::versions::ClientVersion::UF:
 				connection_type = EQ::versions::ucsUFCombined;
 				break;
-			case EQ::versions::ClientVersion::RoF:
-				connection_type = EQ::versions::ucsRoFCombined;
-				break;
-			case EQ::versions::ClientVersion::RoF2:
-				connection_type = EQ::versions::ucsRoF2Combined;
-				break;
 			default:
 				connection_type = EQ::versions::ucsUnknown;
 				break;
@@ -1080,11 +1068,6 @@ bool Client::HandleDeleteCharacterPacket(const EQApplicationPacket *app) {
 }
 
 bool Client::HandleZoneChangePacket(const EQApplicationPacket *app) {
-	// HoT sends this to world while zoning and wants it echoed back.
-	if (m_ClientVersionBit & EQ::versions::maskRoFAndLater)
-	{
-		QueuePacket(app);
-	}
 	return true;
 }
 

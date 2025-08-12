@@ -3707,61 +3707,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 		case ServerOP_TraderMessaging: {
 			auto            in = (TraderMessaging_Struct *) pack->pBuffer;
 			for (auto const &c: entity_list.GetClientList()) {
-				if (c.second->ClientVersion() >= EQ::versions::ClientVersion::RoF2) {
-					auto outapp           = new EQApplicationPacket(OP_BecomeTrader, sizeof(BecomeTrader_Struct));
-					auto out              = (BecomeTrader_Struct *) outapp->pBuffer;
-
-					out->entity_id        = in->entity_id;
-					out->zone_id          = in->zone_id;
-					out->zone_instance_id = in->instance_id;
-					out->trader_id        = in->trader_id;
-					strn0cpy(out->trader_name, in->trader_name, sizeof(out->trader_name));
-
-					switch (in->action) {
-						case TraderOn: {
-							out->action = AddTraderToBazaarWindow;
-							if (c.second->GetTraderCount() <
-								EQ::constants::StaticLookup(c.second->ClientVersion())->BazaarTraderLimit) {
-								if (RuleB(Bazaar, UseAlternateBazaarSearch)) {
-									if (out->zone_id == Zones::BAZAAR &&
-										out->zone_instance_id == c.second->GetInstanceID()) {
-										c.second->IncrementTraderCount();
-										c.second->QueuePacket(outapp, true, Mob::CLIENT_CONNECTED);
-									}
-								}
-								else {
-									c.second->IncrementTraderCount();
-									c.second->QueuePacket(outapp, true, Mob::CLIENT_CONNECTED);
-								}
-							}
-							break;
-						}
-						case TraderOff: {
-							out->action = RemoveTraderFromBazaarWindow;
-							if (c.second->GetTraderCount() <=
-								EQ::constants::StaticLookup(c.second->ClientVersion())->BazaarTraderLimit) {
-								if (RuleB(Bazaar, UseAlternateBazaarSearch)) {
-									if (out->zone_id == Zones::BAZAAR &&
-										out->zone_instance_id == c.second->GetInstanceID()) {
-										c.second->DecrementTraderCount();
-										c.second->QueuePacket(outapp, true, Mob::CLIENT_CONNECTED);
-									}
-								}
-								else {
-									c.second->DecrementTraderCount();
-									c.second->QueuePacket(outapp, true, Mob::CLIENT_CONNECTED);
-								}
-							}
-							break;
-						}
-						default: {
-							out->action = 0;
-							c.second->QueuePacket(outapp, true, Mob::CLIENT_CONNECTED);
-						}
-					}
-
-					safe_delete(outapp);
-				}
 				if (zone && zone->GetZoneID() == Zones::BAZAAR && in->instance_id == zone->GetInstanceID()) {
 					if (in->action == TraderOn) {
 						c.second->SendBecomeTrader(TraderOn, in->entity_id);
@@ -3797,9 +3742,7 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 
 			memcpy(data, &in->trader_buy_struct, sizeof(TraderBuy_Struct));
 
-			if (trader_pc->ClientVersion() < EQ::versions::ClientVersion::RoF) {
-				data->price = in->trader_buy_struct.price * in->trader_buy_struct.quantity;
-			}
+			data->price = in->trader_buy_struct.price * in->trader_buy_struct.quantity;
 
 			TraderRepository::UpdateActiveTransaction(database, in->id, false);
 

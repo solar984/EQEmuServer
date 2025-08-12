@@ -230,9 +230,6 @@ enum {	//some random constants
 
 #define ZONE_CONTROLLER_NPC_ID 10
 
-// Timer to update aggrometer
-#define AGGRO_METER_UPDATE_MS 1000
-
 // This is the item ID we use for say links, we use the max that fits in 5 ASCII chars
 #define SAYLINK_ITEM_ID 0xFFFFF
 

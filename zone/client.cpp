@@ -177,7 +177,6 @@ Client::Client() : Mob(
 				   anon_toggle_timer(250),
 				   afk_toggle_timer(250),
 				   helm_toggle_timer(250),
-				   aggro_meter_timer(AGGRO_METER_UPDATE_MS),
 				   m_Proximity(FLT_MAX, FLT_MAX, FLT_MAX), //arbitrary large number
 				   m_ZoneSummonLocation(-2.0f, -2.0f, -2.0f, -2.0f),
 				   m_AutoAttackPosition(0.0f, 0.0f, 0.0f, 0.0f),
@@ -485,7 +484,6 @@ Client::Client(EQStreamInterface *ieqs) : Mob(
 	anon_toggle_timer(250),
 	afk_toggle_timer(250),
 	helm_toggle_timer(250),
-	aggro_meter_timer(AGGRO_METER_UPDATE_MS),
 	m_Proximity(FLT_MAX, FLT_MAX, FLT_MAX), //arbitrary large number
 	m_ZoneSummonLocation(-2.0f, -2.0f, -2.0f, -2.0f),
 	m_AutoAttackPosition(0.0f, 0.0f, 0.0f, 0.0f),
@@ -710,10 +708,6 @@ Client::Client(EQStreamInterface *ieqs) : Mob(
 Client::~Client() {
 	entity_list.RemoveMobFromCloseLists(this);
 	m_close_mobs.clear();
-
-	if (ClientVersion() == EQ::versions::ClientVersion::RoF2 && RuleB (Parcel, EnableParcelMerchants)) {
-		DoParcelCancel();
-	}
 
 	mMovementManager->RemoveClient(this);
 
@@ -6034,9 +6028,7 @@ void Client::ShowSkillsWindow()
 	std::string popup_text;
 	std::map<EQ::skills::SkillType, std::string> skills_map = EQ::skills::GetSkillTypeMap();
 
-	if (ClientVersion() < EQ::versions::ClientVersion::RoF2) {
-		skills_map[EQ::skills::Skill1HPiercing] = "Piercing";
-	}
+	skills_map[EQ::skills::Skill1HPiercing] = "Piercing";
 
 	// Table Start
 	popup_text += "<table>";
@@ -7959,96 +7951,46 @@ void Client::SendMercPersonalInfo()
 		return;
 	}
 
-	if (ClientVersion() >= EQ::versions::ClientVersion::RoF) {
-		auto outapp = new EQApplicationPacket(OP_MercenaryDataUpdate, sizeof(MercenaryDataUpdate_Struct));
-		auto mdus   = (MercenaryDataUpdate_Struct *) outapp->pBuffer;
+	auto outapp = new EQApplicationPacket(OP_MercenaryDataResponse, sizeof(MercenaryMerchantList_Struct));
+	auto mml    = (MercenaryMerchantList_Struct *) outapp->pBuffer;
 
-		mdus->MercStatus                    = 0;
-		mdus->MercCount                     = mercCount;
-		mdus->MercData[i].MercID            = mercData->MercTemplateID;
-		mdus->MercData[i].MercType          = mercData->MercType;
-		mdus->MercData[i].MercSubType       = mercData->MercSubType;
-		mdus->MercData[i].PurchaseCost      = Merc::CalcPurchaseCost(mercData->MercTemplateID, GetLevel(), 0);
-		mdus->MercData[i].UpkeepCost        = Merc::CalcUpkeepCost(mercData->MercTemplateID, GetLevel(), 0);
-		mdus->MercData[i].Status            = 0;
-		mdus->MercData[i].AltCurrencyCost   = Merc::CalcPurchaseCost(
-			mercData->MercTemplateID,
-			GetLevel(),
-			altCurrentType
-		);
-		mdus->MercData[i].AltCurrencyUpkeep = Merc::CalcPurchaseCost(
-			mercData->MercTemplateID,
-			GetLevel(),
-			altCurrentType
-		);
-		mdus->MercData[i].AltCurrencyType   = altCurrentType;
-		mdus->MercData[i].MercUnk01         = 0;
-		mdus->MercData[i].TimeLeft          = GetMercInfo().MercTimerRemaining;    //GetMercTimer().GetRemainingTime();
-		mdus->MercData[i].MerchantSlot      = i + 1;
-		mdus->MercData[i].MercUnk02         = 1;
-		mdus->MercData[i].StanceCount       = zone->merc_stance_list[mercData->MercTemplateID].size();
-		mdus->MercData[i].MercUnk03         = 0;
-		mdus->MercData[i].MercUnk04         = 1;
+	mml->MercTypeCount = mercTypeCount; //We should only have one merc entry.
+	mml->MercGrades[i] = 1;
 
-		strn0cpy(mdus->MercData[i].MercName, GetMercInfo().merc_name, sizeof(mdus->MercData[i].MercName));
+	mml->MercCount                  = mercCount;
+	mml->Mercs[i].MercID            = mercData->MercTemplateID;
+	mml->Mercs[i].MercType          = mercData->MercType;
+	mml->Mercs[i].MercSubType       = mercData->MercSubType;
+	mml->Mercs[i].PurchaseCost      = RuleB(Mercs, ChargeMercPurchaseCost) ? Merc::CalcPurchaseCost(mercData->MercTemplateID, GetLevel(), 0) : 0;
+	mml->Mercs[i].UpkeepCost        = RuleB(Mercs, ChargeMercUpkeepCost) ? Merc::CalcUpkeepCost(mercData->MercTemplateID, GetLevel(), 0) : 0;
+	mml->Mercs[i].Status            = 0;
+	mml->Mercs[i].AltCurrencyCost   = RuleB(Mercs, ChargeMercPurchaseCost) ? Merc::CalcPurchaseCost(mercData->MercTemplateID, GetLevel(), altCurrentType) : 0;
+	mml->Mercs[i].AltCurrencyUpkeep = RuleB(Mercs, ChargeMercUpkeepCost) ? Merc::CalcUpkeepCost(mercData->MercTemplateID, GetLevel(), altCurrentType) : 0;
+	mml->Mercs[i].AltCurrencyType   = altCurrentType;
+	mml->Mercs[i].MercUnk01         = 0;
+	mml->Mercs[i].TimeLeft          = GetMercInfo().MercTimerRemaining;
+	mml->Mercs[i].MerchantSlot      = i + 1;
+	mml->Mercs[i].MercUnk02         = 1;
+	mml->Mercs[i].StanceCount       = zone->merc_stance_list[mercData->MercTemplateID].size();
+	mml->Mercs[i].MercUnk03         = 0;
+	mml->Mercs[i].MercUnk04         = 1;
 
-		uint32 stanceindex = 0;
-		if (mdus->MercData[i].StanceCount != 0) {
-			auto iter = zone->merc_stance_list[mercData->MercTemplateID].begin();
-			while (iter != zone->merc_stance_list[mercData->MercTemplateID].end()) {
-				mdus->MercData[i].Stances[stanceindex].StanceIndex = stanceindex;
-				mdus->MercData[i].Stances[stanceindex].Stance      = (iter->StanceID);
-				stanceindex++;
-				++iter;
-			}
+	strn0cpy(mml->Mercs[i].MercName, GetMercInfo().merc_name, sizeof(mml->Mercs[i].MercName));
+
+	int stanceindex = 0;
+	if (mml->Mercs[i].StanceCount != 0) {
+		auto iter = zone->merc_stance_list[mercData->MercTemplateID].begin();
+		while (iter != zone->merc_stance_list[mercData->MercTemplateID].end()) {
+			mml->Mercs[i].Stances[stanceindex].StanceIndex = stanceindex;
+			mml->Mercs[i].Stances[stanceindex].Stance      = (iter->StanceID);
+			stanceindex++;
+			++iter;
 		}
-
-		mdus->MercData[i].MercUnk05 = 1;
-		FastQueuePacket(&outapp);
-		safe_delete(outapp);
-		return;
-	} else {
-		auto outapp = new EQApplicationPacket(OP_MercenaryDataResponse, sizeof(MercenaryMerchantList_Struct));
-		auto mml    = (MercenaryMerchantList_Struct *) outapp->pBuffer;
-
-		mml->MercTypeCount = mercTypeCount; //We should only have one merc entry.
-		mml->MercGrades[i] = 1;
-
-		mml->MercCount                  = mercCount;
-		mml->Mercs[i].MercID            = mercData->MercTemplateID;
-		mml->Mercs[i].MercType          = mercData->MercType;
-		mml->Mercs[i].MercSubType       = mercData->MercSubType;
-		mml->Mercs[i].PurchaseCost      = RuleB(Mercs, ChargeMercPurchaseCost) ? Merc::CalcPurchaseCost(mercData->MercTemplateID, GetLevel(), 0) : 0;
-		mml->Mercs[i].UpkeepCost        = RuleB(Mercs, ChargeMercUpkeepCost) ? Merc::CalcUpkeepCost(mercData->MercTemplateID, GetLevel(), 0) : 0;
-		mml->Mercs[i].Status            = 0;
-		mml->Mercs[i].AltCurrencyCost   = RuleB(Mercs, ChargeMercPurchaseCost) ? Merc::CalcPurchaseCost(mercData->MercTemplateID, GetLevel(), altCurrentType) : 0;
-		mml->Mercs[i].AltCurrencyUpkeep = RuleB(Mercs, ChargeMercUpkeepCost) ? Merc::CalcUpkeepCost(mercData->MercTemplateID, GetLevel(), altCurrentType) : 0;
-		mml->Mercs[i].AltCurrencyType   = altCurrentType;
-		mml->Mercs[i].MercUnk01         = 0;
-		mml->Mercs[i].TimeLeft          = GetMercInfo().MercTimerRemaining;
-		mml->Mercs[i].MerchantSlot      = i + 1;
-		mml->Mercs[i].MercUnk02         = 1;
-		mml->Mercs[i].StanceCount       = zone->merc_stance_list[mercData->MercTemplateID].size();
-		mml->Mercs[i].MercUnk03         = 0;
-		mml->Mercs[i].MercUnk04         = 1;
-
-		strn0cpy(mml->Mercs[i].MercName, GetMercInfo().merc_name, sizeof(mml->Mercs[i].MercName));
-
-		int stanceindex = 0;
-		if (mml->Mercs[i].StanceCount != 0) {
-			auto iter = zone->merc_stance_list[mercData->MercTemplateID].begin();
-			while (iter != zone->merc_stance_list[mercData->MercTemplateID].end()) {
-				mml->Mercs[i].Stances[stanceindex].StanceIndex = stanceindex;
-				mml->Mercs[i].Stances[stanceindex].Stance      = (iter->StanceID);
-				stanceindex++;
-				++iter;
-			}
-		}
-
-		FastQueuePacket(&outapp);
-		safe_delete(outapp);
-		return;
 	}
+
+	FastQueuePacket(&outapp);
+	safe_delete(outapp);
+	return;
 }
 
 void Client::SendClearMercInfo()
@@ -8064,12 +8006,6 @@ void Client::SendClearMercInfo()
 
 void Client::DuplicateLoreMessage(uint32 ItemID)
 {
-	if (!(m_ClientVersionBit & EQ::versions::maskRoFAndLater))
-	{
-		MessageString(Chat::White, PICK_LORE);
-		return;
-	}
-
 	const EQ::ItemData *item = database.GetItem(ItemID);
 
 	if(!item)
@@ -9273,170 +9209,6 @@ void Client::CheckRegionTypeChanges()
 		temp_pvp = true;
 	} else if (temp_pvp) {
 		temp_pvp = false;
-	}
-}
-
-void Client::ProcessAggroMeter()
-{
-	if (!AggroMeterAvailable()) {
-		aggro_meter_timer.Disable();
-		return;
-	}
-
-	// we need to decide if we need to send OP_AggroMeterTargetInfo now
-	// This packet sends the current lock target ID and the current target ID
-	// target ID will be either our target or our target of target when we're targeting a PC
-	bool send_targetinfo = false;
-	auto cur_tar = GetTarget();
-
-	// probably should have PVP rules ...
-	if (cur_tar && cur_tar != this) {
-		if (cur_tar->IsNPC() && !cur_tar->IsPetOwnerOfClientBot() && cur_tar->GetID() != m_aggrometer.get_target_id()) {
-			m_aggrometer.set_target_id(cur_tar->GetID());
-			send_targetinfo = true;
-		} else if ((cur_tar->IsPetOwnerOfClientBot() || cur_tar->IsClient()) && cur_tar->GetTarget() && cur_tar->GetTarget()->GetID() != m_aggrometer.get_target_id()) {
-			m_aggrometer.set_target_id(cur_tar->GetTarget()->GetID());
-			send_targetinfo = true;
-		}
-	} else if (m_aggrometer.get_target_id()) {
-		m_aggrometer.set_target_id(0);
-		send_targetinfo = true;
-	}
-
-	if (m_aggrometer.update_lock())
-		send_targetinfo = true;
-
-	if (send_targetinfo) {
-		auto app = new EQApplicationPacket(OP_AggroMeterTargetInfo, sizeof(uint32) * 2);
-		app->WriteUInt32(m_aggrometer.get_lock_id());
-		app->WriteUInt32(m_aggrometer.get_target_id());
-		FastQueuePacket(&app);
-	}
-
-	// we could just calculate how big the packet would need to be ... but it's easier this way :P should be 87 bytes
-	auto app = new EQApplicationPacket(OP_AggroMeterUpdate, m_aggrometer.max_packet_size());
-
-	cur_tar = entity_list.GetMob(m_aggrometer.get_target_id());
-
-	// first we must check the secondary
-	// TODO: lock target should affect secondary as well
-	bool send = false;
-	Mob *secondary = nullptr;
-	bool has_aggro = false;
-	if (cur_tar) {
-		if (cur_tar->GetTarget() == this) {// we got aggro
-			secondary = cur_tar->GetSecondaryHate(this);
-			has_aggro = true;
-		} else {
-			secondary = cur_tar->CheckAggro(cur_tar->GetTarget()) ? cur_tar->GetTarget() : nullptr; // make sure they are targeting for aggro reasons
-		}
-	}
-
-	if (secondary && secondary->GetID() != m_aggrometer.get_secondary_id()) {
-		m_aggrometer.set_secondary_id(secondary->GetID());
-		app->WriteUInt8(1);
-		app->WriteUInt32(m_aggrometer.get_secondary_id());
-		send = true;
-	} else if (!secondary && m_aggrometer.get_secondary_id()) {
-		m_aggrometer.set_secondary_id(0);
-		app->WriteUInt8(1);
-		app->WriteUInt32(0);
-		send = true;
-	} else { // might not need to send in this case
-		app->WriteUInt8(0);
-	}
-
-	auto count_offset = app->GetWritePosition();
-	app->WriteUInt8(0);
-
-	int count = 0;
-	auto add_entry = [&app, &count, this](AggroMeter::AggroTypes i) {
-		count++;
-		app->WriteUInt8(i);
-		app->WriteUInt16(m_aggrometer.get_pct(i));
-	};
-	// TODO: Player entry should either be lock or yourself, ignoring lock for now
-	// player, secondary, and group depend on your target/lock
-	if (cur_tar) {
-		if (m_aggrometer.set_pct(AggroMeter::AT_Player, cur_tar->GetHateRatio(cur_tar->GetTarget(), this)))
-			add_entry(AggroMeter::AT_Player);
-
-		if (m_aggrometer.set_pct(AggroMeter::AT_Secondary, has_aggro ? cur_tar->GetHateRatio(this, secondary) : secondary ? 100 : 0))
-			add_entry(AggroMeter::AT_Secondary);
-
-		if (IsRaidGrouped()) {
-			auto raid = GetRaid();
-			if (raid) {
-				auto gid = raid->GetGroup(this);
-				if (gid < MAX_RAID_GROUPS) {
-					int at_id = AggroMeter::AT_Group1;
-					for (const auto& m : raid->members) {
-						if (m.member && m.member != this && m.group_number == gid) {
-							if (m_aggrometer.set_pct(static_cast<AggroMeter::AggroTypes>(at_id), cur_tar->GetHateRatio(cur_tar->GetTarget(), m.member)))
-								add_entry(static_cast<AggroMeter::AggroTypes>(at_id));
-							at_id++;
-							if (at_id > AggroMeter::AT_Group5)
-								break;
-						}
-					}
-				}
-			}
-		} else if (IsGrouped()) {
-			auto group = GetGroup();
-			if (group) {
-				int at_id = AggroMeter::AT_Group1;
-				for (int i = 0; i < MAX_GROUP_MEMBERS; ++i) {
-					if (group->members[i] && group->members[i] != this) {
-						if (m_aggrometer.set_pct(static_cast<AggroMeter::AggroTypes>(at_id), cur_tar->GetHateRatio(cur_tar->GetTarget(), group->members[i])))
-							add_entry(static_cast<AggroMeter::AggroTypes>(at_id));
-						at_id++;
-					}
-				}
-			}
-		}
-	} else { // we might need to clear out some data now
-		if (m_aggrometer.set_pct(AggroMeter::AT_Player, 0))
-			add_entry(AggroMeter::AT_Player);
-		if (m_aggrometer.set_pct(AggroMeter::AT_Secondary, 0))
-			add_entry(AggroMeter::AT_Secondary);
-		if (m_aggrometer.set_pct(AggroMeter::AT_Group1, 0))
-			add_entry(AggroMeter::AT_Group1);
-		if (m_aggrometer.set_pct(AggroMeter::AT_Group2, 0))
-			add_entry(AggroMeter::AT_Group2);
-		if (m_aggrometer.set_pct(AggroMeter::AT_Group3, 0))
-			add_entry(AggroMeter::AT_Group3);
-		if (m_aggrometer.set_pct(AggroMeter::AT_Group4, 0))
-			add_entry(AggroMeter::AT_Group4);
-		if (m_aggrometer.set_pct(AggroMeter::AT_Group5, 0))
-			add_entry(AggroMeter::AT_Group5);
-	}
-
-	// now to go over our xtargets
-	// if the entry is an NPC it's our hate relative to the NPCs current tank
-	// if it's a PC, it's their hate relative to our current target
-	for (int i = 0; i < GetMaxXTargets(); ++i) {
-		if (XTargets[i].ID) {
-			auto mob = entity_list.GetMob(XTargets[i].ID);
-			if (mob) {
-				int ratio = 0;
-				if (mob->IsNPC())
-					ratio = mob->GetHateRatio(mob->GetTarget(), this);
-				else if (cur_tar)
-					ratio = cur_tar->GetHateRatio(cur_tar->GetTarget(), mob);
-				if (m_aggrometer.set_pct(static_cast<AggroMeter::AggroTypes>(AggroMeter::AT_XTarget1 + i), ratio))
-					add_entry(static_cast<AggroMeter::AggroTypes>(AggroMeter::AT_XTarget1 + i));
-			}
-		}
-	}
-
-	if (send || count) {
-		app->size = app->GetWritePosition(); // this should be safe, although not recommended
-		// but this way we can have a smaller buffer created for the packet dispatched to the client w/o resizing this one
-		app->SetWritePosition(count_offset);
-		app->WriteUInt8(count);
-		FastQueuePacket(&app);
-	} else {
-		safe_delete(app);
 	}
 }
 
@@ -11706,12 +11478,6 @@ void Client::ReconnectUCS()
 		case EQ::versions::ClientVersion::UF:
 			connection_type = EQ::versions::ucsUFCombined;
 			break;
-		case EQ::versions::ClientVersion::RoF:
-			connection_type = EQ::versions::ucsRoFCombined;
-			break;
-		case EQ::versions::ClientVersion::RoF2:
-			connection_type = EQ::versions::ucsRoF2Combined;
-			break;
 		default:
 			connection_type = EQ::versions::ucsUnknown;
 			break;
@@ -13228,11 +12994,6 @@ std::string Client::GetBandolierItemName(uint8 bandolier_slot, uint8 slot_id)
 void Client::SendMerchantEnd()
 {
 	SetMerchantSessionEntityID(0);
-
-	if (ClientVersion() == EQ::versions::ClientVersion::RoF2 && RuleB(Parcel, EnableParcelMerchants)) {
-		DoParcelCancel();
-		SetEngagedWithParcelMerchant(false);
-	}
 
 	EQApplicationPacket empty(OP_ShopEndConfirm);
 	QueuePacket(&empty);

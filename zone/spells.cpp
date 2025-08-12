@@ -7501,15 +7501,7 @@ bool Mob::CheckItemRaceClassDietyRestrictionsOnCast(uint32 inventory_slot) {
 				RecordPlayerEventLogWithClient(CastToClient(), PlayerEvent::POSSIBLE_HACK, PlayerEvent::PossibleHackEvent{.message = message});
 			}
 			else {
-				if (CastToClient()->ClientVersion() >= EQ::versions::ClientVersion::RoF)
-				{
-					// Line 181 in eqstr_us.txt was changed in RoF+
-					Message(Chat::Yellow, "Your race, class, or deity cannot use this item.");
-				}
-				else
-				{
-					MessageString(Chat::Red, CANNOT_USE_ITEM);
-				}
+				MessageString(Chat::Red, CANNOT_USE_ITEM);
 			}
 			return(false);
 		}

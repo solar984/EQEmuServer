@@ -2254,22 +2254,6 @@ void Client::SetConnectionType(char c) {
 		LogInfo("Connection type is Combined (Underfoot)");
 		break;
 	}
-	case EQ::versions::ucsRoFCombined:
-	{
-		TypeOfConnection = ConnectionTypeCombined;
-		ClientVersion_ = EQ::versions::ClientVersion::RoF;
-		UnderfootOrLater = true;
-		LogInfo("Connection type is Combined (RoF)");
-		break;
-	}
-	case EQ::versions::ucsRoF2Combined:
-	{
-		TypeOfConnection = ConnectionTypeCombined;
-		ClientVersion_ = EQ::versions::ClientVersion::RoF2;
-		UnderfootOrLater = true;
-		LogInfo("Connection type is Combined (RoF2)");
-		break;
-	}
 	default:
 	{
 		TypeOfConnection = ConnectionTypeUnknown;

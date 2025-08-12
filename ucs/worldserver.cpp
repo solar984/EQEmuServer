@@ -139,14 +139,8 @@ void WorldServer::ProcessMessage(uint16 opcode, EQ::Net::Packet &p)
 			case EQ::versions::ClientVersion::SoF:
 			case EQ::versions::ClientVersion::SoD:
 			case EQ::versions::ClientVersion::UF:
-				Client50ToServerSayLink(new_message, Message.substr(1, std::string::npos));
-				break;
-			case EQ::versions::ClientVersion::RoF:
-				Client55ToServerSayLink(new_message, Message.substr(1, std::string::npos));
-				break;
-			case EQ::versions::ClientVersion::RoF2:
 			default:
-				new_message = Message.substr(1, std::string::npos);
+				Client50ToServerSayLink(new_message, Message.substr(1, std::string::npos));
 				break;
 			}
 

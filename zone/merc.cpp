@@ -4697,113 +4697,62 @@ void Client::SendMercResponsePackets(uint32 ResponseType)
 		SendMercMerchantResponsePacket(6);
 		break;
 	case 7: //You must dismiss your suspended mercenary before purchasing a new one!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
 			SendMercMerchantResponsePacket(7);
-		else
-			//You have the maximum number of mercenaries.  You must dismiss one before purchasing a new one!
-			SendMercMerchantResponsePacket(6);
 		break;
 	case 8: //You can not purchase a mercenary because your group is full!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			SendMercMerchantResponsePacket(8);
-		else
-			SendMercMerchantResponsePacket(7);
+		SendMercMerchantResponsePacket(8);
 		break;
 	case 9: //You can not purchase a mercenary because you are in combat!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			//Mercenary failed to spawn!
-			SendMercMerchantResponsePacket(3);
-		else
-			SendMercMerchantResponsePacket(8);
+		//Mercenary failed to spawn!
+		SendMercMerchantResponsePacket(3);
 		break;
 	case 10: //You have recently dismissed a mercenary and must wait a few more seconds before you can purchase a new one!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			//Mercenary failed to spawn!
-			SendMercMerchantResponsePacket(3);
-		else
-			SendMercMerchantResponsePacket(9);
+		//Mercenary failed to spawn!
+		SendMercMerchantResponsePacket(3);
 		break;
 	case 11: //An error occurred created your mercenary!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			SendMercMerchantResponsePacket(9);
-		else
-			SendMercMerchantResponsePacket(10);
+		SendMercMerchantResponsePacket(9);
 		break;
 	case 12: //Upkeep Charge Message
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			SendMercMerchantResponsePacket(10);
-		else
-			SendMercMerchantResponsePacket(11);
+		SendMercMerchantResponsePacket(10);
 		break;
 	case 13: // ???
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			SendMercMerchantResponsePacket(11);
-		else
-			SendMercMerchantResponsePacket(12);
+		SendMercMerchantResponsePacket(11);
 		break;
 	case 14: //You ran out of funds to pay for your mercenary!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			SendMercMerchantResponsePacket(12);
-		else
-			SendMercMerchantResponsePacket(13);
+		SendMercMerchantResponsePacket(12);
 		break;
 	case 15: // ???
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			SendMercMerchantResponsePacket(13);
-		else
-			SendMercMerchantResponsePacket(14);
+		SendMercMerchantResponsePacket(13);
 		break;
 	case 16: //Your mercenary is about to be suspended due to insufficient funds!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			SendMercMerchantResponsePacket(14);
-		else
-			SendMercMerchantResponsePacket(15);
+		SendMercMerchantResponsePacket(14);
 		break;
 	case 17: //There is no mercenary liaison nearby!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			SendMercMerchantResponsePacket(15);
-		else
-			SendMercMerchantResponsePacket(16);
+		SendMercMerchantResponsePacket(15);
 		break;
 	case 18: //You are too far from the liaison!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			SendMercMerchantResponsePacket(16);
-		else
-			SendMercMerchantResponsePacket(17);
+		SendMercMerchantResponsePacket(16);
 		break;
 	case 19: //You do not meet the requirements for that mercenary!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			SendMercMerchantResponsePacket(17);
-		else
-			SendMercMerchantResponsePacket(18);
+		SendMercMerchantResponsePacket(17);
 		break;
 	case 20: //You are unable to interact with the liaison!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			//You are too far from the liaison!
-			SendMercMerchantResponsePacket(16);
-		else
-			SendMercMerchantResponsePacket(19);
+		//You are too far from the liaison!
+		SendMercMerchantResponsePacket(16);
 		break;
 	case 21: //You do not have a high enough membership level to purchase this mercenary!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			//You do not meet the requirements for that mercenary!
-			SendMercMerchantResponsePacket(17);
-		else
-			SendMercMerchantResponsePacket(20);
+		//You do not meet the requirements for that mercenary!
+		SendMercMerchantResponsePacket(17);
 		break;
 	case 22: //Your purchase has failed because this mercenary requires a Gold membership!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			//You do not meet the requirements for that mercenary!
-			SendMercMerchantResponsePacket(17);
-		else
-			SendMercMerchantResponsePacket(21);
+		//You do not meet the requirements for that mercenary!
+		SendMercMerchantResponsePacket(17);
 		break;
 	case 23: //Your purchase has failed because this mercenary requires at least a Silver membership!
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			//You do not meet the requirements for that mercenary!
-			SendMercMerchantResponsePacket(17);
-		else
-			SendMercMerchantResponsePacket(22);
+		//You do not meet the requirements for that mercenary!
+		SendMercMerchantResponsePacket(17);
+
 		break;
 	default: //Mercenary failed to spawn!
 		SendMercMerchantResponsePacket(3);

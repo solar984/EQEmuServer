@@ -68,7 +68,7 @@ public:
 		auto results = db.QueryDatabase(fmt::format(
 			"{} WHERE `guild_id` < {}",
 			BaseSelect(),
-			RoF2::constants::MAX_GUILD_ID)
+			Titanium::constants::MAX_GUILD_ID)
 		);
 
 		for (auto row = results.begin(); row != results.end(); ++row) {

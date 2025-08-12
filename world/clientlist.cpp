@@ -1400,9 +1400,7 @@ void ClientList::SendClientVersionSummary(const char *Name)
 		{ EQ::versions::ClientVersion::Titanium, 0 },
 		{ EQ::versions::ClientVersion::SoF, 0 },
 		{ EQ::versions::ClientVersion::SoD, 0 },
-		{ EQ::versions::ClientVersion::UF, 0 },
-		{ EQ::versions::ClientVersion::RoF, 0 },
-		{ EQ::versions::ClientVersion::RoF2, 0 }
+		{ EQ::versions::ClientVersion::UF, 0 }
 	};
 
 	LinkedListIterator<ClientListEntry*> Iterator(clientlist);
@@ -1413,7 +1411,7 @@ void ClientList::SendClientVersionSummary(const char *Name)
 			auto client_version = CLE->GetClientVersion();
 			if (
 				client_version >= (uint8) EQ::versions::ClientVersion::Titanium &&
-				client_version <= (uint8) EQ::versions::ClientVersion::RoF2
+				client_version <= (uint8) EQ::versions::ClientVersion::UF
 			) {
 				client_count[(EQ::versions::ClientVersion)client_version]++;
 			}
@@ -1430,9 +1428,7 @@ void ClientList::SendClientVersionSummary(const char *Name)
 		client_count[EQ::versions::ClientVersion::Titanium] +
 		client_count[EQ::versions::ClientVersion::SoF] +
 		client_count[EQ::versions::ClientVersion::SoD] +
-		client_count[EQ::versions::ClientVersion::UF] +
-		client_count[EQ::versions::ClientVersion::RoF] +
-		client_count[EQ::versions::ClientVersion::RoF2]
+		client_count[EQ::versions::ClientVersion::UF]
 	);
 
 	if (client_count[EQ::versions::ClientVersion::Titanium]) {
@@ -1486,33 +1482,6 @@ void ClientList::SendClientVersionSummary(const char *Name)
 			).c_str()
 		);
 	}
-
-	if (client_count[EQ::versions::ClientVersion::RoF]) {
-		ZSList::Instance()->SendEmoteMessage(
-			Name,
-			0,
-			AccountStatus::Player,
-			Chat::White,
-			fmt::format(
-				"Client Counts | ROF: {}",
-				client_count[EQ::versions::ClientVersion::RoF]
-			).c_str()
-		);
-	}
-
-	if (client_count[EQ::versions::ClientVersion::RoF2]) {
-		ZSList::Instance()->SendEmoteMessage(
-			Name,
-			0,
-			AccountStatus::Player,
-			Chat::White,
-			fmt::format(
-				"Client Counts | ROF2: {}",
-				client_count[EQ::versions::ClientVersion::RoF2]
-			).c_str()
-		);
-	}
-
 
 	ZSList::Instance()->SendEmoteMessage(
 		Name,

@@ -620,7 +620,6 @@ Json::Value ApiGetClientListDetail(EQ::Net::WebsocketServerConnection *connectio
 		row["active_task_count"]                       = client->GetActiveTaskCount();
 		row["admin"]                                   = client->Admin();
 		row["aggro_count"]                             = client->GetAggroCount();
-		row["aggro_meter_available"]                   = client->AggroMeterAvailable();
 		row["all_money"]                               = client->GetAllMoney();
 		row["anon"]                                    = client->GetAnon();
 		row["atk_rating"]                              = client->GetATKRating();

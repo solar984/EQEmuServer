@@ -2296,10 +2296,6 @@ void EntityList::ChannelMessageFromWorld(const char *from, const char *to,
 		if (chan_num == ChatChannel_Guild) {
 			if (!client->IsInGuild(guild_id))
 				continue;
-			if (client->ClientVersion() >= EQ::versions::ClientVersion::RoF) {
-				if (!guild_mgr.CheckPermission(guild_id, client->GuildRank(), GUILD_ACTION_GUILD_CHAT_SEE))
-					continue;
-			}
 			if (client->GetFilter(FilterGuildChat) == FilterHide)
 				continue;
 		} else if (chan_num == ChatChannel_OOC) {

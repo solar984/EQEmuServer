@@ -811,7 +811,6 @@ void Client::DropItem(int16 slot_id, bool recurse)
 
 	// Save client inventory change to database
 	if (slot_id == EQ::invslot::slotCursor) {
-		SendCursorBuffer();
 		auto s = m_inv.cursor_cbegin(), e = m_inv.cursor_cend();
 		database.SaveCursor(CharacterID(), s, e);
 	} else {
@@ -912,49 +911,6 @@ int32 Client::GetAugmentIDAt(int16 slot_id, uint8 augslot) {
 
 	// None found
 	return INVALID_ID;
-}
-
-void Client::SendCursorBuffer()
-{
-	// Temporary work-around for the RoF+ Client Buffer
-	// Instead of dealing with client moving items in cursor buffer,
-	// we can just send the next item in the cursor buffer to the cursor.
-	if (ClientVersion() < EQ::versions::ClientVersion::RoF) { return; }
-	if (GetInv().CursorEmpty()) { return; }
-
-	auto test_inst = GetInv().GetCursorItem();
-	if (test_inst == nullptr) { return; }
-	auto test_item = test_inst->GetItem();
-	if (test_item == nullptr) { return; }
-
-	bool lore_pass = true;
-	if (test_item->LoreGroup == -1) {
-		lore_pass = (m_inv.HasItem(test_item->ID, 0, ~(invWhereSharedBank | invWhereCursor)) == INVALID_INDEX);
-	}
-	else if (test_item->LoreGroup != 0) {
-		lore_pass = (m_inv.HasItemByLoreGroup(test_item->LoreGroup, ~(invWhereSharedBank | invWhereCursor)) == INVALID_INDEX);
-	}
-
-	if (!lore_pass) {
-		LogInventory("([{}]) Duplicate lore items are not allowed - destroying item [{}](id:[{}]) on cursor",
-			GetName(), test_item->Name, test_item->ID);
-		MessageString(Chat::Loot, 290);
-
-		if (parse->ItemHasQuestSub(test_inst, EVENT_DESTROY_ITEM)) {
-			parse->EventItem(EVENT_DESTROY_ITEM, this, test_inst, nullptr, "", 0);
-		}
-
-		if (parse->PlayerHasQuestSub(EVENT_DESTROY_ITEM_CLIENT)) {
-			std::vector<std::any> args = { test_inst };
-			parse->EventPlayer(EVENT_DESTROY_ITEM_CLIENT, this, "", 0, &args);
-		}
-
-		DeleteItemInInventory(EQ::invslot::slotCursor);
-		SendCursorBuffer();
-	}
-	else {
-		SendItemPacket(EQ::invslot::slotCursor, test_inst, ItemPacketLimbo);
-	}
 }
 
 // Remove item from inventory
@@ -1101,9 +1057,7 @@ void Client::PutLootInInventory(int16 slot_id, const EQ::ItemInstance &inst, Loo
 
 	// Subordinate items in cursor buffer must be sent via ItemPacketSummonItem or we just overwrite the visible cursor and desync the client
 	if (slot_id == EQ::invslot::slotCursor && !cursor_empty) {
-		// RoF+ currently has a specialized cursor handler
-		if (ClientVersion() < EQ::versions::ClientVersion::RoF)
-			SendItemPacket(slot_id, &inst, ItemPacketLimbo);
+		SendItemPacket(slot_id, &inst, ItemPacketLimbo);
 	}
 	else {
 		SendLootItemInPacket(&inst, slot_id);
@@ -1339,42 +1293,6 @@ bool MakeItemLink(char* &ret_link, const ItemData *item, uint32 aug0, uint32 aug
 	// some additional information when certain parameters are true
 	//switch (GetClientVersion()) {
 	switch (0) {
-	case EQClientRoF2:
-		// This operator contains 14 parameter masks..but, only 13 parameter values.
-		// Even so, the client link appears ok... Need to figure out the discrepancy
-		MakeAnyLenString(&ret_link, "%1X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%1X" "%1X" "%04X" "%1X" "%05X" "%08X",
-			0,
-			item->ID,
-			aug0,
-			aug1,
-			aug2,
-			aug3,
-			aug4,
-			aug5,
-			0,//evolving,
-			0,//item->LoreGroup,
-			0,//evolvedlevel,
-			0,
-			hash
-			);
-		return true;
-	case EQClientRoF:
-		MakeAnyLenString(&ret_link, "%1X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%1X" "%04X" "%1X" "%05X" "%08X",
-			0,
-			item->ID,
-			aug0,
-			aug1,
-			aug2,
-			aug3,
-			aug4,
-			aug5,
-			0,//evolving,
-			0,//item->LoreGroup,
-			0,//evolvedlevel,
-			0,
-			hash
-			);
-		return true;
 	case EQClientUnderfoot:
 	case EQClientSoD:
 	case EQClientSoF:
@@ -1622,8 +1540,6 @@ bool Client::SwapItem(MoveItem_Struct* move_in) {
 	}
 
 	if (move_in->from_slot == move_in->to_slot) { // Item summon, no further processing needed
-		if (ClientVersion() >= EQ::versions::ClientVersion::RoF) { return true; } // Can't do RoF+
-
 		if (move_in->to_slot == EQ::invslot::slotCursor) {
 			auto test_inst = m_inv.GetItem(EQ::invslot::slotCursor);
 			if (test_inst == nullptr) { return true; }
@@ -1714,7 +1630,6 @@ bool Client::SwapItem(MoveItem_Struct* move_in) {
 			}
 
 			DeleteItemInInventory(move_in->from_slot);
-			SendCursorBuffer();
 
 			return true; // Item destroyed by client
 		}
@@ -1972,10 +1887,6 @@ bool Client::SwapItem(MoveItem_Struct* move_in) {
 			safe_delete(world_inst);
 			if (src_slot_id == EQ::invslot::slotCursor)
 			{
-				if (dstitemid == 0)
-				{
-					SendCursorBuffer();
-				}
 				auto s = m_inv.cursor_cbegin(), e = m_inv.cursor_cend();
 				database.SaveCursor(character_id, s, e);
 			}
@@ -2003,10 +1914,6 @@ bool Client::SwapItem(MoveItem_Struct* move_in) {
 			}
 
 			trade->AddEntity(dst_slot_id, move_in->number_in_stack);
-			if (dstitemid == 0)
-			{
-				SendCursorBuffer();
-			}
 
 			return true;
 		} else {
@@ -2120,12 +2027,10 @@ bool Client::SwapItem(MoveItem_Struct* move_in) {
 					//This resets the UF client to recognize the new serial item of the placed item
 					//if it came from a stack without having to close the trader window and re-open.
 					//It is not required for the RoF2 client.
-					if (ClientVersion() < EQ::versions::ClientVersion::RoF2) {
-						auto outapp  = new EQApplicationPacket(OP_Trader, sizeof(TraderBuy_Struct));
-						auto data    = (TraderBuy_Struct *) outapp->pBuffer;
-						data->action = BazaarBuyItem;
-						FastQueuePacket(&outapp);
-					}
+					auto outapp  = new EQApplicationPacket(OP_Trader, sizeof(TraderBuy_Struct));
+					auto data    = (TraderBuy_Struct *) outapp->pBuffer;
+					data->action = BazaarBuyItem;
+					FastQueuePacket(&outapp);
 				}
 			}
 		}
@@ -2211,10 +2116,6 @@ bool Client::SwapItem(MoveItem_Struct* move_in) {
 	// Step 7: Save change to the database
 	if (src_slot_id == EQ::invslot::slotCursor) {
 		// If not swapping another item to cursor and stacking items were depleted
-		if (dstitemid == 0 || all_to_stack == true)
-		{
-			SendCursorBuffer();
-		}
 		auto s = m_inv.cursor_cbegin(), e = m_inv.cursor_cend();
 		database.SaveCursor(character_id, s, e);
 	}

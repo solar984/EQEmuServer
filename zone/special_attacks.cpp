@@ -342,11 +342,6 @@ void Client::OPCombatAbility(const CombatAbility_Struct *ca_atk)
 	}
 
 	pTimerType timer = pTimerCombatAbility;
-	// RoF2+ Tiger Claw is unlinked from other monk skills, if they ever do that for other classes there will need
-	// to be more checks here
-	if (ClientVersion() >= EQ::versions::ClientVersion::RoF2 && ca_atk->m_skill == EQ::skills::SkillTigerClaw) {
-		timer = pTimerCombatAbility2;
-	}
 
 	bool bypass_skill_check = false;
 
