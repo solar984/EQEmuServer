@@ -6497,6 +6497,16 @@ struct PickZone_Struct {
 	int32 selection_id;
 };
 
+struct EvolutionTargetLink_Struct {
+	/*000*/ int32 four; // 4
+	/*004*/ int32 current_item_id;
+	/*008*/ int32 final_item_id;
+	/*012*/ int32 current_item_level;
+	/*016*/ uint32 link_hash;
+	/*020*/ int32 shift; // 0 = shift clicked link, 1 = clicked link without holding shift
+	/*024*/
+};
+
 struct EvolveItemToggle {
 	uint32 action;
 	uint32 unknown_004;

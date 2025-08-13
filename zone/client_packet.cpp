@@ -209,6 +209,7 @@ void MapOpcodes()
 	ConnectedOpcodes[OP_Emote] = &Client::Handle_OP_Emote;
 	ConnectedOpcodes[OP_EndLootRequest] = &Client::Handle_OP_EndLootRequest;
 	ConnectedOpcodes[OP_EnvDamage] = &Client::Handle_OP_EnvDamage;
+	ConnectedOpcodes[OP_EvolutionTargetLink] = &Client::Handle_OP_EvolutionTargetLink;
 	ConnectedOpcodes[OP_EvolveItem] = &Client::Handle_OP_EvolveItem;
 	ConnectedOpcodes[OP_FaceChange] = &Client::Handle_OP_FaceChange;
 	ConnectedOpcodes[OP_FeignDeath] = &Client::Handle_OP_FeignDeath;
@@ -16630,6 +16631,31 @@ void Client::Handle_OP_ShopRetrieveParcel(const EQApplicationPacket *app)
 
     auto parcel_in = (ParcelRetrieve_Struct *)app->pBuffer;
     DoParcelRetrieve(*parcel_in);
+}
+
+void Client::Handle_OP_EvolutionTargetLink(const EQApplicationPacket* app)
+{
+	if (app->size != sizeof(EvolutionTargetLink_Struct)) {
+		LogError(
+			"Received Handle_OP_EvolutionTargetLink packet. Expected size {}, received size {}.",
+			sizeof(EvolutionTargetLink_Struct),
+			app->size
+		);
+		return;
+	}
+
+	struct EvolutionTargetLink_Struct* link = (EvolutionTargetLink_Struct*)app->pBuffer;
+	const EQ::ItemData* item = database.GetItem(link->final_item_id);
+
+	Message(15, "four = %d, current_item_id = %d, final_item_id = %d, level = %d, link_hash = %08x, shift = %d",
+		link->four, link->current_item_id, link->final_item_id, link->level, link->link_hash, link->shift);
+
+	EQ::ItemInstance* inst =
+		database.CreateItem(item, item->MaxCharges);
+	if (inst) {
+		SendItemPacket(0, inst, ItemPacketViewLink);
+		safe_delete(inst);
+	}
 }
 
 void Client::Handle_OP_EvolveItem(const EQApplicationPacket *app)

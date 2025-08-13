@@ -3351,7 +3351,16 @@ namespace Titanium
 		ob << '|' << itoa(((inst->IsStackable() ? ((inst->GetItem()->ItemType == EQ::item::ItemTypePotion) ? 1 : 0)
 			: inst->GetCharges()))); // charge count
 		ob << '|' << itoa((inst->IsAttuned() ? 1 : 0)); // inst attuned
-		ob << '|' << itoa(0); // unknown
+		ob << '|' << itoa(item->EvolvingItem > 0 ? 1 : 0); // evolving item
+		if (item->EvolvingItem > 0)
+		{
+			ob << '|' << itoa(inst->GetEvolveFinalItemID());
+			ob << '|' << itoa(inst->GetEvolveLvl());
+			ob << '|' << StringFormat("%f", inst->GetEvolveProgression());
+			ob << '|' << itoa(inst->GetEvolveActivated());
+			ob << '|' << itoa(inst->GetMaxEvolveLvl());
+			ob << '|' << itoa(0); // unknown
+		}
 		ob << '|';
 
 		ob << StringFormat("%.*s\"", depth, protection); // Quotes (and protection, if needed) around static data
