@@ -1786,7 +1786,7 @@ std::vector<uint32> EQ::ItemInstance::GetAugmentIDs() const
 {
 	std::vector<uint32> augments;
 
-	for (uint8 slot_id = invaug::SOCKET_BEGIN; slot_id <= 5; slot_id++) {
+	for (uint8 slot_id = invaug::SOCKET_BEGIN; slot_id <= invaug::SOCKET_END; slot_id++) {
 		augments.push_back(GetAugment(slot_id) ? GetAugmentItemID(slot_id) : 0);
 	}
 
