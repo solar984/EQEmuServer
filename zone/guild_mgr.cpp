@@ -954,7 +954,6 @@ int GuildBankManager::Promote(uint32 guild_id, int slot_id, Client* c)
 	new_item.augment_three_id = it_deposit->second.augment_three_id;
 	new_item.augment_four_id  = it_deposit->second.augment_four_id;
 	new_item.augment_five_id  = it_deposit->second.augment_five_id;
-	new_item.augment_six_id   = it_deposit->second.augment_six_id;
 	new_item.quantity         = it_deposit->second.quantity;
 	new_item.donator          = it_deposit->second.donator;
 	new_item.who_for          = it_deposit->second.who_for;
@@ -1010,8 +1009,7 @@ std::unique_ptr<EQ::ItemInstance> GuildBankManager::GetItem(uint32 guild_id, uin
 			guild_bank->items.deposit_area[slot_id].augment_two_id,
 			guild_bank->items.deposit_area[slot_id].augment_three_id,
 			guild_bank->items.deposit_area[slot_id].augment_four_id,
-			guild_bank->items.deposit_area[slot_id].augment_five_id,
-			guild_bank->items.deposit_area[slot_id].augment_six_id)
+			guild_bank->items.deposit_area[slot_id].augment_five_id)
 		);
 
 		if (!inst) {
@@ -1042,8 +1040,7 @@ std::unique_ptr<EQ::ItemInstance> GuildBankManager::GetItem(uint32 guild_id, uin
 			guild_bank->items.main_area[slot_id].augment_two_id,
 			guild_bank->items.main_area[slot_id].augment_three_id,
 			guild_bank->items.main_area[slot_id].augment_four_id,
-			guild_bank->items.main_area[slot_id].augment_five_id,
-			guild_bank->items.main_area[slot_id].augment_six_id)
+			guild_bank->items.main_area[slot_id].augment_five_id)
 		);
 
 		if (!inst) {

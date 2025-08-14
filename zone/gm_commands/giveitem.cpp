@@ -14,7 +14,6 @@ void command_giveitem(Client *c, const Seperator *sep)
 	uint32       augment_three = 0;
 	uint32       augment_four  = 0;
 	uint32       augment_five  = 0;
-	uint32       augment_six   = 0;
 	const uint16 arguments     = sep->argnum;
 	std::string  cmd_msg       = sep->msg;
 	size_t       link_open     = cmd_msg.find('\x12');
@@ -32,13 +31,12 @@ void command_giveitem(Client *c, const Seperator *sep)
 		augment_three = link_body.augment_3;
 		augment_four  = link_body.augment_4;
 		augment_five  = link_body.augment_5;
-		augment_six   = link_body.augment_6;
 	} else if (sep->IsNumber(1)) {
 		item_id = Strings::ToUnsignedInt(sep->arg[1]);
 	} else if (!sep->IsNumber(1)) {
 		c->Message(
 			Chat::Red,
-			"Usage: #giveitem [item id | link] [charges] [augment_one_id] [augment_two_id] [augment_three_id] [augment_four_id] [augment_five_id] [augment_six_id] (Charges and augments are optional.)"
+			"Usage: #giveitem [item id | link] [charges] [augment_one_id] [augment_two_id] [augment_three_id] [augment_four_id] [augment_five_id] (Charges and augments are optional.)"
 		);
 		return;
 	}
@@ -98,10 +96,6 @@ void command_giveitem(Client *c, const Seperator *sep)
 		augment_five = Strings::ToUnsignedInt(sep->arg[7]);
 	}
 
-	if (arguments == 8 && sep->IsNumber(8)) {
-		augment_six = Strings::ToUnsignedInt(sep->arg[8]);
-	}
-
 	t->SummonItem(
 		item_id,
 		charges,
@@ -109,8 +103,7 @@ void command_giveitem(Client *c, const Seperator *sep)
 		augment_two,
 		augment_three,
 		augment_four,
-		augment_five,
-		augment_six
+		augment_five
 	);
 
 	const auto *new_item = database.CreateItem(
@@ -120,8 +113,7 @@ void command_giveitem(Client *c, const Seperator *sep)
 		augment_two,
 		augment_three,
 		augment_four,
-		augment_five,
-		augment_six
+		augment_five
 	);
 
 	EQ::SayLinkEngine linker;

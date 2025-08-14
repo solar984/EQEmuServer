@@ -277,8 +277,7 @@ void NPC::AddLootDrop(
 	uint32 augment_two,
 	uint32 augment_three,
 	uint32 augment_four,
-	uint32 augment_five,
-	uint32 augment_six
+	uint32 augment_five
 )
 {
 	if (m_resumed_from_zone_suspend) {
@@ -327,7 +326,6 @@ void NPC::AddLootDrop(
 	item->aug_3             = augment_three;
 	item->aug_4             = augment_four;
 	item->aug_5             = augment_five;
-	item->aug_6             = augment_six;
 	item->attuned           = false;
 	item->trivial_min_level = loot_drop.trivial_min_level;
 	item->trivial_max_level = loot_drop.trivial_max_level;
@@ -353,8 +351,7 @@ void NPC::AddLootDrop(
 		augment_two,
 		augment_three,
 		augment_four,
-		augment_five,
-		augment_six
+		augment_five
 	);
 
 	if (!inst) {
@@ -560,8 +557,7 @@ void NPC::AddItem(
 	uint32 augment_two,
 	uint32 augment_three,
 	uint32 augment_four,
-	uint32 augment_five,
-	uint32 augment_six
+	uint32 augment_five
 )
 {
 	const auto *item = database.GetItem(item_id);
@@ -582,8 +578,7 @@ void NPC::AddItem(
 		augment_two,
 		augment_three,
 		augment_four,
-		augment_five,
-		augment_six
+		augment_five
 	);
 }
 

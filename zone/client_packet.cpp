@@ -7440,7 +7440,6 @@ void Client::Handle_OP_GuildBank(const EQApplicationPacket *app)
 				item.augment_three_id = augs.at(2);
 				item.augment_four_id  = augs.at(3);
 				item.augment_five_id  = augs.at(4);
-				item.augment_six_id   = augs.at(5);
 			}
 
 			if (GuildBanks->AddItem(item, this)) {
@@ -7458,7 +7457,6 @@ void Client::Handle_OP_GuildBank(const EQApplicationPacket *app)
 					log.aug_slot_three = item.augment_three_id;
 					log.aug_slot_four  = item.augment_four_id;
 					log.aug_slot_five  = item.augment_five_id;
-					log.aug_slot_six   = item.augment_six_id;
 
 					RecordPlayerEventLog(PlayerEvent::GUILD_BANK_DEPOSIT, log);
 				}

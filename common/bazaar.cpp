@@ -247,8 +247,7 @@ Bazaar::GetSearchResults(
 			"items.augslot2type = {0} OR "
 			"items.augslot3type = {0} OR "
 			"items.augslot4type = {0} OR "
-			"items.augslot5type = {0} OR "
-			"items.augslot6type = {0})",
+			"items.augslot5type = {0})",
 			search.augment)
 		);
 	}

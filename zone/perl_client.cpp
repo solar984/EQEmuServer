@@ -2279,7 +2279,6 @@ void Perl_Client_SummonBaggedItems(Client* self, uint32 bag_item_id, perl::refer
 			item.aug_3 = bag_item.exists("augment_three") ? bag_item["augment_three"] : 0;
 			item.aug_4 = bag_item.exists("augment_four") ? bag_item["augment_four"] : 0;
 			item.aug_5 = bag_item.exists("augment_five") ? bag_item["augment_five"] : 0;
-			item.aug_6 = bag_item.exists("augment_six") ? bag_item["augment_six"] : 0;
 			bagged_items.emplace_back(item);
 		}
 	}
@@ -2377,12 +2376,11 @@ void Perl_Client_AddItem(Client* self, perl::reference table_ref)
 	uint32 augment_three = table.exists("augment_three") ? table["augment_three"] : 0;
 	uint32 augment_four  = table.exists("augment_four") ? table["augment_four"] : 0;
 	uint32 augment_five  = table.exists("augment_five") ? table["augment_five"] : 0;
-	uint32 augment_six   = table.exists("augment_six") ? table["augment_six"] : 0;
 	bool attuned         = table.exists("attuned") ? table["attuned"] : false;
 	uint16 slot_id       = table.exists("slot_id") ? table["slot_id"] : EQ::invslot::slotCursor;
 
 	self->SummonItem(item_id, charges, augment_one, augment_two, augment_three,
-		augment_four, augment_five, augment_six, attuned, slot_id);
+		augment_four, augment_five, attuned, slot_id);
 }
 
 uint32 Perl_Client_CountAugmentEquippedByID(Client* self, uint32 item_id)

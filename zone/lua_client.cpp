@@ -2356,7 +2356,6 @@ void Lua_Client::SummonBaggedItems(uint32 bag_item_id, luabind::adl::object bag_
 			item.aug_3 = luabind::type((*it)["augment_three"]) != LUA_TNIL ? luabind::object_cast<uint32>((*it)["augment_three"]) : 0;
 			item.aug_4 = luabind::type((*it)["augment_four"]) != LUA_TNIL ? luabind::object_cast<uint32>((*it)["augment_four"]) : 0;
 			item.aug_5 = luabind::type((*it)["augment_five"]) != LUA_TNIL ? luabind::object_cast<uint32>((*it)["augment_five"]) : 0;
-			item.aug_6 = luabind::type((*it)["augment_six"]) != LUA_TNIL ? luabind::object_cast<uint32>((*it)["augment_six"]) : 0;
 			bagged_items.emplace_back(item);
 		}
 	}
@@ -2452,7 +2451,6 @@ void Lua_Client::AddItem(luabind::object item_table) {
 	uint32 augment_three = luabind::type(item_table["augment_three"]) != LUA_TNIL ? luabind::object_cast<uint32>(item_table["augment_three"]) : 0;
 	uint32 augment_four = luabind::type(item_table["augment_four"]) != LUA_TNIL ? luabind::object_cast<uint32>(item_table["augment_four"]) : 0;
 	uint32 augment_five = luabind::type(item_table["augment_five"]) != LUA_TNIL ? luabind::object_cast<uint32>(item_table["augment_five"]) : 0;
-	uint32 augment_six = luabind::type(item_table["augment_six"]) != LUA_TNIL ? luabind::object_cast<uint32>(item_table["augment_six"]) : 0;
 	bool attuned = luabind::type(item_table["attuned"]) != LUA_TNIL ? luabind::object_cast<bool>(item_table["attuned"]) : false;
 	uint16 slot_id = luabind::type(item_table["slot_id"]) != LUA_TNIL ? luabind::object_cast<uint16>(item_table["slot_id"]) : EQ::invslot::slotCursor;
 
@@ -2464,7 +2462,6 @@ void Lua_Client::AddItem(luabind::object item_table) {
 		augment_three,
 		augment_four,
 		augment_five,
-		augment_six,
 		attuned,
 		slot_id
 	);

@@ -2442,8 +2442,7 @@ void PerlembParser::ExportEventVariables(
 					ExportVar(package_name.c_str(), "augment_two", inst->GetAugmentItemID(EQ::invaug::SOCKET_BEGIN + 1));
 					ExportVar(package_name.c_str(), "augment_three", inst->GetAugmentItemID(EQ::invaug::SOCKET_BEGIN + 2));
 					ExportVar(package_name.c_str(), "augment_four", inst->GetAugmentItemID(EQ::invaug::SOCKET_BEGIN + 3));
-					ExportVar(package_name.c_str(), "augment_five", inst->GetAugmentItemID(EQ::invaug::SOCKET_BEGIN + 4));
-					ExportVar(package_name.c_str(), "augment_six", inst->GetAugmentItemID(EQ::invaug::SOCKET_END));
+					ExportVar(package_name.c_str(), "augment_five", inst->GetAugmentItemID(EQ::invaug::SOCKET_END));
 				}
 			}
 		}

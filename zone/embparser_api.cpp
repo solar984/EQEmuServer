@@ -5920,7 +5920,6 @@ bool Perl__send_parcel(perl::reference table_ref)
 	const uint32 augment_three   = table.exists("augment_three") ? table["augment_three"] : 0;
 	const uint32 augment_four    = table.exists("augment_four") ? table["augment_four"] : 0;
 	const uint32 augment_five    = table.exists("augment_five") ? table["augment_five"] : 0;
-	const uint32 augment_six     = table.exists("augment_six") ? table["augment_six"] : 0;
 	const std::string& from_name = table.exists("from_name") ? table["from_name"] : std::string();
 	const std::string& note      = table.exists("note") ? table["note"] : std::string();
 
@@ -5933,7 +5932,6 @@ bool Perl__send_parcel(perl::reference table_ref)
 	e.aug_slot_3 = augment_three;
 	e.aug_slot_4 = augment_four;
 	e.aug_slot_5 = augment_five;
-	e.aug_slot_6 = augment_six;
 	e.slot_id    = next_parcel_slot;
 	e.quantity   = quantity;
 	e.from_name  = from_name;

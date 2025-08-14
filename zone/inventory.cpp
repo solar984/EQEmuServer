@@ -4215,10 +4215,6 @@ const int EQ::InventoryProfile::GetItemStatValue(uint32 item_id, const std::stri
 		stat = static_cast<int>(item->AugSlotType[4]);
 	}
 
-	if (Strings::EqualFold(identifier, "augslot6type")) {
-		stat = static_cast<int>(item->AugSlotType[5]);
-	}
-
 	if (Strings::EqualFold(identifier, "augslot1visible")) {
 		stat = static_cast<int>(item->AugSlotVisible[0]);
 	}
@@ -4237,10 +4233,6 @@ const int EQ::InventoryProfile::GetItemStatValue(uint32 item_id, const std::stri
 
 	if (Strings::EqualFold(identifier, "augslot5visible")) {
 		stat = static_cast<int>(item->AugSlotVisible[4]);
-	}
-
-	if (Strings::EqualFold(identifier, "augslot6visible")) {
-		stat = static_cast<int>(item->AugSlotVisible[5]);
 	}
 
 	safe_delete(inst);

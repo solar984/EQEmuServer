@@ -313,7 +313,6 @@ bool SharedDatabase::UpdateInventorySlot(uint32 char_id, const EQ::ItemInstance*
 	e.augment_three       = augment_ids[2];
 	e.augment_four        = augment_ids[3];
 	e.augment_five        = augment_ids[4];
-	e.augment_six         = augment_ids[5];
 	e.instnodrop          = inst->IsAttuned() ? 1 : 0;
 	e.custom_data         = inst->GetCustomDataString();
 	e.ornament_icon       = inst->GetOrnamentationIcon();
@@ -364,7 +363,6 @@ bool SharedDatabase::UpdateSharedBankSlot(uint32 char_id, const EQ::ItemInstance
 	e.augment_three       = augment_ids[2];
 	e.augment_four        = augment_ids[3];
 	e.augment_five        = augment_ids[4];
-	e.augment_six         = augment_ids[5];
 	e.custom_data         = inst->GetCustomDataString();
 	e.ornament_icon       = inst->GetOrnamentationIcon();
 	e.ornament_idfile     = inst->GetOrnamentationIDFile();
@@ -560,8 +558,7 @@ bool SharedDatabase::SetStartingItems(
 			e.augment_two,
 			e.augment_three,
 			e.augment_four,
-			e.augment_five,
-			e.augment_six
+			e.augment_five
 		);
 
 		if (slot < EQ::invslot::slotCharm) {
@@ -1228,8 +1225,6 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		item.AugSlotVisible[3] = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::augslot4visible]));
 		item.AugSlotType[4] = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::augslot5type]));
 		item.AugSlotVisible[4] = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::augslot5visible]));
-		item.AugSlotType[5] = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::augslot6type]));
-		item.AugSlotVisible[5] = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::augslot6visible]));
 
 		// Augment Unknowns
 		for (uint8 i = EQ::invaug::SOCKET_BEGIN; i <= EQ::invaug::SOCKET_END; i++) {

@@ -38,7 +38,7 @@ void command_npcloot(Client *c, const Seperator *sep)
 
 	if (is_add) {
 		if (!c->GetTarget()->IsNPC() || !sep->IsNumber(2)) {
-			c->Message(Chat::White, "Usage: #npcloot add [Item ID] [Charges] [Equip] [Augment 1 ID] [Augment 2 ID] [Augment 3 ID] [Augment 4 ID] [Augment 5 ID] [Augment 6 ID] - Adds the specified item to an NPC's loot");
+			c->Message(Chat::White, "Usage: #npcloot add [Item ID] [Charges] [Equip] [Augment 1 ID] [Augment 2 ID] [Augment 3 ID] [Augment 4 ID] [Augment 5 ID] - Adds the specified item to an NPC's loot");
 			return;
 		}
 
@@ -50,7 +50,6 @@ void command_npcloot(Client *c, const Seperator *sep)
 		auto augment_three_id = sep->IsNumber(7) ? Strings::ToUnsignedInt(sep->arg[7]) : 0;
 		auto augment_four_id = sep->IsNumber(8) ? Strings::ToUnsignedInt(sep->arg[8]) : 0;
 		auto augment_five_id = sep->IsNumber(9) ? Strings::ToUnsignedInt(sep->arg[9]) : 0;
-		auto augment_six_id = sep->IsNumber(10) ? Strings::ToUnsignedInt(sep->arg[10]) : 0;
 
 		auto item_data = database.GetItem(item_id);
 
@@ -75,8 +74,7 @@ void command_npcloot(Client *c, const Seperator *sep)
 			augment_two_id,
 			augment_three_id,
 			augment_four_id,
-			augment_five_id,
-			augment_six_id
+			augment_five_id
 		);
 
 		auto item = database.CreateItem(
@@ -86,8 +84,7 @@ void command_npcloot(Client *c, const Seperator *sep)
 			augment_two_id,
 			augment_three_id,
 			augment_four_id,
-			augment_five_id,
-			augment_six_id
+			augment_five_id
 		);
 
 		EQ::SayLinkEngine linker;

@@ -8849,7 +8849,6 @@ void Bot::AddBotStartingItems(uint16 race_id, uint8 class_id)
 			i.augment_3    = e.augment_three;
 			i.augment_4    = e.augment_four;
 			i.augment_5    = e.augment_five;
-			i.augment_6    = e.augment_six;
 
 			v.emplace_back(i);
 		}

@@ -2372,8 +2372,7 @@ bool Client::StoreCharacter(
 			e.augment_two         = inst->GetAugmentItemID(EQ::invaug::SOCKET_BEGIN + 1);
 			e.augment_three       = inst->GetAugmentItemID(EQ::invaug::SOCKET_BEGIN + 2);
 			e.augment_four        = inst->GetAugmentItemID(EQ::invaug::SOCKET_BEGIN + 3);
-			e.augment_five        = inst->GetAugmentItemID(EQ::invaug::SOCKET_BEGIN + 4);
-			e.augment_six         = inst->GetAugmentItemID(EQ::invaug::SOCKET_END);
+			e.augment_five        = inst->GetAugmentItemID(EQ::invaug::SOCKET_END);
 			e.instnodrop          = inst->IsAttuned() ? 1 : 0;
 			e.ornament_icon       = inst->GetOrnamentationIcon();
 			e.ornament_idfile     = inst->GetOrnamentationIDFile();
