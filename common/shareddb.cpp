@@ -313,7 +313,7 @@ bool SharedDatabase::UpdateInventorySlot(uint32 char_id, const EQ::ItemInstance*
 	e.augment_three       = augment_ids[2];
 	e.augment_four        = augment_ids[3];
 	e.augment_five        = augment_ids[4];
-	e.augment_six         = augment_ids[5];
+	e.augment_six         = 0;
 	e.instnodrop          = inst->IsAttuned() ? 1 : 0;
 	e.custom_data         = inst->GetCustomDataString();
 	e.ornament_icon       = inst->GetOrnamentationIcon();
@@ -364,7 +364,7 @@ bool SharedDatabase::UpdateSharedBankSlot(uint32 char_id, const EQ::ItemInstance
 	e.augment_three       = augment_ids[2];
 	e.augment_four        = augment_ids[3];
 	e.augment_five        = augment_ids[4];
-	e.augment_six         = augment_ids[5];
+	e.augment_six         = 0;
 	e.custom_data         = inst->GetCustomDataString();
 	e.ornament_icon       = inst->GetOrnamentationIcon();
 	e.ornament_idfile     = inst->GetOrnamentationIDFile();
