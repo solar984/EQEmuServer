@@ -884,8 +884,7 @@ bool WorldDatabase::GetCharSelInventory(
 			e.augment_two,
 			e.augment_three,
 			e.augment_four,
-			e.augment_five,
-			e.augment_six
+			e.augment_five
 		};
 
 		const EQ::ItemData* item = content_db.GetItem(e.item_id);

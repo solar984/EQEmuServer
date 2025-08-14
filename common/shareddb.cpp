@@ -603,8 +603,7 @@ bool SharedDatabase::GetSharedBank(uint32 id, EQ::InventoryProfile *inv, bool is
 			e.augment_two,
 			e.augment_three,
 			e.augment_four,
-			e.augment_five,
-			e.augment_six
+			e.augment_five
 		};
 
 		const EQ::ItemData* item = GetItem(e.item_id);
@@ -708,8 +707,7 @@ bool SharedDatabase::GetInventory(Client *c)
 			row.augment_two,
 			row.augment_three,
 			row.augment_four,
-			row.augment_five,
-			row.augment_six
+			row.augment_five
 		};
 
 		if (EQ::ValueWithin(slot_id, EQ::invslot::POSSESSIONS_BEGIN, EQ::invslot::POSSESSIONS_END)) {
@@ -1393,7 +1391,6 @@ EQ::ItemInstance* SharedDatabase::CreateItem(
 	uint32 aug3,
 	uint32 aug4,
 	uint32 aug5,
-	uint32 aug6,
 	bool attuned,
 	const std::string& custom_data,
 	uint32 ornamenticon,
@@ -1417,7 +1414,6 @@ EQ::ItemInstance* SharedDatabase::CreateItem(
 		inst->PutAugment(this, 2, aug3);
 		inst->PutAugment(this, 3, aug4);
 		inst->PutAugment(this, 4, aug5);
-		inst->PutAugment(this, 5, aug6);
 		inst->SetAttuned(attuned);
 		inst->SetCustomDataString(custom_data);
 		inst->SetOrnamentIcon(ornamenticon);
@@ -1438,7 +1434,6 @@ EQ::ItemInstance* SharedDatabase::CreateItem(
 	uint32 aug3,
 	uint32 aug4,
 	uint32 aug5,
-	uint32 aug6,
 	bool attuned,
 	const std::string& custom_data,
 	uint32 ornamenticon,
@@ -1460,7 +1455,6 @@ EQ::ItemInstance* SharedDatabase::CreateItem(
 		inst->PutAugment(this, 2, aug3);
 		inst->PutAugment(this, 3, aug4);
 		inst->PutAugment(this, 4, aug5);
-		inst->PutAugment(this, 5, aug6);
 		inst->SetAttuned(attuned);
 		inst->SetCustomDataString(custom_data);
 		inst->SetOrnamentIcon(ornamenticon);

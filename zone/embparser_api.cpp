@@ -2959,14 +2959,9 @@ EQ::ItemInstance* Perl__createitem(uint32 item_id, int16 charges, uint32 augment
 	return database.CreateItem(item_id, charges, augment_one, augment_two, augment_three, augment_four, augment_five);
 }
 
-EQ::ItemInstance* Perl__createitem(uint32 item_id, int16 charges, uint32 augment_one, uint32 augment_two, uint32 augment_three, uint32 augment_four, uint32 augment_five, uint32 augment_six)
+EQ::ItemInstance* Perl__createitem(uint32 item_id, int16 charges, uint32 augment_one, uint32 augment_two, uint32 augment_three, uint32 augment_four, uint32 augment_five, bool attuned)
 {
-	return database.CreateItem(item_id, charges, augment_one, augment_two, augment_three, augment_four, augment_five, augment_six);
-}
-
-EQ::ItemInstance* Perl__createitem(uint32 item_id, int16 charges, uint32 augment_one, uint32 augment_two, uint32 augment_three, uint32 augment_four, uint32 augment_five, uint32 augment_six, bool attuned)
-{
-	return database.CreateItem(item_id, charges, augment_one, augment_two, augment_three, augment_four, augment_five, augment_six, attuned);
+	return database.CreateItem(item_id, charges, augment_one, augment_two, augment_three, augment_four, augment_five, attuned);
 }
 
 std::string Perl__secondstotime(int duration)
@@ -4994,14 +4989,9 @@ std::string Perl__varlink(uint32 item_id, int16 charges, uint32 aug1, uint32 aug
 	return quest_manager.varlink(item_id, charges, aug1, aug2, aug3, aug4, aug5);
 }
 
-std::string Perl__varlink(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, uint32 aug6)
+std::string Perl__varlink(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, bool attuned)
 {
-	return quest_manager.varlink(item_id, charges, aug1, aug2, aug3, aug4, aug5, aug6);
-}
-
-std::string Perl__varlink(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, uint32 aug6, bool attuned)
-{
-	return quest_manager.varlink(item_id, charges, aug1, aug2, aug3, aug4, aug5, aug6, attuned);
+	return quest_manager.varlink(item_id, charges, aug1, aug2, aug3, aug4, aug5, attuned);
 }
 
 bool Perl__do_augment_slots_match(uint32 item_one, uint32 item_two)
@@ -6411,8 +6401,7 @@ void perl_register_quest()
 	package.add("createitem", (EQ::ItemInstance*(*)(uint32, int16, uint32, uint32, uint32))&Perl__createitem);
 	package.add("createitem", (EQ::ItemInstance*(*)(uint32, int16, uint32, uint32, uint32, uint32))&Perl__createitem);
 	package.add("createitem", (EQ::ItemInstance*(*)(uint32, int16, uint32, uint32, uint32, uint32, uint32))&Perl__createitem);
-	package.add("createitem", (EQ::ItemInstance*(*)(uint32, int16, uint32, uint32, uint32, uint32, uint32, uint32))&Perl__createitem);
-	package.add("createitem", (EQ::ItemInstance*(*)(uint32, int16, uint32, uint32, uint32, uint32, uint32, uint32, bool))&Perl__createitem);
+	package.add("createitem", (EQ::ItemInstance*(*)(uint32, int16, uint32, uint32, uint32, uint32, uint32, bool))&Perl__createitem);
 	package.add("crosszoneaddldonlossbycharid", &Perl__crosszoneaddldonlossbycharid);
 	package.add("crosszoneaddldonlossbygroupid", &Perl__crosszoneaddldonlossbygroupid);
 	package.add("crosszoneaddldonlossbyraidid", &Perl__crosszoneaddldonlossbyraidid);
@@ -6976,8 +6965,7 @@ void perl_register_quest()
 	package.add("varlink", (std::string(*)(uint32, int16, uint32, uint32, uint32))&Perl__varlink);
 	package.add("varlink", (std::string(*)(uint32, int16, uint32, uint32, uint32, uint32))&Perl__varlink);
 	package.add("varlink", (std::string(*)(uint32, int16, uint32, uint32, uint32, uint32, uint32))&Perl__varlink);
-	package.add("varlink", (std::string(*)(uint32, int16, uint32, uint32, uint32, uint32, uint32, uint32))&Perl__varlink);
-	package.add("varlink", (std::string(*)(uint32, int16, uint32, uint32, uint32, uint32, uint32, uint32, bool))&Perl__varlink);
+	package.add("varlink", (std::string(*)(uint32, int16, uint32, uint32, uint32, uint32, uint32, bool))&Perl__varlink);
 	package.add("voicetell", &Perl__voicetell);
 	package.add("we", &Perl__we);
 	package.add("wearchange", (void(*)(uint8, uint32))&Perl__wearchange);

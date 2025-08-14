@@ -444,8 +444,7 @@ void QuestManager::addloot(
 	int aug2,
 	int aug3,
 	int aug4,
-	int aug5,
-	int aug6
+	int aug5
 ) {
 	QuestManagerCurrentQuestVars();
 	if (!owner) {
@@ -454,7 +453,7 @@ void QuestManager::addloot(
 
 	if (item_id != 0) {
 		if (owner->IsNPC()) {
-			owner->CastToNPC()->AddItem(item_id, charges, equipitem, aug1, aug2, aug3, aug4, aug5, aug6);
+			owner->CastToNPC()->AddItem(item_id, charges, equipitem, aug1, aug2, aug3, aug4, aug5);
 		}
 	}
 }
@@ -3407,7 +3406,6 @@ std::string QuestManager::varlink(
 	uint32 aug3,
 	uint32 aug4,
 	uint32 aug5,
-	uint32 aug6,
 	bool attuned
 ) {
 	QuestManagerCurrentQuestVars();
@@ -3419,7 +3417,6 @@ std::string QuestManager::varlink(
 		aug3,
 		aug4,
 		aug5,
-		aug6,
 		attuned
 	);
 	if (!item) {
@@ -4144,7 +4141,7 @@ void QuestManager::UpdateZoneHeader(std::string type, std::string value) {
 	safe_delete(outapp);
 }
 
-EQ::ItemInstance *QuestManager::CreateItem(uint32 item_id, int16 charges, uint32 augment_one, uint32 augment_two, uint32 augment_three, uint32 augment_four, uint32 augment_five, uint32 augment_six, bool attuned) const {
+EQ::ItemInstance *QuestManager::CreateItem(uint32 item_id, int16 charges, uint32 augment_one, uint32 augment_two, uint32 augment_three, uint32 augment_four, uint32 augment_five, bool attuned) const {
 	if (database.GetItem(item_id)) {
 		return database.CreateItem(
 			item_id,
@@ -4154,7 +4151,6 @@ EQ::ItemInstance *QuestManager::CreateItem(uint32 item_id, int16 charges, uint32
 			augment_three,
 			augment_four,
 			augment_five,
-			augment_six,
 			attuned
 		);
 	}

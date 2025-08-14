@@ -56,11 +56,6 @@ void Perl_NPC_AddItem(NPC* self, uint32 item_id, uint16 charges, bool equip_item
 	self->AddItem(item_id, charges, equip_item, aug1, aug2, aug3, aug4, aug5);
 }
 
-void Perl_NPC_AddItem(NPC* self, uint32 item_id, uint16 charges, bool equip_item, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, uint32 aug6) // @categories Inventory and Items
-{
-	self->AddItem(item_id, charges, equip_item, aug1, aug2, aug3, aug4, aug5, aug6);
-}
-
 void Perl_NPC_AddLootTable(NPC* self) // @categories Inventory and Items
 {
 	self->AddLootTable();
@@ -912,7 +907,6 @@ void perl_register_npc()
 	package.add("AddItem", (void(*)(NPC*, uint32, uint16, bool, uint32, uint32, uint32))&Perl_NPC_AddItem);
 	package.add("AddItem", (void(*)(NPC*, uint32, uint16, bool, uint32, uint32, uint32, uint32))&Perl_NPC_AddItem);
 	package.add("AddItem", (void(*)(NPC*, uint32, uint16, bool, uint32, uint32, uint32, uint32, uint32))&Perl_NPC_AddItem);
-	package.add("AddItem", (void(*)(NPC*, uint32, uint16, bool, uint32, uint32, uint32, uint32, uint32, uint32))&Perl_NPC_AddItem);
 	package.add("AddLootTable", (void(*)(NPC*))&Perl_NPC_AddLootTable);
 	package.add("AddLootTable", (void(*)(NPC*, uint32))&Perl_NPC_AddLootTable);
 	package.add("AddMeleeProc", &Perl_NPC_AddMeleeProc);

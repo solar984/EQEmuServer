@@ -50,11 +50,6 @@ void Perl_Bot_AddBotItem(Bot* self, uint16 slot_id, uint32 item_id, uint16 charg
 	self->AddBotItem(slot_id, item_id, charges, attuned, aug1, aug2, aug3, aug4, aug5);
 }
 
-void Perl_Bot_AddBotItem(Bot* self, uint16 slot_id, uint32 item_id, uint16 charges, bool attuned, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, uint32 aug6) // @categories Inventory and Items
-{
-	self->AddBotItem(slot_id, item_id, charges, attuned, aug1, aug2, aug3, aug4, aug5, aug6);
-}
-
 void Perl_Bot_ApplySpell(Bot* self, int spell_id)
 {
 	self->ApplySpell(spell_id);
@@ -567,7 +562,6 @@ void Perl_Bot_AddItem(Bot *self, perl::reference table_ref)
 	uint32 augment_three = table.exists("augment_three") ? table["augment_three"] : 0;
 	uint32 augment_four  = table.exists("augment_four") ? table["augment_four"] : 0;
 	uint32 augment_five  = table.exists("augment_five") ? table["augment_five"] : 0;
-	uint32 augment_six   = table.exists("augment_six") ? table["augment_six"] : 0;
 	bool attuned         = table.exists("attuned") && table["attuned"];
 	uint16 slot_id       = table.exists("slot_id") ? table["slot_id"] : EQ::invslot::slotCursor;
 
@@ -581,8 +575,7 @@ void Perl_Bot_AddItem(Bot *self, perl::reference table_ref)
 				augment_two,
 				augment_three,
 				augment_four,
-				augment_five,
-				augment_six
+				augment_five
 		);
 	} else {
 		self->GetOwner()->CastToClient()->SummonItem(
@@ -593,7 +586,6 @@ void Perl_Bot_AddItem(Bot *self, perl::reference table_ref)
 				augment_three,
 				augment_four,
 				augment_five,
-				augment_six,
 				attuned,
 				slot_id
 		);
@@ -634,7 +626,6 @@ void perl_register_bot()
 	package.add("AddBotItem", (void(*)(Bot*, uint16, uint32, uint16, bool, uint32, uint32, uint32))&Perl_Bot_AddBotItem);
 	package.add("AddBotItem", (void(*)(Bot*, uint16, uint32, uint16, bool, uint32, uint32, uint32, uint32))&Perl_Bot_AddBotItem);
 	package.add("AddBotItem", (void(*)(Bot*, uint16, uint32, uint16, bool, uint32, uint32, uint32, uint32, uint32))&Perl_Bot_AddBotItem);
-	package.add("AddBotItem", (void(*)(Bot*, uint16, uint32, uint16, bool, uint32, uint32, uint32, uint32, uint32, uint32))&Perl_Bot_AddBotItem);
 	package.add("AddItem", &Perl_Bot_AddItem);
 	package.add("ApplySpell", (void(*)(Bot*, int))&Perl_Bot_ApplySpell);
 	package.add("ApplySpell", (void(*)(Bot*, int, int))&Perl_Bot_ApplySpell);

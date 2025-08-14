@@ -8914,7 +8914,7 @@ void Client::QuestReward(Mob* target, uint32 copper, uint32 silver, uint32 gold,
 	}
 
 	if (itemid > 0) {
-		SummonItemIntoInventory(itemid, -1, 0, 0, 0, 0, 0, 0, false);
+		SummonItemIntoInventory(itemid, -1, 0, 0, 0, 0, 0, false);
 	}
 
 	if (faction) {
@@ -8951,7 +8951,7 @@ void Client::QuestReward(Mob* target, const QuestReward_Struct &reward, bool fac
 
 	for (int i = 0; i < QUESTREWARD_COUNT; ++i) {
 		if (reward.item_id[i] > 0) {
-			SummonItemIntoInventory(reward.item_id[i], -1, 0, 0, 0, 0, 0, 0, false);
+			SummonItemIntoInventory(reward.item_id[i], -1, 0, 0, 0, 0, 0, false);
 		}
 	}
 
@@ -11247,7 +11247,6 @@ void Client::SummonBaggedItems(uint32 bag_item_id, const std::vector<LootItem>& 
 				item.aug_3,
 				item.aug_4,
 				item.aug_5,
-				item.aug_6,
 				item.attuned,
 				item.custom_data,
 				item.ornamenticon,

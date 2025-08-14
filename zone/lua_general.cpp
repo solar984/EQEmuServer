@@ -4037,12 +4037,8 @@ std::string lua_item_link(uint32 item_id, int16 charges, uint32 aug1, uint32 aug
 	return quest_manager.varlink(item_id, charges, aug1, aug2, aug3, aug4, aug5);
 }
 
-std::string lua_item_link(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, uint32 aug6) {
-	return quest_manager.varlink(item_id, charges, aug1, aug2, aug3, aug4, aug5, aug6);
-}
-
-std::string lua_item_link(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, uint32 aug6, bool attuned) {
-	return quest_manager.varlink(item_id, charges, aug1, aug2, aug3, aug4, aug5, aug6, attuned);
+std::string lua_item_link(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, bool attuned) {
+	return quest_manager.varlink(item_id, charges, aug1, aug2, aug3, aug4, aug5, attuned);
 }
 
 bool lua_do_augment_slots_match(uint32 item_one, uint32 item_two)
@@ -6058,8 +6054,7 @@ luabind::scope lua_register_general() {
 		luabind::def("item_link", (std::string(*)(uint32,int16,uint32,uint32,uint32))&lua_item_link),
 		luabind::def("item_link", (std::string(*)(uint32,int16,uint32,uint32,uint32,uint32))&lua_item_link),
 		luabind::def("item_link", (std::string(*)(uint32,int16,uint32,uint32,uint32,uint32,uint32))&lua_item_link),
-		luabind::def("item_link", (std::string(*)(uint32,int16,uint32,uint32,uint32,uint32,uint32,uint32))&lua_item_link),
-		luabind::def("item_link", (std::string(*)(uint32,int16,uint32,uint32,uint32,uint32,uint32,uint32,bool))&lua_item_link),
+		luabind::def("item_link", (std::string(*)(uint32,int16,uint32,uint32,uint32,uint32,uint32,bool))&lua_item_link),
 		luabind::def("get_item_comment", (std::string(*)(uint32))&lua_get_item_comment),
 		luabind::def("get_item_lore", (std::string(*)(uint32))&lua_get_item_lore),
 		luabind::def("get_item_name", (std::string(*)(uint32))&lua_get_item_name),

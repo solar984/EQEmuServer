@@ -69,7 +69,7 @@ public:
 	void say(const char *str, Journal::Options &opts);
 	void me(const char *str);
 	void summonitem(uint32 itemid, int16 charges = -1);
-	EQ::ItemInstance* CreateItem(uint32 item_id, int16 charges = 0, uint32 augment_one = 0, uint32 augment_two = 0, uint32 augment_three = 0, uint32 augment_four = 0, uint32 augment_five = 0, uint32 augment_six = 0, bool attuned = false) const;
+	EQ::ItemInstance* CreateItem(uint32 item_id, int16 charges = 0, uint32 augment_one = 0, uint32 augment_two = 0, uint32 augment_three = 0, uint32 augment_four = 0, uint32 augment_five = 0, bool attuned = false) const;
 	void write(const char *file, const char *str);
 	Mob* spawn2(int npc_type, int grid, int unused, const glm::vec4& position);
 	Mob* unique_spawn(int npc_type, int grid, int unused, const glm::vec4& position);
@@ -80,7 +80,7 @@ public:
 	void incstat(int stat, int value);
 	void castspell(uint16 spell_id, uint16 target_id);
 	void selfcast(uint16 spell_id);
-	void addloot(int item_id, int charges = 0, bool equipitem = true, int aug1 = 0, int aug2 = 0, int aug3 = 0, int aug4 = 0, int aug5 = 0, int aug6 = 0);
+	void addloot(int item_id, int charges = 0, bool equipitem = true, int aug1 = 0, int aug2 = 0, int aug3 = 0, int aug4 = 0, int aug5 = 0);
 	void Zone(const char *zone_name);
 	void ZoneGroup(const char *zone_name);
 	void ZoneRaid(const char *zone_name);
@@ -291,7 +291,7 @@ public:
 	void FlagInstanceByGroupLeader(uint32 zone, int16 version);
 	void FlagInstanceByRaidLeader(uint32 zone, int16 version);
 	std::string varlink(EQ::ItemInstance* inst);
-	std::string varlink(uint32 item_id, int16 charges = 0, uint32 aug1 = 0, uint32 aug2 = 0, uint32 aug3 = 0, uint32 aug4 = 0, uint32 aug5 = 0, uint32 aug6 = 0, bool attuned = false);
+	std::string varlink(uint32 item_id, int16 charges = 0, uint32 aug1 = 0, uint32 aug2 = 0, uint32 aug3 = 0, uint32 aug4 = 0, uint32 aug5 = 0, bool attuned = false);
 	std::string getcharnamebyid(uint32 char_id);
 	uint32 getcharidbyname(const char* name);
 	std::string getclassname(uint8 class_id, uint8 level = 0);

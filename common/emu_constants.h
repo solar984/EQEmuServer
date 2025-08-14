@@ -254,12 +254,12 @@ namespace EQ
 	} // namespace invbag
 
 	namespace invaug {
-		using RoF2::invaug::SOCKET_INVALID;
-		using RoF2::invaug::SOCKET_BEGIN;
-		using RoF2::invaug::SOCKET_END;
-		using RoF2::invaug::SOCKET_COUNT;
+		using Titanium::invaug::SOCKET_INVALID;
+		using Titanium::invaug::SOCKET_BEGIN;
+		using Titanium::invaug::SOCKET_END;
+		using Titanium::invaug::SOCKET_COUNT;
 
-		using RoF2::invaug::GetInvAugIndexName;
+		using Titanium::invaug::GetInvAugIndexName;
 
 	} // namespace invaug
 

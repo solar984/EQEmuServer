@@ -422,7 +422,6 @@ void Corpse::MoveItemToCorpse(Client *client, EQ::ItemInstance *inst, int16 equi
 		inst->GetAugmentItemID(2),
 		inst->GetAugmentItemID(3),
 		inst->GetAugmentItemID(4),
-		inst->GetAugmentItemID(5),
 		inst->IsAttuned(),
 		inst->GetCustomDataString(),
 		inst->GetOrnamentationIcon(),
@@ -450,7 +449,6 @@ void Corpse::MoveItemToCorpse(Client *client, EQ::ItemInstance *inst, int16 equi
 				bag_inst->GetAugmentItemID(2),
 				bag_inst->GetAugmentItemID(3),
 				bag_inst->GetAugmentItemID(4),
-				bag_inst->GetAugmentItemID(5),
 				bag_inst->IsAttuned(),
 				bag_inst->GetCustomDataString(),
 				bag_inst->GetOrnamentationIcon(),
@@ -810,7 +808,6 @@ void Corpse::AddItem(
 	uint32 aug3,
 	uint32 aug4,
 	uint32 aug5,
-	uint32 aug6,
 	bool attuned,
 	const std::string &custom_data,
 	uint32 ornamenticon,
@@ -835,7 +832,6 @@ void Corpse::AddItem(
 	i->aug_3               = aug3;
 	i->aug_4               = aug4;
 	i->aug_5               = aug5;
-	i->aug_6               = aug6;
 	i->attuned             = attuned;
 	i->custom_data         = custom_data;
 	i->ornamenticon        = ornamenticon;
@@ -1373,7 +1369,6 @@ void Corpse::MakeLootRequestPackets(Client *c, const EQApplicationPacket *app)
 			i->aug_3,
 			i->aug_4,
 			i->aug_5,
-			i->aug_6,
 			i->attuned,
 			i->custom_data,
 			i->ornamenticon,
@@ -1513,7 +1508,7 @@ void Corpse::LootCorpseItem(Client *c, const EQApplicationPacket *app)
 			inst = database.CreateItem(
 				item, item_data ? item_data->charges : 0, item_data->aug_1,
 				item_data->aug_2, item_data->aug_3, item_data->aug_4,
-				item_data->aug_5, item_data->aug_6, item_data->attuned,
+				item_data->aug_5, item_data->attuned,
 				item_data->custom_data, item_data->ornamenticon,
 				item_data->ornamentidfile, item_data->ornament_hero_model
 			);

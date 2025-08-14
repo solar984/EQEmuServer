@@ -1140,7 +1140,7 @@ bool BotDatabase::SaveItemBySlot(Bot* b, const uint32 slot_id, const EQ::ItemIns
 
 	DeleteItemBySlot(b->GetBotID(), slot_id);
 
-	uint32 augment_id[EQ::invaug::SOCKET_COUNT] = { 0, 0, 0, 0, 0, 0 };
+	uint32 augment_id[EQ::invaug::SOCKET_COUNT] = { 0, 0, 0, 0, 0 };
 
 	for (uint16 slot_id = EQ::invaug::SOCKET_BEGIN; slot_id <= EQ::invaug::SOCKET_END; ++slot_id) {
 		augment_id[slot_id] = inst->GetAugmentItemID(slot_id);

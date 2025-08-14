@@ -3249,7 +3249,6 @@ void Lua_Client::SummonItemIntoInventory(luabind::object item_table) {
 	const uint32 augment_three = luabind::type(item_table["augment_three"]) != LUA_TNIL ? luabind::object_cast<uint32>(item_table["augment_three"]) : 0;
 	const uint32 augment_four  = luabind::type(item_table["augment_four"]) != LUA_TNIL ? luabind::object_cast<uint32>(item_table["augment_four"]) : 0;
 	const uint32 augment_five  = luabind::type(item_table["augment_five"]) != LUA_TNIL ? luabind::object_cast<uint32>(item_table["augment_five"]) : 0;
-	const uint32 augment_six   = luabind::type(item_table["augment_six"]) != LUA_TNIL ? luabind::object_cast<uint32>(item_table["augment_six"]) : 0;
 	const bool attuned         = luabind::type(item_table["attuned"]) != LUA_TNIL ? luabind::object_cast<bool>(item_table["attuned"]) : false;
 
 	self->SummonItemIntoInventory(
@@ -3260,7 +3259,6 @@ void Lua_Client::SummonItemIntoInventory(luabind::object item_table) {
 		augment_three,
 		augment_four,
 		augment_five,
-		augment_six,
 		attuned
 	);
 }

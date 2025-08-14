@@ -3067,7 +3067,6 @@ void Perl_Client_SummonItemIntoInventory(Client* self, perl::reference table_ref
 	const uint32 augment_three = table.exists("augment_three") ? table["augment_three"] : 0;
 	const uint32 augment_four  = table.exists("augment_four") ? table["augment_four"] : 0;
 	const uint32 augment_five  = table.exists("augment_five") ? table["augment_five"] : 0;
-	const uint32 augment_six   = table.exists("augment_six") ? table["augment_six"] : 0;
 	const bool attuned         = table.exists("attuned") ? table["attuned"] : false;
 
 	self->SummonItemIntoInventory(
@@ -3078,7 +3077,6 @@ void Perl_Client_SummonItemIntoInventory(Client* self, perl::reference table_ref
 		augment_three,
 		augment_four,
 		augment_five,
-		augment_six,
 		attuned
 	);
 }

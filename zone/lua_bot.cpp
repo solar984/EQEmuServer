@@ -50,11 +50,6 @@ void Lua_Bot::AddBotItem(uint16 slot_id, uint32 item_id, int16 charges, bool att
 	self->AddBotItem(slot_id, item_id, charges, attuned, augment_one, augment_two, augment_three, augment_four, augment_five);
 }
 
-void Lua_Bot::AddBotItem(uint16 slot_id, uint32 item_id, int16 charges, bool attuned, uint32 augment_one, uint32 augment_two, uint32 augment_three, uint32 augment_four, uint32 augment_five, uint32 augment_six) {
-	Lua_Safe_Call_Void();
-	self->AddBotItem(slot_id, item_id, charges, attuned, augment_one, augment_two, augment_three, augment_four, augment_five, augment_six);
-}
-
 uint32 Lua_Bot::CountBotItem(uint32 item_id) {
 	Lua_Safe_Call_Int();
 	return self->CountBotItem(item_id);
@@ -589,8 +584,7 @@ void Lua_Bot::AddItem(const luabind::object& item_table) {
 			augment_two,
 			augment_three,
 			augment_four,
-			augment_five,
-			augment_six
+			augment_five
 		);
 	} else {
 		self->GetOwner()->CastToClient()->SummonItem(
@@ -601,7 +595,6 @@ void Lua_Bot::AddItem(const luabind::object& item_table) {
 			augment_three,
 			augment_four,
 			augment_five,
-			augment_six,
 			attuned,
 			slot_id
 		);
@@ -675,7 +668,6 @@ luabind::scope lua_register_bot() {
 	.def("AddBotItem", (void(Lua_Bot::*)(uint16,uint32,int16,bool,uint32,uint32,uint32))&Lua_Bot::AddBotItem)
 	.def("AddBotItem", (void(Lua_Bot::*)(uint16,uint32,int16,bool,uint32,uint32,uint32,uint32))&Lua_Bot::AddBotItem)
 	.def("AddBotItem", (void(Lua_Bot::*)(uint16,uint32,int16,bool,uint32,uint32,uint32,uint32,uint32))&Lua_Bot::AddBotItem)
-	.def("AddBotItem", (void(Lua_Bot::*)(uint16,uint32,int16,bool,uint32,uint32,uint32,uint32,uint32,uint32))&Lua_Bot::AddBotItem)
 	.def("AddItem", (void(Lua_Bot::*)(luabind::adl::object))&Lua_Bot::AddItem)
 	.def("ApplySpell", (void(Lua_Bot::*)(int))&Lua_Bot::ApplySpell)
 	.def("ApplySpell", (void(Lua_Bot::*)(int,int))&Lua_Bot::ApplySpell)

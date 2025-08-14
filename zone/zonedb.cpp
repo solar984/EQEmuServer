@@ -231,8 +231,7 @@ void ZoneDatabase::LoadWorldContainer(uint32 parent_id, EQ::ItemInstance* contai
 			e.augslot2,
 			e.augslot3,
 			e.augslot4,
-			e.augslot5,
-			static_cast<uint32>(e.augslot6)
+			e.augslot5
 		};
 
 		auto inst = database.CreateItem(e.itemid, e.charges);
@@ -265,7 +264,7 @@ void ZoneDatabase::SaveWorldContainer(uint32 zone_id, uint32 parent_id, const EQ
 			continue;
 		}
 
-		uint32 augments[EQ::invaug::SOCKET_COUNT] = { 0, 0, 0, 0, 0, 0 };
+		uint32 augments[EQ::invaug::SOCKET_COUNT] = { 0, 0, 0, 0, 0 };
 
 		if (inst->IsType(EQ::item::ItemClassCommon)) {
 			for (int i = EQ::invaug::SOCKET_BEGIN; i <= EQ::invaug::SOCKET_END; i++) {
@@ -287,8 +286,7 @@ void ZoneDatabase::SaveWorldContainer(uint32 zone_id, uint32 parent_id, const EQ
 				.augslot2 = augments[1],
 				.augslot3 = augments[2],
 				.augslot4 = augments[3],
-				.augslot5 = augments[4],
-				.augslot6 = static_cast<int32_t>(augments[5])
+				.augslot5 = augments[4]
 			}
 		);
 	}
@@ -344,8 +342,7 @@ std::unique_ptr<EQ::ItemInstance> ZoneDatabase::LoadSingleTraderItem(uint32 char
 			results.at(0).aug_slot_2,
 			results.at(0).aug_slot_3,
 			results.at(0).aug_slot_4,
-			results.at(0).aug_slot_5,
-			results.at(0).aug_slot_6
+			results.at(0).aug_slot_5
 		)
 	);
 	if (!inst) {

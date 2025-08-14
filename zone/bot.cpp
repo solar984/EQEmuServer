@@ -4091,8 +4091,7 @@ void Bot::AddBotItem(
 	uint32 augment_two,
 	uint32 augment_three,
 	uint32 augment_four,
-	uint32 augment_five,
-	uint32 augment_six
+	uint32 augment_five
 ) {
 	auto inst = database.CreateItem(
 		item_id,
@@ -4102,13 +4101,12 @@ void Bot::AddBotItem(
 		augment_three,
 		augment_four,
 		augment_five,
-		augment_six,
 		attuned
 	);
 
 	if (!inst) {
 		LogError(
-			"Bot:AddItem Invalid Item data: ID [{}] Charges [{}] Aug1 [{}] Aug2 [{}] Aug3 [{}] Aug4 [{}] Aug5 [{}] Aug6 [{}] Attuned [{}]",
+			"Bot:AddItem Invalid Item data: ID [{}] Charges [{}] Aug1 [{}] Aug2 [{}] Aug3 [{}] Aug4 [{}] Aug5 [{}] Attuned [{}]",
 			item_id,
 			charges,
 			augment_one,
@@ -4116,7 +4114,6 @@ void Bot::AddBotItem(
 			augment_three,
 			augment_four,
 			augment_five,
-			augment_six,
 			attuned
 		);
 		return;

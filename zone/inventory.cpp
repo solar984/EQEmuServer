@@ -182,7 +182,7 @@ bool Client::CheckLoreConflict(const EQ::ItemData* item)
 	return (m_inv.HasItemByLoreGroup(item->LoreGroup, ~invWhereSharedBank) != INVALID_INDEX);
 }
 
-bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, uint32 aug6, bool attuned, uint16 to_slot, uint32 ornament_icon, uint32 ornament_idfile, uint32 ornament_hero_model) {
+bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, bool attuned, uint16 to_slot, uint32 ornament_icon, uint32 ornament_idfile, uint32 ornament_hero_model) {
 	const EQ::ItemData* item = database.GetItem(item_id);
 
 	// make sure the item exists
@@ -196,7 +196,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 		);
 		LogInventory(
 			"Player [{}] on account [{}] attempted to create an item with an invalid id.\n"
-			"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}], Aug6: [{}])\n",
+			"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}])\n",
 			GetName(),
 			account_name,
 			item_id,
@@ -204,8 +204,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 			aug2,
 			aug3,
 			aug4,
-			aug5,
-			aug6
+			aug5
 		);
 		return false;
 	}
@@ -223,11 +222,11 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 		return false;
 	}
 	// check to make sure we are augmenting an augmentable item
-	else if (((!item->IsClassCommon()) || (item->AugType > 0)) && (aug1 | aug2 | aug3 | aug4 | aug5 | aug6)) {
+	else if (((!item->IsClassCommon()) || (item->AugType > 0)) && (aug1 | aug2 | aug3 | aug4 | aug5)) {
 		Message(Chat::Red, "You can not augment an augment or a non-common class item.");
 		LogInventory(
 			"Player [{}] on account [{}] attempted to augment an augment or a non-common class item.\n"
-			"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}], Aug5: [{}])\n",
+			"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}])\n",
 			GetName(),
 			account_name,
 			item->ID,
@@ -235,8 +234,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 			aug2,
 			aug3,
 			aug4,
-			aug5,
-			aug6
+			aug5
 		);
 		return false;
 	}
@@ -256,7 +254,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 	}
 	*/
 
-	uint32 augments[EQ::invaug::SOCKET_COUNT] = { aug1, aug2, aug3, aug4, aug5, aug6 };
+	uint32 augments[EQ::invaug::SOCKET_COUNT] = { aug1, aug2, aug3, aug4, aug5 };
 	uint32 classes = item->Classes;
 	uint32 races = item->Races;
 	uint32 slots = item->Slots;
@@ -278,7 +276,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 				);
 				LogInventory(
 					"Player [{}] on account [{}] attempted to create an augment (Aug[{}]) with an invalid id.\n"
-					"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}], Aug6: [{}])\n",
+					"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}])\n",
 					GetName(),
 					account_name,
 					augment_slot,
@@ -287,8 +285,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 					aug2,
 					aug3,
 					aug4,
-					aug5,
-					aug6
+					aug5
 				);
 
 				return false;
@@ -322,7 +319,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 				);
 				LogInventory(
 					"Player [{}] on account [{}] attempted to use a non-augment item (Augment Slot [{}]) as an augment.\n"
-					"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}], Aug6: [{}])\n",
+					"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}])\n",
 					GetName(),
 					account_name,
 					item->ID,
@@ -331,8 +328,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 					aug2,
 					aug3,
 					aug4,
-					aug5,
-					aug6
+					aug5
 				);
 
 				return false;
@@ -367,7 +363,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 					);
 					LogInventory(
 						"Player [{}] on account [{}] attempted to augment an item with an unacceptable augment type (Aug[{}]).\n"
-						"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}], Aug6: [{}])\n",
+						"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}])\n",
 						GetName(),
 						account_name,
 						augment_slot,
@@ -376,8 +372,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 						aug2,
 						aug3,
 						aug4,
-						aug5,
-						aug6
+						aug5
 					);
 
 					return false;
@@ -397,7 +392,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 					);
 					LogInventory(
 						"Player [{}] on account [{}] attempted to augment an unevolved item with augment type (Aug[{}]).\n"
-						"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}], Aug6: [{}])\n",
+						"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}])\n",
 						GetName(),
 						account_name,
 						augment_slot,
@@ -406,8 +401,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 						aug2,
 						aug3,
 						aug4,
-						aug5,
-						aug6
+						aug5
 					);
 
 					return false;
@@ -432,7 +426,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 					);
 					LogInventory(
 						"Player [{}] on account [{}] attempted to augment an item with a restricted augment (Aug[{}]).\n"
-						"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}], Aug6: [{}])\n",
+						"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}])\n",
 						GetName(),
 						account_name,
 						augment_slot,
@@ -441,8 +435,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 						aug2,
 						aug3,
 						aug4,
-						aug5,
-						aug6
+						aug5
 					);
 
 					return false;
@@ -463,7 +456,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 					);
 					LogInventory(
 						"Player [{}] on account [{}] attempted to create an item unusable by any class.\n"
-						"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}], Aug6: [{}])\n",
+						"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}])\n",
 						GetName(),
 						account_name,
 						item->ID,
@@ -471,8 +464,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 						aug2,
 						aug3,
 						aug4,
-						aug5,
-						aug6
+						aug5
 					);
 
 					return false;
@@ -491,7 +483,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 					);
 					LogInventory(
 						"Player [{}] on account [{}] attempted to create an item unusable by any race.\n"
-						"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}], Aug6: [{}])\n",
+						"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}])\n",
 						GetName(),
 						account_name,
 						item->ID,
@@ -499,8 +491,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 						aug2,
 						aug3,
 						aug4,
-						aug5,
-						aug6
+						aug5
 					);
 
 					return false;
@@ -519,7 +510,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 					);
 					LogInventory(
 						"Player [{}] on account [{}] attempted to create an item unusable in any slot.\n"
-						"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}], Aug6: [{}])\n",
+						"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}])\n",
 						GetName(),
 						account_name,
 						item->ID,
@@ -527,8 +518,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 						aug2,
 						aug3,
 						aug4,
-						aug5,
-						aug6
+						aug5
 					);
 
 					return false;
@@ -568,7 +558,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 		// this goes to logfile since this is a major error
 		LogError(
 			"Player [{}] on account [{}] encountered an unknown item creation error.\n"
-			"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}], Aug6: [{}])\n",
+			"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}])\n",
 			GetName(),
 			account_name,
 			item->ID,
@@ -576,8 +566,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 			aug2,
 			aug3,
 			aug4,
-			aug5,
-			aug6
+			aug5
 		);
 
 		return false;
@@ -615,7 +604,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 			);
 			LogInventory(
 				"Player [{}] on account [{}] attempted to equip an item unusable in slot [{}] - moved to cursor.\n"
-				"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}], Aug6: [{}])\n",
+				"Item [{}], Aug1: [{}], Aug2: [{}], Aug3: [{}], Aug4: [{}], Aug5: [{}])\n",
 				GetName(),
 				account_name,
 				to_slot,
@@ -624,8 +613,7 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 				aug2,
 				aug3,
 				aug4,
-				aug5,
-				aug6
+				aug5
 			);
 			to_slot = EQ::invslot::slotCursor;
 		}
@@ -642,7 +630,6 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 		e.augment_3_id = aug3;
 		e.augment_4_id = aug4;
 		e.augment_5_id = aug5;
-		e.augment_6_id = aug6;
 		e.attuned      = attuned;
 
 		RecordPlayerEventLog(PlayerEvent::ITEM_CREATION, e);
@@ -1076,7 +1063,6 @@ void Client::PutLootInInventory(int16 slot_id, const EQ::ItemInstance &inst, Loo
 				bag_item_data[index]->aug_3,
 				bag_item_data[index]->aug_4,
 				bag_item_data[index]->aug_5,
-				bag_item_data[index]->aug_6,
 				bag_item_data[index]->attuned,
 				bag_item_data[index]->custom_data,
 				bag_item_data[index]->ornamenticon,
@@ -4488,7 +4474,6 @@ void Client::SummonItemIntoInventory(
 	uint32 aug3,
 	uint32 aug4,
 	uint32 aug5,
-	uint32 aug6,
 	bool is_attuned
 )
 {
@@ -4500,7 +4485,6 @@ void Client::SummonItemIntoInventory(
 		aug3,
 		aug4,
 		aug5,
-		aug6,
 		is_attuned
 	);
 
@@ -4524,7 +4508,6 @@ void Client::SummonItemIntoInventory(
 		aug3,
 		aug4,
 		aug5,
-		aug6,
 		is_attuned,
 		slot_id
 	);

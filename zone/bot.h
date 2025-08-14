@@ -1017,8 +1017,7 @@ public:
 		uint32 augment_two = 0,
 		uint32 augment_three = 0,
 		uint32 augment_four = 0,
-		uint32 augment_five = 0,
-		uint32 augment_six = 0
+		uint32 augment_five = 0
 	);
 	uint32 CountBotItem(uint32 item_id);
 	std::map<uint16, uint32> GetBotItemSlots();
