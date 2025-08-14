@@ -1502,7 +1502,6 @@ void Client::BuyTraderItem(TraderBuy_Struct *tbs, Client *Trader, const EQApplic
 	t.aug_slot_4   = buy_item->GetAugmentItemID(3);
 	t.aug_slot_5   = buy_item->GetAugmentItemID(4);
 	t.char_id      = CharacterID();
-	t.slot_id      = FindNextFreeParcelSlot(CharacterID());
 
 	SendTraderItem(
 		buy_item->GetItem()->ID,
@@ -2319,21 +2318,6 @@ void Client::BuyTraderItemOutsideBazaar(TraderBuy_Struct *tbs, const EQApplicati
 		return;
 	}
 
-	auto next_slot = FindNextFreeParcelSlot(CharacterID());
-	if (next_slot == INVALID_INDEX) {
-		LogTrading(
-			"{} attempted to purchase {} from the bazaar with parcel delivery.  Unfortunately their parcel limit was reached.  "
-			"Purchase unsuccessful.",
-			GetCleanName(),
-			buy_item->GetItem()->Name
-		);
-		in->method     = BazaarByParcel;
-		in->sub_action = TooManyParcels;
-		TraderRepository::UpdateActiveTransaction(database, trader_item.id, false);
-		TradeRequestFailed(app);
-		return;
-	}
-
 	LogTrading(
 		"Name: <green>[{}] IsStackable: <green>[{}] Requested Quantity: <green>[{}] Charges on Item <green>[{}]",
 		buy_item->GetItem()->Name,
@@ -2414,72 +2398,6 @@ void Client::BuyTraderItemOutsideBazaar(TraderBuy_Struct *tbs, const EQApplicati
 
 		RecordPlayerEventLog(PlayerEvent::TRADER_PURCHASE, e);
 	}
-
-	CharacterParcelsRepository::CharacterParcels parcel_out{};
-	parcel_out.from_name  = tbs->seller_name;
-	parcel_out.note       = "Delivered from a Bazaar Purchase";
-	parcel_out.sent_date  = time(nullptr);
-	parcel_out.quantity   = charges;
-	parcel_out.item_id    = buy_item->GetItem()->ID;
-	parcel_out.aug_slot_1 = buy_item->GetAugmentItemID(0);
-	parcel_out.aug_slot_2 = buy_item->GetAugmentItemID(1);
-	parcel_out.aug_slot_3 = buy_item->GetAugmentItemID(2);
-	parcel_out.aug_slot_4 = buy_item->GetAugmentItemID(3);
-	parcel_out.aug_slot_5 = buy_item->GetAugmentItemID(4);
-	parcel_out.char_id    = CharacterID();
-	parcel_out.slot_id    = next_slot;
-	parcel_out.id         = 0;
-
-	auto result = CharacterParcelsRepository::InsertOne(database, parcel_out);
-	if (!result.id) {
-		LogError("Failed to add parcel to database.  From {} to {} item {} quantity {}",
-				 parcel_out.from_name,
-				 GetCleanName(),
-				 parcel_out.item_id,
-				 parcel_out.quantity
-		);
-		Message(Chat::Yellow, "Unable to save parcel to the database. Please contact an administrator.");
-		in->method     = BazaarByParcel;
-		in->sub_action = Failed;
-		TraderRepository::UpdateActiveTransaction(database, trader_item.id, false);
-		TradeRequestFailed(app);
-		return;
-	}
-
-	ReturnTraderReq(app, tbs->quantity, buy_item->GetID());
-	if (PlayerEventLogs::Instance()->IsEventEnabled(PlayerEvent::PARCEL_SEND)) {
-		PlayerEvent::ParcelSend e{};
-		e.from_player_name = parcel_out.from_name;
-		e.to_player_name   = GetCleanName();
-		e.item_id          = parcel_out.item_id;
-		e.augment_1_id     = parcel_out.aug_slot_1;
-		e.augment_2_id     = parcel_out.aug_slot_2;
-		e.augment_3_id     = parcel_out.aug_slot_3;
-		e.augment_4_id     = parcel_out.aug_slot_4;
-		e.augment_5_id     = parcel_out.aug_slot_5;
-		e.quantity         = tbs->quantity;
-		e.charges          = buy_item->IsStackable() ? 1 : charges;
-		e.sent_date        = parcel_out.sent_date;
-
-		RecordPlayerEventLog(PlayerEvent::PARCEL_SEND, e);
-	}
-
-	Parcel_Struct ps{};
-	ps.item_slot = parcel_out.slot_id;
-	strn0cpy(ps.send_to, GetCleanName(), sizeof(ps.send_to));
-
-	if (trader_item.item_charges <= static_cast<int32>(tbs->quantity) || !buy_item->IsStackable()) {
-		TraderRepository::DeleteOne(database, trader_item.id);
-	} else {
-		TraderRepository::UpdateQuantity(
-			database,
-			trader_item.char_id,
-			trader_item.item_sn,
-			trader_item.item_charges - tbs->quantity
-		);
-	}
-
-	SendParcelDeliveryToWorld(ps);
 
 	if (RuleB(Bazaar, AuditTrail)) {
 		BazaarAuditTrail(tbs->seller_name, GetName(), buy_item->GetItem()->Name, tbs->quantity, tbs->price, 0);

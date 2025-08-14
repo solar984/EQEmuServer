@@ -326,8 +326,6 @@ void MapOpcodes()
 	ConnectedOpcodes[OP_OpenGuildTributeMaster] = &Client::Handle_OP_OpenGuildTributeMaster;
 	ConnectedOpcodes[OP_OpenInventory] = &Client::Handle_OP_OpenInventory;
 	ConnectedOpcodes[OP_OpenTributeMaster] = &Client::Handle_OP_OpenTributeMaster;
-	ConnectedOpcodes[OP_ShopSendParcel] = &Client::Handle_OP_ShopSendParcel;
-	ConnectedOpcodes[OP_ShopRetrieveParcel] = &Client::Handle_OP_ShopRetrieveParcel;
 	ConnectedOpcodes[OP_PDeletePetition] = &Client::Handle_OP_PDeletePetition;
 	ConnectedOpcodes[OP_PetCommands] = &Client::Handle_OP_PetCommands;
 	ConnectedOpcodes[OP_Petition] = &Client::Handle_OP_Petition;
@@ -14034,9 +14032,6 @@ void Client::Handle_OP_ShopRequest(const EQApplicationPacket *app)
 		BulkSendMerchantInventory(merchant_id, tmp->GetNPCTypeID());
 		SetMerchantSessionEntityID(tmp->GetID());
 
-		if ((tabs_to_display & Parcel) == Parcel) {
-			SendBulkParcels();
-		}
 	}
 
 	return;
@@ -16602,30 +16597,6 @@ void Client::Handle_OP_GuildTributeDonatePlat(const EQApplicationPacket *app)
 
 		RequestGuildFavorAndTimer(GuildID());
 	}
-}
-
-void Client::Handle_OP_ShopSendParcel(const EQApplicationPacket *app)
-{
-    if (app->size != sizeof(Parcel_Struct)) {
-        LogError("Received Handle_OP_ShopSendParcel packet. Expected size {}, received size {}.", sizeof(Parcel_Struct),
-                 app->size);
-        return;
-    }
-
-    auto parcel_in = (Parcel_Struct *)app->pBuffer;
-    DoParcelSend(parcel_in);
-}
-
-void Client::Handle_OP_ShopRetrieveParcel(const EQApplicationPacket *app)
-{
-    if (app->size != sizeof(ParcelRetrieve_Struct)) {
-        LogError("Received Handle_OP_ShopRetrieveParcel packet. Expected size {}, received size {}.",
-                 sizeof(ParcelRetrieve_Struct), app->size);
-        return;
-    }
-
-    auto parcel_in = (ParcelRetrieve_Struct *)app->pBuffer;
-    DoParcelRetrieve(*parcel_in);
 }
 
 void Client::Handle_OP_EvolveItem(const EQApplicationPacket *app)

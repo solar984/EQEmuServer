@@ -71,7 +71,6 @@ SET(zone_sources
     npc_scale_manager.cpp
     object.cpp
     oriented_bounding_box.cpp
-    parcels.cpp
     pathfinder_interface.cpp
     pathfinder_nav_mesh.cpp
     pathfinder_null.cpp
@@ -406,7 +405,6 @@ set(gm_command_sources
     gm_commands/nukeitem.cpp
     gm_commands/object.cpp
     gm_commands/object_manipulation.cpp
-    gm_commands/parcels.cpp
     gm_commands/path.cpp
     gm_commands/peqzone.cpp
     gm_commands/petitems.cpp

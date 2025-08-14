@@ -386,30 +386,6 @@ public:
 		std::list<void *> *event_details = nullptr
 	);
 	void SendZonePoints();
-	void SendBulkParcels();
-	void DoParcelCancel();
-	void DoParcelSend(const Parcel_Struct *parcel_in);
-	void DoParcelRetrieve(const ParcelRetrieve_Struct &parcel_in);
-	void SendParcel(Parcel_Struct &parcel);
-	void SendParcelStatus();
-	void SendParcelAck();
-	void SendParcelRetrieveAck();
-	void SendParcelDelete(const ParcelRetrieve_Struct &parcel_in);
-	void SendParcelDeliveryToWorld(const Parcel_Struct &parcel);
-	void SetParcelEnabled(bool status) { m_parcel_enabled = status; }
-	bool GetParcelEnabled() { return m_parcel_enabled; }
-	void SetParcelCount(uint32 count) { m_parcel_count = count; }
-	int32 GetParcelCount() { return m_parcel_count; }
-	bool GetEngagedWithParcelMerchant() { return m_parcel_merchant_engaged; }
-	void SetEngagedWithParcelMerchant(bool status) { m_parcel_merchant_engaged = status; }
-	Timer *GetParcelTimer() { return &parcel_timer; }
-	bool DeleteParcel(uint32 parcel_id);
-	void AddParcel(CharacterParcelsRepository::CharacterParcels &parcel);
-	void LoadParcels();
-	std::map<uint32, CharacterParcelsRepository::CharacterParcels> GetParcels() { return m_parcels; }
-	int32 FindNextFreeParcelSlot(uint32 char_id);
-	int32 FindNextFreeParcelSlotUsingMemory();
-	void SendParcelIconStatus();
 
 	void SendBecomeTraderToWorld(Client *trader, BazaarTraderBarterActions action);
 	void SendBecomeTrader(BazaarTraderBarterActions action, uint32 trader_id);

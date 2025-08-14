@@ -333,55 +333,6 @@ bool Client::DoEvolveCheckProgression(EQ::ItemInstance &inst)
 		return false;
 	}
 
-	if (RuleB(EvolvingItems, EnableParcelMerchants) &&
-		!RuleB(EvolvingItems, DestroyAugmentsOnEvolve) &&
-		inst.IsAugmented()
-		) {
-                auto const                                                augs = inst.GetAugmentIDs();
-                std::vector<CharacterParcelsRepository::CharacterParcels> parcels;
-                int32 next_slot = FindNextFreeParcelSlotUsingMemory();
-                for (auto const &item_id: augs) {
-                        if (!item_id) {
-                                continue;
-                        }
-
-                        if (next_slot == INVALID_INDEX) {
-                                break;
-                        }
-
-                        CharacterParcelsRepository::CharacterParcels p{};
-                        p.char_id   = CharacterID();
-                        p.from_name = "Evolving Item Sub-System";
-                        p.note      = fmt::format(
-                                      "System automatically removed from {} which recently evolved.",
-                                      inst.GetItem()->Name
-                                      );
-                        p.slot_id   = next_slot;
-                        p.sent_date = time(nullptr);
-                        p.item_id   = item_id;
-                        p.quantity  = 1;
-
-			if (PlayerEventLogs::Instance()->IsEventEnabled(PlayerEvent::PARCEL_SEND)) {
-				PlayerEvent::ParcelSend e{};
-				e.from_player_name = p.from_name;
-				e.to_player_name   = GetCleanName();
-				e.item_id          = p.item_id;
-				e.quantity         = 1;
-				e.sent_date        = p.sent_date;
-
-				RecordPlayerEventLog(PlayerEvent::PARCEL_SEND, e);
-			}
-
-                        parcels.push_back(p);
-                        m_parcels.emplace(p.slot_id, p);
-                        next_slot = FindNextFreeParcelSlotUsingMemory();
-                }
-
-		CharacterParcelsRepository::InsertMany(database, parcels);
-		SendParcelStatus();
-		SendParcelIconStatus();
-	}
-
 	CheckItemDiscoverability(new_inst->GetID());
 
 	PlayerEvent::EvolveItem e{};
