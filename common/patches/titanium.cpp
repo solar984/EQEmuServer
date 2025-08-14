@@ -3599,24 +3599,24 @@ namespace Titanium
 			titanium_slot = server_slot - 1;
 		}
 		else if (server_slot <= (EQ::invslot::POSSESSIONS_COUNT + EQ::invslot::slotWaist) &&
-				 server_slot >= EQ::invslot::slotCursor) {
+			server_slot >= EQ::invslot::slotCursor) {
 			titanium_slot = server_slot - 3;
 		}
 		else if (server_slot == (EQ::invslot::POSSESSIONS_COUNT + EQ::invslot::slotAmmo)) {
 			titanium_slot = server_slot - 4;
 		}
-		else if (server_slot <= EQ::invbag::GENERAL_BAGS_END &&
-				 server_slot >= EQ::invbag::GENERAL_BAGS_BEGIN) {
-			titanium_slot = server_slot - (EQ::invbag::GENERAL_BAGS_BEGIN - invbag::GENERAL_BAGS_BEGIN) - ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((server_slot - EQ::invbag::GENERAL_BAGS_BEGIN) / EQ::invbag::SLOT_COUNT));
+		else if (server_slot <= EQ::invbag::GENERAL_BAGS_8_END &&
+			server_slot >= EQ::invbag::GENERAL_BAGS_BEGIN) {
+			titanium_slot = server_slot;
 		}
 		else if (server_slot <= EQ::invbag::CURSOR_BAG_END && server_slot >= EQ::invbag::CURSOR_BAG_BEGIN) {
-			titanium_slot = server_slot - (EQ::invbag::CURSOR_BAG_BEGIN - invbag::CURSOR_BAG_BEGIN);
+			titanium_slot = server_slot - 20;
 		}
 		else if (server_slot <= EQ::invslot::TRIBUTE_END && server_slot >= EQ::invslot::TRIBUTE_BEGIN) {
 			titanium_slot = server_slot;
 		}
 		else if (server_slot <= EQ::invslot::GUILD_TRIBUTE_END &&
-				 server_slot >= EQ::invslot::GUILD_TRIBUTE_BEGIN) {
+			server_slot >= EQ::invslot::GUILD_TRIBUTE_BEGIN) {
 			titanium_slot = server_slot;
 		}
 		else if (server_slot == EQ::invslot::SLOT_TRADESKILL_EXPERIMENT_COMBINE) {
@@ -3625,21 +3625,21 @@ namespace Titanium
 		else if (server_slot <= EQ::invslot::BANK_END && server_slot >= EQ::invslot::BANK_BEGIN) {
 			titanium_slot = server_slot;
 		}
-		else if (server_slot <= EQ::invbag::BANK_BAGS_END && server_slot >= EQ::invbag::BANK_BAGS_BEGIN) {
-			titanium_slot = server_slot - (EQ::invbag::BANK_BAGS_BEGIN - invbag::BANK_BAGS_BEGIN) - ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((server_slot - EQ::invbag::BANK_BAGS_BEGIN) / EQ::invbag::SLOT_COUNT));
+		else if (server_slot <= EQ::invbag::BANK_BAGS_16_END && server_slot >= EQ::invbag::BANK_BAGS_BEGIN) {
+			titanium_slot = server_slot;
 		}
 		else if (server_slot <= EQ::invslot::SHARED_BANK_END && server_slot >= EQ::invslot::SHARED_BANK_BEGIN) {
 			titanium_slot = server_slot;
 		}
 		else if (server_slot <= EQ::invbag::SHARED_BANK_BAGS_END &&
-				 server_slot >= EQ::invbag::SHARED_BANK_BAGS_BEGIN) {
-			titanium_slot = server_slot - (EQ::invbag::SHARED_BANK_BAGS_BEGIN - invbag::SHARED_BANK_BAGS_BEGIN) - ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((server_slot - EQ::invbag::SHARED_BANK_BAGS_BEGIN) / EQ::invbag::SLOT_COUNT));
+			server_slot >= EQ::invbag::SHARED_BANK_BAGS_BEGIN) {
+			titanium_slot = server_slot;
 		}
 		else if (server_slot <= EQ::invslot::TRADE_END && server_slot >= EQ::invslot::TRADE_BEGIN) {
 			titanium_slot = server_slot;
 		}
 		else if (server_slot <= EQ::invbag::TRADE_BAGS_END && server_slot >= EQ::invbag::TRADE_BAGS_BEGIN) {
-			titanium_slot = server_slot - (EQ::invbag::TRADE_BAGS_BEGIN - invbag::TRADE_BAGS_BEGIN) - ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((server_slot - EQ::invbag::TRADE_BAGS_BEGIN) / EQ::invbag::SLOT_COUNT));
+			titanium_slot = server_slot;
 		}
 		else if (server_slot <= EQ::invslot::WORLD_END && server_slot >= EQ::invslot::WORLD_BEGIN) {
 			titanium_slot = server_slot;
@@ -3659,7 +3659,7 @@ namespace Titanium
 		}
 
 		else if (server_corpse_slot <= (EQ::invslot::POSSESSIONS_COUNT + EQ::invslot::slotWaist) &&
-				 server_corpse_slot >= EQ::invslot::slotCursor) {
+			server_corpse_slot >= EQ::invslot::slotCursor) {
 			titanium_slot = server_corpse_slot - 3;
 		}
 
@@ -3689,17 +3689,17 @@ namespace Titanium
 			server_slot = titanium_slot + 1;
 		}
 		else if (titanium_slot <= (invslot::POSSESSIONS_COUNT + invslot::slotWaist) &&
-				 titanium_slot >= invslot::slotCursor) {
+			titanium_slot >= invslot::slotCursor) {
 			server_slot = titanium_slot + 3;
 		}
 		else if (titanium_slot == (invslot::POSSESSIONS_COUNT + invslot::slotAmmo)) {
 			server_slot = titanium_slot + 4;
 		}
 		else if (titanium_slot <= invbag::GENERAL_BAGS_END && titanium_slot >= invbag::GENERAL_BAGS_BEGIN) {
-			server_slot = titanium_slot + (EQ::invbag::GENERAL_BAGS_BEGIN - invbag::GENERAL_BAGS_BEGIN) + ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((titanium_slot - invbag::GENERAL_BAGS_BEGIN) / invbag::SLOT_COUNT));
+			server_slot = titanium_slot;
 		}
 		else if (titanium_slot <= invbag::CURSOR_BAG_END && titanium_slot >= invbag::CURSOR_BAG_BEGIN) {
-			server_slot = titanium_slot + (EQ::invbag::CURSOR_BAG_BEGIN - invbag::CURSOR_BAG_BEGIN);
+			server_slot = titanium_slot + 20;
 		}
 		else if (titanium_slot <= invslot::TRIBUTE_END && titanium_slot >= invslot::TRIBUTE_BEGIN) {
 			server_slot = titanium_slot;
@@ -3714,19 +3714,19 @@ namespace Titanium
 			server_slot = titanium_slot;
 		}
 		else if (titanium_slot <= invbag::BANK_BAGS_END && titanium_slot >= invbag::BANK_BAGS_BEGIN) {
-			server_slot = titanium_slot + (EQ::invbag::BANK_BAGS_BEGIN - invbag::BANK_BAGS_BEGIN) + ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((titanium_slot - invbag::BANK_BAGS_BEGIN) / invbag::SLOT_COUNT));
+			server_slot = titanium_slot;
 		}
 		else if (titanium_slot <= invslot::SHARED_BANK_END && titanium_slot >= invslot::SHARED_BANK_BEGIN) {
 			server_slot = titanium_slot;
 		}
 		else if (titanium_slot <= invbag::SHARED_BANK_BAGS_END && titanium_slot >= invbag::SHARED_BANK_BAGS_BEGIN) {
-			server_slot = titanium_slot + (EQ::invbag::SHARED_BANK_BAGS_BEGIN - invbag::SHARED_BANK_BAGS_BEGIN) + ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((titanium_slot - invbag::SHARED_BANK_BAGS_BEGIN) / invbag::SLOT_COUNT));
+			server_slot = titanium_slot;
 		}
 		else if (titanium_slot <= invslot::TRADE_END && titanium_slot >= invslot::TRADE_BEGIN) {
 			server_slot = titanium_slot;
 		}
 		else if (titanium_slot <= invbag::TRADE_BAGS_END && titanium_slot >= invbag::TRADE_BAGS_BEGIN) {
-			server_slot = titanium_slot + (EQ::invbag::TRADE_BAGS_BEGIN - invbag::TRADE_BAGS_BEGIN) + ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((titanium_slot - invbag::TRADE_BAGS_BEGIN) / invbag::SLOT_COUNT));
+			server_slot = titanium_slot;
 		}
 		else if (titanium_slot <= invslot::WORLD_END && titanium_slot >= invslot::WORLD_BEGIN) {
 			server_slot = titanium_slot;
@@ -3838,71 +3838,71 @@ namespace Titanium
 
 	static inline spells::CastingSlot ServerToTitaniumCastingSlot(EQ::spells::CastingSlot slot) {
 		switch (slot) {
-			case EQ::spells::CastingSlot::Gem1:
-				return spells::CastingSlot::Gem1;
-			case EQ::spells::CastingSlot::Gem2:
-				return spells::CastingSlot::Gem2;
-			case EQ::spells::CastingSlot::Gem3:
-				return spells::CastingSlot::Gem3;
-			case EQ::spells::CastingSlot::Gem4:
-				return spells::CastingSlot::Gem4;
-			case EQ::spells::CastingSlot::Gem5:
-				return spells::CastingSlot::Gem5;
-			case EQ::spells::CastingSlot::Gem6:
-				return spells::CastingSlot::Gem6;
-			case EQ::spells::CastingSlot::Gem7:
-				return spells::CastingSlot::Gem7;
-			case EQ::spells::CastingSlot::Gem8:
-				return spells::CastingSlot::Gem8;
-			case EQ::spells::CastingSlot::Gem9:
-				return spells::CastingSlot::Gem9;
-			case EQ::spells::CastingSlot::Item:
-				return spells::CastingSlot::Item;
-			case EQ::spells::CastingSlot::PotionBelt:
-				return spells::CastingSlot::PotionBelt;
-			case EQ::spells::CastingSlot::Discipline:
-				return spells::CastingSlot::Discipline;
-			case EQ::spells::CastingSlot::AltAbility:
-				return spells::CastingSlot::AltAbility;
-			default: // we shouldn't have any issues with other slots ... just return something
-				return spells::CastingSlot::Discipline;
+		case EQ::spells::CastingSlot::Gem1:
+			return spells::CastingSlot::Gem1;
+		case EQ::spells::CastingSlot::Gem2:
+			return spells::CastingSlot::Gem2;
+		case EQ::spells::CastingSlot::Gem3:
+			return spells::CastingSlot::Gem3;
+		case EQ::spells::CastingSlot::Gem4:
+			return spells::CastingSlot::Gem4;
+		case EQ::spells::CastingSlot::Gem5:
+			return spells::CastingSlot::Gem5;
+		case EQ::spells::CastingSlot::Gem6:
+			return spells::CastingSlot::Gem6;
+		case EQ::spells::CastingSlot::Gem7:
+			return spells::CastingSlot::Gem7;
+		case EQ::spells::CastingSlot::Gem8:
+			return spells::CastingSlot::Gem8;
+		case EQ::spells::CastingSlot::Gem9:
+			return spells::CastingSlot::Gem9;
+		case EQ::spells::CastingSlot::Item:
+			return spells::CastingSlot::Item;
+		case EQ::spells::CastingSlot::PotionBelt:
+			return spells::CastingSlot::PotionBelt;
+		case EQ::spells::CastingSlot::Discipline:
+			return spells::CastingSlot::Discipline;
+		case EQ::spells::CastingSlot::AltAbility:
+			return spells::CastingSlot::AltAbility;
+		default: // we shouldn't have any issues with other slots ... just return something
+			return spells::CastingSlot::Discipline;
 		}
 	}
 
 	static inline EQ::spells::CastingSlot TitaniumToServerCastingSlot(spells::CastingSlot slot, uint32 item_location) {
 		switch (slot) {
-			case spells::CastingSlot::Gem1:
-				return EQ::spells::CastingSlot::Gem1;
-			case spells::CastingSlot::Gem2:
-				return EQ::spells::CastingSlot::Gem2;
-			case spells::CastingSlot::Gem3:
-				return EQ::spells::CastingSlot::Gem3;
-			case spells::CastingSlot::Gem4:
-				return EQ::spells::CastingSlot::Gem4;
-			case spells::CastingSlot::Gem5:
-				return EQ::spells::CastingSlot::Gem5;
-			case spells::CastingSlot::Gem6:
-				return EQ::spells::CastingSlot::Gem6;
-			case spells::CastingSlot::Gem7:
-				return EQ::spells::CastingSlot::Gem7;
-			case spells::CastingSlot::Gem8:
-				return EQ::spells::CastingSlot::Gem8;
-			case spells::CastingSlot::Gem9:
-				return EQ::spells::CastingSlot::Gem9;
-			case spells::CastingSlot::Ability:
-				return EQ::spells::CastingSlot::Ability;
-				// Tit uses 10 for item and discipline casting, but items have a valid location
-			case spells::CastingSlot::Item:
-				if (item_location == INVALID_INDEX)
-					return EQ::spells::CastingSlot::Discipline;
-				else
-					return EQ::spells::CastingSlot::Item;
-			case spells::CastingSlot::PotionBelt:
-				return EQ::spells::CastingSlot::PotionBelt;
-			case spells::CastingSlot::AltAbility:
-				return EQ::spells::CastingSlot::AltAbility;
-			default: // we shouldn't have any issues with other slots ... just return something
+		case spells::CastingSlot::Gem1:
+			return EQ::spells::CastingSlot::Gem1;
+		case spells::CastingSlot::Gem2:
+			return EQ::spells::CastingSlot::Gem2;
+		case spells::CastingSlot::Gem3:
+			return EQ::spells::CastingSlot::Gem3;
+		case spells::CastingSlot::Gem4:
+			return EQ::spells::CastingSlot::Gem4;
+		case spells::CastingSlot::Gem5:
+			return EQ::spells::CastingSlot::Gem5;
+		case spells::CastingSlot::Gem6:
+			return EQ::spells::CastingSlot::Gem6;
+		case spells::CastingSlot::Gem7:
+			return EQ::spells::CastingSlot::Gem7;
+		case spells::CastingSlot::Gem8:
+			return EQ::spells::CastingSlot::Gem8;
+		case spells::CastingSlot::Gem9:
+			return EQ::spells::CastingSlot::Gem9;
+		case spells::CastingSlot::Ability:
+			return EQ::spells::CastingSlot::Ability;
+			// Tit uses 10 for item and discipline casting, but items have a valid location
+		case spells::CastingSlot::Item:
+			if (item_location == INVALID_INDEX)
 				return EQ::spells::CastingSlot::Discipline;
+			else
+				return EQ::spells::CastingSlot::Item;
+		case spells::CastingSlot::PotionBelt:
+			return EQ::spells::CastingSlot::PotionBelt;
+		case spells::CastingSlot::AltAbility:
+			return EQ::spells::CastingSlot::AltAbility;
+		default: // we shouldn't have any issues with other slots ... just return something
+			return EQ::spells::CastingSlot::Discipline;
 		}
 	}
 
@@ -3911,7 +3911,7 @@ namespace Titanium
 		// we're a disc
 		if (index >= EQ::spells::LONG_BUFFS + EQ::spells::SHORT_BUFFS)
 			return index - EQ::spells::LONG_BUFFS - EQ::spells::SHORT_BUFFS +
-			       spells::LONG_BUFFS + spells::SHORT_BUFFS;
+			spells::LONG_BUFFS + spells::SHORT_BUFFS;
 		// we're a song
 		if (index >= EQ::spells::LONG_BUFFS)
 			return index - EQ::spells::LONG_BUFFS + spells::LONG_BUFFS;
@@ -3924,7 +3924,7 @@ namespace Titanium
 		// we're a disc
 		if (index >= spells::LONG_BUFFS + spells::SHORT_BUFFS)
 			return index - spells::LONG_BUFFS - spells::SHORT_BUFFS + EQ::spells::LONG_BUFFS +
-			       EQ::spells::SHORT_BUFFS;
+			EQ::spells::SHORT_BUFFS;
 		// we're a song
 		if (index >= spells::LONG_BUFFS)
 			return index - spells::LONG_BUFFS + EQ::spells::LONG_BUFFS;

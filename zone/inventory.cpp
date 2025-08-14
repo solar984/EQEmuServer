@@ -3332,7 +3332,7 @@ bool Client::InterrogateInventory(Client* requester, bool log, bool silent, bool
 		if (cursor_itr == m_inv.cursor_cbegin())
 			continue;
 
-		instmap[EQ::invbag::CURSOR_BAG_BEGIN + limbo] = *cursor_itr;
+		instmap[8000 + limbo] = *cursor_itr;
 	}
 
 	// call InterrogateInventory_ for error check
@@ -3439,7 +3439,7 @@ bool Client::InterrogateInventory_error(int16 head, int16 index, const EQ::ItemI
 		EQ::ValueWithin(head, EQ::invslot::TRIBUTE_BEGIN, EQ::invslot::TRIBUTE_END) ||
 		EQ::ValueWithin(head, EQ::invslot::GUILD_TRIBUTE_BEGIN, EQ::invslot::GUILD_TRIBUTE_END) ||
 		EQ::ValueWithin(head, EQ::invslot::WORLD_BEGIN, EQ::invslot::WORLD_END) ||
-		EQ::ValueWithin(head, EQ::invbag::CURSOR_BAG_BEGIN, EQ::invbag::CURSOR_BAG_END)
+		EQ::ValueWithin(head, 8000, 8101)
 	) {
 		switch (depth)
 		{

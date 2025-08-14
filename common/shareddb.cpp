@@ -202,7 +202,7 @@ bool SharedDatabase::SaveCursor(
 	const int deleted = InventoryRepository::DeleteWhere(
 		*this,
 		fmt::format(
-			"`character_id` = {} AND (`slot_id` = {} OR `slot_id` BETWEEN {} AND {})",
+			"`character_id` = {} AND ((slot_id >= 8000 AND slot_id <= 8999) OR `slot_id` = {} OR `slot_id` BETWEEN {} AND {})",
 			char_id,
 			EQ::invslot::slotCursor,
 			EQ::invbag::CURSOR_BAG_BEGIN,
@@ -210,15 +210,14 @@ bool SharedDatabase::SaveCursor(
 		)
 	);
 
-	int16 i = EQ::invbag::CURSOR_BAG_BEGIN;
+	int16 i = 8000;
 	for (auto& it = start; it != end; ++it, i++) {
-		// shouldn't be anything in the queue that indexes this high
-		if (i > EQ::invbag::CURSOR_BAG_END) {
+		if (i > 8999) { // shouldn't be anything in the queue that indexes this high
 			break;
 		}
 
 		const EQ::ItemInstance* inst = *it;
-		const int16 use_slot = i == EQ::invbag::CURSOR_BAG_BEGIN ? EQ::invslot::slotCursor : i;
+		const int16 use_slot = (i == 8000) ? EQ::invslot::slotCursor : i;
 		if (!SaveInventory(char_id, inst, use_slot)) {
 			return false;
 		}
@@ -848,7 +847,17 @@ bool SharedDatabase::GetInventory(Client *c)
 
 		int16 put_slot_id;
 		// this had  || slot_id == EQ::invslot::slotCursor ??s
-		if (EQ::ValueWithin(slot_id, EQ::invbag::CURSOR_BAG_BEGIN, EQ::invbag::CURSOR_BAG_END)) {
+		if (slot_id >= 8000 && slot_id <= 8999) {
+			put_slot_id = inv.PushCursor(*inst);
+		}
+		else if (slot_id >= 3111 && slot_id <= 3179) {
+			// Admins: please report any occurrences of this error
+			LogError(
+				"Warning: Defunct location for item in inventory: charid={}, item_id={}, slot_id={} .. pushing to cursor...",
+				char_id,
+				item_id,
+				slot_id
+			);
 			put_slot_id = inv.PushCursor(*inst);
 		} else {
 			put_slot_id = inv.PutItem(slot_id, *inst);
@@ -889,6 +898,93 @@ bool SharedDatabase::GetInventory(Client *c)
 
 	// Retrieve shared inventory
 	return GetSharedBank(char_id, &inv, true);
+}
+
+// Overloaded: Retrieve character inventory based on account_id and character name (char select)
+bool SharedDatabase::GetInventory(uint32 account_id, char *name, EQ::InventoryProfile *inv) // deprecated
+{
+	// Retrieve character inventory
+	const std::string query =
+		StringFormat("SELECT slotid, itemid, charges, color, augslot1, "
+			"augslot2, augslot3, augslot4, augslot5, instnodrop, custom_data, ornamenticon, "
+			"ornamentidfile, ornament_hero_model "
+			"FROM inventory INNER JOIN character_data ch "
+			"ON ch.id = charid WHERE ch.name = '%s' AND ch.account_id = %i ORDER BY slotid",
+			name, account_id);
+	auto results = QueryDatabase(query);
+	if (!results.Success()) {
+		LogError("If you got an error related to the 'instnodrop' field, run the "
+			"following SQL Queries:\nalter table inventory add instnodrop "
+			"tinyint(1) unsigned default 0 not null;\n");
+		return false;
+	}
+
+	for (auto &row = results.begin(); row != results.end(); ++row) {
+		int16 slot_id = Strings::ToInt(row[0]);
+		uint32 item_id = Strings::ToUnsignedInt(row[1]);
+		const int8 charges = Strings::ToInt(row[2]);
+		const uint32 color = Strings::ToUnsignedInt(row[3]);
+
+		uint32 aug[EQ::invaug::SOCKET_COUNT];
+		aug[0] = Strings::ToUnsignedInt(row[4]);
+		aug[1] = Strings::ToUnsignedInt(row[5]);
+		aug[2] = Strings::ToUnsignedInt(row[6]);
+		aug[3] = Strings::ToUnsignedInt(row[7]);
+		aug[4] = Strings::ToUnsignedInt(row[8]);
+		
+		const bool instnodrop = (row[9] && static_cast<uint16>(Strings::ToUnsignedInt(row[9])));
+		const uint32 ornament_icon = Strings::ToUnsignedInt(row[11]);
+		const uint32 ornament_idfile = Strings::ToUnsignedInt(row[12]);
+		uint32 ornament_hero_model = Strings::ToUnsignedInt(row[13]);
+
+		const EQ::ItemData *item = GetItem(item_id);
+		if (!item)
+			continue;
+
+		EQ::ItemInstance *inst = CreateBaseItem(item, charges);
+
+		if (inst == nullptr)
+			continue;
+
+		inst->SetAttuned(instnodrop);
+
+		if (row[10]) {
+			std::string data_str(row[10]);
+			inst->SetCustomDataString(data_str);
+		}
+
+		inst->SetOrnamentIcon(ornament_icon);
+		inst->SetOrnamentationIDFile(ornament_idfile);
+		inst->SetOrnamentHeroModel(item->HerosForgeModel);
+
+		if (color > 0)
+			inst->SetColor(color);
+
+		inst->SetCharges(charges);
+
+		if (item->IsClassCommon()) {
+			for (int i = EQ::invaug::SOCKET_BEGIN; i <= EQ::invaug::SOCKET_END; i++) {
+				if (aug[i])
+					inst->PutAugment(this, i, aug[i]);
+			}
+		}
+
+		int16 put_slot_id;
+		if (slot_id >= 8000 && slot_id <= 8999)
+			put_slot_id = inv->PushCursor(*inst);
+		else
+			put_slot_id = inv->PutItem(slot_id, *inst);
+
+		safe_delete(inst);
+
+		// Save ptr to item in inventory
+		if (put_slot_id == INVALID_INDEX)
+			LogError("Warning: Invalid slot_id for item in inventory: name={}, acctid={}, item_id={}, slot_id={}",
+				name, account_id, item_id, slot_id);
+	}
+
+	// Retrieve shared inventory
+	return GetSharedBank(account_id, inv, false);
 }
 
 std::map<uint32, uint32> SharedDatabase::GetItemRecastTimestamps(uint32 char_id)
