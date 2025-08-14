@@ -7358,7 +7358,6 @@ void Client::Handle_OP_GuildBank(const EQApplicationPacket *app)
 							log.aug_slot_three = augs.at(2);
 							log.aug_slot_four  = augs.at(3);
 							log.aug_slot_five  = augs.at(4);
-							log.aug_slot_six   = augs.at(5);
 						}
 
 						RecordPlayerEventLog(PlayerEvent::GUILD_BANK_MOVE_TO_BANK_AREA, log);
@@ -7533,7 +7532,6 @@ void Client::Handle_OP_GuildBank(const EQApplicationPacket *app)
 					log.aug_slot_three = augs.at(2);
 					log.aug_slot_four  = augs.at(3);
 					log.aug_slot_five  = augs.at(4);
-					log.aug_slot_six   = augs.at(5);
 				}
 
 				RecordPlayerEventLog(PlayerEvent::GUILD_BANK_WITHDRAWAL, log);

@@ -296,7 +296,6 @@ struct CharacterCorpseItemEntry
 	uint32 aug_3;
 	uint32 aug_4;
 	uint32 aug_5;
-	uint32 aug_6;
 	bool attuned;
 	std::string custom_data;
 	uint32 ornamenticon;

@@ -3782,7 +3782,6 @@ uint32 ZoneDatabase::SaveCharacterCorpse(
 		ci.aug_3               = i.aug_3;
 		ci.aug_4               = i.aug_4;
 		ci.aug_5               = i.aug_5;
-		ci.aug_6               = i.aug_6;
 		ci.attuned             = i.attuned;
 		ci.custom_data         = i.custom_data;
 		ci.ornamenticon        = i.ornamenticon;

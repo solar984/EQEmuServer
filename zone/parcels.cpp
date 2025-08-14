@@ -54,8 +54,7 @@ void Client::SendBulkParcels()
 				p.second.aug_slot_2,
 				p.second.aug_slot_3,
 				p.second.aug_slot_4,
-				p.second.aug_slot_5,
-				p.second.aug_slot_6
+				p.second.aug_slot_5
 			));
 			if (inst) {
 				inst->SetCharges(p.second.quantity);
@@ -144,7 +143,6 @@ void Client::SendParcel(Parcel_Struct &parcel_in)
 	p.aug_slot_3 = r.aug_slot_3;
 	p.aug_slot_4 = r.aug_slot_4;
 	p.aug_slot_5 = r.aug_slot_5;
-	p.aug_slot_6 = r.aug_slot_6;
 	p.slot_id    = r.slot_id;
 	p.char_id    = r.char_id;
 
@@ -157,8 +155,7 @@ void Client::SendParcel(Parcel_Struct &parcel_in)
 			p.aug_slot_2,
 			p.aug_slot_3,
 			p.aug_slot_4,
-			p.aug_slot_5,
-			p.aug_slot_6
+			p.aug_slot_5
 		));
 		if (inst) {
 			inst->SetCharges(p.quantity);
@@ -406,7 +403,6 @@ void Client::DoParcelSend(const Parcel_Struct *parcel_in)
 				parcel_out.aug_slot_3 = augs.at(2);
 				parcel_out.aug_slot_4 = augs.at(3);
 				parcel_out.aug_slot_5 = augs.at(4);
-				parcel_out.aug_slot_6 = augs.at(5);
 			}
 
 			if (!inst->IsDroppable(true)) {
@@ -443,7 +439,6 @@ void Client::DoParcelSend(const Parcel_Struct *parcel_in)
 						cpc.aug_slot_3 = augs.at(2);
 						cpc.aug_slot_4 = augs.at(3);
 						cpc.aug_slot_5 = augs.at(4);
-						cpc.aug_slot_6 = augs.at(5);
 					}
 					cpc.quantity   = kv.second->GetCharges() >= 0 ? kv.second->GetCharges() : 1;
 					all_entries.push_back(cpc);
@@ -478,7 +473,6 @@ void Client::DoParcelSend(const Parcel_Struct *parcel_in)
 				e.augment_3_id     = parcel_out.aug_slot_3;
 				e.augment_4_id     = parcel_out.aug_slot_4;
 				e.augment_5_id     = parcel_out.aug_slot_5;
-				e.augment_6_id     = parcel_out.aug_slot_6;
 				e.quantity         = parcel_out.quantity;
 				e.sent_date        = parcel_out.sent_date;
 
@@ -494,7 +488,6 @@ void Client::DoParcelSend(const Parcel_Struct *parcel_in)
 						e.augment_3_id     = i.aug_slot_3;
 						e.augment_4_id     = i.aug_slot_4;
 						e.augment_5_id     = i.aug_slot_5;
-						e.augment_6_id     = i.aug_slot_6;
 						e.quantity         = i.quantity;
 						e.sent_date        = parcel_out.sent_date;
 						RecordPlayerEventLog(PlayerEvent::PARCEL_SEND, e);
@@ -669,8 +662,7 @@ void Client::DoParcelRetrieve(const ParcelRetrieve_Struct &parcel_in)
 			p->second.aug_slot_2,
 			p->second.aug_slot_3,
 			p->second.aug_slot_4,
-			p->second.aug_slot_5,
-			p->second.aug_slot_6
+			p->second.aug_slot_5
 		)
 		);
 
@@ -706,8 +698,7 @@ void Client::DoParcelRetrieve(const ParcelRetrieve_Struct &parcel_in)
 							i.aug_slot_2,
 							i.aug_slot_3,
 							i.aug_slot_4,
-							i.aug_slot_5,
-							i.aug_slot_6
+							i.aug_slot_5
 						);
 
 						if (!item) {
@@ -768,7 +759,6 @@ void Client::DoParcelRetrieve(const ParcelRetrieve_Struct &parcel_in)
 					e.augment_3_id     = p->second.aug_slot_3;
 					e.augment_4_id     = p->second.aug_slot_4;
 					e.augment_5_id     = p->second.aug_slot_5;
-					e.augment_6_id     = p->second.aug_slot_6;
 					e.quantity         = p->second.quantity;
 					e.sent_date        = p->second.sent_date;
 					RecordPlayerEventLog(PlayerEvent::PARCEL_RETRIEVE, e);
@@ -781,7 +771,6 @@ void Client::DoParcelRetrieve(const ParcelRetrieve_Struct &parcel_in)
 								e.augment_3_id     = i.aug_slot_3;
 								e.augment_4_id     = i.aug_slot_4;
 								e.augment_5_id     = i.aug_slot_5;
-								e.augment_6_id     = i.aug_slot_6;
 								e.quantity         = i.quantity;
 								e.sent_date        = p->second.sent_date;
 								RecordPlayerEventLog(PlayerEvent::PARCEL_RETRIEVE, e);

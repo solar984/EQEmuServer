@@ -172,7 +172,6 @@ void EQ::SayLinkEngine::generate_body()
 			m_LinkBodyStruct.augment_3    = m_LootData->aug_3;
 			m_LinkBodyStruct.augment_4    = m_LootData->aug_4;
 			m_LinkBodyStruct.augment_5    = m_LootData->aug_5;
-			m_LinkBodyStruct.augment_6    = m_LootData->aug_6;
 			m_LinkBodyStruct.evolve_group = item_data->LoreGroup; // see note above
 			//m_LinkBodyStruct.evolve_level = item_data->EvolvingLevel;
 			// TODO: add hash call
@@ -186,7 +185,6 @@ void EQ::SayLinkEngine::generate_body()
 			m_LinkBodyStruct.augment_3     = m_ItemInst->GetAugmentItemID(2);
 			m_LinkBodyStruct.augment_4     = m_ItemInst->GetAugmentItemID(3);
 			m_LinkBodyStruct.augment_5     = m_ItemInst->GetAugmentItemID(4);
-			m_LinkBodyStruct.augment_6     = m_ItemInst->GetAugmentItemID(5);
 			m_LinkBodyStruct.is_evolving   = (m_ItemInst->IsEvolving() ? 1 : 0);
 			m_LinkBodyStruct.evolve_group  = m_ItemInst->GetItem()->LoreGroup; // see note above
 			m_LinkBodyStruct.evolve_level  = m_ItemInst->GetEvolveLvl();

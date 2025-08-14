@@ -5563,7 +5563,6 @@ bool lua_send_parcel(luabind::object lua_table)
 	const uint32 augment_three   = luabind::type(lua_table["augment_three"]) != LUA_TNIL ? luabind::object_cast<uint32>(lua_table["augment_three"]) : 0;
 	const uint32 augment_four    = luabind::type(lua_table["augment_four"]) != LUA_TNIL ? luabind::object_cast<uint32>(lua_table["augment_four"]) : 0;
 	const uint32 augment_five    = luabind::type(lua_table["augment_five"]) != LUA_TNIL ? luabind::object_cast<uint32>(lua_table["augment_five"]) : 0;
-	const uint32 augment_six     = luabind::type(lua_table["augment_six"]) != LUA_TNIL ? luabind::object_cast<uint32>(lua_table["augment_six"]) : 0;
 	const std::string& from_name = luabind::type(lua_table["from_name"]) != LUA_TNIL ? luabind::object_cast<std::string>(lua_table["from_name"]) : std::string();
 	const std::string& note      = luabind::type(lua_table["note"]) != LUA_TNIL ? luabind::object_cast<std::string>(lua_table["note"]) : std::string();
 
@@ -5576,7 +5575,6 @@ bool lua_send_parcel(luabind::object lua_table)
 	e.aug_slot_3 = augment_three;
 	e.aug_slot_4 = augment_four;
 	e.aug_slot_5 = augment_five;
-	e.aug_slot_6 = augment_six;
 	e.slot_id    = next_parcel_slot;
 	e.quantity   = quantity;
 	e.from_name  = from_name;

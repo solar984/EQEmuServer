@@ -1696,7 +1696,6 @@ namespace PlayerEvent {
 		uint32 aug_slot_three;
 		uint32 aug_slot_four;
 		uint32 aug_slot_five;
-		uint32 aug_slot_six;
 		uint32 quantity;
 		uint32 permission;
 
@@ -1725,7 +1724,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, aug_slot_three);
 			CEREAL_NVP_IF_NONZERO(ar, aug_slot_four);
 			CEREAL_NVP_IF_NONZERO(ar, aug_slot_five);
-			CEREAL_NVP_IF_NONZERO(ar, aug_slot_six);
 
 			ar(
 				CEREAL_NVP(quantity),
@@ -1745,7 +1743,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(aug_slot_three),
 				CEREAL_NVP(aug_slot_four),
 				CEREAL_NVP(aug_slot_five),
-				CEREAL_NVP(aug_slot_six),
 				CEREAL_NVP(quantity),
 				CEREAL_NVP(permission)
 			);

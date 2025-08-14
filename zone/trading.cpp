@@ -874,7 +874,6 @@ void Client::TraderStartTrader(const EQApplicationPacket *app)
 				trader_item.aug_slot_3 = augs.at(2);
 				trader_item.aug_slot_4 = augs.at(3);
 				trader_item.aug_slot_5 = augs.at(4);
-				trader_item.aug_slot_6 = augs.at(5);
 			}
 
 			trader_items.emplace_back(trader_item);
@@ -950,8 +949,7 @@ void Client::SendTraderItem(uint32 ItemID, uint16 Quantity, TraderRepository::Tr
 			t.aug_slot_2,
 			t.aug_slot_3,
 			t.aug_slot_4,
-			t.aug_slot_5,
-			t.aug_slot_6
+			t.aug_slot_5
 		)
 	);
 
@@ -1004,8 +1002,7 @@ void Client::BulkSendTraderInventory(uint32 char_id)
 					trader_items.at(i).aug_slot_2,
 					trader_items.at(i).aug_slot_3,
 					trader_items.at(i).aug_slot_4,
-					trader_items.at(i).aug_slot_5,
-					trader_items.at(i).aug_slot_6
+					trader_items.at(i).aug_slot_5
 				)
 			);
 			if (inst) {
@@ -1504,7 +1501,6 @@ void Client::BuyTraderItem(TraderBuy_Struct *tbs, Client *Trader, const EQApplic
 	t.aug_slot_3   = buy_item->GetAugmentItemID(2);
 	t.aug_slot_4   = buy_item->GetAugmentItemID(3);
 	t.aug_slot_5   = buy_item->GetAugmentItemID(4);
-	t.aug_slot_6   = buy_item->GetAugmentItemID(5);
 	t.char_id      = CharacterID();
 	t.slot_id      = FindNextFreeParcelSlot(CharacterID());
 
@@ -1604,8 +1600,7 @@ static void UpdateTraderCustomerItemsAdded(
 					i.aug_slot_2,
 					i.aug_slot_3,
 					i.aug_slot_4,
-					i.aug_slot_5,
-					i.aug_slot_6
+					i.aug_slot_5
 				)
 			);
 			if (!inst) {
@@ -1686,8 +1681,7 @@ static void UpdateTraderCustomerPriceChanged(
 			it->aug_slot_2,
 			it->aug_slot_3,
 			it->aug_slot_4,
-			it->aug_slot_5,
-			it->aug_slot_6
+			it->aug_slot_5
 		)
 	);
 	if (!inst) {
@@ -2068,7 +2062,6 @@ void Client::TraderPriceUpdate(const EQApplicationPacket *app)
 					trader_item.aug_slot_3 = augs.at(2);
 					trader_item.aug_slot_4 = augs.at(3);
 					trader_item.aug_slot_5 = augs.at(4);
-					trader_item.aug_slot_6 = augs.at(5);
 				}
 				trader_item.slot_id = i;
 
@@ -2220,8 +2213,7 @@ void Client::DoBazaarInspect(BazaarInspect_Struct &in)
 			item.aug_slot_2,
 			item.aug_slot_3,
 			item.aug_slot_4,
-			item.aug_slot_5,
-			item.aug_slot_6
+			item.aug_slot_5
 		)
 	);
 
@@ -2311,8 +2303,7 @@ void Client::BuyTraderItemOutsideBazaar(TraderBuy_Struct *tbs, const EQApplicati
 			trader_item.aug_slot_2,
 			trader_item.aug_slot_3,
 			trader_item.aug_slot_4,
-			trader_item.aug_slot_5,
-			trader_item.aug_slot_6
+			trader_item.aug_slot_5
 		)
 	);
 
@@ -2435,7 +2426,6 @@ void Client::BuyTraderItemOutsideBazaar(TraderBuy_Struct *tbs, const EQApplicati
 	parcel_out.aug_slot_3 = buy_item->GetAugmentItemID(2);
 	parcel_out.aug_slot_4 = buy_item->GetAugmentItemID(3);
 	parcel_out.aug_slot_5 = buy_item->GetAugmentItemID(4);
-	parcel_out.aug_slot_6 = buy_item->GetAugmentItemID(5);
 	parcel_out.char_id    = CharacterID();
 	parcel_out.slot_id    = next_slot;
 	parcel_out.id         = 0;
@@ -2467,7 +2457,6 @@ void Client::BuyTraderItemOutsideBazaar(TraderBuy_Struct *tbs, const EQApplicati
 		e.augment_3_id     = parcel_out.aug_slot_3;
 		e.augment_4_id     = parcel_out.aug_slot_4;
 		e.augment_5_id     = parcel_out.aug_slot_5;
-		e.augment_6_id     = parcel_out.aug_slot_6;
 		e.quantity         = tbs->quantity;
 		e.charges          = buy_item->IsStackable() ? 1 : charges;
 		e.sent_date        = parcel_out.sent_date;
@@ -2508,7 +2497,6 @@ void Client::BuyTraderItemOutsideBazaar(TraderBuy_Struct *tbs, const EQApplicati
 	out_data->item_aug_3              = buy_item->GetAugmentItemID(2);
 	out_data->item_aug_4              = buy_item->GetAugmentItemID(3);
 	out_data->item_aug_5              = buy_item->GetAugmentItemID(4);
-	out_data->item_aug_6              = buy_item->GetAugmentItemID(5);
 	out_data->item_quantity_available = trader_item.item_charges;
 	out_data->id                      = trader_item.id;
 	strn0cpy(out_data->trader_buy_struct.buyer_name, GetCleanName(), sizeof(out_data->trader_buy_struct.buyer_name));

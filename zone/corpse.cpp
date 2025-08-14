@@ -701,7 +701,6 @@ bool Corpse::Save()
 		e.aug_3               = item->aug_3;
 		e.aug_4               = item->aug_4;
 		e.aug_5               = item->aug_5;
-		e.aug_6               = item->aug_6;
 		e.attuned             = item->attuned;
 		e.custom_data         = item->custom_data;
 		e.ornamenticon        = item->ornamenticon;
@@ -2396,7 +2395,6 @@ Corpse *Corpse::LoadCharacterCorpse(
 				.aug_3      = i.aug_3,
 				.aug_4      = i.aug_4,
 				.aug_5      = i.aug_5,
-				.aug_6      = static_cast<uint32>(i.aug_6),
 				.attuned    = static_cast<bool>(i.attuned)
 			}
 		);
