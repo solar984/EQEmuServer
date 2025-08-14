@@ -16647,9 +16647,6 @@ void Client::Handle_OP_EvolutionTargetLink(const EQApplicationPacket* app)
 	struct EvolutionTargetLink_Struct* link = (EvolutionTargetLink_Struct*)app->pBuffer;
 	const EQ::ItemData* item = database.GetItem(link->final_item_id);
 
-	Message(15, "four = %d, current_item_id = %d, final_item_id = %d, level = %d, link_hash = %08x, shift = %d",
-		link->four, link->current_item_id, link->final_item_id, link->level, link->link_hash, link->shift);
-
 	EQ::ItemInstance* inst =
 		database.CreateItem(item, item->MaxCharges);
 	if (inst) {
