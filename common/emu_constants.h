@@ -271,7 +271,7 @@ namespace EQ
 		using UF::constants::CHARACTER_CREATION_LIMIT;
 
 		const size_t SAY_LINK_OPENER_SIZE = 1;
-		using SoF::constants::SAY_LINK_BODY_SIZE;
+		using Titanium::constants::SAY_LINK_BODY_SIZE;
 		const size_t SAY_LINK_TEXT_SIZE = 200; // this may be varied until it breaks something (tested:374) - the others are constant
 		const size_t SAY_LINK_CLOSER_SIZE = 1;
 		const size_t SAY_LINK_MAXIMUM_SIZE = (SAY_LINK_OPENER_SIZE + SAY_LINK_BODY_SIZE + SAY_LINK_TEXT_SIZE + SAY_LINK_CLOSER_SIZE);

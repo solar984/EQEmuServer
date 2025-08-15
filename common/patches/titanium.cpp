@@ -3775,18 +3775,13 @@ namespace Titanium
 					continue;
 				}
 
-				// Idx:  0 1     6     11    16    21    26    31 32   36 37    42       (Source)
-				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X XXXXX XXXXXXXX (50)
-				// 6.2:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X       XXXXXXXX (45)
-				// Diff:                                                 ^^^^^
+				// Idx:  0 1     6     11    16    21    26    31 32   36 37       (Source)
+				
+				// 6.2:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X XXXXXXXX (45)
+				// Diff:                                                 
 
 				titanium_saylink.push_back('\x12');
-				titanium_saylink.append(segments[segment_iter].substr(0, 37));
-				titanium_saylink.append(segments[segment_iter].substr(42, 5));
-
-				titanium_saylink.push_back('F');
-
-				titanium_saylink.append(segments[segment_iter].substr(48));
+				titanium_saylink.append(segments[segment_iter]);
 				titanium_saylink.push_back('\x12');
 			}
 			else {

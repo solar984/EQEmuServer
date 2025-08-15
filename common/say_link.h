@@ -58,7 +58,6 @@ namespace EQ
 		uint8 is_evolving;		/* %1X */
 		uint32 evolve_group;	/* %04X */
 		uint8 evolve_level;		/* %01X */
-		uint32 ornament_icon;	/* %05X */
 		uint32 hash;			/* %08X */
 	};
 
@@ -87,7 +86,6 @@ namespace EQ
 		void SetProxyIsEvolving(uint8 proxy_is_evolving) { m_LinkProxyStruct.is_evolving = proxy_is_evolving; }
 		void SetProxyEvolveGroup(uint32 proxy_evolve_group) { m_LinkProxyStruct.evolve_group = proxy_evolve_group; }
 		void SetProxyEvolveLevel(uint8 proxy_evolve_level) { m_LinkProxyStruct.evolve_level = proxy_evolve_level; }
-		void SetProxyOrnamentIcon(uint32 proxy_ornament_icon) { m_LinkProxyStruct.ornament_icon = proxy_ornament_icon; }
 		void SetProxyHash(uint32 proxy_hash) { m_LinkProxyStruct.hash = proxy_hash; }
 
 		void SetProxyText(const char* proxy_text) { m_LinkProxyStruct.text = proxy_text; } // overrides standard text use
