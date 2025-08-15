@@ -107,37 +107,37 @@ namespace EQ
 		using namespace RoF2::invtype::enum_;
 
 		using RoF2::invtype::POSSESSIONS_SIZE;
-		using RoF2::invtype::BANK_SIZE;
-		using RoF2::invtype::SHARED_BANK_SIZE;
-		using RoF2::invtype::TRADE_SIZE;
-		using RoF2::invtype::WORLD_SIZE;
-		using RoF2::invtype::LIMBO_SIZE;
-		using RoF2::invtype::TRIBUTE_SIZE;
+		using SoF::invtype::BANK_SIZE;
+		using Titanium::invtype::SHARED_BANK_SIZE;
+		using Titanium::invtype::TRADE_SIZE;
+		using Titanium::invtype::WORLD_SIZE;
+		using Titanium::invtype::LIMBO_SIZE;
+		using Titanium::invtype::TRIBUTE_SIZE;
 		using RoF2::invtype::TROPHY_TRIBUTE_SIZE;
-		using RoF2::invtype::GUILD_TRIBUTE_SIZE;
+		using Titanium::invtype::GUILD_TRIBUTE_SIZE;
 		using RoF2::invtype::MERCHANT_SIZE;
 		using RoF2::invtype::DELETED_SIZE;
 		using RoF2::invtype::CORPSE_SIZE;
 		using RoF2::invtype::BAZAAR_SIZE;
-		using RoF2::invtype::INSPECT_SIZE;
+		using SoF::invtype::INSPECT_SIZE;
 		using RoF2::invtype::REAL_ESTATE_SIZE;
 		using RoF2::invtype::VIEW_MOD_PC_SIZE;
-		using RoF2::invtype::VIEW_MOD_BANK_SIZE;
-		using RoF2::invtype::VIEW_MOD_SHARED_BANK_SIZE;
-		using RoF2::invtype::VIEW_MOD_LIMBO_SIZE;
-		using RoF2::invtype::ALT_STORAGE_SIZE;
-		using RoF2::invtype::ARCHIVED_SIZE;
+		using SoF::invtype::VIEW_MOD_BANK_SIZE;
+		using Titanium::invtype::VIEW_MOD_SHARED_BANK_SIZE;
+		using Titanium::invtype::VIEW_MOD_LIMBO_SIZE;
+		using Titanium::invtype::ALT_STORAGE_SIZE;
+		using Titanium::invtype::ARCHIVED_SIZE;
 		using RoF2::invtype::MAIL_SIZE;
 		using RoF2::invtype::GUILD_TROPHY_TRIBUTE_SIZE;
 		using RoF2::invtype::KRONO_SIZE;
 		using RoF2::invtype::GUILD_BANK_MAIN_SIZE;
 		using RoF2::invtype::GUILD_BANK_DEPOSIT_SIZE;
-		using RoF2::invtype::OTHER_SIZE;
+		using Titanium::invtype::OTHER_SIZE;
 
 		using Titanium::invtype::TRADE_NPC_SIZE;
 
-		using RoF2::invtype::TYPE_INVALID;
-		using RoF2::invtype::TYPE_BEGIN;
+		using Titanium::invtype::TYPE_INVALID;
+		using Titanium::invtype::TYPE_BEGIN;
 		using RoF2::invtype::TYPE_END;
 		using RoF2::invtype::TYPE_COUNT;
 
@@ -158,28 +158,28 @@ namespace EQ
 	namespace invslot {
 		using namespace RoF2::invslot::enum_;
 
-		using RoF2::invslot::SLOT_INVALID;
-		using RoF2::invslot::SLOT_BEGIN;
+		using Titanium::invslot::SLOT_INVALID;
+		using Titanium::invslot::SLOT_BEGIN;
 
 		using Titanium::invslot::SLOT_TRADESKILL_EXPERIMENT_COMBINE;
 
 		const int16 SLOT_AUGMENT_GENERIC_RETURN = 1001; // clients don't appear to use this method... (internal inventory return value)
 
-		using RoF2::invslot::POSSESSIONS_BEGIN;
+		using Titanium::invslot::POSSESSIONS_BEGIN;
 		using RoF2::invslot::POSSESSIONS_END;
 		using RoF2::invslot::POSSESSIONS_COUNT;
 
-		using RoF2::invslot::EQUIPMENT_BEGIN;
-		using RoF2::invslot::EQUIPMENT_END;
-		using RoF2::invslot::EQUIPMENT_COUNT;
+		using Titanium::invslot::EQUIPMENT_BEGIN;
+		using SoF::invslot::EQUIPMENT_END;
+		using SoF::invslot::EQUIPMENT_COUNT;
 
-		using RoF2::invslot::GENERAL_BEGIN;
+		using SoF::invslot::GENERAL_BEGIN;
 		using RoF2::invslot::GENERAL_END;
 		using RoF2::invslot::GENERAL_COUNT;
 
-		using RoF2::invslot::BONUS_BEGIN;
-		using RoF2::invslot::BONUS_STAT_END;
-		using RoF2::invslot::BONUS_SKILL_END;
+		using Titanium::invslot::BONUS_BEGIN;
+		using SoF::invslot::BONUS_STAT_END;
+		using SoF::invslot::BONUS_SKILL_END;
 
 		using Titanium::invslot::BANK_BEGIN;
 		using SoF::invslot::BANK_END;
@@ -204,9 +204,9 @@ namespace EQ
 		const int16 CORPSE_BEGIN = invslot::slotGeneral1;
 		const int16 CORPSE_END   = CORPSE_BEGIN + invslot::slotCursor;
 
-		using RoF2::invslot::EQUIPMENT_BITMASK;
+		using SoF::invslot::EQUIPMENT_BITMASK;
 		using RoF2::invslot::GENERAL_BITMASK;
-		using RoF2::invslot::CURSOR_BITMASK;
+		using Titanium::invslot::CURSOR_BITMASK;
 		using RoF2::invslot::POSSESSIONS_BITMASK;
 		using RoF2::invslot::CORPSE_BITMASK;
 
@@ -264,15 +264,15 @@ namespace EQ
 	namespace constants {
 		const EQ::versions::ClientVersion CHARACTER_CREATION_CLIENT = EQ::versions::ClientVersion::Titanium;
 
-		using UF::constants::EXPANSION;
-		using UF::constants::EXPANSION_BIT;
-		using UF::constants::EXPANSIONS_MASK;
+		using Titanium::constants::EXPANSION;
+		using Titanium::constants::EXPANSION_BIT;
+		using Titanium::constants::EXPANSIONS_MASK;
 
-		using UF::constants::CHARACTER_CREATION_LIMIT;
+		using Titanium::constants::CHARACTER_CREATION_LIMIT;
 
 		const size_t SAY_LINK_OPENER_SIZE = 1;
 		using Titanium::constants::SAY_LINK_BODY_SIZE;
-		const size_t SAY_LINK_TEXT_SIZE = 200; // this may be varied until it breaks something (tested:374) - the others are constant
+		const size_t SAY_LINK_TEXT_SIZE = 250; // this may be varied until it breaks something (tested:374) - the others are constant
 		const size_t SAY_LINK_CLOSER_SIZE = 1;
 		const size_t SAY_LINK_MAXIMUM_SIZE = (SAY_LINK_OPENER_SIZE + SAY_LINK_BODY_SIZE + SAY_LINK_TEXT_SIZE + SAY_LINK_CLOSER_SIZE);
 
@@ -387,17 +387,17 @@ namespace EQ
 	} /*constants*/
 
 	namespace profile {
-		using RoF2::profile::BANDOLIERS_SIZE;
-		using RoF2::profile::BANDOLIER_ITEM_COUNT;
+		using Titanium::profile::BANDOLIERS_SIZE;
+		using Titanium::profile::BANDOLIER_ITEM_COUNT;
 
-		using RoF2::profile::POTION_BELT_SIZE;
+		using Titanium::profile::POTION_BELT_SIZE;
 
-		using RoF2::profile::SKILL_ARRAY_SIZE;
+		using Titanium::profile::SKILL_ARRAY_SIZE;
 
 	} // namespace profile
 
 	namespace behavior {
-		using RoF2::behavior::CoinHasWeight;
+		using Titanium::behavior::CoinHasWeight;
 
 	} // namespace behavior
 
@@ -423,17 +423,17 @@ namespace EQ
 			AltAbility = 0xFF
 		};
 
-		using RoF2::spells::SPELL_ID_MAX;
-		using RoF2::spells::SPELLBOOK_SIZE;
-		using UF::spells::SPELL_GEM_COUNT; // RoF+ clients define more than UF client..but, they are not valid beyond UF
+		using Titanium::spells::SPELL_ID_MAX;
+		using Titanium::spells::SPELLBOOK_SIZE;
+		using Titanium::spells::SPELL_GEM_COUNT; // RoF+ clients define more than UF client..but, they are not valid beyond UF
 
-		using RoF2::spells::LONG_BUFFS;
-		using RoF2::spells::SHORT_BUFFS;
-		using RoF2::spells::DISC_BUFFS;
-		using RoF2::spells::TOTAL_BUFFS;
-		using RoF2::spells::NPC_BUFFS;
-		using RoF2::spells::PET_BUFFS;
-		using RoF2::spells::MERC_BUFFS;
+		using Titanium::spells::LONG_BUFFS;
+		using Titanium::spells::SHORT_BUFFS;
+		using Titanium::spells::DISC_BUFFS;
+		using Titanium::spells::TOTAL_BUFFS;
+		using Titanium::spells::NPC_BUFFS;
+		using Titanium::spells::PET_BUFFS;
+		using SoD::spells::MERC_BUFFS;
 
 	} // namespace spells
 
