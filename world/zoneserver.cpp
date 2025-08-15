@@ -1630,7 +1630,6 @@ void ZoneServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p) {
 				out->guild_id      = in->guild_id;
 				out->guild_favor   = guild->tribute.favor;
 				out->tribute_timer = guild_mgr.GetGuildTributeTimeRemaining(in->guild_id);
-				out->trophy_timer  = 0;
 
 				ZSList::Instance()->SendPacketToZonesWithGuild(in->guild_id, sp);
 				safe_delete(sp);

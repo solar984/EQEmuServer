@@ -3511,7 +3511,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 		data->guild_id              = in->guild_id;
 		data->no_donations          = in->member_favor;
 		data->tribute_toggle        = in->member_enabled ? true : false;
-		data->tribute_trophy_toggle = 0; // not yet implemented
 		data->time                  = in->member_time;
 		data->command               = 1;
 		strn0cpy(data->player_name, in->player_name, sizeof(data->player_name));
@@ -3553,7 +3552,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 		strn0cpy(data->player_name, in->player_name, sizeof(data->player_name));
 		data->no_donations = in->no_donations;
 		data->tribute_toggle = in->tribute_toggle ? true : false;
-		data->tribute_trophy_toggle = 0; //not yet implemented
 		data->time = in->member_last_donated;
 		data->command = in->command;
 
@@ -3600,7 +3598,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 			gtsa->guild_id = in->guild_id;
 			gtsa->guild_favor = guild->tribute.favor;
 			gtsa->tribute_timer = guild->tribute.time_remaining;
-			gtsa->trophy_timer = 0; //not yet implemented
 
 			entity_list.QueueClientsGuild(outapp, in->guild_id);
 			safe_delete(outapp);
@@ -3652,7 +3649,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 			gtsa->guild_id = in->guild_id;
 			gtsa->guild_favor = guild->tribute.favor;
 			gtsa->tribute_timer = guild->tribute.time_remaining;
-			gtsa->trophy_timer = 0; //not yet implemented
 
 			entity_list.QueueClientsGuild(outapp, in->guild_id);
 			safe_delete(outapp);

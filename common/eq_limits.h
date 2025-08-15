@@ -81,34 +81,34 @@ namespace EQ
 			struct InventoryTypeSize_Struct { // should reflect count and naming conventions referenced in emu_constants.h
 				int16 Possessions,	Bank,				SharedBank;
 				int16 Trade,		World,				Limbo;
-				int16 Tribute,		TrophyTribute,		GuildTribute;
-				int16 Merchant,		Deleted,			Corpse;
-				int16 Bazaar,		Inspect,			RealEstate;
+				int16 Tribute,							GuildTribute;
+				int16 Merchant,							Corpse;
+				int16 Bazaar,		Inspect						;
 				int16 ViewMODPC,	ViewMODBank,		ViewMODSharedBank;
 				int16 ViewMODLimbo,	AltStorage,			Archived;
-				int16 Mail,			GuildTrophyTribute,	Krono;
-				int16 GuildBankMain,GuildBankDeposit,   Other;
+				
+				int16									Other;
 
 				InventoryTypeSize_Struct(
 					int16 Possessions,	int16 Bank,					int16 SharedBank,
 					int16 Trade,		int16 World,				int16 Limbo,
-					int16 Tribute,		int16 TrophyTribute,		int16 GuildTribute,
-					int16 Merchant,		int16 Deleted,				int16 Corpse,
-					int16 Bazaar,		int16 Inspect,				int16 RealEstate,
+					int16 Tribute,									int16 GuildTribute,
+					int16 Merchant,									int16 Corpse,
+					int16 Bazaar,		int16 Inspect,
 					int16 ViewMODPC,	int16 ViewMODBank,			int16 ViewMODSharedBank,
 					int16 ViewMODLimbo,	int16 AltStorage,			int16 Archived,
-					int16 Mail,			int16 GuildTrophyTribute,	int16 Krono,
-					int16 GuildBankMain,int16 GuildBankDeposit,     int16 Other
+
+																	int16 Other
 				) :
 					Possessions(Possessions),	Bank(Bank),								SharedBank(SharedBank),
 					Trade(Trade),				World(World),							Limbo(Limbo),
-					Tribute(Tribute),			TrophyTribute(TrophyTribute),			GuildTribute(GuildTribute),
-					Merchant(Merchant),			Deleted(Deleted),						Corpse(Corpse),
-					Bazaar(Bazaar),				Inspect(Inspect),						RealEstate(RealEstate),
+					Tribute(Tribute),													GuildTribute(GuildTribute),
+					Merchant(Merchant),													Corpse(Corpse),
+					Bazaar(Bazaar),				Inspect(Inspect),
 					ViewMODPC(ViewMODPC),		ViewMODBank(ViewMODBank),				ViewMODSharedBank(ViewMODSharedBank),
 					ViewMODLimbo(ViewMODLimbo),	AltStorage(AltStorage),					Archived(Archived),
-					Mail(Mail),					GuildTrophyTribute(GuildTrophyTribute),	Krono(Krono),
-					GuildBankMain(GuildBankMain), GuildBankDeposit(GuildBankDeposit),   Other(Other)
+					
+					Other(Other)
 				{ }
 			};
 

@@ -100,11 +100,11 @@ static std::map<uint8, std::string> comparison_types = {
 // local definitions are the result of using hybrid-client or server-only values and methods
 namespace EQ
 {
-	using RoF2::IINVALID;
-	using RoF2::INULL;
+	using Titanium::IINVALID;
+	using Titanium::INULL;
 
 	namespace invtype {
-		using namespace RoF2::invtype::enum_;
+		using namespace Titanium::invtype::enum_;
 
 		using RoF2::invtype::POSSESSIONS_SIZE;
 		using SoF::invtype::BANK_SIZE;
@@ -113,25 +113,17 @@ namespace EQ
 		using Titanium::invtype::WORLD_SIZE;
 		using Titanium::invtype::LIMBO_SIZE;
 		using Titanium::invtype::TRIBUTE_SIZE;
-		using RoF2::invtype::TROPHY_TRIBUTE_SIZE;
 		using Titanium::invtype::GUILD_TRIBUTE_SIZE;
-		using RoF2::invtype::MERCHANT_SIZE;
-		using RoF2::invtype::DELETED_SIZE;
+		using Titanium::invtype::MERCHANT_SIZE;
 		using RoF2::invtype::CORPSE_SIZE;
-		using RoF2::invtype::BAZAAR_SIZE;
+		using Titanium::invtype::BAZAAR_SIZE;
 		using SoF::invtype::INSPECT_SIZE;
-		using RoF2::invtype::REAL_ESTATE_SIZE;
 		using RoF2::invtype::VIEW_MOD_PC_SIZE;
 		using SoF::invtype::VIEW_MOD_BANK_SIZE;
 		using Titanium::invtype::VIEW_MOD_SHARED_BANK_SIZE;
 		using Titanium::invtype::VIEW_MOD_LIMBO_SIZE;
 		using Titanium::invtype::ALT_STORAGE_SIZE;
 		using Titanium::invtype::ARCHIVED_SIZE;
-		using RoF2::invtype::MAIL_SIZE;
-		using RoF2::invtype::GUILD_TROPHY_TRIBUTE_SIZE;
-		using RoF2::invtype::KRONO_SIZE;
-		using RoF2::invtype::GUILD_BANK_MAIN_SIZE;
-		using RoF2::invtype::GUILD_BANK_DEPOSIT_SIZE;
 		using Titanium::invtype::OTHER_SIZE;
 
 		using Titanium::invtype::TRADE_NPC_SIZE;
@@ -142,7 +134,7 @@ namespace EQ
 		using RoF2::invtype::TYPE_COUNT;
 
 		int16 GetInvTypeSize(int16 inv_type);
-		using RoF2::invtype::GetInvTypeName;
+		using Titanium::invtype::GetInvTypeName;
 
 	} // namespace invtype
 

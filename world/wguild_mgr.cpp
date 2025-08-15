@@ -451,7 +451,6 @@ void WorldGuildManager::SendGuildTributeFavorAndTimer(uint32 guild_id, uint32 fa
 	data->guild_id      = guild_id;
 	data->guild_favor   = favor;
 	data->tribute_timer = time;
-	data->trophy_timer  = 0;
 
 	ZSList::Instance()->SendPacketToZonesWithGuild(guild_id, sp);
 	safe_delete(sp)
