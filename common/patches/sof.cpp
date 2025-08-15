@@ -3532,21 +3532,13 @@ namespace SoF
 					continue;
 				}
 
-				// Idx:  0 1     6     11    16    21    26    31    36 37   41 43    48       (Source)
-				// RoF2: X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX XX XXXXX XXXXXXXX (56)
-				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX       X  XXXX  X XXXXX XXXXXXXX (50)
-				// Diff:                                       ^^^^^         ^
+				// Idx:  0 1     6     11    16    21    26    31 32   36 37    42       (Source)
+				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X XXXXX XXXXXXXX (50)
+				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X XXXXX XXXXXXXX (50)
+				// Diff: 
 
 				sof_saylink.push_back('\x12');
-				sof_saylink.append(segments[segment_iter].substr(0, 31));
-				sof_saylink.append(segments[segment_iter].substr(36, 5));
-
-				if (segments[segment_iter][41] == '0')
-					sof_saylink.push_back(segments[segment_iter][42]);
-				else
-					sof_saylink.push_back('F');
-
-				sof_saylink.append(segments[segment_iter].substr(43));
+				sof_saylink.append(segments[segment_iter]);
 				sof_saylink.push_back('\x12');
 			}
 			else {

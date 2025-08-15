@@ -43,12 +43,11 @@ bool EQ::saylink::DegenerateLinkBody(SayLinkBody_Struct &say_link_body_struct, c
 	say_link_body_struct.augment_3     = (uint32) strtol(say_link_body.substr(16, 5).c_str(), nullptr, 16);
 	say_link_body_struct.augment_4     = (uint32) strtol(say_link_body.substr(21, 5).c_str(), nullptr, 16);
 	say_link_body_struct.augment_5     = (uint32) strtol(say_link_body.substr(26, 5).c_str(), nullptr, 16);
-	say_link_body_struct.augment_6     = (uint32) strtol(say_link_body.substr(31, 5).c_str(), nullptr, 16);
-	say_link_body_struct.is_evolving   = (uint8) strtol(say_link_body.substr(36, 1).c_str(), nullptr, 16);
-	say_link_body_struct.evolve_group  = (uint32) strtol(say_link_body.substr(37, 4).c_str(), nullptr, 16);
-	say_link_body_struct.evolve_level  = (uint8) strtol(say_link_body.substr(41, 2).c_str(), nullptr, 16);
-	say_link_body_struct.ornament_icon = (uint32) strtol(say_link_body.substr(43, 5).c_str(), nullptr, 16);
-	say_link_body_struct.hash          = (uint32) strtol(say_link_body.substr(48, 8).c_str(), nullptr, 16);
+	say_link_body_struct.is_evolving   = (uint8) strtol(say_link_body.substr(31, 1).c_str(), nullptr, 16);
+	say_link_body_struct.evolve_group  = (uint32) strtol(say_link_body.substr(32, 4).c_str(), nullptr, 16);
+	say_link_body_struct.evolve_level  = (uint8) strtol(say_link_body.substr(36, 1).c_str(), nullptr, 16);
+	say_link_body_struct.ornament_icon = (uint32) strtol(say_link_body.substr(37, 5).c_str(), nullptr, 16);
+	say_link_body_struct.hash          = (uint32) strtol(say_link_body.substr(42, 8).c_str(), nullptr, 16);
 
 	return true;
 }
@@ -56,7 +55,7 @@ bool EQ::saylink::DegenerateLinkBody(SayLinkBody_Struct &say_link_body_struct, c
 bool EQ::saylink::GenerateLinkBody(std::string &say_link_body, const SayLinkBody_Struct &say_link_body_struct)
 {
 	say_link_body = StringFormat(
-		"%1X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%1X" "%04X" "%02X" "%05X" "%08X",
+		"%1X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%1X" "%04X" "%1X" "%05X" "%08X",
 		(0x0F & say_link_body_struct.action_id),
 		(0x000FFFFF & say_link_body_struct.item_id),
 		(0x000FFFFF & say_link_body_struct.augment_1),
@@ -64,10 +63,9 @@ bool EQ::saylink::GenerateLinkBody(std::string &say_link_body, const SayLinkBody
 		(0x000FFFFF & say_link_body_struct.augment_3),
 		(0x000FFFFF & say_link_body_struct.augment_4),
 		(0x000FFFFF & say_link_body_struct.augment_5),
-		(0x000FFFFF & say_link_body_struct.augment_6),
 		(0x0F & say_link_body_struct.is_evolving),
 		(0x0000FFFF & say_link_body_struct.evolve_group),
-		(0xFF & say_link_body_struct.evolve_level),
+		(0x0F & say_link_body_struct.evolve_level),
 		(0x000FFFFF & say_link_body_struct.ornament_icon),
 		(0xFFFFFFFF & say_link_body_struct.hash)
 	);
@@ -142,10 +140,8 @@ void EQ::SayLinkEngine::generate_body()
 	/*
 	Current server mask: EQClientRoF2
 
-	RoF2: "%1X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%1X" "%04X" "%02X" "%05X" "%08X" (56)
-	RoF:  "%1X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%1X" "%04X" "%1X"  "%05X" "%08X" (55)
-	SoF:  "%1X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X"        "%1X" "%04X" "%1X"  "%05X" "%08X" (50)
-	6.2:  "%1X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X"        "%1X" "%04X" "%1X"         "%08X" (45)
+	SoF:  "%1X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%1X" "%04X" "%1X"  "%05X" "%08X" (50)
+	6.2:  "%1X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%1X" "%04X" "%1X"         "%08X" (45)
 	*/
 
 	memset(&m_LinkBodyStruct, 0, sizeof(SayLinkBody_Struct));
@@ -216,9 +212,6 @@ void EQ::SayLinkEngine::generate_body()
 	if (m_LinkProxyStruct.augment_5) {
 		m_LinkBodyStruct.augment_5 = m_LinkProxyStruct.augment_5;
 	}
-	if (m_LinkProxyStruct.augment_6) {
-		m_LinkBodyStruct.augment_6 = m_LinkProxyStruct.augment_6;
-	}
 	if (m_LinkProxyStruct.is_evolving) {
 		m_LinkBodyStruct.is_evolving = m_LinkProxyStruct.is_evolving;
 	}
@@ -241,7 +234,7 @@ void EQ::SayLinkEngine::generate_body()
 	}
 
 	m_LinkBody = StringFormat(
-		"%1X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%1X" "%04X" "%02X" "%05X" "%08X",
+		"%1X" "%05X" "%05X" "%05X" "%05X" "%05X" "%05X" "%1X" "%04X" "%1X" "%05X" "%08X",
 		(0x0F & m_LinkBodyStruct.action_id),
 		(0x000FFFFF & m_LinkBodyStruct.item_id),
 		(0x000FFFFF & m_LinkBodyStruct.augment_1),
@@ -249,10 +242,9 @@ void EQ::SayLinkEngine::generate_body()
 		(0x000FFFFF & m_LinkBodyStruct.augment_3),
 		(0x000FFFFF & m_LinkBodyStruct.augment_4),
 		(0x000FFFFF & m_LinkBodyStruct.augment_5),
-		(0x000FFFFF & m_LinkBodyStruct.augment_6),
 		(0x0F & m_LinkBodyStruct.is_evolving),
 		(0x0000FFFF & m_LinkBodyStruct.evolve_group),
-		(0xFF & m_LinkBodyStruct.evolve_level),
+		(0x0F & m_LinkBodyStruct.evolve_level),
 		(0x000FFFFF & m_LinkBodyStruct.ornament_icon),
 		(0xFFFFFFFF & m_LinkBodyStruct.hash)
 	);

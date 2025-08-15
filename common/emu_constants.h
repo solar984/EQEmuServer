@@ -264,15 +264,15 @@ namespace EQ
 	namespace constants {
 		const EQ::versions::ClientVersion CHARACTER_CREATION_CLIENT = EQ::versions::ClientVersion::Titanium;
 
-		using RoF2::constants::EXPANSION;
-		using RoF2::constants::EXPANSION_BIT;
-		using RoF2::constants::EXPANSIONS_MASK;
+		using UF::constants::EXPANSION;
+		using UF::constants::EXPANSION_BIT;
+		using UF::constants::EXPANSIONS_MASK;
 
-		using RoF2::constants::CHARACTER_CREATION_LIMIT;
+		using UF::constants::CHARACTER_CREATION_LIMIT;
 
 		const size_t SAY_LINK_OPENER_SIZE = 1;
-		using RoF2::constants::SAY_LINK_BODY_SIZE;
-		const size_t SAY_LINK_TEXT_SIZE = 256; // this may be varied until it breaks something (tested:374) - the others are constant
+		using SoF::constants::SAY_LINK_BODY_SIZE;
+		const size_t SAY_LINK_TEXT_SIZE = 200; // this may be varied until it breaks something (tested:374) - the others are constant
 		const size_t SAY_LINK_CLOSER_SIZE = 1;
 		const size_t SAY_LINK_MAXIMUM_SIZE = (SAY_LINK_OPENER_SIZE + SAY_LINK_BODY_SIZE + SAY_LINK_TEXT_SIZE + SAY_LINK_CLOSER_SIZE);
 

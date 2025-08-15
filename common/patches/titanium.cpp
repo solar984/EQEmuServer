@@ -3775,19 +3775,16 @@ namespace Titanium
 					continue;
 				}
 
-				// Idx:  0 1     6     11    16    21    26    31    36 37   41 43    48       (Source)
-				// RoF2: X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX XX XXXXX XXXXXXXX (56)
-				// 6.2:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX       X  XXXX  X       XXXXXXXX (45)
-				// Diff:                                       ^^^^^         ^  ^^^^^
+				// Idx:  0 1     6     11    16    21    26    31 32   36 37    42       (Source)
+				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X XXXXX XXXXXXXX (50)
+				// 6.2:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X       XXXXXXXX (45)
+				// Diff:                                                 ^^^^^
 
 				titanium_saylink.push_back('\x12');
-				titanium_saylink.append(segments[segment_iter].substr(0, 31));
-				titanium_saylink.append(segments[segment_iter].substr(36, 5));
+				titanium_saylink.append(segments[segment_iter].substr(0, 37));
+				titanium_saylink.append(segments[segment_iter].substr(42, 5));
 
-				if (segments[segment_iter][41] == '0')
-					titanium_saylink.push_back(segments[segment_iter][42]);
-				else
-					titanium_saylink.push_back('F');
+				titanium_saylink.push_back('F');
 
 				titanium_saylink.append(segments[segment_iter].substr(48));
 				titanium_saylink.push_back('\x12');

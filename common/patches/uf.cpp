@@ -5077,21 +5077,13 @@ namespace UF
 					continue;
 				}
 
-				// Idx:  0 1     6     11    16    21    26    31    36 37   41 43    48       (Source)
-				// RoF2: X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX XX XXXXX XXXXXXXX (56)
-				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX       X  XXXX  X XXXXX XXXXXXXX (50)
-				// Diff:                                       ^^^^^         ^
+				// Idx:  0 1     6     11    16    21    26    31 32   36 37    42       (Source)
+				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X XXXXX XXXXXXXX (50)
+				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X XXXXX XXXXXXXX (50)
+				// Diff: 
 
 				ufSayLink.push_back('\x12');
-				ufSayLink.append(segments[segment_iter].substr(0, 31));
-				ufSayLink.append(segments[segment_iter].substr(36, 5));
-
-				if (segments[segment_iter][41] == '0')
-					ufSayLink.push_back(segments[segment_iter][42]);
-				else
-					ufSayLink.push_back('F');
-
-				ufSayLink.append(segments[segment_iter].substr(43));
+				ufSayLink.append(segments[segment_iter]);
 				ufSayLink.push_back('\x12');
 			}
 			else {

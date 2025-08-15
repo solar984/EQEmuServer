@@ -55,10 +55,9 @@ namespace EQ
 		uint32 augment_3;		/* %05X */
 		uint32 augment_4;		/* %05X */
 		uint32 augment_5;		/* %05X */
-		uint32 augment_6;		/* %05X */
 		uint8 is_evolving;		/* %1X */
 		uint32 evolve_group;	/* %04X */
-		uint8 evolve_level;		/* %02X */
+		uint8 evolve_level;		/* %01X */
 		uint32 ornament_icon;	/* %05X */
 		uint32 hash;			/* %08X */
 	};
@@ -85,7 +84,6 @@ namespace EQ
 		void SetProxyAugment3ID(uint32 proxy_augment_id) { m_LinkProxyStruct.augment_3 = proxy_augment_id; }
 		void SetProxyAugment4ID(uint32 proxy_augment_id) { m_LinkProxyStruct.augment_4 = proxy_augment_id; }
 		void SetProxyAugment5ID(uint32 proxy_augment_id) { m_LinkProxyStruct.augment_5 = proxy_augment_id; }
-		void SetProxyAugment6ID(uint32 proxy_augment_id) { m_LinkProxyStruct.augment_6 = proxy_augment_id; }
 		void SetProxyIsEvolving(uint8 proxy_is_evolving) { m_LinkProxyStruct.is_evolving = proxy_is_evolving; }
 		void SetProxyEvolveGroup(uint32 proxy_evolve_group) { m_LinkProxyStruct.evolve_group = proxy_evolve_group; }
 		void SetProxyEvolveLevel(uint8 proxy_evolve_level) { m_LinkProxyStruct.evolve_level = proxy_evolve_level; }
