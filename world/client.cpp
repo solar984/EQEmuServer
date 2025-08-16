@@ -2374,9 +2374,6 @@ bool Client::StoreCharacter(
 			e.augment_four        = inst->GetAugmentItemID(EQ::invaug::SOCKET_BEGIN + 3);
 			e.augment_five        = inst->GetAugmentItemID(EQ::invaug::SOCKET_END);
 			e.instnodrop          = inst->IsAttuned() ? 1 : 0;
-			e.ornament_icon       = inst->GetOrnamentationIcon();
-			e.ornament_idfile     = inst->GetOrnamentationIDFile();
-			e.ornament_hero_model = inst->GetOrnamentHeroModel();
 			e.guid                = inst->GetSerialNumber();
 
 			v.emplace_back(e);

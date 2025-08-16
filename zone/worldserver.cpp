@@ -3707,7 +3707,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 					.augment_3_id         = item->GetAugmentItemID(2),
 					.augment_4_id         = item->GetAugmentItemID(3),
 					.augment_5_id         = item->GetAugmentItemID(4),
-					.augment_6_id         = item->GetAugmentItemID(5),
 					.item_name            = in->trader_buy_struct.item_name,
 					.buyer_id             = in->buyer_id,
 					.buyer_name           = in->trader_buy_struct.buyer_name,

@@ -3666,8 +3666,8 @@ namespace RoF
 		OUT(material);
 		OUT(unknown06);
 		OUT(elite_material);
-		OUT(hero_forge_model);
-		OUT(unknown18);
+		//OUT(hero_forge_model);
+		//OUT(unknown18);
 		OUT(color.Color);
 		OUT(wear_slot_id);
 

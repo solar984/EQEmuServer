@@ -228,7 +228,6 @@ namespace PlayerEvent {
 		uint32      augment_3_id;
 		uint32      augment_4_id;
 		uint32      augment_5_id;
-		uint32      augment_6_id;
 		bool        attuned;
 
 		// cereal
@@ -258,7 +257,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, augment_3_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_4_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
 			CEREAL_NVP_IF_TRUE(ar, attuned);
 		}
 
@@ -275,7 +273,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_3_id),
 				CEREAL_NVP(augment_4_id),
 				CEREAL_NVP(augment_5_id),
-				CEREAL_NVP(augment_6_id),
 				CEREAL_NVP(attuned)
 			);
 		}
@@ -314,8 +311,6 @@ namespace PlayerEvent {
 		std::string augment_4_name;
 		uint32      augment_5_id;
 		std::string augment_5_name;
-		uint32      augment_6_id;
-		std::string augment_6_name;
 		std::string item_name;
 		uint16      charges;
 		bool        in_bag;
@@ -340,8 +335,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NOT_EMPTY(ar, augment_4_name);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
 			CEREAL_NVP_IF_NOT_EMPTY(ar, augment_5_name);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
-			CEREAL_NVP_IF_NOT_EMPTY(ar, augment_6_name);
 
 			ar(
 				CEREAL_NVP(item_name),
@@ -367,8 +360,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_4_name),
 				CEREAL_NVP(augment_5_id),
 				CEREAL_NVP(augment_5_name),
-				CEREAL_NVP(augment_6_id),
-				CEREAL_NVP(augment_6_name),
 				CEREAL_NVP(item_name),
 				CEREAL_NVP(charges),
 				CEREAL_NVP(in_bag)
@@ -508,7 +499,6 @@ namespace PlayerEvent {
 		uint32      augment_3_id;
 		uint32      augment_4_id;
 		uint32      augment_5_id;
-		uint32      augment_6_id;
 		std::string item_name;
 
 		template <class Archive>
@@ -532,7 +522,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, augment_3_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_4_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
 
 			ar(CEREAL_NVP(item_name));
 		}
@@ -547,7 +536,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_3_id),
 				CEREAL_NVP(augment_4_id),
 				CEREAL_NVP(augment_5_id),
-				CEREAL_NVP(augment_6_id),
 				CEREAL_NVP(item_name)
 			);
 		}
@@ -560,7 +548,6 @@ namespace PlayerEvent {
 		uint32      augment_3_id;
 		uint32      augment_4_id;
 		uint32      augment_5_id;
-		uint32      augment_6_id;
 		std::string item_name;
 
 		template <class Archive>
@@ -584,7 +571,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, augment_3_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_4_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
 
 			ar(CEREAL_NVP(item_name));
 		}
@@ -599,7 +585,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_3_id),
 				CEREAL_NVP(augment_4_id),
 				CEREAL_NVP(augment_5_id),
-				CEREAL_NVP(augment_6_id),
 				CEREAL_NVP(item_name)
 			);
 		}
@@ -614,7 +599,6 @@ namespace PlayerEvent {
 		uint32      augment_3_id;
 		uint32      augment_4_id;
 		uint32      augment_5_id;
-		uint32      augment_6_id;
 		bool        attuned;
 		std::string reason;
 
@@ -643,7 +627,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, augment_3_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_4_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
 
 			ar(
 				CEREAL_NVP(attuned),
@@ -663,7 +646,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_3_id),
 				CEREAL_NVP(augment_4_id),
 				CEREAL_NVP(augment_5_id),
-				CEREAL_NVP(augment_6_id),
 				CEREAL_NVP(attuned),
 				CEREAL_NVP(reason)
 			);
@@ -714,7 +696,6 @@ namespace PlayerEvent {
 		uint32      augment_3_id;
 		uint32      augment_4_id;
 		uint32      augment_5_id;
-		uint32      augment_6_id;
 		uint32      npc_id;
 		std::string corpse_name;
 
@@ -744,7 +725,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, augment_3_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_4_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
 
 			ar(
 				CEREAL_NVP(npc_id),
@@ -764,7 +744,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_3_id),
 				CEREAL_NVP(augment_4_id),
 				CEREAL_NVP(augment_5_id),
-				CEREAL_NVP(augment_6_id),
 				CEREAL_NVP(npc_id),
 				CEREAL_NVP(corpse_name)
 			);
@@ -982,7 +961,6 @@ namespace PlayerEvent {
 		uint32      augment_3_id;
 		uint32      augment_4_id;
 		uint32      augment_5_id;
-		uint32      augment_6_id;
 		std::string item_name;
 		int16       slot_id;
 		uint32      charges;
@@ -1009,7 +987,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, augment_3_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_4_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
 
 			ar(
 				CEREAL_NVP(item_name),
@@ -1028,7 +1005,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_3_id),
 				CEREAL_NVP(augment_4_id),
 				CEREAL_NVP(augment_5_id),
-				CEREAL_NVP(augment_6_id),
 				CEREAL_NVP(item_name),
 				CEREAL_NVP(slot_id),
 				CEREAL_NVP(charges)
@@ -1089,7 +1065,6 @@ namespace PlayerEvent {
 		uint32      augment_3_id;
 		uint32      augment_4_id;
 		uint32      augment_5_id;
-		uint32      augment_6_id;
 		std::string item_name;
 		uint32      trader_id;
 		std::string trader_name;
@@ -1121,7 +1096,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, augment_3_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_4_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
 
 			ar(
 				CEREAL_NVP(item_name),
@@ -1145,7 +1119,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_3_id),
 				CEREAL_NVP(augment_4_id),
 				CEREAL_NVP(augment_5_id),
-				CEREAL_NVP(augment_6_id),
 				CEREAL_NVP(item_name),
 				CEREAL_NVP(trader_id),
 				CEREAL_NVP(trader_name),
@@ -1165,7 +1138,6 @@ namespace PlayerEvent {
 		uint32      augment_3_id;
 		uint32      augment_4_id;
 		uint32      augment_5_id;
-		uint32      augment_6_id;
 		std::string item_name;
 		uint32      buyer_id;
 		std::string buyer_name;
@@ -1196,7 +1168,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, augment_3_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_4_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
 
 			ar(
 				CEREAL_NVP(item_name),
@@ -1220,7 +1191,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_3_id),
 				CEREAL_NVP(augment_4_id),
 				CEREAL_NVP(augment_5_id),
-				CEREAL_NVP(augment_6_id),
 				CEREAL_NVP(item_name),
 				CEREAL_NVP(buyer_id),
 				CEREAL_NVP(buyer_name),
@@ -1358,7 +1328,6 @@ namespace PlayerEvent {
 		uint32 augment_3_id;
 		uint32 augment_4_id;
 		uint32 augment_5_id;
-		uint32 augment_6_id;
 		int16  charges;
 		bool   attuned;
 		uint32 guild_favor;
@@ -1384,7 +1353,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, augment_3_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_4_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
 			CEREAL_NVP_IF_NONZERO(ar, charges);
 			CEREAL_NVP_IF_TRUE(ar, attuned);
 
@@ -1401,7 +1369,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_3_id),
 				CEREAL_NVP(augment_4_id),
 				CEREAL_NVP(augment_5_id),
-				CEREAL_NVP(augment_6_id),
 				CEREAL_NVP(charges),
 				CEREAL_NVP(attuned),
 				CEREAL_NVP(guild_favor)
@@ -1431,7 +1398,6 @@ namespace PlayerEvent {
 		uint32      augment_3_id;
 		uint32      augment_4_id;
 		uint32      augment_5_id;
-		uint32      augment_6_id;
 		uint32      quantity;
 		std::string from_player_name;
 		uint32      sent_date;
@@ -1457,7 +1423,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, augment_3_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_4_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
 
 			ar(
 				CEREAL_NVP(quantity),
@@ -1476,7 +1441,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_3_id),
 				CEREAL_NVP(augment_4_id),
 				CEREAL_NVP(augment_5_id),
-				CEREAL_NVP(augment_6_id),
 				CEREAL_NVP(quantity),
 				CEREAL_NVP(from_player_name),
 				CEREAL_NVP(sent_date)
@@ -1491,7 +1455,6 @@ namespace PlayerEvent {
 		uint32      augment_3_id;
 		uint32      augment_4_id;
 		uint32      augment_5_id;
-		uint32      augment_6_id;
 		uint32      quantity;
 		int32       charges;
 		std::string from_player_name;
@@ -1519,7 +1482,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, augment_3_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_4_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
 			CEREAL_NVP_IF_NONZERO(ar, charges);
 
 			ar(
@@ -1540,7 +1502,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_3_id),
 				CEREAL_NVP(augment_4_id),
 				CEREAL_NVP(augment_5_id),
-				CEREAL_NVP(augment_6_id),
 				CEREAL_NVP(quantity),
 				CEREAL_NVP(charges),
 				CEREAL_NVP(from_player_name),
@@ -1558,7 +1519,6 @@ namespace PlayerEvent {
 		uint32      augment_3_id;
 		uint32      augment_4_id;
 		uint32      augment_5_id;
-		uint32      augment_6_id;
 		uint32      quantity;
 		uint32      sent_date;
 		std::string from_name;
@@ -1585,7 +1545,6 @@ namespace PlayerEvent {
 			CEREAL_NVP_IF_NONZERO(ar, augment_3_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_4_id);
 			CEREAL_NVP_IF_NONZERO(ar, augment_5_id);
-			CEREAL_NVP_IF_NONZERO(ar, augment_6_id);
 
 			ar(
 				CEREAL_NVP(quantity),
@@ -1606,7 +1565,6 @@ namespace PlayerEvent {
 				CEREAL_NVP(augment_3_id),
 				CEREAL_NVP(augment_4_id),
 				CEREAL_NVP(augment_5_id),
-				CEREAL_NVP(augment_6_id),
 				CEREAL_NVP(quantity),
 				CEREAL_NVP(char_id),
 				CEREAL_NVP(from_name),

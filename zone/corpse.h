@@ -170,10 +170,7 @@ public:
 		uint32 aug4 = 0,
 		uint32 aug5 = 0,
 		bool attuned = false,
-		const std::string &custom_data = std::string(),
-		uint32 ornamenticon = 0,
-		uint32 ornamentidfile = 0,
-		uint32 ornament_hero_model = 0
+		const std::string &custom_data = std::string()
 	);
 
 	/* Corpse: Coin */

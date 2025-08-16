@@ -343,15 +343,10 @@ void WorldDatabase::GetCharSelectInfo(uint32 account_id, EQApplicationPacket **o
 				if (matslot > 6) {
 					uint32 item_id_file = 0;
 					// Weapon Models
-					if (inst->GetOrnamentationIDFile() != 0) {
-						item_id_file = inst->GetOrnamentationIDFile();
+
+					if (strlen(item->IDFile) > 2) {
+						item_id_file = Strings::ToInt(&item->IDFile[2]);
 						cse->Equip[matslot].Material = item_id_file;
-					}
-					else {
-						if (strlen(item->IDFile) > 2) {
-							item_id_file = Strings::ToInt(&item->IDFile[2]);
-							cse->Equip[matslot].Material = item_id_file;
-						}
 					}
 
 					if (matslot == EQ::textures::weaponPrimary) {
@@ -916,14 +911,6 @@ bool WorldDatabase::GetCharSelInventory(
 
 		if (!e.custom_data.empty()) {
 			inst->SetCustomDataString(e.custom_data);
-		}
-
-		if (e.ornament_icon != 0 || e.ornament_idfile != 0 || e.ornament_hero_model != 0) {
-			inst->SetOrnamentIcon(e.ornament_icon);
-			inst->SetOrnamentationIDFile(e.ornament_idfile);
-			inst->SetOrnamentHeroModel(e.ornament_hero_model);
-		} else if (item->HerosForgeModel > 0) {
-			inst->SetOrnamentHeroModel(item->HerosForgeModel);
 		}
 
 		inv->PutItem(e.slot_id, *inst);

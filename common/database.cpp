@@ -2212,51 +2212,6 @@ void Database::Decode(std::string &in)
 	}
 };
 
-void Database::PurgeCharacterParcels()
-{
-	auto filter  = fmt::format("sent_date < (NOW() - INTERVAL {} DAY)", RuleI(Parcel, ParcelPruneDelay));
-	auto results = CharacterParcelsRepository::GetWhere(*this, filter);
-	auto prune   = CharacterParcelsRepository::DeleteWhere(*this, filter);
-
-	PlayerEvent::ParcelDelete                  pd{};
-	PlayerEventLogsRepository::PlayerEventLogs pel{};
-	pel.event_type_id   = PlayerEvent::PARCEL_DELETE;
-	pel.event_type_name = PlayerEvent::EventName[pel.event_type_id];
-	std::stringstream ss;
-	for (auto const   &r: results) {
-		pd.from_name    = r.from_name;
-		pd.item_id      = r.item_id;
-		pd.augment_1_id = r.aug_slot_1;
-		pd.augment_2_id = r.aug_slot_2;
-		pd.augment_3_id = r.aug_slot_3;
-		pd.augment_4_id = r.aug_slot_4;
-		pd.augment_5_id = r.aug_slot_5;
-		pd.augment_6_id = r.aug_slot_6;
-		pd.note         = r.note;
-		pd.quantity     = r.quantity;
-		pd.sent_date    = r.sent_date;
-		pd.char_id      = r.char_id;
-		{
-			cereal::JSONOutputArchiveSingleLine ar(ss);
-			pd.serialize(ar);
-		}
-
-		pel.event_data = ss.str();
-		pel.created_at = std::time(nullptr);
-
-		PlayerEventLogs::Instance()->AddToQueue(pel);
-
-		ss.str("");
-		ss.clear();
-	}
-
-	LogInfo(
-		"Purged <yellow>[{}] parcels that were over <yellow>[{}] days old.",
-		results.size(),
-		RuleI(Parcel, ParcelPruneDelay)
-	);
-}
-
 void Database::ClearGuildOnlineStatus()
 {
 	GuildMembersRepository::ClearOnlineStatus(*this);

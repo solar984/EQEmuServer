@@ -2247,11 +2247,6 @@ bool Lua_Mob::HasTwoHanderEquipped() {
 	return self->HasTwoHanderEquipped();
 }
 
-uint32 Lua_Mob::GetHerosForgeModel(uint8 material_slot) {
-	Lua_Safe_Call_Int();
-	return self->GetHerosForgeModel(material_slot);
-}
-
 uint32 Lua_Mob::IsEliteMaterialItem(uint8 material_slot) {
 	Lua_Safe_Call_Int();
 	return self->IsEliteMaterialItem(material_slot);
@@ -3812,7 +3807,6 @@ luabind::scope lua_register_mob() {
 	.def("GetHeading", &Lua_Mob::GetHeading)
 	.def("GetHelmTexture", &Lua_Mob::GetHelmTexture)
 	.def("GetHeroicStrikethrough", &Lua_Mob::GetHeroicStrikethrough)
-	.def("GetHerosForgeModel", (int32(Lua_Mob::*)(uint8))&Lua_Mob::GetHerosForgeModel)
 	.def("GetINT", &Lua_Mob::GetINT)
 	.def("GetInvisibleLevel", (uint8(Lua_Mob::*)(void))&Lua_Mob::GetInvisibleLevel)
 	.def("GetInvisibleUndeadLevel", (uint8(Lua_Mob::*)(void))&Lua_Mob::GetInvisibleUndeadLevel)

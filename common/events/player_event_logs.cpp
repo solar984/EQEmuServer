@@ -223,7 +223,6 @@ void PlayerEventLogs::ProcessBatchQueue()
 			out.augment_3_id = in.augment_3_id;
 			out.augment_4_id = in.augment_4_id;
 			out.augment_5_id = in.augment_5_id;
-			out.augment_6_id = in.augment_6_id;
 			out.npc_id       = in.npc_id;
 			out.created_at   = r.created_at;
 

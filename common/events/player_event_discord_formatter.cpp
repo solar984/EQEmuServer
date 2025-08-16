@@ -1121,13 +1121,6 @@ std::string PlayerEventDiscordFormatter::FormatTradeEvent(
 				);
 			}
 
-			if (i.augment_6_id > 0) {
-				augment_info += fmt::format(
-					"Augment 6: {} ({})",
-					i.augment_6_name,
-					i.augment_6_id
-				);
-			}
 
 			character_1_item_info += fmt::format(
 				"{} ({}){}\nSlot: {} ({}){}\n{}",
@@ -1186,13 +1179,6 @@ std::string PlayerEventDiscordFormatter::FormatTradeEvent(
 				);
 			}
 
-			if (i.augment_6_id > 0) {
-				augment_info += fmt::format(
-					"Augment 6: {} ({})",
-					i.augment_6_name,
-					i.augment_6_id
-				);
-			}
 
 			character_2_item_info += fmt::format(
 				"{} ({}){}\nSlot: {} ({}){}\n{}\n",

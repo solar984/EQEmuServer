@@ -3305,8 +3305,6 @@ namespace Titanium
 		IN(wear_slot_id);
 		emu->unknown06 = 0;
 		emu->elite_material = 0;
-		emu->hero_forge_model = 0;
-		emu->unknown18 = 0;
 
 		FINISH_DIRECT_DECODE();
 	}

@@ -143,8 +143,7 @@ void command_gearup(Client *c, const Seperator *sep)
 				if (t->IsClient()) {
 					t->CastToClient()->SummonItem(
 						item_id,
-						0, 0, 0, 0, 0, 0, 0, 0,
-						slot_id
+						0, 0, 0, 0, 0, 0, 0, 0
 					);
 				} else if (t->IsBot()) {
 					t->CastToBot()->AddBotItem(slot_id, item_id);

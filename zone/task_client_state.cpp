@@ -1022,7 +1022,7 @@ void ClientTaskState::RewardTask(Client *c, const TaskInformation *ti, ClientTas
 					bool stacked = c->TryStacking(inst.get());
 					if (!stacked) {
 						int16_t slot = c->GetInv().FindFreeSlot(inst->IsClassBag(), true, inst->GetItem()->Size);
-						c->SummonItem(item_id, charges, 0, 0, 0, 0, 0, 0, false, slot);
+						c->SummonItem(item_id, charges, 0, 0, 0, 0, 0, 0, false);
 					}
 					c->MessageString(Chat::Yellow, YOU_HAVE_BEEN_GIVEN, inst->GetItem()->Name);
 				}

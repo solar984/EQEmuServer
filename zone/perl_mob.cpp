@@ -2540,11 +2540,6 @@ bool Perl_Mob_HasTwoHanderEquipped(Mob* self) // @categories Stats and Attribute
 	return self->HasTwoHanderEquipped();
 }
 
-int32_t Perl_Mob_GetHerosForgeModel(Mob* self, uint8_t material_slot) // @categories Stats and Attributes
-{
-	return self->GetHerosForgeModel(material_slot);
-}
-
 bool Perl_Mob_IsEliteMaterialItem(Mob* self, uint8_t material_slot) // @categories Script Utility, Stats and Attributes
 {
 	return self->IsEliteMaterialItem(material_slot);
@@ -3883,7 +3878,6 @@ void perl_register_mob()
 	package.add("GetHeading", &Perl_Mob_GetHeading);
 	package.add("GetHelmTexture", &Perl_Mob_GetHelmTexture);
 	package.add("GetHeroicStrikethrough", &Perl_Mob_GetHeroicStrikethrough);
-	package.add("GetHerosForgeModel", &Perl_Mob_GetHerosForgeModel);
 	package.add("GetID", &Perl_Mob_GetID);
 	package.add("GetINT", &Perl_Mob_GetINT);
 	package.add("GetInvisibleLevel", &Perl_Mob_GetInvisibleLevel);

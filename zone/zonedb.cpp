@@ -1329,9 +1329,6 @@ bool ZoneDatabase::SaveCharacterInvSnapshot(uint32 character_id) {
 		" `augslot5`,"
 		" `instnodrop`,"
 		" `custom_data`,"
-		" `ornamenticon`,"
-		" `ornamentidfile`,"
-		" `ornament_hero_model`,"
 		" `guid`"
 		") "
 		"SELECT"
@@ -1348,9 +1345,6 @@ bool ZoneDatabase::SaveCharacterInvSnapshot(uint32 character_id) {
 		" `augment_five`,"
 		" `instnodrop`,"
 		" `custom_data`,"
-		" `ornament_icon`,"
-		" `ornament_idfile`,"
-		" `ornament_hero_model`,"
 		" `guid` "
 		"FROM"
 		" `inventory` "
@@ -1609,9 +1603,6 @@ bool ZoneDatabase::RestoreCharacterInvSnapshot(uint32 character_id, uint32 times
 		" `augment_five`,"
 		" `instnodrop`,"
 		" `custom_data`,"
-		" `ornament_icon`,"
-		" `ornament_idfile`,"
-		" `ornament_hero_model`,"
 		" `guid` "
 		") "
 		"SELECT"
@@ -1627,9 +1618,6 @@ bool ZoneDatabase::RestoreCharacterInvSnapshot(uint32 character_id, uint32 times
 		" `augslot5`,"
 		" `instnodrop`,"
 		" `custom_data`,"
-		" `ornamenticon`,"
-		" `ornamentidfile`,"
-		" `ornament_hero_model`, "
 		" `guid` "
 		"FROM"
 		" `inventory_snapshots` "
@@ -3784,9 +3772,6 @@ uint32 ZoneDatabase::SaveCharacterCorpse(
 		ci.aug_5               = i.aug_5;
 		ci.attuned             = i.attuned;
 		ci.custom_data         = i.custom_data;
-		ci.ornamenticon        = i.ornamenticon;
-		ci.ornamentidfile      = i.ornamentidfile;
-		ci.ornament_hero_model = i.ornament_hero_model;
 
 		v.emplace_back(ci);
 	}

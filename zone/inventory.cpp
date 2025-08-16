@@ -182,7 +182,7 @@ bool Client::CheckLoreConflict(const EQ::ItemData* item)
 	return (m_inv.HasItemByLoreGroup(item->LoreGroup, ~invWhereSharedBank) != INVALID_INDEX);
 }
 
-bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, bool attuned, uint16 to_slot, uint32 ornament_icon, uint32 ornament_idfile, uint32 ornament_hero_model) {
+bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, bool attuned, uint16 to_slot) {
 	const EQ::ItemData* item = database.GetItem(item_id);
 
 	// make sure the item exists
@@ -584,10 +584,6 @@ bool Client::SummonItem(uint32 item_id, int16 charges, uint32 aug1, uint32 aug2,
 		inst->SetAttuned(true);
 	}
 
-	inst->SetOrnamentIcon(ornament_icon);
-	inst->SetOrnamentationIDFile(ornament_idfile);
-	inst->SetOrnamentHeroModel(ornament_hero_model);
-
 	// check to see if item is usable in requested slot
 	if (enforce_usable && (to_slot >= EQ::invslot::EQUIPMENT_BEGIN && to_slot <= EQ::invslot::EQUIPMENT_END)) {
 		uint32 slottest = to_slot;
@@ -758,7 +754,6 @@ void Client::DropItem(int16 slot_id, bool recurse)
 				.augment_3_id = inst->GetAugmentItemID(2),
 				.augment_4_id = inst->GetAugmentItemID(3),
 				.augment_5_id = inst->GetAugmentItemID(4),
-				.augment_6_id = inst->GetAugmentItemID(5),
 				.item_name    = inst->GetItem()->Name,
 				.slot_id      = slot_id,
 				.charges      = (uint32) inst->GetCharges()
@@ -1064,10 +1059,7 @@ void Client::PutLootInInventory(int16 slot_id, const EQ::ItemInstance &inst, Loo
 				bag_item_data[index]->aug_4,
 				bag_item_data[index]->aug_5,
 				bag_item_data[index]->attuned,
-				bag_item_data[index]->custom_data,
-				bag_item_data[index]->ornamenticon,
-				bag_item_data[index]->ornamentidfile,
-				bag_item_data[index]->ornament_hero_model
+				bag_item_data[index]->custom_data
 				);
 
 			// Dump bag contents to cursor in the event that owning bag is not the first cursor item
@@ -1567,7 +1559,6 @@ bool Client::SwapItem(MoveItem_Struct* move_in) {
 						.augment_3_id = test_inst->GetAugmentItemID(2),
 						.augment_4_id = test_inst->GetAugmentItemID(3),
 						.augment_5_id = test_inst->GetAugmentItemID(4),
-						.augment_6_id = test_inst->GetAugmentItemID(5),
 						.attuned      = test_inst->IsAttuned(),
 						.reason       = "Duplicate lore item"
 					};
@@ -1597,7 +1588,6 @@ bool Client::SwapItem(MoveItem_Struct* move_in) {
 						.augment_3_id = inst->GetAugmentItemID(2),
 						.augment_4_id = inst->GetAugmentItemID(3),
 						.augment_5_id = inst->GetAugmentItemID(4),
-						.augment_6_id = inst->GetAugmentItemID(5),
 						.attuned      = inst->IsAttuned(),
 						.reason       = "Client destroy cursor"
 					};

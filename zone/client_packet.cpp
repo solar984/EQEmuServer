@@ -2755,7 +2755,7 @@ void Client::Handle_OP_AltCurrencyReclaim(const EQApplicationPacket *app)
 			SetAlternateCurrencyValue(reclaim->currency_id, 0);
 		}
 		else {
-			SummonItem(item_id, reclaim->count, 0, 0, 0, 0, 0, 0, false, EQ::invslot::slotCursor);
+			SummonItem(item_id, reclaim->count, 0, 0, 0, 0, 0,false, EQ::invslot::slotCursor);
 			AddAlternateCurrencyValue(reclaim->currency_id, -((int)reclaim->count));
 		}
 	}
@@ -5336,7 +5336,6 @@ void Client::Handle_OP_DeleteItem(const EQApplicationPacket *app)
 				.augment_3_id = inst->GetAugmentItemID(2),
 				.augment_4_id = inst->GetAugmentItemID(3),
 				.augment_5_id = inst->GetAugmentItemID(4),
-				.augment_6_id = inst->GetAugmentItemID(5),
 				.attuned      = inst->IsAttuned(),
 				.reason       = "Client deleted"
 			};
@@ -15440,10 +15439,6 @@ void Client::Handle_OP_WearChange(const EQApplicationPacket *app)
 	if (wc->spawn_id != GetID())
 		return;
 
-	// Hero Forge ID needs to be fixed here as RoF2 appears to send an incorrect value.
-	if (wc->wear_slot_id >= 0 && wc->wear_slot_id < EQ::textures::weaponPrimary)
-		wc->hero_forge_model = GetHerosForgeModel(wc->wear_slot_id);
-
 	// we could maybe ignore this and just send our own from moveitem
 	// We probably need to skip this entirely when it is send as an ack, but not sure how to ID that.
 	entity_list.QueueClients(this, app, true);
@@ -16533,7 +16528,6 @@ void Client::Handle_OP_GuildTributeDonateItem(const EQApplicationPacket *app)
 														  .augment_3_id = inst->GetAugmentItemID(2),
 														  .augment_4_id = inst->GetAugmentItemID(3),
 														  .augment_5_id = inst->GetAugmentItemID(4),
-														  .augment_6_id = inst->GetAugmentItemID(5),
 														  .guild_favor  = favor
 			};
 			RecordPlayerEventLog(PlayerEvent::GUILD_TRIBUTE_DONATE_ITEM, e);

@@ -1001,8 +1001,7 @@ bool BotDatabase::LoadItems(const uint32 bot_id, EQ::InventoryProfile& inventory
 			e.augment_2,
 			e.augment_3,
 			e.augment_4,
-			e.augment_5,
-			e.augment_6
+			e.augment_5
 		);
 
 		if (!inst) {
@@ -1042,10 +1041,6 @@ bool BotDatabase::LoadItems(const uint32 bot_id, EQ::InventoryProfile& inventory
 		if (!e.inst_custom_data.empty()) {
 			inst->SetCustomDataString(e.inst_custom_data);
 		}
-
-		inst->SetOrnamentIcon(e.ornament_icon);
-		inst->SetOrnamentationIDFile(e.ornament_id_file);
-		inst->SetOrnamentHeroModel(e.ornament_hero_model);
 
 		if (inventory_inst.PutItem(e.slot_id, *inst) == INVALID_INDEX) {
 			LogError(
@@ -1163,15 +1158,11 @@ bool BotDatabase::SaveItemBySlot(Bot* b, const uint32 slot_id, const EQ::ItemIns
 	e.inst_color          = inst->GetColor();
 	e.inst_no_drop        = inst->IsAttuned() ? 1 : 0;
 	e.inst_custom_data    = inst->GetCustomDataString();
-	e.ornament_icon       = inst->GetOrnamentationIcon();
-	e.ornament_id_file    = inst->GetOrnamentationIDFile();
-	e.ornament_hero_model = inst->GetOrnamentHeroModel();
 	e.augment_1           = augment_id[0];
 	e.augment_2           = augment_id[1];
 	e.augment_3           = augment_id[2];
 	e.augment_4           = augment_id[3];
 	e.augment_5           = augment_id[4];
-	e.augment_6           = augment_id[5];
 
 	return BotInventoriesRepository::InsertOne(database, e).inventories_index;
 }

@@ -387,7 +387,6 @@ void Client::GoFish(bool guarantee, bool use_bait)
 							.augment_3_id = inst->GetAugmentItemID(2),
 							.augment_4_id = inst->GetAugmentItemID(3),
 							.augment_5_id = inst->GetAugmentItemID(4),
-							.augment_6_id = inst->GetAugmentItemID(5),
 							.item_name    = inst->GetItem()->Name,
 						};
 						RecordPlayerEventLog(PlayerEvent::FISH_SUCCESS, e);
@@ -527,7 +526,6 @@ void Client::ForageItem(bool guarantee) {
 						.augment_3_id = inst->GetAugmentItemID(2),
 						.augment_4_id = inst->GetAugmentItemID(3),
 						.augment_5_id = inst->GetAugmentItemID(4),
-						.augment_6_id = inst->GetAugmentItemID(5),
 						.item_name    = inst->GetItem()->Name,
 					};
 					RecordPlayerEventLog(PlayerEvent::FORAGE_SUCCESS, e);

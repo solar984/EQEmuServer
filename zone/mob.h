@@ -549,7 +549,6 @@ public:
 	virtual uint32 GetEquippedItemFromTextureSlot(uint8 material_slot) const { return(0); }
 	virtual uint32 GetEquipmentMaterial(uint8 material_slot) const;
 	virtual uint8 GetEquipmentType(uint8 material_slot) const;
-	virtual uint32 GetHerosForgeModel(uint8 material_slot) const;
 	virtual uint32 GetEquipmentColor(uint8 material_slot) const;
 	virtual uint32 IsEliteMaterialItem(uint8 material_slot) const;
 	bool CanClassEquipItem(uint32 item_id);

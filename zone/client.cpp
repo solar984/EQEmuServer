@@ -9439,72 +9439,6 @@ void Client::SetEXPEnabled(bool is_exp_enabled)
 	m_exp_enabled = is_exp_enabled;
 }
 
-void Client::SetPrimaryWeaponOrnamentation(uint32 model_id)
-{
-	auto primary_item = m_inv.GetItem(EQ::invslot::slotPrimary);
-	if (primary_item) {
-		auto l = InventoryRepository::GetWhere(
-			database,
-			fmt::format(
-				"`character_id` = {} AND `slot_id` = {}",
-				character_id,
-				EQ::invslot::slotPrimary
-			)
-		);
-
-		if (l.empty()) {
-			return;
-		}
-
-		auto e = l.front();
-
-		e.ornament_idfile = model_id;
-
-		const int updated = InventoryRepository::UpdateOne(database, e);
-
-		if (updated) {
-			primary_item->SetOrnamentationIDFile(model_id);
-			SendItemPacket(EQ::invslot::slotPrimary, primary_item, ItemPacketTrade);
-			WearChange(EQ::textures::weaponPrimary, model_id, 0);
-
-			Message(Chat::Yellow, "Your primary weapon appearance has been modified.");
-		}
-	}
-}
-
-void Client::SetSecondaryWeaponOrnamentation(uint32 model_id)
-{
-	auto secondary_item = m_inv.GetItem(EQ::invslot::slotSecondary);
-	if (secondary_item) {
-		auto l = InventoryRepository::GetWhere(
-			database,
-			fmt::format(
-				"`character_id` = {} AND `slot_id` = {}",
-				character_id,
-				EQ::invslot::slotSecondary
-			)
-		);
-
-		if (l.empty()) {
-			return;
-		}
-
-		auto e = l.front();
-
-		e.ornament_idfile = model_id;
-
-		const int updated = InventoryRepository::UpdateOne(database, e);
-
-		if (updated) {
-			secondary_item->SetOrnamentationIDFile(model_id);
-			SendItemPacket(EQ::invslot::slotSecondary, secondary_item, ItemPacketTrade);
-			WearChange(EQ::textures::weaponSecondary, model_id, 0);
-
-			Message(Chat::Yellow, "Your secondary weapon appearance has been modified.");
-		}
-	}
-}
-
 /**
  * Used in #goto <player_name>
  *
@@ -11230,10 +11164,7 @@ void Client::SummonBaggedItems(uint32 bag_item_id, const std::vector<LootItem>& 
 				item.aug_4,
 				item.aug_5,
 				item.attuned,
-				item.custom_data,
-				item.ornamenticon,
-				item.ornamentidfile,
-				item.ornament_hero_model
+				item.custom_data
 			);
 			if (summoned_bag_item)
 			{
@@ -12070,8 +12001,6 @@ void Client::PlayerTradeEventLog(Trade *t, Trade *t2)
 					.augment_4_name = inst->GetAugment(3) ? inst->GetAugment(3)->GetItem()->Name : "",
 					.augment_5_id   = inst->GetAugmentItemID(4),
 					.augment_5_name = inst->GetAugment(4) ? inst->GetAugment(4)->GetItem()->Name : "",
-					.augment_6_id   = inst->GetAugmentItemID(5),
-					.augment_6_name = inst->GetAugment(5) ? inst->GetAugment(5)->GetItem()->Name : "",.item_name      = inst->GetItem()->Name,
 					.charges        = static_cast<uint16>(inst->GetCharges()),
 					.in_bag         = false,
 					}
@@ -12094,8 +12023,6 @@ void Client::PlayerTradeEventLog(Trade *t, Trade *t2)
 								.augment_4_name = inst->GetAugment(3) ? inst->GetAugment(3)->GetItem()->Name : "",
 								.augment_5_id   = inst->GetAugmentItemID(4),
 								.augment_5_name = inst->GetAugment(4) ? inst->GetAugment(4)->GetItem()->Name : "",
-								.augment_6_id   = inst->GetAugmentItemID(5),
-								.augment_6_name = inst->GetAugment(5) ? inst->GetAugment(5)->GetItem()->Name : "",
 								.item_name      = inst->GetItem()->Name,
 								.charges        = static_cast<uint16>(inst->GetCharges()),
 								.in_bag         = true,
@@ -12127,8 +12054,6 @@ void Client::PlayerTradeEventLog(Trade *t, Trade *t2)
 					.augment_4_name = inst->GetAugment(3) ? inst->GetAugment(3)->GetItem()->Name : "",
 					.augment_5_id   = inst->GetAugmentItemID(4),
 					.augment_5_name = inst->GetAugment(4) ? inst->GetAugment(4)->GetItem()->Name : "",
-					.augment_6_id   = inst->GetAugmentItemID(5),
-					.augment_6_name = inst->GetAugment(5) ? inst->GetAugment(5)->GetItem()->Name : "",
 					.item_name      = inst->GetItem()->Name,
 					.charges        = static_cast<uint16>(inst->GetCharges()),
 					.in_bag         = false,
@@ -12152,8 +12077,6 @@ void Client::PlayerTradeEventLog(Trade *t, Trade *t2)
 								.augment_4_name = inst->GetAugment(3) ? inst->GetAugment(3)->GetItem()->Name : "",
 								.augment_5_id   = inst->GetAugmentItemID(4),
 								.augment_5_name = inst->GetAugment(4) ? inst->GetAugment(4)->GetItem()->Name : "",
-								.augment_6_id   = inst->GetAugmentItemID(5),
-								.augment_6_name = inst->GetAugment(5) ? inst->GetAugment(5)->GetItem()->Name : "",
 								.item_name      = inst->GetItem()->Name,
 								.charges        = static_cast<uint16>(inst->GetCharges()),
 								.in_bag         = true,

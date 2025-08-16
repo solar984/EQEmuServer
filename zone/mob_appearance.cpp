@@ -203,20 +203,6 @@ uint32 Mob::GetEquipmentMaterial(uint8 material_slot) const
 					return 0;
 				}
 
-				const auto inst = CastToClient()->m_inv[inventory_slot];
-
-				if (inst) {
-					const auto augment = inst->GetOrnamentationAugment();
-
-					if (augment) {
-						item = augment->GetItem();
-						if (item && strlen(item->IDFile) > 2 && Strings::IsNumber(&item->IDFile[2])) {
-							equipment_material = Strings::ToUnsignedInt(&item->IDFile[2]);
-						}
-					} else if (inst->GetOrnamentationIDFile()) {
-						equipment_material = inst->GetOrnamentationIDFile();
-					}
-				}
 			}
 
 			if (!equipment_material && strlen(item->IDFile) > 2 && Strings::IsNumber(&item->IDFile[2])) {
@@ -268,65 +254,6 @@ uint32 Mob::GetEquipmentColor(uint8 material_slot) const
 	}
 
 	return 0;
-}
-
-uint32 Mob::GetHerosForgeModel(uint8 material_slot) const
-{
-	uint32 heros_forge_model = 0;
-	if (EQ::ValueWithin(material_slot, 0, EQ::textures::weaponPrimary)) {
-		auto       item = database.GetItem(GetEquippedItemFromTextureSlot(material_slot));
-		const auto slot = EQ::InventoryProfile::CalcSlotFromMaterial(material_slot);
-
-		if (item && slot != INVALID_INDEX) {
-			if (IsClient()) {
-				const auto inst = CastToClient()->m_inv[slot];
-				if (inst) {
-					const auto augment = inst->GetOrnamentationAugment();
-
-					if (augment) {
-						item              = augment->GetItem();
-						heros_forge_model = item->HerosForgeModel;
-					} else if (inst->GetOrnamentHeroModel(material_slot)) {
-						heros_forge_model = inst->GetOrnamentHeroModel(material_slot);
-					}
-				}
-			}
-
-			if (!heros_forge_model) {
-				heros_forge_model = item->HerosForgeModel;
-			}
-		}
-
-		if (IsNPC()) {
-			heros_forge_model = CastToNPC()->GetHeroForgeModel();
-
-			/**
-			 * Robes require full model number, and should only be sent to chest, arms, wrists, and legs slots
-			 */
-			if (
-				heros_forge_model > 1000 &&
-				material_slot != EQ::textures::armorChest &&
-				material_slot != EQ::textures::armorArms &&
-				material_slot != EQ::textures::armorWrist &&
-				material_slot != EQ::textures::armorLegs
-			) {
-				heros_forge_model = 0;
-			}
-		}
-	}
-
-	/**
-	 * Auto-Convert Hero Model to match the slot
-	 *
-	 * Otherwise, use the exact Model if model is > 999
-	 * Robes for example are 11607 to 12107 in RoF
-	 */
-	if (EQ::ValueWithin(heros_forge_model, 1, 999)) {
-		heros_forge_model *= 100;
-		heros_forge_model += material_slot;
-	}
-
-	return heros_forge_model;
 }
 
 uint32 NPC::GetEquippedItemFromTextureSlot(uint8 material_slot) const
@@ -384,7 +311,6 @@ void Mob::SendWearChange(uint8 material_slot, Client *one_client)
 	w->spawn_id         = GetID();
 	w->material         = static_cast<uint32>(GetEquipmentMaterial(material_slot));
 	w->elite_material   = IsEliteMaterialItem(material_slot);
-	w->hero_forge_model = static_cast<uint32>(GetHerosForgeModel(material_slot));
 
 	if (IsBot()) {
 		const auto item_inst = CastToBot()->GetBotItem(EQ::InventoryProfile::CalcSlotFromMaterial(material_slot));
@@ -409,7 +335,6 @@ void Mob::SendWearChange(uint8 material_slot, Client *one_client)
 
 		key |= static_cast<uint64_t>(s.material & 0xFFF)             << 0;   // 12 bits
 		key |= static_cast<uint64_t>(s.elite_material & 0x1)         << 12;  // 1 bit
-		key |= static_cast<uint64_t>(s.hero_forge_model & 0xFFFFF)   << 13;  // 20 bits
 		key |= static_cast<uint64_t>(GetRace() & 0xFFFF)             << 33;  // 16 bits
 
 		// Optional: Fold in color for appearance differences
@@ -462,8 +387,6 @@ void Mob::SendTextureWC(
 	w->wear_slot_id     = slot;
 	w->unknown06        = unknown06;
 	w->elite_material   = elite_material;
-	w->hero_forge_model = hero_forge_model;
-	w->unknown18        = unknown18;
 
 	SetMobTextureProfile(slot, texture, w->color.Color, hero_forge_model);
 
@@ -485,7 +408,6 @@ void Mob::SetSlotTint(uint8 material_slot, uint8 red_tint, uint8 green_tint, uin
 
 	w->spawn_id         = GetID();
 	w->material         = GetEquipmentMaterial(material_slot);
-	w->hero_forge_model = GetHerosForgeModel(material_slot);
 	w->color.Color      = color;
 	w->wear_slot_id     = material_slot;
 
@@ -511,7 +433,6 @@ void Mob::WearChange(
 
 	w->spawn_id         = GetID();
 	w->material         = texture;
-	w->hero_forge_model = hero_forge_model;
 	w->color.Color      = color;
 	w->wear_slot_id     = material_slot;
 

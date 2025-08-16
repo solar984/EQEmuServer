@@ -314,9 +314,6 @@ bool SharedDatabase::UpdateInventorySlot(uint32 char_id, const EQ::ItemInstance*
 	e.augment_five        = augment_ids[4];
 	e.instnodrop          = inst->IsAttuned() ? 1 : 0;
 	e.custom_data         = inst->GetCustomDataString();
-	e.ornament_icon       = inst->GetOrnamentationIcon();
-	e.ornament_idfile     = inst->GetOrnamentationIDFile();
-	e.ornament_hero_model = inst->GetOrnamentHeroModel();
 	e.guid                = inst->GetSerialNumber();
 
 	const int replaced = InventoryRepository::ReplaceOne(*this, e);
@@ -363,9 +360,6 @@ bool SharedDatabase::UpdateSharedBankSlot(uint32 char_id, const EQ::ItemInstance
 	e.augment_four        = augment_ids[3];
 	e.augment_five        = augment_ids[4];
 	e.custom_data         = inst->GetCustomDataString();
-	e.ornament_icon       = inst->GetOrnamentationIcon();
-	e.ornament_idfile     = inst->GetOrnamentationIDFile();
-	e.ornament_hero_model = inst->GetOrnamentHeroModel();
 	e.guid                = inst->GetSerialNumber();
 
 	const int replaced = SharedbankRepository::ReplaceOne(*this, e);
@@ -694,9 +688,6 @@ bool SharedDatabase::GetInventory(Client *c)
 		const uint16 charges             = row.charges;
 		const uint32 color               = row.color;
 		const bool   instnodrop          = row.instnodrop;
-		const uint32 ornament_icon       = row.ornament_icon;
-		const uint32 ornament_idfile     = row.ornament_idfile;
-		const uint32 ornament_hero_model = row.ornament_hero_model;
 
 		uint32 augment_ids[EQ::invaug::SOCKET_COUNT] = {
 			row.augment_one,
@@ -753,10 +744,6 @@ bool SharedDatabase::GetInventory(Client *c)
 		if (!row.custom_data.empty()) {
 			inst->SetCustomDataString(row.custom_data);
 		}
-
-		inst->SetOrnamentIcon(ornament_icon);
-		inst->SetOrnamentationIDFile(ornament_idfile);
-		inst->SetOrnamentHeroModel(item->HerosForgeModel);
 
 		if (
 			instnodrop ||
@@ -906,8 +893,7 @@ bool SharedDatabase::GetInventory(uint32 account_id, char *name, EQ::InventoryPr
 	// Retrieve character inventory
 	const std::string query =
 		StringFormat("SELECT slotid, itemid, charges, color, augslot1, "
-			"augslot2, augslot3, augslot4, augslot5, instnodrop, custom_data, ornamenticon, "
-			"ornamentidfile, ornament_hero_model "
+			"augslot2, augslot3, augslot4, augslot5, instnodrop, custom_data "
 			"FROM inventory INNER JOIN character_data ch "
 			"ON ch.id = charid WHERE ch.name = '%s' AND ch.account_id = %i ORDER BY slotid",
 			name, account_id);
@@ -933,9 +919,6 @@ bool SharedDatabase::GetInventory(uint32 account_id, char *name, EQ::InventoryPr
 		aug[4] = Strings::ToUnsignedInt(row[8]);
 		
 		const bool instnodrop = (row[9] && static_cast<uint16>(Strings::ToUnsignedInt(row[9])));
-		const uint32 ornament_icon = Strings::ToUnsignedInt(row[11]);
-		const uint32 ornament_idfile = Strings::ToUnsignedInt(row[12]);
-		uint32 ornament_hero_model = Strings::ToUnsignedInt(row[13]);
 
 		const EQ::ItemData *item = GetItem(item_id);
 		if (!item)
@@ -952,10 +935,6 @@ bool SharedDatabase::GetInventory(uint32 account_id, char *name, EQ::InventoryPr
 			std::string data_str(row[10]);
 			inst->SetCustomDataString(data_str);
 		}
-
-		inst->SetOrnamentIcon(ornament_icon);
-		inst->SetOrnamentationIDFile(ornament_idfile);
-		inst->SetOrnamentHeroModel(item->HerosForgeModel);
 
 		if (color > 0)
 			inst->SetColor(color);
@@ -1483,10 +1462,7 @@ EQ::ItemInstance* SharedDatabase::CreateItem(
 	uint32 aug4,
 	uint32 aug5,
 	bool attuned,
-	const std::string& custom_data,
-	uint32 ornamenticon,
-	uint32 ornamentidfile,
-	uint32 ornament_hero_model
+	const std::string& custom_data
 ) {
 	EQ::ItemInstance* inst = nullptr;
 
@@ -1507,9 +1483,6 @@ EQ::ItemInstance* SharedDatabase::CreateItem(
 		inst->PutAugment(this, 4, aug5);
 		inst->SetAttuned(attuned);
 		inst->SetCustomDataString(custom_data);
-		inst->SetOrnamentIcon(ornamenticon);
-		inst->SetOrnamentationIDFile(ornamentidfile);
-		inst->SetOrnamentHeroModel(ornament_hero_model);
 	}
 
 	return inst;
@@ -1526,10 +1499,7 @@ EQ::ItemInstance* SharedDatabase::CreateItem(
 	uint32 aug4,
 	uint32 aug5,
 	bool attuned,
-	const std::string& custom_data,
-	uint32 ornamenticon,
-	uint32 ornamentidfile,
-	uint32 ornament_hero_model
+	const std::string& custom_data
 ) {
 	EQ::ItemInstance* inst = nullptr;
 	if (item) {
@@ -1548,9 +1518,6 @@ EQ::ItemInstance* SharedDatabase::CreateItem(
 		inst->PutAugment(this, 4, aug5);
 		inst->SetAttuned(attuned);
 		inst->SetCustomDataString(custom_data);
-		inst->SetOrnamentIcon(ornamenticon);
-		inst->SetOrnamentationIDFile(ornamentidfile);
-		inst->SetOrnamentHeroModel(ornament_hero_model);
 	}
 
 	return inst;

@@ -960,11 +960,6 @@ void Lua_Client::SummonItem(uint32 item_id, int charges, uint32 aug1, uint32 aug
 	self->SummonItem(item_id, charges, aug1, aug2, aug3, aug4, aug5, 0, attuned);
 }
 
-void Lua_Client::SummonItem(uint32 item_id, int charges, uint32 aug1, uint32 aug2, uint32 aug3, uint32 aug4, uint32 aug5, bool attuned, int to_slot) {
-	Lua_Safe_Call_Void();
-	self->SummonItem(item_id, charges, aug1, aug2, aug3, aug4, aug5, 0, attuned, to_slot);
-}
-
 void Lua_Client::SetStats(int type, int value) {
 	Lua_Safe_Call_Void();
 	self->SetStats(type, value);
@@ -1811,16 +1806,6 @@ void Lua_Client::DisableAreaRegens()
 {
 	Lua_Safe_Call_Void();
 	self->DisableAreaRegens();
-}
-
-void Lua_Client::SetPrimaryWeaponOrnamentation(uint32 model_id) {
-	Lua_Safe_Call_Void();
-	self->SetPrimaryWeaponOrnamentation(model_id);
-}
-
-void Lua_Client::SetSecondaryWeaponOrnamentation(uint32 model_id) {
-	Lua_Safe_Call_Void();
-	self->SetSecondaryWeaponOrnamentation(model_id);
 }
 
 void Lua_Client::SetClientMaxLevel(uint8 max_level) {
@@ -4116,9 +4101,7 @@ luabind::scope lua_register_client() {
 	.def("SetMaterial", (void(Lua_Client::*)(int,uint32))&Lua_Client::SetMaterial)
 	.def("SetPEQZoneFlag", (void(Lua_Client::*)(uint32))&Lua_Client::SetPEQZoneFlag)
 	.def("SetPVP", (void(Lua_Client::*)(bool))&Lua_Client::SetPVP)
-	.def("SetPrimaryWeaponOrnamentation", (void(Lua_Client::*)(uint32))&Lua_Client::SetPrimaryWeaponOrnamentation)
 	.def("SetRadiantCrystals", (void(Lua_Client::*)(uint32))&Lua_Client::SetRadiantCrystals)
-	.def("SetSecondaryWeaponOrnamentation", (void(Lua_Client::*)(uint32))&Lua_Client::SetSecondaryWeaponOrnamentation)
 	.def("SetSkill", (void(Lua_Client::*)(int,int))&Lua_Client::SetSkill)
 	.def("SetSkillPoints", (void(Lua_Client::*)(int))&Lua_Client::SetSkillPoints)
 	.def("SetSpellDuration", (void(Lua_Client::*)(int))&Lua_Client::SetSpellDuration)
@@ -4159,7 +4142,6 @@ luabind::scope lua_register_client() {
 	.def("SummonItem", (void(Lua_Client::*)(uint32,int,uint32,uint32,uint32,uint32))&Lua_Client::SummonItem)
 	.def("SummonItem", (void(Lua_Client::*)(uint32,int,uint32,uint32,uint32,uint32,uint32))&Lua_Client::SummonItem)
 	.def("SummonItem", (void(Lua_Client::*)(uint32,int,uint32,uint32,uint32,uint32,uint32,bool))&Lua_Client::SummonItem)
-	.def("SummonItem", (void(Lua_Client::*)(uint32,int,uint32,uint32,uint32,uint32,uint32,bool,int))&Lua_Client::SummonItem)
 	.def("SummonItemIntoInventory", (void(Lua_Client::*)(luabind::adl::object))&Lua_Client::SummonItemIntoInventory)
 	.def("TGB", (bool(Lua_Client::*)(void))&Lua_Client::TGB)
 	.def("TakeMoneyFromPP", (bool(Lua_Client::*)(uint64))&Lua_Client::TakeMoneyFromPP)

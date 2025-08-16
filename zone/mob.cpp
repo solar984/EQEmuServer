@@ -1331,16 +1331,10 @@ void Mob::FillSpawnStruct(NewSpawn_Struct* ns, Mob* ForWho)
 	ns->spawn.drakkin_heritage = drakkin_heritage;
 	ns->spawn.drakkin_tattoo = drakkin_tattoo;
 	ns->spawn.drakkin_details = drakkin_details;
-	ns->spawn.equip_chest2 = GetHerosForgeModel(1) != 0 || multitexture? 0xff : texture;
 
 //	ns->spawn.invis2 = 0xff;//this used to be labeled beard.. if its not FF it will turn mob invis
 
-	if (helmtexture && helmtexture != 0xFF && GetHerosForgeModel(0) == 0)
-	{
-		ns->spawn.helm=helmtexture;
-	} else {
-		ns->spawn.helm = 0;
-	}
+	ns->spawn.helm=helmtexture;
 
 	ns->spawn.guildrank	= 0xFF;
 	ns->spawn.size = size;
@@ -1364,7 +1358,6 @@ void Mob::FillSpawnStruct(NewSpawn_Struct* ns, Mob* ForWho)
 		if (IsPlayerRace(race) || i > EQ::textures::armorFeet) {
 			ns->spawn.equipment.Slot[i].Material        = GetEquipmentMaterial(i);
 			ns->spawn.equipment.Slot[i].EliteModel      = IsEliteMaterialItem(i);
-			ns->spawn.equipment.Slot[i].HerosForgeModel = GetHerosForgeModel(i);
 			ns->spawn.equipment_tint.Slot[i].Color      = GetEquipmentColor(i);
 		}
 	}
