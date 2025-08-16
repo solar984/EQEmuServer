@@ -144,40 +144,34 @@ namespace ItemStackSizeConstraint {
 
 struct CharSelectEquip : EQ::textures::Texture_Struct, EQ::textures::Tint_Struct {};
 
-// RoF2-based hybrid struct
 struct CharacterSelectEntry_Struct
 {
-	char Name[64];
-	uint8 Class;
-	uint32 Race;
-	uint8 Level;
-	uint8 ShroudClass;
-	uint32 ShroudRace;
-	uint16 Zone;
-	uint16 Instance;
-	uint8 Gender;
-	uint8 Face;
-	CharSelectEquip	Equip[EQ::textures::materialCount];
-	uint8 Unknown15;			// Seen FF
-	uint8 Unknown19;			// Seen FF
-	uint32 DrakkinTattoo;
-	uint32 DrakkinDetails;
-	uint32 Deity;
-	uint32 PrimaryIDFile;
-	uint32 SecondaryIDFile;
-	uint8 HairColor;
-	uint8 BeardColor;
-	uint8 EyeColor1;
-	uint8 EyeColor2;
-	uint8 HairStyle;
-	uint8 Beard;
-	uint8 GoHome;				// Seen 0 for new char and 1 for existing
-	uint8 Tutorial;				// Seen 1 for new char or 0 for existing
-	uint32 DrakkinHeritage;
-	uint8 Unknown1;				// Seen 0
-	uint8 Enabled;				// Originally labeled as 'CharEnabled' - unknown purpose and setting
-	uint32 LastLogin;
-	uint8 Unknown2;				// Seen 0
+	/*0000*/	uint8 Level;				//
+	/*0000*/	uint8 HairStyle;			//
+	/*0002*/	uint8 Gender;				//
+	/*0003*/	char Name[64];				// variable length, edi+0
+	/*0000*/	uint8 Beard;				//
+	/*0001*/	uint8 HairColor;			//
+	/*0000*/	uint8 Face;					//
+	/*0000*/	CharSelectEquip	Equip[EQ::textures::materialCount];
+	/*0000*/	uint32 PrimaryIDFile;		//
+	/*0000*/	uint32 SecondaryIDFile;		//
+	/*0000*/	uint8 Unknown15;			// 0xff
+	/*0000*/	uint32 Deity;				//
+	/*0000*/	uint16 Zone;				//
+	/*0000*/	uint16 Instance;
+	/*0000*/	uint8 GoHome;				//
+	/*0000*/	uint8 Unknown19;			// 0xff
+	/*0000*/	uint32 Race;				//
+	/*0000*/	uint8 Tutorial;				//
+	/*0000*/	uint8 Class;				//
+	/*0000*/	uint8 EyeColor1;			//
+	/*0000*/	uint8 BeardColor;			//
+	/*0000*/	uint8 EyeColor2;			//
+	/*0000*/	uint32 DrakkinHeritage;		// Drakkin Heritage
+	/*0000*/	uint32 DrakkinTattoo;		// Drakkin Tattoo
+	/*0000*/	uint32 DrakkinDetails;		// Drakkin Details (Facial Spikes)
+	/*0000*/	uint8 Unknown;				// New field to Underfoot
 };
 
 struct CharacterSelect_Struct
@@ -1622,17 +1616,15 @@ struct MoveItem_Struct
 /*0012*/
 };
 
-// New for RoF2 - Size: 12
 struct InventorySlot_Struct
 {
-/*000*/	int16	Type;		// Worn and Normal inventory = 0, Bank = 1, Shared Bank = 2, Delete Item = -1
-/*002*/	int16	Unknown02;
-/*004*/	int16	Slot;
-/*006*/	int16	SubIndex;
-/*008*/	int16	AugIndex;	// Guessing - Seen 0xffff
-/*010*/	int16	Unknown01;	// Normally 0 - Seen 13262 when deleting an item, but didn't match item ID
-/*012*/
+	/*000*/	int32	Type;		// Worn and Normal inventory = 0, Bank = 1, Shared Bank = 2, Trade = 3, World = 4, Limbo = 5
+	/*004*/	int32	Slot;
+	/*008*/	int32	SubIndex;
+	/*012*/	int32	AugIndex;
+	/*016*/	int32	Unknown01;
 };
+
 
 struct MultiMoveItemSub_Struct
 {

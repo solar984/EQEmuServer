@@ -2480,14 +2480,11 @@ void Client::SendUnsupportedClientPacket(const std::string& message)
 	e->Race        = Race::Human;
 	e->Class       = Class::Warrior;
 	e->Level       = 1;
-	e->ShroudClass = e->Class;
-	e->ShroudRace  = e->Race;
 	e->Zone        = std::numeric_limits<uint16>::max();
 	e->Instance    = 0;
 	e->Gender      = Gender::Male;
 	e->GoHome      = 0;
 	e->Tutorial    = 0;
-	e->Enabled     = 0;
 
 	QueuePacket(&packet);
 }

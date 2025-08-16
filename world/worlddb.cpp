@@ -132,8 +132,6 @@ void WorldDatabase::GetCharSelectInfo(uint32 account_id, EQApplicationPacket **o
 		cse->Class       = e.class_;
 		cse->Race        = e.race;
 		cse->Level       = e.level;
-		cse->ShroudClass = cse->Class;
-		cse->ShroudRace  = cse->Race;
 		cse->Zone        = e.zone_id;
 		cse->Instance    = 0;
 		cse->Gender      = e.gender;
@@ -164,10 +162,6 @@ void WorldDatabase::GetCharSelectInfo(uint32 account_id, EQApplicationPacket **o
 		cse->GoHome          = 0;                                // Processed Below
 		cse->Tutorial        = 0;                                // Processed Below
 		cse->DrakkinHeritage = e.drakkin_heritage;
-		cse->Unknown1        = 0;
-		cse->Enabled         = 1;
-		cse->LastLogin       = e.last_login;            // RoF2 value: 1212696584
-		cse->Unknown2        = 0;
 
 		if (RuleB(World, EnableReturnHomeButton)) {
 			int now = time(nullptr);

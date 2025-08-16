@@ -3581,8 +3581,8 @@ namespace RoF2
 			eq_cse->Class = emu_cse->Class;
 			eq_cse->Race = emu_cse->Race;
 			eq_cse->Level = emu_cse->Level;
-			eq_cse->ShroudClass = emu_cse->ShroudClass;
-			eq_cse->ShroudRace = emu_cse->ShroudRace;
+			//eq_cse->ShroudClass = emu_cse->ShroudClass;
+			//eq_cse->ShroudRace = emu_cse->ShroudRace;
 			eq_cse->Zone = emu_cse->Zone;
 			eq_cse->Instance = emu_cse->Instance;
 			eq_cse->Gender = emu_cse->Gender;
@@ -3613,10 +3613,10 @@ namespace RoF2
 			eq_cse->GoHome = emu_cse->GoHome;
 			eq_cse->Tutorial = emu_cse->Tutorial;
 			eq_cse->DrakkinHeritage = emu_cse->DrakkinHeritage;
-			eq_cse->Unknown1 = emu_cse->Unknown1;
-			eq_cse->Enabled = emu_cse->Enabled;
-			eq_cse->LastLogin = emu_cse->LastLogin;
-			eq_cse->Unknown2 = emu_cse->Unknown2;
+			//eq_cse->Unknown1 = emu_cse->Unknown1;
+			//eq_cse->Enabled = emu_cse->Enabled;
+			//eq_cse->LastLogin = emu_cse->LastLogin;
+			//eq_cse->Unknown2 = emu_cse->Unknown2;
 
 			emu_ptr += sizeof(CharacterSelectEntry_Struct);
 			eq_ptr += sizeof(structs::CharacterSelectEntry_Struct);
