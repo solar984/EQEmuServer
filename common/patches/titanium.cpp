@@ -3654,7 +3654,7 @@ namespace Titanium
 	static inline int16 ServerToTitaniumCorpseSlot(uint32 server_corpse_slot) {
 		int16 titanium_slot = invslot::SLOT_INVALID;
 
-		if (server_corpse_slot <= EQ::invslot::slotGeneral8 && server_corpse_slot >= EQ::invslot::slotGeneral8) {
+		if (server_corpse_slot <= EQ::invslot::slotGeneral8 && server_corpse_slot >= EQ::invslot::slotGeneral1) {
 			titanium_slot = server_corpse_slot;
 		}
 
