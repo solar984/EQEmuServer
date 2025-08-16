@@ -816,9 +816,7 @@ int16 EQ::InventoryProfile::HasItemByLoreGroup(uint32 loregroup, uint8 where)
 // Returns slot_id when there's one available, else SLOT_INVALID
 int16 EQ::InventoryProfile::FindFreeSlot(bool for_bag, bool try_cursor, uint8 min_size, bool is_arrow)
 {
-	const int16 last_bag_slot = RuleI(World, ExpansionSettings) == -1 || EQ::invslot::slotGeneral8;
-
-	for (int16 i = invslot::GENERAL_BEGIN; i <= last_bag_slot; i++) { // Check basic inventory
+	for (int16 i = invslot::GENERAL_BEGIN; i <= invslot::GENERAL_END; i++) { // Check basic inventory
 		if ((((uint64)1 << i) & m_lookup->PossessionsBitmask) == 0) {
 			continue;
 		}
@@ -829,7 +827,7 @@ int16 EQ::InventoryProfile::FindFreeSlot(bool for_bag, bool try_cursor, uint8 mi
 	}
 
 	if (!for_bag) {
-		for (int16 i = invslot::GENERAL_BEGIN; i <= last_bag_slot; i++) {
+		for (int16 i = invslot::GENERAL_BEGIN; i <= invslot::GENERAL_END; i++) {
 			if ((((uint64)1 << i) & m_lookup->PossessionsBitmask) == 0) {
 				continue;
 			}

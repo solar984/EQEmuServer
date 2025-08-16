@@ -1490,22 +1490,6 @@ void Client::OPMoveCoin(const EQApplicationPacket* app)
 						to_bucket = (int32 *) &trade->cp; break;
 				}
 			}
-			else {
-				switch (mc->cointype2) {
-					case COINTYPE_PP:
-						m_parcel_platinum += mc->amount;
-						break;
-					case COINTYPE_GP:
-						m_parcel_gold += mc->amount;
-						break;
-					case COINTYPE_SP:
-						m_parcel_silver += mc->amount;
-						break;
-					case COINTYPE_CP:
-						m_parcel_copper += mc->amount;
-						break;
-				}
-			}
 			break;
 		}
 		case 4:	// shared bank

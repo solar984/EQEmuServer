@@ -2076,14 +2076,7 @@ private:
 	uint32                                                         m_trader_count{};
 	uint32                                                         m_buyer_id;
 	uint32                                                         m_barter_time;
-	int32                                                          m_parcel_platinum;
-	int32                                                          m_parcel_gold;
-	int32                                                          m_parcel_silver;
-	int32                                                          m_parcel_copper;
-	int32                                                          m_parcel_count;
-	bool                                                           m_parcel_enabled;
-	bool                                                           m_parcel_merchant_engaged;
-	std::map<uint32, CharacterParcelsRepository::CharacterParcels> m_parcels{};
+
 	int Haste; //precalced value
 	uint32 tmSitting; // time stamp started sitting, used for HP regen bonus added on MAY 5, 2004
 
