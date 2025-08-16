@@ -215,13 +215,12 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 	/*[MobVersion::Titanium] =*/
 	EQ::inventory::LookupEntry(
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
-			EQ::invtype::POSSESSIONS_SIZE,			Titanium::invtype::BANK_SIZE,			Titanium::invtype::SHARED_BANK_SIZE,
-			Titanium::invtype::TRADE_SIZE,			Titanium::invtype::WORLD_SIZE,			Titanium::invtype::LIMBO_SIZE,
-			Titanium::invtype::TRIBUTE_SIZE,												Titanium::invtype::GUILD_TRIBUTE_SIZE,
-			Titanium::invtype::MERCHANT_SIZE,												Titanium::invtype::CORPSE_SIZE,
-			Titanium::invtype::BAZAAR_SIZE,			Titanium::invtype::INSPECT_SIZE,
-			Titanium::invtype::VIEW_MOD_PC_SIZE,	Titanium::invtype::VIEW_MOD_BANK_SIZE,	Titanium::invtype::VIEW_MOD_SHARED_BANK_SIZE,
-			Titanium::invtype::VIEW_MOD_LIMBO_SIZE,	Titanium::invtype::ALT_STORAGE_SIZE,	Titanium::invtype::ARCHIVED_SIZE,
+			EQ::invtype::POSSESSIONS_SIZE,          Titanium::invtype::BANK_SIZE,          Titanium::invtype::SHARED_BANK_SIZE,
+			Titanium::invtype::TRADE_SIZE,          Titanium::invtype::WORLD_SIZE,         Titanium::invtype::LIMBO_SIZE,
+			Titanium::invtype::TRIBUTE_SIZE,        Titanium::invtype::GUILD_TRIBUTE_SIZE, Titanium::invtype::MERCHANT_SIZE,
+			Titanium::invtype::CORPSE_SIZE,         Titanium::invtype::BAZAAR_SIZE,        Titanium::invtype::INSPECT_SIZE,
+			Titanium::invtype::VIEW_MOD_PC_SIZE,    Titanium::invtype::VIEW_MOD_BANK_SIZE, Titanium::invtype::VIEW_MOD_SHARED_BANK_SIZE,
+			Titanium::invtype::VIEW_MOD_LIMBO_SIZE, Titanium::invtype::ALT_STORAGE_SIZE,   Titanium::invtype::ARCHIVED_SIZE,
 			Titanium::invtype::OTHER_SIZE
 		),
 
@@ -241,13 +240,12 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 	/*[MobVersion::SoF] =*/
 	EQ::inventory::LookupEntry(
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
-			EQ::invtype::POSSESSIONS_SIZE,		SoF::invtype::BANK_SIZE,			SoF::invtype::SHARED_BANK_SIZE,
-			SoF::invtype::TRADE_SIZE,			SoF::invtype::WORLD_SIZE,			SoF::invtype::LIMBO_SIZE,
-			SoF::invtype::TRIBUTE_SIZE,												SoF::invtype::GUILD_TRIBUTE_SIZE,
-			SoF::invtype::MERCHANT_SIZE,											SoF::invtype::CORPSE_SIZE,
-			SoF::invtype::BAZAAR_SIZE,			SoF::invtype::INSPECT_SIZE,
-			SoF::invtype::VIEW_MOD_PC_SIZE,		SoF::invtype::VIEW_MOD_BANK_SIZE,	SoF::invtype::VIEW_MOD_SHARED_BANK_SIZE,
-			SoF::invtype::VIEW_MOD_LIMBO_SIZE,	SoF::invtype::ALT_STORAGE_SIZE,		SoF::invtype::ARCHIVED_SIZE,
+			EQ::invtype::POSSESSIONS_SIZE,     SoF::invtype::BANK_SIZE,          SoF::invtype::SHARED_BANK_SIZE,
+			SoF::invtype::TRADE_SIZE,          SoF::invtype::WORLD_SIZE,         SoF::invtype::LIMBO_SIZE,
+			SoF::invtype::TRIBUTE_SIZE,        SoF::invtype::GUILD_TRIBUTE_SIZE, SoF::invtype::MERCHANT_SIZE,
+			SoF::invtype::CORPSE_SIZE,         SoF::invtype::BAZAAR_SIZE,        SoF::invtype::INSPECT_SIZE,
+			SoF::invtype::VIEW_MOD_PC_SIZE,    SoF::invtype::VIEW_MOD_BANK_SIZE, SoF::invtype::VIEW_MOD_SHARED_BANK_SIZE,
+			SoF::invtype::VIEW_MOD_LIMBO_SIZE, SoF::invtype::ALT_STORAGE_SIZE,   SoF::invtype::ARCHIVED_SIZE,
 			SoF::invtype::OTHER_SIZE
 		),
 
@@ -267,13 +265,12 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 	/*[MobVersion::SoD] =*/
 	EQ::inventory::LookupEntry(
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
-			EQ::invtype::POSSESSIONS_SIZE,		SoD::invtype::BANK_SIZE,			SoD::invtype::SHARED_BANK_SIZE,
-			SoD::invtype::TRADE_SIZE,			SoD::invtype::WORLD_SIZE,			SoD::invtype::LIMBO_SIZE,
-			SoD::invtype::TRIBUTE_SIZE,												SoD::invtype::GUILD_TRIBUTE_SIZE,
-			SoD::invtype::MERCHANT_SIZE,											SoD::invtype::CORPSE_SIZE,
-			SoD::invtype::BAZAAR_SIZE,			SoD::invtype::INSPECT_SIZE,
-			SoD::invtype::VIEW_MOD_PC_SIZE,		SoD::invtype::VIEW_MOD_BANK_SIZE,	SoD::invtype::VIEW_MOD_SHARED_BANK_SIZE,
-			SoD::invtype::VIEW_MOD_LIMBO_SIZE,	SoD::invtype::ALT_STORAGE_SIZE,		SoD::invtype::ARCHIVED_SIZE,
+			EQ::invtype::POSSESSIONS_SIZE,     SoD::invtype::BANK_SIZE,          SoD::invtype::SHARED_BANK_SIZE,
+			SoD::invtype::TRADE_SIZE,          SoD::invtype::WORLD_SIZE,         SoD::invtype::LIMBO_SIZE,
+			SoD::invtype::TRIBUTE_SIZE,        SoD::invtype::GUILD_TRIBUTE_SIZE, SoD::invtype::MERCHANT_SIZE,
+			SoD::invtype::CORPSE_SIZE,         SoD::invtype::BAZAAR_SIZE,        SoD::invtype::INSPECT_SIZE,
+			SoD::invtype::VIEW_MOD_PC_SIZE,    SoD::invtype::VIEW_MOD_BANK_SIZE, SoD::invtype::VIEW_MOD_SHARED_BANK_SIZE,
+			SoD::invtype::VIEW_MOD_LIMBO_SIZE, SoD::invtype::ALT_STORAGE_SIZE,   SoD::invtype::ARCHIVED_SIZE,
 			SoD::invtype::OTHER_SIZE
 		),
 
@@ -293,13 +290,12 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 	/*[MobVersion::UF] =*/
 	EQ::inventory::LookupEntry(
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
-			EQ::invtype::POSSESSIONS_SIZE,		UF::invtype::BANK_SIZE,				UF::invtype::SHARED_BANK_SIZE,
-			UF::invtype::TRADE_SIZE,			UF::invtype::WORLD_SIZE,			UF::invtype::LIMBO_SIZE,
-			UF::invtype::TRIBUTE_SIZE,												UF::invtype::GUILD_TRIBUTE_SIZE,
-			UF::invtype::MERCHANT_SIZE,												UF::invtype::CORPSE_SIZE,
-			UF::invtype::BAZAAR_SIZE,			UF::invtype::INSPECT_SIZE,
-			UF::invtype::VIEW_MOD_PC_SIZE,		UF::invtype::VIEW_MOD_BANK_SIZE,	UF::invtype::VIEW_MOD_SHARED_BANK_SIZE,
-			UF::invtype::VIEW_MOD_LIMBO_SIZE,	UF::invtype::ALT_STORAGE_SIZE,		UF::invtype::ARCHIVED_SIZE,
+			EQ::invtype::POSSESSIONS_SIZE,    UF::invtype::BANK_SIZE,          UF::invtype::SHARED_BANK_SIZE,
+			UF::invtype::TRADE_SIZE,          UF::invtype::WORLD_SIZE,         UF::invtype::LIMBO_SIZE,
+			UF::invtype::TRIBUTE_SIZE,        UF::invtype::GUILD_TRIBUTE_SIZE, UF::invtype::MERCHANT_SIZE,
+			UF::invtype::CORPSE_SIZE,         UF::invtype::BAZAAR_SIZE,        UF::invtype::INSPECT_SIZE,
+			UF::invtype::VIEW_MOD_PC_SIZE,    UF::invtype::VIEW_MOD_BANK_SIZE, UF::invtype::VIEW_MOD_SHARED_BANK_SIZE,
+			UF::invtype::VIEW_MOD_LIMBO_SIZE, UF::invtype::ALT_STORAGE_SIZE,   UF::invtype::ARCHIVED_SIZE,
 			UF::invtype::OTHER_SIZE
 		),
 
@@ -319,13 +315,12 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 	/*[MobVersion::RoF] =*/
 	EQ::inventory::LookupEntry(
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
-			EQ::invtype::POSSESSIONS_SIZE,		RoF::invtype::BANK_SIZE,					RoF::invtype::SHARED_BANK_SIZE,
-			RoF::invtype::TRADE_SIZE,			RoF::invtype::WORLD_SIZE,					RoF::invtype::LIMBO_SIZE,
-			RoF::invtype::TRIBUTE_SIZE,			                                            RoF::invtype::GUILD_TRIBUTE_SIZE,
-			RoF::invtype::MERCHANT_SIZE,													RoF::invtype::CORPSE_SIZE,
-			RoF::invtype::BAZAAR_SIZE,			RoF::invtype::INSPECT_SIZE,
-			RoF::invtype::VIEW_MOD_PC_SIZE,		RoF::invtype::VIEW_MOD_BANK_SIZE,			RoF::invtype::VIEW_MOD_SHARED_BANK_SIZE,
-			RoF::invtype::VIEW_MOD_LIMBO_SIZE,	RoF::invtype::ALT_STORAGE_SIZE,				RoF::invtype::ARCHIVED_SIZE,
+			EQ::invtype::POSSESSIONS_SIZE,     RoF::invtype::BANK_SIZE,          RoF::invtype::SHARED_BANK_SIZE,
+			RoF::invtype::TRADE_SIZE,          RoF::invtype::WORLD_SIZE,         RoF::invtype::LIMBO_SIZE,
+			RoF::invtype::TRIBUTE_SIZE,        RoF::invtype::GUILD_TRIBUTE_SIZE, RoF::invtype::MERCHANT_SIZE,
+			RoF::invtype::CORPSE_SIZE,         RoF::invtype::BAZAAR_SIZE,        RoF::invtype::INSPECT_SIZE,
+			RoF::invtype::VIEW_MOD_PC_SIZE,    RoF::invtype::VIEW_MOD_BANK_SIZE, RoF::invtype::VIEW_MOD_SHARED_BANK_SIZE,
+			RoF::invtype::VIEW_MOD_LIMBO_SIZE, RoF::invtype::ALT_STORAGE_SIZE,   RoF::invtype::ARCHIVED_SIZE,
 			RoF::invtype::OTHER_SIZE
 		),
 
@@ -373,9 +368,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			EQ::invtype::POSSESSIONS_SIZE,		    EntityLimits::NPC::INULL,	EntityLimits::NPC::INULL,
 			EntityLimits::NPC::invtype::TRADE_SIZE, EntityLimits::NPC::INULL,	EntityLimits::NPC::INULL,
-			EntityLimits::NPC::INULL,											EntityLimits::NPC::INULL,
-			EntityLimits::NPC::INULL,											EntityLimits::NPC::INULL, /*InvTypeCorpseSize,*/
-			EntityLimits::NPC::INULL,				EntityLimits::NPC::INULL,
+			EntityLimits::NPC::INULL,				EntityLimits::NPC::INULL,	EntityLimits::NPC::INULL,
+			EntityLimits::NPC::INULL,				EntityLimits::NPC::INULL,	EntityLimits::NPC::INULL,
 			EntityLimits::NPC::INULL,				EntityLimits::NPC::INULL,	EntityLimits::NPC::INULL,
 			EntityLimits::NPC::INULL,				EntityLimits::NPC::INULL,	EntityLimits::NPC::INULL,
 			EntityLimits::NPC::INULL
@@ -399,9 +393,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			EQ::invtype::POSSESSIONS_SIZE, /*InvTypePossessionsSize,*/	    EntityLimits::NPCMerchant::INULL,	EntityLimits::NPCMerchant::INULL,
 			EntityLimits::NPCMerchant::invtype::TRADE_SIZE,					EntityLimits::NPCMerchant::INULL,	EntityLimits::NPCMerchant::INULL,
-			EntityLimits::NPCMerchant::INULL,																	EntityLimits::NPCMerchant::INULL,
-			EntityLimits::NPCMerchant::INULL,																	EntityLimits::NPCMerchant::INULL, /*InvTypeCorpseSize,*/
-			EntityLimits::NPCMerchant::INULL,								EntityLimits::NPCMerchant::INULL,
+			EntityLimits::NPCMerchant::INULL,								EntityLimits::NPCMerchant::INULL,	EntityLimits::NPCMerchant::INULL,
+			EntityLimits::NPCMerchant::INULL,								EntityLimits::NPCMerchant::INULL,	EntityLimits::NPCMerchant::INULL,
 			EntityLimits::NPCMerchant::INULL,								EntityLimits::NPCMerchant::INULL,	EntityLimits::NPCMerchant::INULL,
 			EntityLimits::NPCMerchant::INULL,								EntityLimits::NPCMerchant::INULL,	EntityLimits::NPCMerchant::INULL,
 			EntityLimits::NPCMerchant::INULL
@@ -425,9 +418,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			EQ::invtype::POSSESSIONS_SIZE, /*InvTypePossessionsSize,*/		EntityLimits::Merc::INULL,	EntityLimits::Merc::INULL,
 			EntityLimits::Merc::invtype::TRADE_SIZE,						EntityLimits::Merc::INULL,	EntityLimits::Merc::INULL,
-			EntityLimits::Merc::INULL,																	EntityLimits::Merc::INULL,
-			EntityLimits::Merc::INULL,																	EntityLimits::Merc::INULL, /*InvTypeCorpseSize,*/
-			EntityLimits::Merc::INULL,										EntityLimits::Merc::INULL,
+			EntityLimits::Merc::INULL,										EntityLimits::Merc::INULL,  EntityLimits::Merc::INULL,																	
+			EntityLimits::Merc::INULL,										EntityLimits::Merc::INULL,	EntityLimits::Merc::INULL,
 			EntityLimits::Merc::INULL,										EntityLimits::Merc::INULL,	EntityLimits::Merc::INULL,
 			EntityLimits::Merc::INULL,										EntityLimits::Merc::INULL,	EntityLimits::Merc::INULL,
 			EntityLimits::Merc::INULL
@@ -451,9 +443,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			EQ::invtype::POSSESSIONS_SIZE, /*InvTypePossessionsSize,*/		EntityLimits::Bot::INULL,	EntityLimits::Bot::INULL,
 			EntityLimits::Bot::invtype::TRADE_SIZE,							EntityLimits::Bot::INULL,	EntityLimits::Bot::INULL,
-			EntityLimits::Bot::INULL,																	EntityLimits::Bot::INULL,
-			EntityLimits::Bot::INULL,																	EntityLimits::Bot::INULL, /*InvTypeCorpseSize,*/
-			EntityLimits::Bot::INULL,										EntityLimits::Bot::INULL,
+			EntityLimits::Bot::INULL,										EntityLimits::Bot::INULL,	EntityLimits::Bot::INULL,
+			EntityLimits::Bot::INULL,										EntityLimits::Bot::INULL,	EntityLimits::Bot::INULL,
 			EntityLimits::Bot::INULL,										EntityLimits::Bot::INULL,	EntityLimits::Bot::INULL,
 			EntityLimits::Bot::INULL,										EntityLimits::Bot::INULL,	EntityLimits::Bot::INULL,
 			EntityLimits::Bot::INULL
@@ -477,9 +468,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			EQ::invtype::POSSESSIONS_SIZE, /*InvTypePossessionsSize,*/		EntityLimits::ClientPet::INULL,	EntityLimits::ClientPet::INULL,
 			EntityLimits::ClientPet::invtype::TRADE_SIZE,					EntityLimits::ClientPet::INULL, EntityLimits::ClientPet::INULL,
-			EntityLimits::ClientPet::INULL,																	EntityLimits::ClientPet::INULL,
-			EntityLimits::ClientPet::INULL,																	EntityLimits::ClientPet::INULL, /*InvTypeCorpseSize,*/
-			EntityLimits::ClientPet::INULL,									EntityLimits::ClientPet::INULL,
+			EntityLimits::ClientPet::INULL,									EntityLimits::ClientPet::INULL,	EntityLimits::ClientPet::INULL,		
+			EntityLimits::ClientPet::INULL,									EntityLimits::ClientPet::INULL,	EntityLimits::ClientPet::INULL,
 			EntityLimits::ClientPet::INULL,									EntityLimits::ClientPet::INULL,	EntityLimits::ClientPet::INULL,
 			EntityLimits::ClientPet::INULL,									EntityLimits::ClientPet::INULL,	EntityLimits::ClientPet::INULL,
 			EntityLimits::ClientPet::INULL
@@ -503,9 +493,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			EQ::invtype::POSSESSIONS_SIZE, /*InvTypePossessionsSize,*/	    EntityLimits::NPCPet::INULL,	EntityLimits::NPCPet::INULL,
 			EntityLimits::NPCPet::invtype::TRADE_SIZE,						EntityLimits::NPCPet::INULL,	EntityLimits::NPCPet::INULL,
-			EntityLimits::NPCPet::INULL,																	EntityLimits::NPCPet::INULL,
-			EntityLimits::NPCPet::INULL,																	EntityLimits::NPCPet::INULL, /*InvTypeCorpseSize,*/
-			EntityLimits::NPCPet::INULL,									EntityLimits::NPCPet::INULL,
+			EntityLimits::NPCPet::INULL,									EntityLimits::NPCPet::INULL,	EntityLimits::NPCPet::INULL,	
+			EntityLimits::NPCPet::INULL,									EntityLimits::NPCPet::INULL,	EntityLimits::NPCPet::INULL,
 			EntityLimits::NPCPet::INULL,									EntityLimits::NPCPet::INULL,	EntityLimits::NPCPet::INULL,
 			EntityLimits::NPCPet::INULL,									EntityLimits::NPCPet::INULL,	EntityLimits::NPCPet::INULL,
 			EntityLimits::NPCPet::INULL
@@ -529,9 +518,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			EQ::invtype::POSSESSIONS_SIZE, /*InvTypePossessionsSize,*/		EntityLimits::MercPet::INULL,	EntityLimits::MercPet::INULL,
 			EntityLimits::MercPet::invtype::TRADE_SIZE,						EntityLimits::MercPet::INULL,	EntityLimits::MercPet::INULL,
-			EntityLimits::MercPet::INULL,																	EntityLimits::MercPet::INULL,
-			EntityLimits::MercPet::INULL,																	EntityLimits::MercPet::INULL, /*InvTypeCorpseSize,*/
-			EntityLimits::MercPet::INULL,									EntityLimits::MercPet::INULL,
+			EntityLimits::MercPet::INULL,									EntityLimits::MercPet::INULL,	EntityLimits::MercPet::INULL,
+			EntityLimits::MercPet::INULL,									EntityLimits::MercPet::INULL,	EntityLimits::MercPet::INULL,
 			EntityLimits::MercPet::INULL,									EntityLimits::MercPet::INULL,	EntityLimits::MercPet::INULL,
 			EntityLimits::MercPet::INULL,									EntityLimits::MercPet::INULL,	EntityLimits::MercPet::INULL,
 			EntityLimits::MercPet::INULL
@@ -555,9 +543,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			EQ::invtype::POSSESSIONS_SIZE, /*InvTypePossessionsSize,*/		EntityLimits::BotPet::INULL,	EntityLimits::BotPet::INULL,
 			EntityLimits::BotPet::invtype::TRADE_SIZE,						EntityLimits::BotPet::INULL,	EntityLimits::BotPet::INULL,
-			EntityLimits::BotPet::INULL,																	EntityLimits::BotPet::INULL,
-			EntityLimits::BotPet::INULL,																	EntityLimits::BotPet::INULL, /*InvTypeCorpseSize,*/
-			EntityLimits::BotPet::INULL,									EntityLimits::BotPet::INULL,
+			EntityLimits::BotPet::INULL,									EntityLimits::BotPet::INULL,	EntityLimits::BotPet::INULL,
+			EntityLimits::BotPet::INULL,									EntityLimits::BotPet::INULL,	EntityLimits::BotPet::INULL,
 			EntityLimits::BotPet::INULL,									EntityLimits::BotPet::INULL,	EntityLimits::BotPet::INULL,
 			EntityLimits::BotPet::INULL,									EntityLimits::BotPet::INULL,	EntityLimits::BotPet::INULL,
 			EntityLimits::BotPet::INULL
@@ -581,9 +568,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			Titanium::INULL,						Titanium::INULL,						Titanium::INULL,
 			Titanium::invtype::TRADE_SIZE,			Titanium::INULL,						Titanium::INULL,
-			Titanium::INULL,																Titanium::INULL,
-			Titanium::invtype::MERCHANT_SIZE,												Titanium::INULL,
-			Titanium::invtype::BAZAAR_SIZE,			Titanium::invtype::INSPECT_SIZE,
+			Titanium::INULL,						Titanium::INULL,						Titanium::invtype::MERCHANT_SIZE,
+			Titanium::INULL,						Titanium::invtype::BAZAAR_SIZE,			Titanium::invtype::INSPECT_SIZE,
 			Titanium::invtype::VIEW_MOD_PC_SIZE,	Titanium::invtype::VIEW_MOD_BANK_SIZE,	Titanium::invtype::VIEW_MOD_SHARED_BANK_SIZE,
 			Titanium::invtype::VIEW_MOD_LIMBO_SIZE,	Titanium::INULL,						Titanium::INULL,
 			Titanium::INULL
@@ -607,9 +593,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			SoF::INULL,							SoF::INULL,							SoF::INULL,
 			SoF::invtype::TRADE_SIZE,			SoF::INULL,							SoF::INULL,
-			SoF::INULL,																SoF::INULL,
-			SoF::invtype::MERCHANT_SIZE,											SoF::INULL,
-			SoF::invtype::BAZAAR_SIZE,			SoF::invtype::INSPECT_SIZE,
+			SoF::INULL,							SoF::INULL,							SoF::invtype::MERCHANT_SIZE,
+			SoF::INULL,							SoF::invtype::BAZAAR_SIZE,			SoF::invtype::INSPECT_SIZE,
 			SoF::invtype::VIEW_MOD_PC_SIZE,		SoF::invtype::VIEW_MOD_BANK_SIZE,	SoF::invtype::VIEW_MOD_SHARED_BANK_SIZE,
 			SoF::invtype::VIEW_MOD_LIMBO_SIZE,	SoF::INULL,							SoF::INULL,
 			SoF::INULL
@@ -633,9 +618,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			SoD::INULL,							SoD::INULL,							SoD::INULL,
 			SoD::invtype::TRADE_SIZE,			SoD::INULL,							SoD::INULL,
-			SoD::INULL,																SoD::INULL,
-			SoD::invtype::MERCHANT_SIZE,											SoD::INULL,
-			SoD::invtype::BAZAAR_SIZE,			SoD::invtype::INSPECT_SIZE,
+			SoD::INULL,							SoD::INULL,							SoD::invtype::MERCHANT_SIZE,
+			SoD::INULL,							SoD::invtype::BAZAAR_SIZE,			SoD::invtype::INSPECT_SIZE,
 			SoD::invtype::VIEW_MOD_PC_SIZE,		SoD::invtype::VIEW_MOD_BANK_SIZE,	SoD::invtype::VIEW_MOD_SHARED_BANK_SIZE,
 			SoD::invtype::VIEW_MOD_LIMBO_SIZE,	SoD::INULL,							SoD::INULL,
 			SoD::INULL
@@ -659,9 +643,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			UF::INULL,							UF::INULL,							UF::INULL,
 			UF::invtype::TRADE_SIZE,			UF::INULL,							UF::INULL,
-			UF::INULL,																UF::INULL,
-			UF::invtype::MERCHANT_SIZE,												UF::INULL,
-			UF::invtype::BAZAAR_SIZE,			UF::invtype::INSPECT_SIZE,
+			UF::INULL,							UF::INULL,							UF::invtype::MERCHANT_SIZE,
+			UF::INULL,							UF::invtype::BAZAAR_SIZE,			UF::invtype::INSPECT_SIZE,
 			UF::invtype::VIEW_MOD_PC_SIZE,		UF::invtype::VIEW_MOD_BANK_SIZE,	UF::invtype::VIEW_MOD_SHARED_BANK_SIZE,
 			UF::invtype::VIEW_MOD_LIMBO_SIZE,	UF::INULL,							UF::INULL,
 			UF::INULL
@@ -685,9 +668,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			RoF::INULL,							RoF::INULL,							RoF::INULL,
 			RoF::invtype::TRADE_SIZE,			RoF::INULL,							RoF::INULL,
-			RoF::INULL,																RoF::INULL,
-			RoF::invtype::MERCHANT_SIZE,											RoF::INULL,
-			RoF::invtype::BAZAAR_SIZE,			RoF::invtype::INSPECT_SIZE,
+			RoF::INULL,							RoF::INULL,							RoF::invtype::MERCHANT_SIZE,
+			RoF::INULL,							RoF::invtype::BAZAAR_SIZE,			RoF::invtype::INSPECT_SIZE,
 			RoF::invtype::VIEW_MOD_PC_SIZE,		RoF::invtype::VIEW_MOD_BANK_SIZE,	RoF::invtype::VIEW_MOD_SHARED_BANK_SIZE,
 			RoF::invtype::VIEW_MOD_LIMBO_SIZE,	RoF::INULL,							RoF::INULL,
 			RoF::INULL
@@ -711,9 +693,8 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
 			RoF2::INULL,						RoF2::INULL,						RoF2::INULL,
 			RoF2::invtype::TRADE_SIZE,			RoF2::INULL,						RoF2::INULL,
-			RoF2::INULL,															RoF2::INULL,
-			RoF2::invtype::MERCHANT_SIZE,											RoF2::INULL,
-			RoF2::invtype::BAZAAR_SIZE,			RoF2::invtype::INSPECT_SIZE,
+			RoF2::INULL,						RoF2::INULL,						RoF2::invtype::MERCHANT_SIZE,
+			RoF2::INULL,						RoF2::invtype::BAZAAR_SIZE,			RoF2::invtype::INSPECT_SIZE,
 			RoF2::invtype::VIEW_MOD_PC_SIZE,	RoF2::invtype::VIEW_MOD_BANK_SIZE,	RoF2::invtype::VIEW_MOD_SHARED_BANK_SIZE,
 			RoF2::invtype::VIEW_MOD_LIMBO_SIZE,	RoF2::INULL,						RoF2::INULL,
 			RoF2::INULL
