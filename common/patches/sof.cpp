@@ -3315,7 +3315,7 @@ namespace SoF
 
 		if (slot_id_in <= EQ::invslot::slotGeneral8 && slot_id_in >= EQ::invslot::GENERAL_BEGIN)
 			SubSlotNumber = EQ::invbag::GENERAL_BAGS_BEGIN + ((slot_id_in - EQ::invslot::GENERAL_BEGIN) * EQ::invbag::SLOT_COUNT);
-		else if (slot_id_in <= EQ::invslot::GENERAL_END && slot_id_in >= EQ::invslot::slotGeneral9)
+		else if (slot_id_in <= EQ::invslot::GENERAL_END && slot_id_in > EQ::invslot::slotGeneral8)
 			SubSlotNumber = EQ::invbag::SLOT_INVALID;
 		else if (slot_id_in == EQ::invslot::slotCursor)
 			SubSlotNumber = EQ::invbag::CURSOR_BAG_BEGIN;
@@ -3355,12 +3355,12 @@ namespace SoF
 			sof_slot = server_slot - 2;
 		}
 
-		else if (server_slot <= EQ::invbag::GENERAL_BAGS_END && server_slot >= EQ::invbag::GENERAL_BAGS_BEGIN) {
-			sof_slot = server_slot - (EQ::invbag::GENERAL_BAGS_BEGIN - invbag::GENERAL_BAGS_BEGIN) - ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((server_slot - EQ::invbag::GENERAL_BAGS_BEGIN) / EQ::invbag::SLOT_COUNT));;
+		else if (server_slot <= EQ::invbag::GENERAL_BAGS_8_END && server_slot >= EQ::invbag::GENERAL_BAGS_BEGIN) {
+			sof_slot = server_slot + 11;
 		}
 
 		else if (server_slot <= EQ::invbag::CURSOR_BAG_END && server_slot >= EQ::invbag::CURSOR_BAG_BEGIN) {
-			sof_slot = server_slot - (EQ::invbag::CURSOR_BAG_BEGIN - invbag::CURSOR_BAG_BEGIN);
+			sof_slot = server_slot - 9;
 		}
 
 		else if (server_slot <= EQ::invslot::TRIBUTE_END && server_slot >= EQ::invslot::TRIBUTE_BEGIN) {
@@ -3380,7 +3380,7 @@ namespace SoF
 		}
 
 		else if (server_slot <= EQ::invbag::BANK_BAGS_END && server_slot >= EQ::invbag::BANK_BAGS_BEGIN) {
-			sof_slot = server_slot - (EQ::invbag::BANK_BAGS_BEGIN - invbag::BANK_BAGS_BEGIN) - ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((server_slot - EQ::invbag::BANK_BAGS_BEGIN) / EQ::invbag::SLOT_COUNT));
+			sof_slot = server_slot + 1;
 		}
 
 		else if (server_slot <= EQ::invslot::SHARED_BANK_END && server_slot >= EQ::invslot::SHARED_BANK_BEGIN) {
@@ -3388,7 +3388,7 @@ namespace SoF
 		}
 
 		else if (server_slot <= EQ::invbag::SHARED_BANK_BAGS_END && server_slot >= EQ::invbag::SHARED_BANK_BAGS_BEGIN) {
-			sof_slot = server_slot - (EQ::invbag::SHARED_BANK_BAGS_BEGIN - invbag::SHARED_BANK_BAGS_BEGIN) - ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((server_slot - EQ::invbag::SHARED_BANK_BAGS_BEGIN) / EQ::invbag::SLOT_COUNT));
+			sof_slot = server_slot + 1;
 		}
 
 		else if (server_slot <= EQ::invslot::TRADE_END && server_slot >= EQ::invslot::TRADE_BEGIN) {
@@ -3396,7 +3396,7 @@ namespace SoF
 		}
 
 		else if (server_slot <= EQ::invbag::TRADE_BAGS_END && server_slot >= EQ::invbag::TRADE_BAGS_BEGIN) {
-			sof_slot = server_slot - (EQ::invbag::TRADE_BAGS_BEGIN - invbag::TRADE_BAGS_BEGIN) - ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((server_slot - EQ::invbag::TRADE_BAGS_BEGIN) / EQ::invbag::SLOT_COUNT));
+			sof_slot = server_slot;
 		}
 
 		else if (server_slot <= EQ::invslot::WORLD_END && server_slot >= EQ::invslot::WORLD_BEGIN) {
@@ -3442,11 +3442,11 @@ namespace SoF
 		}
 
 		else if (sof_slot <= invbag::GENERAL_BAGS_END && sof_slot >= invbag::GENERAL_BAGS_BEGIN) {
-			server_slot = sof_slot + (EQ::invbag::GENERAL_BAGS_BEGIN - invbag::GENERAL_BAGS_BEGIN) + ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((sof_slot - invbag::GENERAL_BAGS_BEGIN) / invbag::SLOT_COUNT));;
+			server_slot = sof_slot - 11;
 		}
 
 		else if (sof_slot <= invbag::CURSOR_BAG_END && sof_slot >= invbag::CURSOR_BAG_BEGIN) {
-			server_slot = sof_slot + (EQ::invbag::CURSOR_BAG_BEGIN - invbag::CURSOR_BAG_BEGIN);
+			server_slot = sof_slot + 9;
 		}
 
 		else if (sof_slot <= invslot::TRIBUTE_END && sof_slot >= invslot::TRIBUTE_BEGIN) {
@@ -3466,7 +3466,7 @@ namespace SoF
 		}
 
 		else if (sof_slot <= invbag::BANK_BAGS_END && sof_slot >= invbag::BANK_BAGS_BEGIN) {
-			server_slot = sof_slot + (EQ::invbag::BANK_BAGS_BEGIN - invbag::BANK_BAGS_BEGIN) + ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((sof_slot - invbag::BANK_BAGS_BEGIN) / invbag::SLOT_COUNT));;
+			server_slot = sof_slot - 1;
 		}
 
 		else if (sof_slot <= invslot::SHARED_BANK_END && sof_slot >= invslot::SHARED_BANK_BEGIN) {
@@ -3474,7 +3474,7 @@ namespace SoF
 		}
 
 		else if (sof_slot <= invbag::SHARED_BANK_BAGS_END && sof_slot >= invbag::SHARED_BANK_BAGS_BEGIN) {
-			server_slot = sof_slot + (EQ::invbag::SHARED_BANK_BAGS_BEGIN - invbag::SHARED_BANK_BAGS_BEGIN) + ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((sof_slot - invbag::SHARED_BANK_BAGS_BEGIN) / invbag::SLOT_COUNT));;
+			server_slot = sof_slot - 1;
 		}
 
 		else if (sof_slot <= invslot::TRADE_END && sof_slot >= invslot::TRADE_BEGIN) {
@@ -3482,7 +3482,7 @@ namespace SoF
 		}
 
 		else if (sof_slot <= invbag::TRADE_BAGS_END && sof_slot >= invbag::TRADE_BAGS_BEGIN) {
-			server_slot = sof_slot + (EQ::invbag::TRADE_BAGS_BEGIN - invbag::TRADE_BAGS_BEGIN) + ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((sof_slot - invbag::TRADE_BAGS_BEGIN) / invbag::SLOT_COUNT));;
+			server_slot = sof_slot;
 		}
 
 		else if (sof_slot <= invslot::WORLD_END && sof_slot >= invslot::WORLD_BEGIN) {
@@ -3532,13 +3532,21 @@ namespace SoF
 					continue;
 				}
 
-				// Idx:  0 1     6     11    16    21    26    31 32   36 37    42       (Source)
-				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X XXXXX XXXXXXXX (50)
-				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X XXXXX XXXXXXXX (50)
-				// Diff: 
+				// Idx:  0 1     6     11    16    21    26    31    36 37   41 43    48       (Source)
+				// RoF2: X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX XX XXXXX XXXXXXXX (56)
+				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX       X  XXXX  X XXXXX XXXXXXXX (50)
+				// Diff:                                       ^^^^^         ^
 
 				sof_saylink.push_back('\x12');
-				sof_saylink.append(segments[segment_iter]);
+				sof_saylink.append(segments[segment_iter].substr(0, 31));
+				sof_saylink.append(segments[segment_iter].substr(36, 5));
+
+				if (segments[segment_iter][41] == '0')
+					sof_saylink.push_back(segments[segment_iter][42]);
+				else
+					sof_saylink.push_back('F');
+
+				sof_saylink.append(segments[segment_iter].substr(43));
 				sof_saylink.push_back('\x12');
 			}
 			else {
@@ -3585,71 +3593,71 @@ namespace SoF
 
 	static inline spells::CastingSlot ServerToSoFCastingSlot(EQ::spells::CastingSlot slot) {
 		switch (slot) {
-			case EQ::spells::CastingSlot::Gem1:
-				return spells::CastingSlot::Gem1;
-			case EQ::spells::CastingSlot::Gem2:
-				return spells::CastingSlot::Gem2;
-			case EQ::spells::CastingSlot::Gem3:
-				return spells::CastingSlot::Gem3;
-			case EQ::spells::CastingSlot::Gem4:
-				return spells::CastingSlot::Gem4;
-			case EQ::spells::CastingSlot::Gem5:
-				return spells::CastingSlot::Gem5;
-			case EQ::spells::CastingSlot::Gem6:
-				return spells::CastingSlot::Gem6;
-			case EQ::spells::CastingSlot::Gem7:
-				return spells::CastingSlot::Gem7;
-			case EQ::spells::CastingSlot::Gem8:
-				return spells::CastingSlot::Gem8;
-			case EQ::spells::CastingSlot::Gem9:
-				return spells::CastingSlot::Gem9;
-			case EQ::spells::CastingSlot::Item:
-				return spells::CastingSlot::Item;
-			case EQ::spells::CastingSlot::PotionBelt:
-				return spells::CastingSlot::PotionBelt;
-			case EQ::spells::CastingSlot::Discipline:
-				return spells::CastingSlot::Discipline;
-			case EQ::spells::CastingSlot::AltAbility:
-				return spells::CastingSlot::AltAbility;
-			default: // we shouldn't have any issues with other slots ... just return something
-				return spells::CastingSlot::Discipline;
+		case EQ::spells::CastingSlot::Gem1:
+			return spells::CastingSlot::Gem1;
+		case EQ::spells::CastingSlot::Gem2:
+			return spells::CastingSlot::Gem2;
+		case EQ::spells::CastingSlot::Gem3:
+			return spells::CastingSlot::Gem3;
+		case EQ::spells::CastingSlot::Gem4:
+			return spells::CastingSlot::Gem4;
+		case EQ::spells::CastingSlot::Gem5:
+			return spells::CastingSlot::Gem5;
+		case EQ::spells::CastingSlot::Gem6:
+			return spells::CastingSlot::Gem6;
+		case EQ::spells::CastingSlot::Gem7:
+			return spells::CastingSlot::Gem7;
+		case EQ::spells::CastingSlot::Gem8:
+			return spells::CastingSlot::Gem8;
+		case EQ::spells::CastingSlot::Gem9:
+			return spells::CastingSlot::Gem9;
+		case EQ::spells::CastingSlot::Item:
+			return spells::CastingSlot::Item;
+		case EQ::spells::CastingSlot::PotionBelt:
+			return spells::CastingSlot::PotionBelt;
+		case EQ::spells::CastingSlot::Discipline:
+			return spells::CastingSlot::Discipline;
+		case EQ::spells::CastingSlot::AltAbility:
+			return spells::CastingSlot::AltAbility;
+		default: // we shouldn't have any issues with other slots ... just return something
+			return spells::CastingSlot::Discipline;
 		}
 	}
 
 	static inline EQ::spells::CastingSlot SoFToServerCastingSlot(spells::CastingSlot slot, uint32 item_location) {
 		switch (slot) {
-			case spells::CastingSlot::Gem1:
-				return EQ::spells::CastingSlot::Gem1;
-			case spells::CastingSlot::Gem2:
-				return EQ::spells::CastingSlot::Gem2;
-			case spells::CastingSlot::Gem3:
-				return EQ::spells::CastingSlot::Gem3;
-			case spells::CastingSlot::Gem4:
-				return EQ::spells::CastingSlot::Gem4;
-			case spells::CastingSlot::Gem5:
-				return EQ::spells::CastingSlot::Gem5;
-			case spells::CastingSlot::Gem6:
-				return EQ::spells::CastingSlot::Gem6;
-			case spells::CastingSlot::Gem7:
-				return EQ::spells::CastingSlot::Gem7;
-			case spells::CastingSlot::Gem8:
-				return EQ::spells::CastingSlot::Gem8;
-			case spells::CastingSlot::Gem9:
-				return EQ::spells::CastingSlot::Gem9;
-			case spells::CastingSlot::Ability:
-				return EQ::spells::CastingSlot::Ability;
-				// Tit uses 10 for item and discipline casting, but items have a valid location
-			case spells::CastingSlot::Item:
-				if (item_location == INVALID_INDEX)
-					return EQ::spells::CastingSlot::Discipline;
-				else
-					return EQ::spells::CastingSlot::Item;
-			case spells::CastingSlot::PotionBelt:
-				return EQ::spells::CastingSlot::PotionBelt;
-			case spells::CastingSlot::AltAbility:
-				return EQ::spells::CastingSlot::AltAbility;
-			default: // we shouldn't have any issues with other slots ... just return something
+		case spells::CastingSlot::Gem1:
+			return EQ::spells::CastingSlot::Gem1;
+		case spells::CastingSlot::Gem2:
+			return EQ::spells::CastingSlot::Gem2;
+		case spells::CastingSlot::Gem3:
+			return EQ::spells::CastingSlot::Gem3;
+		case spells::CastingSlot::Gem4:
+			return EQ::spells::CastingSlot::Gem4;
+		case spells::CastingSlot::Gem5:
+			return EQ::spells::CastingSlot::Gem5;
+		case spells::CastingSlot::Gem6:
+			return EQ::spells::CastingSlot::Gem6;
+		case spells::CastingSlot::Gem7:
+			return EQ::spells::CastingSlot::Gem7;
+		case spells::CastingSlot::Gem8:
+			return EQ::spells::CastingSlot::Gem8;
+		case spells::CastingSlot::Gem9:
+			return EQ::spells::CastingSlot::Gem9;
+		case spells::CastingSlot::Ability:
+			return EQ::spells::CastingSlot::Ability;
+			// Tit uses 10 for item and discipline casting, but items have a valid location
+		case spells::CastingSlot::Item:
+			if (item_location == INVALID_INDEX)
 				return EQ::spells::CastingSlot::Discipline;
+			else
+				return EQ::spells::CastingSlot::Item;
+		case spells::CastingSlot::PotionBelt:
+			return EQ::spells::CastingSlot::PotionBelt;
+		case spells::CastingSlot::AltAbility:
+			return EQ::spells::CastingSlot::AltAbility;
+		default: // we shouldn't have any issues with other slots ... just return something
+			return EQ::spells::CastingSlot::Discipline;
 		}
 	}
 
@@ -3657,7 +3665,7 @@ namespace SoF
 		// we're a disc
 		if (index >= EQ::spells::LONG_BUFFS + EQ::spells::SHORT_BUFFS)
 			return index - EQ::spells::LONG_BUFFS - EQ::spells::SHORT_BUFFS +
-				   spells::LONG_BUFFS + spells::SHORT_BUFFS;
+			spells::LONG_BUFFS + spells::SHORT_BUFFS;
 		// we're a song
 		if (index >= EQ::spells::LONG_BUFFS)
 			return index - EQ::spells::LONG_BUFFS + spells::LONG_BUFFS;
@@ -3670,7 +3678,7 @@ namespace SoF
 		// we're a disc
 		if (index >= spells::LONG_BUFFS + spells::SHORT_BUFFS)
 			return index - spells::LONG_BUFFS - spells::SHORT_BUFFS + EQ::spells::LONG_BUFFS +
-			       EQ::spells::SHORT_BUFFS;
+			EQ::spells::SHORT_BUFFS;
 		// we're a song
 		if (index >= spells::LONG_BUFFS)
 			return index - spells::LONG_BUFFS + EQ::spells::LONG_BUFFS;

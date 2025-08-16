@@ -106,8 +106,8 @@ namespace EQ
 	namespace invtype {
 		using namespace Titanium::invtype::enum_;
 
-		using RoF2::invtype::POSSESSIONS_SIZE;
-		using SoF::invtype::BANK_SIZE;
+		using Titanium::invtype::POSSESSIONS_SIZE;
+		using Titanium::invtype::BANK_SIZE;
 		using Titanium::invtype::SHARED_BANK_SIZE;
 		using Titanium::invtype::TRADE_SIZE;
 		using Titanium::invtype::WORLD_SIZE;
@@ -115,11 +115,11 @@ namespace EQ
 		using Titanium::invtype::TRIBUTE_SIZE;
 		using Titanium::invtype::GUILD_TRIBUTE_SIZE;
 		using Titanium::invtype::MERCHANT_SIZE;
-		using RoF2::invtype::CORPSE_SIZE;
+		using Titanium::invtype::CORPSE_SIZE;
 		using Titanium::invtype::BAZAAR_SIZE;
-		using SoF::invtype::INSPECT_SIZE;
-		using RoF2::invtype::VIEW_MOD_PC_SIZE;
-		using SoF::invtype::VIEW_MOD_BANK_SIZE;
+		using Titanium::invtype::INSPECT_SIZE;
+		using Titanium::invtype::VIEW_MOD_PC_SIZE;
+		using Titanium::invtype::VIEW_MOD_BANK_SIZE;
 		using Titanium::invtype::VIEW_MOD_SHARED_BANK_SIZE;
 		using Titanium::invtype::VIEW_MOD_LIMBO_SIZE;
 		using Titanium::invtype::ALT_STORAGE_SIZE;
@@ -130,8 +130,8 @@ namespace EQ
 
 		using Titanium::invtype::TYPE_INVALID;
 		using Titanium::invtype::TYPE_BEGIN;
-		using RoF2::invtype::TYPE_END;
-		using RoF2::invtype::TYPE_COUNT;
+		using Titanium::invtype::TYPE_END;
+		using Titanium::invtype::TYPE_COUNT;
 
 		int16 GetInvTypeSize(int16 inv_type);
 		using Titanium::invtype::GetInvTypeName;
@@ -148,7 +148,7 @@ namespace EQ
 	}
 
 	namespace invslot {
-		using namespace RoF2::invslot::enum_;
+		using namespace Titanium::invslot::enum_;
 
 		using Titanium::invslot::SLOT_INVALID;
 		using Titanium::invslot::SLOT_BEGIN;
@@ -158,23 +158,23 @@ namespace EQ
 		const int16 SLOT_AUGMENT_GENERIC_RETURN = 1001; // clients don't appear to use this method... (internal inventory return value)
 
 		using Titanium::invslot::POSSESSIONS_BEGIN;
-		using RoF2::invslot::POSSESSIONS_END;
-		using RoF2::invslot::POSSESSIONS_COUNT;
+		using Titanium::invslot::POSSESSIONS_END;
+		using Titanium::invslot::POSSESSIONS_COUNT;
 
 		using Titanium::invslot::EQUIPMENT_BEGIN;
-		using SoF::invslot::EQUIPMENT_END;
-		using SoF::invslot::EQUIPMENT_COUNT;
+		using Titanium::invslot::EQUIPMENT_END;
+		using Titanium::invslot::EQUIPMENT_COUNT;
 
-		using SoF::invslot::GENERAL_BEGIN;
-		using RoF2::invslot::GENERAL_END;
-		using RoF2::invslot::GENERAL_COUNT;
+		using Titanium::invslot::GENERAL_BEGIN;
+		using Titanium::invslot::GENERAL_END;
+		using Titanium::invslot::GENERAL_COUNT;
 
 		using Titanium::invslot::BONUS_BEGIN;
-		using SoF::invslot::BONUS_STAT_END;
-		using SoF::invslot::BONUS_SKILL_END;
+		using Titanium::invslot::BONUS_STAT_END;
+		using Titanium::invslot::BONUS_SKILL_END;
 
 		using Titanium::invslot::BANK_BEGIN;
-		using SoF::invslot::BANK_END;
+		using Titanium::invslot::BANK_END;
 
 		using Titanium::invslot::SHARED_BANK_BEGIN;
 		using Titanium::invslot::SHARED_BANK_END;
@@ -196,14 +196,14 @@ namespace EQ
 		const int16 CORPSE_BEGIN = invslot::slotGeneral1;
 		const int16 CORPSE_END   = CORPSE_BEGIN + invslot::slotCursor;
 
-		using SoF::invslot::EQUIPMENT_BITMASK;
-		using RoF2::invslot::GENERAL_BITMASK;
+		using Titanium::invslot::EQUIPMENT_BITMASK;
+		using Titanium::invslot::GENERAL_BITMASK;
 		using Titanium::invslot::CURSOR_BITMASK;
-		using RoF2::invslot::POSSESSIONS_BITMASK;
-		using RoF2::invslot::CORPSE_BITMASK;
+		using Titanium::invslot::POSSESSIONS_BITMASK;
+		using Titanium::invslot::CORPSE_BITMASK;
 
-		using RoF2::invslot::GetInvPossessionsSlotName;
-		using RoF2::invslot::GetInvSlotName;
+		using Titanium::invslot::GetInvPossessionsSlotName;
+		using Titanium::invslot::GetInvSlotName;
 
 	} // namespace invslot
 
@@ -417,7 +417,7 @@ namespace EQ
 
 		using Titanium::spells::SPELL_ID_MAX;
 		using Titanium::spells::SPELLBOOK_SIZE;
-		using Titanium::spells::SPELL_GEM_COUNT; // RoF+ clients define more than UF client..but, they are not valid beyond UF
+		using Titanium::spells::SPELL_GEM_COUNT; // RoF+ clients define more than Titanium client..but, they are not valid beyond UF
 
 		using Titanium::spells::LONG_BUFFS;
 		using Titanium::spells::SHORT_BUFFS;
@@ -425,7 +425,7 @@ namespace EQ
 		using Titanium::spells::TOTAL_BUFFS;
 		using Titanium::spells::NPC_BUFFS;
 		using Titanium::spells::PET_BUFFS;
-		using SoD::spells::MERC_BUFFS;
+		using Titanium::spells::MERC_BUFFS;
 
 	} // namespace spells
 

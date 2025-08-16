@@ -4868,7 +4868,7 @@ namespace UF
 
 		if (slot_id_in <= EQ::invslot::slotGeneral8 && slot_id_in >= EQ::invslot::GENERAL_BEGIN)
 			SubSlotNumber = EQ::invbag::GENERAL_BAGS_BEGIN + ((slot_id_in - EQ::invslot::GENERAL_BEGIN) * EQ::invbag::SLOT_COUNT);
-		else if (slot_id_in <= EQ::invslot::GENERAL_END && slot_id_in >= EQ::invslot::slotGeneral9)
+		else if (slot_id_in <= EQ::invslot::GENERAL_END && slot_id_in > EQ::invslot::slotGeneral8)
 			SubSlotNumber = EQ::invbag::SLOT_INVALID;
 		else if (slot_id_in == EQ::invslot::slotCursor)
 			SubSlotNumber = EQ::invbag::CURSOR_BAG_BEGIN;

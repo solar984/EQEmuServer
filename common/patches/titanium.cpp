@@ -2839,8 +2839,8 @@ namespace Titanium
 		emu->itemicons[EQ::invslot::slotAmmo] = eq->itemicons[invslot::slotAmmo];
 
 		// nullify power source element in server array
-		strn0cpy(emu->itemnames[EQ::invslot::slotPowerSource], "", sizeof(emu->itemnames[EQ::invslot::slotPowerSource]));
-		emu->itemicons[EQ::invslot::slotPowerSource] = 0xFFFFFFFF;
+		//strn0cpy(emu->itemnames[EQ::invslot::slotPowerSource], "", sizeof(emu->itemnames[EQ::invslot::slotPowerSource]));
+		//emu->itemicons[EQ::invslot::slotPowerSource] = 0xFFFFFFFF;
 
 		strn0cpy(emu->text, eq->text, sizeof(emu->text));
 
@@ -3592,25 +3592,25 @@ namespace Titanium
 		if (server_slot <= EQ::invslot::slotWaist) {
 			titanium_slot = server_slot;
 		}
-		else if (server_slot == EQ::invslot::slotAmmo) {
-			titanium_slot = server_slot - 1;
+		else if (server_slot == EQ::invslot::slotAmmo) {  
+			titanium_slot = server_slot;
 		}
 		else if (server_slot <= EQ::invslot::slotGeneral8 && server_slot >= EQ::invslot::slotGeneral1) {
-			titanium_slot = server_slot - 1;
+			titanium_slot = server_slot;
 		}
 		else if (server_slot <= (EQ::invslot::POSSESSIONS_COUNT + EQ::invslot::slotWaist) &&
 			server_slot >= EQ::invslot::slotCursor) {
-			titanium_slot = server_slot - 3;
+			titanium_slot = server_slot;
 		}
 		else if (server_slot == (EQ::invslot::POSSESSIONS_COUNT + EQ::invslot::slotAmmo)) {
-			titanium_slot = server_slot - 4;
+			titanium_slot = server_slot;
 		}
 		else if (server_slot <= EQ::invbag::GENERAL_BAGS_8_END &&
 			server_slot >= EQ::invbag::GENERAL_BAGS_BEGIN) {
 			titanium_slot = server_slot;
 		}
 		else if (server_slot <= EQ::invbag::CURSOR_BAG_END && server_slot >= EQ::invbag::CURSOR_BAG_BEGIN) {
-			titanium_slot = server_slot - 20;
+			titanium_slot = server_slot;
 		}
 		else if (server_slot <= EQ::invslot::TRIBUTE_END && server_slot >= EQ::invslot::TRIBUTE_BEGIN) {
 			titanium_slot = server_slot;
@@ -3654,17 +3654,17 @@ namespace Titanium
 	static inline int16 ServerToTitaniumCorpseSlot(uint32 server_corpse_slot) {
 		int16 titanium_slot = invslot::SLOT_INVALID;
 
-		if (server_corpse_slot <= EQ::invslot::slotGeneral8 && server_corpse_slot >= EQ::invslot::slotGeneral1) {
-			titanium_slot = server_corpse_slot - 1;
+		if (server_corpse_slot <= EQ::invslot::slotGeneral8 && server_corpse_slot >= EQ::invslot::slotGeneral8) {
+			titanium_slot = server_corpse_slot;
 		}
 
 		else if (server_corpse_slot <= (EQ::invslot::POSSESSIONS_COUNT + EQ::invslot::slotWaist) &&
 			server_corpse_slot >= EQ::invslot::slotCursor) {
-			titanium_slot = server_corpse_slot - 3;
+			titanium_slot = server_corpse_slot;
 		}
 
 		else if (server_corpse_slot == (EQ::invslot::POSSESSIONS_COUNT + EQ::invslot::slotAmmo)) {
-			titanium_slot = server_corpse_slot - 4;
+			titanium_slot = server_corpse_slot;
 		}
 
 		Log(Logs::Detail,
@@ -3683,23 +3683,23 @@ namespace Titanium
 			server_slot = titanium_slot;
 		}
 		else if (titanium_slot == invslot::slotAmmo) {
-			server_slot = titanium_slot + 1;
+			server_slot = titanium_slot;
 		}
 		else if (titanium_slot <= invslot::slotGeneral8 && titanium_slot >= invslot::slotGeneral1) {
-			server_slot = titanium_slot + 1;
+			server_slot = titanium_slot;
 		}
 		else if (titanium_slot <= (invslot::POSSESSIONS_COUNT + invslot::slotWaist) &&
 			titanium_slot >= invslot::slotCursor) {
-			server_slot = titanium_slot + 3;
+			server_slot = titanium_slot;
 		}
 		else if (titanium_slot == (invslot::POSSESSIONS_COUNT + invslot::slotAmmo)) {
-			server_slot = titanium_slot + 4;
+			server_slot = titanium_slot;
 		}
 		else if (titanium_slot <= invbag::GENERAL_BAGS_END && titanium_slot >= invbag::GENERAL_BAGS_BEGIN) {
 			server_slot = titanium_slot;
 		}
 		else if (titanium_slot <= invbag::CURSOR_BAG_END && titanium_slot >= invbag::CURSOR_BAG_BEGIN) {
-			server_slot = titanium_slot + 20;
+			server_slot = titanium_slot;
 		}
 		else if (titanium_slot <= invslot::TRIBUTE_END && titanium_slot >= invslot::TRIBUTE_BEGIN) {
 			server_slot = titanium_slot;
@@ -3742,15 +3742,15 @@ namespace Titanium
 		uint32 server_slot = EQ::invslot::SLOT_INVALID;
 
 		if (titanium_corpse_slot <= invslot::slotGeneral8 && titanium_corpse_slot >= invslot::slotGeneral1) {
-			server_slot = titanium_corpse_slot + 1;
+			server_slot = titanium_corpse_slot;
 		}
 
 		else if (titanium_corpse_slot <= (invslot::POSSESSIONS_COUNT + invslot::slotWaist) && titanium_corpse_slot >= invslot::slotCursor) {
-			server_slot = titanium_corpse_slot + 3;
+			server_slot = titanium_corpse_slot;
 		}
 
 		else if (titanium_corpse_slot == (invslot::POSSESSIONS_COUNT + invslot::slotAmmo)) {
-			server_slot = titanium_corpse_slot + 4;
+			server_slot = titanium_corpse_slot;
 		}
 
 		LogNetcode("Convert Titanium Corpse Slot [{}] to Server Corpse Slot [{}]", titanium_corpse_slot, server_slot);
@@ -3813,13 +3813,7 @@ namespace Titanium
 				// Diff:                                       ^^^^^         ^   ^^^^^
 
 				server_saylink.push_back('\x12');
-				server_saylink.append(segments[segment_iter].substr(0, 31));
-				server_saylink.append("00000");
-				server_saylink.append(segments[segment_iter].substr(31, 5));
-				server_saylink.push_back('0');
-				server_saylink.push_back(segments[segment_iter][36]);
-				server_saylink.append("00000");
-				server_saylink.append(segments[segment_iter].substr(37));
+				server_saylink.append(segments[segment_iter]);
 				server_saylink.push_back('\x12');
 			}
 			else {

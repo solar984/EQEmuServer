@@ -54,7 +54,7 @@ Bazaar::GetSearchResults(
 		{EQ::invslot::slotLegs,        262144},
 		{EQ::invslot::slotFeet,        524288},
 		{EQ::invslot::slotWaist,       1048576},
-		{EQ::invslot::slotPowerSource, 2097152},
+		//{EQ::invslot::slotPowerSource, 2097152},
 		{EQ::invslot::slotAmmo,        4194304},
 	};
 

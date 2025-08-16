@@ -250,7 +250,6 @@ int Perl__getinventoryslotid(std::string identifier)
 		else if (identifier == "legs")                  result = EQ::invslot::slotLegs;
 		else if (identifier == "feet")                  result = EQ::invslot::slotFeet;
 		else if (identifier == "waist")                 result = EQ::invslot::slotWaist;
-		else if (identifier == "powersource")           result = EQ::invslot::slotPowerSource;
 		else if (identifier == "ammo")                  result = EQ::invslot::slotAmmo;
 		else if (identifier == "general1")              result = EQ::invslot::slotGeneral1;
 		else if (identifier == "general2")              result = EQ::invslot::slotGeneral2;
@@ -260,8 +259,6 @@ int Perl__getinventoryslotid(std::string identifier)
 		else if (identifier == "general6")              result = EQ::invslot::slotGeneral6;
 		else if (identifier == "general7")              result = EQ::invslot::slotGeneral7;
 		else if (identifier == "general8")              result = EQ::invslot::slotGeneral8;
-		else if (identifier == "general9")              result = EQ::invslot::slotGeneral9;
-		else if (identifier == "general10")             result = EQ::invslot::slotGeneral10;
 		else if (identifier == "cursor")                result = EQ::invslot::slotCursor;
 		else if (identifier == "tradeskill")            result = EQ::invslot::SLOT_TRADESKILL_EXPERIMENT_COMBINE;
 		else if (identifier == "augment")               result = EQ::invslot::SLOT_AUGMENT_GENERIC_RETURN;

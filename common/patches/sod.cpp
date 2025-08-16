@@ -3926,7 +3926,7 @@ namespace SoD
 
 		if (slot_id_in <= EQ::invslot::slotGeneral8 && slot_id_in >= EQ::invslot::GENERAL_BEGIN)
 			SubSlotNumber = EQ::invbag::GENERAL_BAGS_BEGIN + ((slot_id_in - EQ::invslot::GENERAL_BEGIN) * EQ::invbag::SLOT_COUNT);
-		else if (slot_id_in <= EQ::invslot::GENERAL_END && slot_id_in >= EQ::invslot::slotGeneral9)
+		else if (slot_id_in <= EQ::invslot::GENERAL_END && slot_id_in > EQ::invslot::slotGeneral8)
 			SubSlotNumber = EQ::invbag::SLOT_INVALID;
 		else if (slot_id_in == EQ::invslot::slotCursor)
 			SubSlotNumber = EQ::invbag::CURSOR_BAG_BEGIN;
@@ -3966,12 +3966,12 @@ namespace SoD
 			SoDSlot = serverSlot - 2;
 		}
 
-		else if (serverSlot <= EQ::invbag::GENERAL_BAGS_END && serverSlot >= EQ::invbag::GENERAL_BAGS_BEGIN) {
-			SoDSlot = serverSlot - (EQ::invbag::GENERAL_BAGS_BEGIN - invbag::GENERAL_BAGS_BEGIN) - ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((serverSlot - EQ::invbag::GENERAL_BAGS_BEGIN) / EQ::invbag::SLOT_COUNT));;
+		else if (serverSlot <= EQ::invbag::GENERAL_BAGS_8_END && serverSlot >= EQ::invbag::GENERAL_BAGS_BEGIN) {
+			SoDSlot = serverSlot + 11;
 		}
 
 		else if (serverSlot <= EQ::invbag::CURSOR_BAG_END && serverSlot >= EQ::invbag::CURSOR_BAG_BEGIN) {
-			SoDSlot = serverSlot - (EQ::invbag::CURSOR_BAG_BEGIN - invbag::CURSOR_BAG_BEGIN);
+			SoDSlot = serverSlot - 9;
 		}
 
 		else if (serverSlot <= EQ::invslot::TRIBUTE_END && serverSlot >= EQ::invslot::TRIBUTE_BEGIN) {
@@ -3991,7 +3991,7 @@ namespace SoD
 		}
 
 		else if (serverSlot <= EQ::invbag::BANK_BAGS_END && serverSlot >= EQ::invbag::BANK_BAGS_BEGIN) {
-			SoDSlot = serverSlot - (EQ::invbag::BANK_BAGS_BEGIN - invbag::BANK_BAGS_BEGIN) - ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((serverSlot - EQ::invbag::BANK_BAGS_BEGIN) / EQ::invbag::SLOT_COUNT));;
+			SoDSlot = serverSlot + 1;
 		}
 
 		else if (serverSlot <= EQ::invslot::SHARED_BANK_END && serverSlot >= EQ::invslot::SHARED_BANK_BEGIN) {
@@ -3999,7 +3999,7 @@ namespace SoD
 		}
 
 		else if (serverSlot <= EQ::invbag::SHARED_BANK_BAGS_END && serverSlot >= EQ::invbag::SHARED_BANK_BAGS_BEGIN) {
-			SoDSlot = serverSlot - (EQ::invbag::SHARED_BANK_BAGS_BEGIN - invbag::SHARED_BANK_BAGS_BEGIN) - ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((serverSlot - EQ::invbag::SHARED_BANK_BAGS_BEGIN) / EQ::invbag::SLOT_COUNT));
+			SoDSlot = serverSlot + 1;
 		}
 
 		else if (serverSlot <= EQ::invslot::TRADE_END && serverSlot >= EQ::invslot::TRADE_BEGIN) {
@@ -4007,7 +4007,7 @@ namespace SoD
 		}
 
 		else if (serverSlot <= EQ::invbag::TRADE_BAGS_END && serverSlot >= EQ::invbag::TRADE_BAGS_BEGIN) {
-			SoDSlot = serverSlot - (EQ::invbag::TRADE_BAGS_BEGIN - invbag::TRADE_BAGS_BEGIN) - ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((serverSlot - EQ::invbag::TRADE_BAGS_BEGIN) / EQ::invbag::SLOT_COUNT));
+			SoDSlot = serverSlot;
 		}
 
 		else if (serverSlot <= EQ::invslot::WORLD_END && serverSlot >= EQ::invslot::WORLD_BEGIN) {
@@ -4049,11 +4049,11 @@ namespace SoD
 		}
 
 		else if (sod_slot <= invbag::GENERAL_BAGS_END && sod_slot >= invbag::GENERAL_BAGS_BEGIN) {
-			server_slot = sod_slot + (EQ::invbag::GENERAL_BAGS_BEGIN - invbag::GENERAL_BAGS_BEGIN) + ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((sod_slot - invbag::GENERAL_BAGS_BEGIN) / invbag::SLOT_COUNT));
+			server_slot = sod_slot - 11;
 		}
 
 		else if (sod_slot <= invbag::CURSOR_BAG_END && sod_slot >= invbag::CURSOR_BAG_BEGIN) {
-			server_slot = sod_slot + (EQ::invbag::CURSOR_BAG_BEGIN - invbag::CURSOR_BAG_BEGIN);
+			server_slot = sod_slot + 9;
 		}
 
 		else if (sod_slot <= invslot::TRIBUTE_END && sod_slot >= invslot::TRIBUTE_BEGIN) {
@@ -4073,7 +4073,7 @@ namespace SoD
 		}
 
 		else if (sod_slot <= invbag::BANK_BAGS_END && sod_slot >= invbag::BANK_BAGS_BEGIN) {
-			server_slot = sod_slot + (EQ::invbag::BANK_BAGS_BEGIN - invbag::BANK_BAGS_BEGIN) + ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((sod_slot - invbag::BANK_BAGS_BEGIN) / invbag::SLOT_COUNT));
+			server_slot = sod_slot - 1;
 		}
 
 		else if (sod_slot <= invslot::SHARED_BANK_END && sod_slot >= invslot::SHARED_BANK_BEGIN) {
@@ -4081,7 +4081,7 @@ namespace SoD
 		}
 
 		else if (sod_slot <= invbag::SHARED_BANK_BAGS_END && sod_slot >= invbag::SHARED_BANK_BAGS_BEGIN) {
-			server_slot = sod_slot + (EQ::invbag::SHARED_BANK_BAGS_BEGIN - invbag::SHARED_BANK_BAGS_BEGIN) + ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((sod_slot - invbag::SHARED_BANK_BAGS_BEGIN) / invbag::SLOT_COUNT));
+			server_slot = sod_slot - 1;
 		}
 
 		else if (sod_slot <= invslot::TRADE_END && sod_slot >= invslot::TRADE_BEGIN) {
@@ -4089,7 +4089,7 @@ namespace SoD
 		}
 
 		else if (sod_slot <= invbag::TRADE_BAGS_END && sod_slot >= invbag::TRADE_BAGS_BEGIN) {
-			server_slot = sod_slot + (EQ::invbag::TRADE_BAGS_BEGIN - invbag::TRADE_BAGS_BEGIN) + ((EQ::invbag::SLOT_COUNT - invbag::SLOT_COUNT) * ((sod_slot - invbag::TRADE_BAGS_BEGIN) / invbag::SLOT_COUNT));
+			server_slot = sod_slot;
 		}
 
 		else if (sod_slot <= invslot::WORLD_END && sod_slot >= invslot::WORLD_BEGIN) {
@@ -4135,13 +4135,21 @@ namespace SoD
 					continue;
 				}
 
-				// Idx:  0 1     6     11    16    21    26    31 32   36 37    42       (Source)
-				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X XXXXX XXXXXXXX (50)
-				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX  X XXXXX XXXXXXXX (50)
-				// Diff: 
+				// Idx:  0 1     6     11    16    21    26    31    36 37   41 43    48       (Source)
+				// RoF2: X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX X  XXXX XX XXXXX XXXXXXXX (56)
+				// SoF:  X XXXXX XXXXX XXXXX XXXXX XXXXX XXXXX       X  XXXX  X XXXXX XXXXXXXX (50)
+				// Diff:                                       ^^^^^         ^
 
 				sod_saylink.push_back('\x12');
-				sod_saylink.append(segments[segment_iter]);
+				sod_saylink.append(segments[segment_iter].substr(0, 31));
+				sod_saylink.append(segments[segment_iter].substr(36, 5));
+
+				if (segments[segment_iter][41] == '0')
+					sod_saylink.push_back(segments[segment_iter][42]);
+				else
+					sod_saylink.push_back('F');
+
+				sod_saylink.append(segments[segment_iter].substr(43));
 				sod_saylink.push_back('\x12');
 			}
 			else {
@@ -4260,7 +4268,7 @@ namespace SoD
 		// we're a disc
 		if (index >= EQ::spells::LONG_BUFFS + EQ::spells::SHORT_BUFFS)
 			return index - EQ::spells::LONG_BUFFS - EQ::spells::SHORT_BUFFS +
-			       spells::LONG_BUFFS + spells::SHORT_BUFFS;
+			spells::LONG_BUFFS + spells::SHORT_BUFFS;
 		// we're a song
 		if (index >= EQ::spells::LONG_BUFFS)
 			return index - EQ::spells::LONG_BUFFS + spells::LONG_BUFFS;
@@ -4273,7 +4281,7 @@ namespace SoD
 		// we're a disc
 		if (index >= spells::LONG_BUFFS + spells::SHORT_BUFFS)
 			return index - spells::LONG_BUFFS - spells::SHORT_BUFFS + EQ::spells::LONG_BUFFS +
-			       EQ::spells::SHORT_BUFFS;
+			EQ::spells::SHORT_BUFFS;
 		// we're a song
 		if (index >= spells::LONG_BUFFS)
 			return index - spells::LONG_BUFFS + EQ::spells::LONG_BUFFS;
