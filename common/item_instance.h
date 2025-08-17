@@ -144,10 +144,6 @@ namespace EQ
 		bool IsAugmented();
 		bool ContainsAugmentByID(uint32 item_id);
 		int CountAugmentByID(uint32 item_id);
-		bool IsOrnamentationAugment(EQ::ItemInstance* augment) const;
-		ItemInstance* GetOrnamentationAugment() const;
-		bool UpdateOrnamentationInfo();
-		static bool CanTransform(const ItemData *ItemToTry, const ItemData *Container, bool AllowAll = false);
 
 		// Has attack/delay?
 		bool IsWeapon() const;
@@ -217,8 +213,6 @@ namespace EQ
 		void SetOrnamentationIDFile(uint32 ornament_idfile)			{ m_ornamentidfile = ornament_idfile; }
 		uint32 GetNewIDFile() const						            { return m_new_id_file; }
 		void SetNewIDFile(uint32 new_id_file)			            { m_new_id_file = new_id_file; }
-		uint32 GetOrnamentHeroModel(int32 material_slot = -1) const;
-		void SetOrnamentHeroModel(uint32 ornament_hero_model)		{ m_ornament_hero_model = ornament_hero_model; }
 		uint32 GetRecastTimestamp() const							{ return m_recast_timestamp; }
 		void SetRecastTimestamp(uint32 in)							{ m_recast_timestamp = in; }
 
@@ -365,7 +359,6 @@ namespace EQ
 		uint32           m_ornamenticon{0};
 		uint32           m_ornamentidfile{0};
 		uint32           m_new_id_file{0};
-		uint32           m_ornament_hero_model{0};
 		uint32           m_recast_timestamp{0};
 		int              m_task_delivered_count{0};
 		mutable CharacterEvolvingItemsRepository::CharacterEvolvingItems  m_evolving_details{};

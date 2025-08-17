@@ -6579,11 +6579,6 @@ void Client::ProcessInspectRequest(Client *requestee, Client *requester)
 					strcpy(insr->itemnames[L], item->Name);
 
 					const EQ::ItemData *augment_item = nullptr;
-					const auto         augment       = inst->GetOrnamentationAugment();
-
-					if (augment) {
-						augment_item = augment->GetItem();
-					}
 
 					if (augment_item) {
 						insr->itemicons[L] = augment_item->Icon;

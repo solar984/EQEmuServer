@@ -49,47 +49,38 @@ void Mob::SetMobTextureProfile(
 	switch (material_slot) {
 		case EQ::textures::armorHead:
 			mob_texture_profile.Head.Material        = texture;
-			mob_texture_profile.Head.HerosForgeModel = hero_forge_model;
 			mob_texture_profile.Head.Color           = color;
 			break;
 		case EQ::textures::armorChest:
 			mob_texture_profile.Chest.Material        = texture;
-			mob_texture_profile.Chest.HerosForgeModel = hero_forge_model;
 			mob_texture_profile.Chest.Color           = color;
 			break;
 		case EQ::textures::armorArms:
 			mob_texture_profile.Arms.Material        = texture;
-			mob_texture_profile.Arms.HerosForgeModel = hero_forge_model;
 			mob_texture_profile.Arms.Color           = color;
 			break;
 		case EQ::textures::armorWrist:
 			mob_texture_profile.Wrist.Material        = texture;
-			mob_texture_profile.Wrist.HerosForgeModel = hero_forge_model;
 			mob_texture_profile.Wrist.Color           = color;
 			break;
 		case EQ::textures::armorHands:
 			mob_texture_profile.Hands.Material        = texture;
-			mob_texture_profile.Hands.HerosForgeModel = hero_forge_model;
 			mob_texture_profile.Hands.Color           = color;
 			break;
 		case EQ::textures::armorLegs:
 			mob_texture_profile.Legs.Material        = texture;
-			mob_texture_profile.Legs.HerosForgeModel = hero_forge_model;
 			mob_texture_profile.Legs.Color           = color;
 			break;
 		case EQ::textures::armorFeet:
 			mob_texture_profile.Feet.Material        = texture;
-			mob_texture_profile.Feet.HerosForgeModel = hero_forge_model;
 			mob_texture_profile.Feet.Color           = color;
 			break;
 		case EQ::textures::weaponPrimary:
 			mob_texture_profile.Primary.Material        = texture;
-			mob_texture_profile.Primary.HerosForgeModel = hero_forge_model;
 			mob_texture_profile.Primary.Color           = color;
 			break;
 		case EQ::textures::weaponSecondary:
 			mob_texture_profile.Secondary.Material        = texture;
-			mob_texture_profile.Secondary.HerosForgeModel = hero_forge_model;
 			mob_texture_profile.Secondary.Color           = color;
 			break;
 		default:
@@ -144,32 +135,6 @@ uint32 Mob::GetTextureProfileColor(uint8 material_slot) const
 			return mob_texture_profile.Primary.Color;
 		case EQ::textures::weaponSecondary:
 			return mob_texture_profile.Secondary.Color;
-		default:
-			return 0;
-	}
-}
-
-uint32 Mob::GetTextureProfileHeroForgeModel(uint8 material_slot) const
-{
-	switch (material_slot) {
-		case EQ::textures::armorHead:
-			return mob_texture_profile.Head.HerosForgeModel;
-		case EQ::textures::armorChest:
-			return mob_texture_profile.Chest.HerosForgeModel;
-		case EQ::textures::armorArms:
-			return mob_texture_profile.Arms.HerosForgeModel;
-		case EQ::textures::armorWrist:
-			return mob_texture_profile.Wrist.HerosForgeModel;
-		case EQ::textures::armorHands:
-			return mob_texture_profile.Hands.HerosForgeModel;
-		case EQ::textures::armorLegs:
-			return mob_texture_profile.Legs.HerosForgeModel;
-		case EQ::textures::armorFeet:
-			return mob_texture_profile.Feet.HerosForgeModel;
-		case EQ::textures::weaponPrimary:
-			return mob_texture_profile.Primary.HerosForgeModel;
-		case EQ::textures::weaponSecondary:
-			return mob_texture_profile.Secondary.HerosForgeModel;
 		default:
 			return 0;
 	}

@@ -3024,17 +3024,6 @@ void Mob::ShowStats(Client* c)
 			);
 		}
 
-		// Hero's Forge
-		if (t->GetHeroForgeModel()) {
-			c->Message(
-				Chat::White,
-				fmt::format(
-					"Hero's Forge: {}",
-					t->GetHeroForgeModel()
-				).c_str()
-			);
-		}
-
 		// Owner Data
 		if (t->GetOwner()) {
 			const auto& o = t->GetOwner();

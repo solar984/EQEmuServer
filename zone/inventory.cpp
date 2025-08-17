@@ -3825,10 +3825,6 @@ const int EQ::InventoryProfile::GetItemStatValue(uint32 item_id, const std::stri
 		stat = static_cast<int>(item->EliteMaterial);
 	}
 
-	if (Strings::EqualFold(identifier, "herosforgemodel")) {
-		stat = static_cast<int>(item->HerosForgeModel);
-	}
-
 	if (Strings::EqualFold(identifier, "procrate")) {
 		stat = static_cast<int>(item->ProcRate);
 	}

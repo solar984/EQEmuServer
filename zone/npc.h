@@ -501,9 +501,6 @@ public:
 	void	AISpellsList(Client *c);
 	uint16 GetInnateProcSpellID() const { return innate_proc_spell_id; }
 
-	uint32	GetHeroForgeModel() const { return herosforgemodel; }
-	void	SetHeroForgeModel(uint32 model) { herosforgemodel = model; }
-
 	bool IsRaidTarget() const { return raid_target; };
 	bool IsRareSpawn() const { return rare_spawn; }
 	void ResetHPUpdateTimer() { send_hp_update_timer.Start(); }
@@ -753,7 +750,6 @@ protected:
 
 	uint32	equipment[EQ::invslot::EQUIPMENT_COUNT];	//this is an array of item IDs
 
-	uint32	herosforgemodel;			//this is the Hero Forge Armor Model (i.e 63 or 84 or 203)
 	uint32	d_melee_texture1;
 	//this is an item Material value
 	uint32	d_melee_texture2;			//this is an item Material value (offhand)

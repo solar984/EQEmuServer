@@ -16,7 +16,6 @@ void SendNPCEditSubCommands(Client *c)
 	c->Message(Chat::White, "Usage: #npcedit gender [Gender ID] - Sets an NPC's Gender");
 	c->Message(Chat::White, "Usage: #npcedit texture [Texture] - Sets an NPC's Texture");
 	c->Message(Chat::White, "Usage: #npcedit helmtexture [Helmet Texture] - Sets an NPC's Helmet Texture");
-	c->Message(Chat::White, "Usage: #npcedit herosforgemodel [Model Number] - Sets an NPC's Hero's Forge Model");
 	c->Message(Chat::White, "Usage: #npcedit size [Size] - Sets an NPC's Size");
 	c->Message(Chat::White, "Usage: #npcedit hpregen [HP Regen] - Sets an NPC's HP Regen Rate Per Tick");
 	c->Message(Chat::White, "Usage: #npcedit hp_regen_per_second [HP Regen] - Sets an NPC's HP Regen Rate Per Second");
@@ -297,22 +296,6 @@ void command_npcedit(Client *c, const Seperator *sep)
 			);
 		} else {
 			c->Message(Chat::White, "Usage: #npcedit helmtexture [Helmet Texture] - Sets an NPC's Helmet Texture");
-			return;
-		}
-	} else if (!strcasecmp(sep->arg[1], "herosforgemodel")) {
-		if (sep->IsNumber(2)) {
-			auto heros_forge_model = Strings::ToInt(sep->arg[2]);
-			n.herosforgemodel = heros_forge_model;
-			d = fmt::format(
-				"{} is now using Hero's Forge Model {}.",
-				npc_id_string,
-				heros_forge_model
-			);
-		} else {
-			c->Message(
-				Chat::White,
-				"Usage: #npcedit herosforgemodel [Model Number] - Sets an NPC's Hero's Forge Model"
-			);
 			return;
 		}
 	} else if (!strcasecmp(sep->arg[1], "size")) {

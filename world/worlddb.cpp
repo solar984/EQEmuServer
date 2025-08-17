@@ -141,7 +141,6 @@ void WorldDatabase::GetCharSelectInfo(uint32 account_id, EQApplicationPacket **o
 			s.Material        = 0;
 			s.Unknown1        = 0;
 			s.EliteModel      = 0;
-			s.HerosForgeModel = 0;
 			s.Unknown2        = 0;
 			s.Color           = 0;
 		}
@@ -359,7 +358,6 @@ void WorldDatabase::GetCharSelectInfo(uint32 account_id, EQApplicationPacket **o
 					);
 					cse->Equip[matslot].Material        = item->Material;
 					cse->Equip[matslot].EliteModel      = item->EliteMaterial;
-					cse->Equip[matslot].HerosForgeModel = inst->GetOrnamentHeroModel(matslot);
 					cse->Equip[matslot].Color           = color;
 				}
 			}

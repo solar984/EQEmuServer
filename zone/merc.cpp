@@ -819,7 +819,6 @@ void Merc::FillSpawnStruct(NewSpawn_Struct* ns, Mob* ForWho) {
 			{
 				ns->spawn.equipment[i].material = item->Material;
 				ns->spawn.equipment[i].elitematerial = item->EliteMaterial;
-				ns->spawn.equipment[i].heroforgemodel = item->HerosForgeModel;
 				if (armor_tint[i])
 				{
 					ns->spawn.colors[i].color = armor_tint[i];

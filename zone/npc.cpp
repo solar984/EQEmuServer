@@ -351,7 +351,6 @@ NPC::NPC(const NPCType *npc_type_data, Spawn2 *in_respawn, const glm::vec4 &posi
 
 	d_melee_texture1 = npc_type_data->d_melee_texture1;
 	d_melee_texture2 = npc_type_data->d_melee_texture2;
-	herosforgemodel  = npc_type_data->herosforgemodel;
 
 	ammo_idfile = npc_type_data->ammo_idfile;
 	memset(equipment, 0, sizeof(equipment));

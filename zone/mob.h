@@ -331,7 +331,6 @@ public:
 
 	uint32 GetTextureProfileMaterial(uint8 material_slot) const;
 	uint32 GetTextureProfileColor(uint8 material_slot) const;
-	uint32 GetTextureProfileHeroForgeModel(uint8 material_slot) const;
 
 	virtual void SendArmorAppearance(Client *one_client = nullptr);
 	virtual void SendTextureWC(uint8 slot, uint32 texture, uint32 hero_forge_model = 0, uint32 elite_material = 0, uint32 unknown06 = 0, uint32 unknown18 = 0);

@@ -3822,7 +3822,6 @@ void Bot::FillSpawnStruct(NewSpawn_Struct* ns, Mob* ForWho) {
 				if (item != nullptr) {
 					ns->spawn.equipment.Slot[i].Material = item->Material;
 					ns->spawn.equipment.Slot[i].EliteModel = item->EliteMaterial;
-					ns->spawn.equipment.Slot[i].HerosForgeModel = item->HerosForgeModel;
 					if (armor_tint.Slot[i].Color)
 						ns->spawn.equipment_tint.Slot[i].Color = armor_tint.Slot[i].Color;
 					else

@@ -8605,17 +8605,8 @@ void Client::Handle_OP_InspectAnswer(const EQApplicationPacket *app)
 
 		if (item) {
 			strcpy(insr->itemnames[L], item->Name);
-			if (inst) {
-				const auto augment = inst->GetOrnamentationAugment();
-
-				if (augment) {
-					insr->itemicons[L] = augment->GetItem()->Icon;
-				} else if (inst->GetOrnamentationIcon()) {
-					insr->itemicons[L] = inst->GetOrnamentationIcon();
-				}
-			} else {
-				insr->itemicons[L] = item->Icon;
-			}
+			insr->itemicons[L] = item->Icon;
+			
 		} else {
 			insr->itemicons[L] = 0xFFFFFFFF;
 		}
@@ -8893,7 +8884,6 @@ void Client::Handle_OP_ItemPreview(const EQApplicationPacket *app)
 		outapp->WriteUInt32(item->Material);
 		outapp->WriteUInt32(0); //unknown
 		outapp->WriteUInt32(item->EliteMaterial);
-		outapp->WriteUInt32(item->HerosForgeModel);
 		outapp->WriteUInt32(0);	// unknown
 		outapp->WriteUInt32(0); //This is unknown057 from lucy
 		for (spacer = 0; spacer < 77; spacer++) { //More Item stats, but some seem to be off based on packet check

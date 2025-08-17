@@ -1686,7 +1686,6 @@ const NPCType *ZoneDatabase::LoadNPCTypesData(uint32 npc_type_id, bool bulk_load
 		t->gender             = n.gender;
 		t->texture            = n.texture;
 		t->helmtexture        = n.helmtexture;
-		t->herosforgemodel    = n.herosforgemodel;
 		t->size               = n.size;
 		t->loottable_id       = n.loottable_id;
 		t->merchanttype       = n.merchant_id;

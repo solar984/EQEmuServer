@@ -1172,7 +1172,6 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		// Display
 		item.Color = Strings::ToUnsignedInt(row[ItemField::color]);
 		item.EliteMaterial = Strings::ToUnsignedInt(row[ItemField::elitematerial]);
-		item.HerosForgeModel = Strings::ToUnsignedInt(row[ItemField::herosforgemodel]);
 		item.Icon = Strings::ToUnsignedInt(row[ItemField::icon]);
 		strn0cpy(item.IDFile, row[ItemField::idfile], sizeof(item.IDFile));
 		item.Material = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::material]));
