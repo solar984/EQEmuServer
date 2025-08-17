@@ -813,8 +813,7 @@ void Client::SetEXP(ExpSource exp_source, uint64 set_exp, uint64 set_aaxp, bool 
 				Message(Chat::Yellow, "Welcome to level %i!", check_level);
 			}
 
-			if (check_level == RuleI(Character, DeathItemLossLevel) &&
-			    m_ClientVersionBit & EQ::versions::maskUFAndEarlier) {
+			if (check_level == RuleI(Character, DeathItemLossLevel)) {
 				MessageString(Chat::Yellow, CORPSE_ITEM_LOST);
 				}
 

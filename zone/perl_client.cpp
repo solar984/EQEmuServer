@@ -3069,11 +3069,6 @@ bool Perl_Client_HasItemOnCorpse(Client* self, uint32 item_id)
 	return self->HasItemOnCorpse(item_id);
 }
 
-void Perl_Client_ClearXTargets(Client* self)
-{
-	self->ClearXTargets();
-}
-
 int Perl_Client_GetAAEXPPercentage(Client* self)
 {
 	return self->GetAAEXPPercentage();
@@ -3424,7 +3419,6 @@ void perl_register_client()
 	package.add("ClearCompassMark", &Perl_Client_ClearCompassMark);
 	package.add("ClearAccountFlag", &Perl_Client_ClearAccountFlag);
 	package.add("ClearPEQZoneFlag", &Perl_Client_ClearPEQZoneFlag);
-	package.add("ClearXTargets", &Perl_Client_ClearXTargets);
 	package.add("ClearZoneFlag", &Perl_Client_ClearZoneFlag);
 	package.add("CompleteTask", &Perl_Client_CompleteTask);
 	package.add("Connected", &Perl_Client_Connected);

@@ -729,7 +729,6 @@ Json::Value ApiGetClientListDetail(EQ::Net::WebsocketServerConnection *connectio
 		row["level_regen"]                             = client->LevelRegen();
 		row["ls_account_id"]                           = client->LSAccountID();
 		row["max_endurance"]                           = client->GetMaxEndurance();
-		row["max_x_tars"]                              = client->GetMaxXTargets();
 		row["merc_id"]                                 = client->GetMercenaryID();
 		row["merc_only_or_no_group"]                   = client->MercOnlyOrNoGroup();
 		row["merc_slot"]                               = client->GetMercSlot();
@@ -766,7 +765,6 @@ Json::Value ApiGetClientListDetail(EQ::Net::WebsocketServerConnection *connectio
 		row["total_seconds_played"]                    = client->GetTotalSecondsPlayed();
 		row["weight"]                                  = client->GetWeight();
 		row["wid"]                                     = client->GetWID();
-		row["x_tarting_available"]                     = client->XTargettingAvailable();
 
 		response.append(row);
 	}

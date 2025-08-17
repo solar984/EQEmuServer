@@ -52,8 +52,6 @@ Raid::Raid(uint32 raidID)
 	locked = false;
 	LootType = 4;
 
-	m_autohatermgr.SetOwner(nullptr, nullptr, this);
-
 	for (int i = 0; i < MAX_NO_RAID_MAIN_ASSISTERS; i++) {
 		memset(main_assister_pcs[i], 0, 64);
 		memset(main_marker_pcs[i], 0, 64);
@@ -75,8 +73,6 @@ Raid::Raid(Client* nLeader)
 	strn0cpy(leadername, nLeader->GetName(), 64);
 	locked = false;
 	LootType = 4;
-
-	m_autohatermgr.SetOwner(nullptr, nullptr, this);
 
 	for (int i = 0; i < MAX_NO_RAID_MAIN_ASSISTERS; i++) {
 		memset(main_assister_pcs[i], 0, 64);
@@ -169,27 +165,6 @@ void Raid::AddMember(Client *c, uint32 group, bool rleader, bool groupleader, bo
 	c->SetRaidGrouped(true);
 	SendRaidMOTD(c);
 
-	if (group == RAID_GROUPLESS) {
-		if (rleader) {
-			GetXTargetAutoMgr()->merge(*c->GetXTargetAutoMgr());
-			c->GetXTargetAutoMgr()->clear();
-			c->SetXTargetAutoMgr(GetXTargetAutoMgr());
-		}
-		else {
-			if (!c->GetXTargetAutoMgr()->empty()) {
-				GetXTargetAutoMgr()->merge(*c->GetXTargetAutoMgr());
-				c->GetXTargetAutoMgr()->clear();
-				c->RemoveAutoXTargets();
-			}
-
-			c->SetXTargetAutoMgr(GetXTargetAutoMgr());
-
-			if (!c->GetXTargetAutoMgr()->empty()) {
-				c->SetDirtyAutoHaters();
-			}
-		}
-	}
-
 	if (auto* raid_update = c->GetRaid()) {
 		raid_update->SendHPManaEndPacketsTo(c);
 		raid_update->SendHPManaEndPacketsFrom(c);
@@ -281,7 +256,6 @@ void Raid::RemoveMember(const char *character_name)
 
 	if (c) {
 		c->SetRaidGrouped(false);
-		c->LeaveRaidXTargets(this);
 		c->p_raid_instance = nullptr;
 	}
 
@@ -2386,68 +2360,6 @@ void Raid::DelegateAbilityAssist(Mob* delegator, const char* delegatee)
 	strcpy(das->Name, delegatee);
 	QueuePacket(outapp);
 	safe_delete(outapp);
-	UpdateRaidXTargets();
-}
-
-void Raid::UpdateRaidXTargets()
-{
-	struct AssistUpdate {
-		XTargetType assist_type;
-		XTargetType assist_target_type;
-		int32       slot;
-	};
-
-	std::vector<AssistUpdate> assist_updates = {
-		AssistUpdate{.assist_type = RaidAssist1, .assist_target_type = RaidAssist1Target, .slot = MAIN_ASSIST_1_SLOT},
-		AssistUpdate{.assist_type = RaidAssist2, .assist_target_type = RaidAssist2Target, .slot = MAIN_ASSIST_2_SLOT},
-		AssistUpdate{.assist_type = RaidAssist3, .assist_target_type = RaidAssist3Target, .slot = MAIN_ASSIST_3_SLOT},
-	};
-
-	for (const auto& u : assist_updates) {
-		if (strlen(main_assister_pcs[u.slot]) > 0) {
-			auto m = entity_list.GetMob(main_assister_pcs[u.slot]);
-			if (m) {
-				UpdateXTargetType(u.assist_type, m, m->GetName());
-				auto n = m->GetTarget();
-				if (n && n->GetHP() > 0) {
-					UpdateXTargetType(u.assist_target_type, n, n->GetName());
-				}
-				else {
-					UpdateXTargetType(u.assist_target_type, nullptr);
-				}
-			}
-		}
-		else {
-			UpdateXTargetType(u.assist_type, nullptr);
-			UpdateXTargetType(u.assist_target_type, nullptr);
-		}
-	}
-
-	struct MarkedUpdate {
-		XTargetType mark_target;
-		int32       slot;
-	};
-
-	std::vector<MarkedUpdate> marked_updates = {
-		MarkedUpdate{.mark_target = RaidMarkTarget1, .slot = MAIN_MARKER_1_SLOT},
-		MarkedUpdate{.mark_target = RaidMarkTarget2, .slot = MAIN_MARKER_2_SLOT},
-		MarkedUpdate{.mark_target = RaidMarkTarget3, .slot = MAIN_MARKER_3_SLOT},
-	};
-
-	for (auto& u : marked_updates) {
-		if (marked_npcs[u.slot].entity_id) {
-			auto m = entity_list.GetMob(marked_npcs[u.slot].entity_id);
-			if (m && m->GetHP() > 0) {
-				UpdateXTargetType(u.mark_target, m, m->GetName());
-			}
-			else {
-				UpdateXTargetType(u.mark_target, nullptr);
-			}
-		}
-		else {
-			UpdateXTargetType(u.mark_target, nullptr);
-		}
-	}
 }
 
 void Raid::DelegateAbilityMark(Mob* delegator, const char* delegatee)
@@ -2541,32 +2453,6 @@ int Raid::FindNextRaidDelegateSlot(int option)
 	return -1;
 }
 
-void Raid::UpdateXTargetType(XTargetType Type, Mob *m, const char *name)
-{
-	for (const auto &rm: members) {
-		if (!rm.member || rm.is_bot || !rm.member->XTargettingAvailable()) {
-			continue;
-		}
-
-		for (int i = 0; i < rm.member->GetMaxXTargets(); ++i) {
-			if (rm.member->XTargets[i].Type == Type) {
-				if (m) {
-					rm.member->XTargets[i].ID = m->GetID();
-				}
-				else {
-					rm.member->XTargets[i].ID = 0;
-				}
-
-				if (name) {
-					strn0cpy(rm.member->XTargets[i].Name, name, 64);
-				}
-
-				rm.member->SendXTargetPacket(i, m);
-			}
-		}
-	}
-}
-
 void Raid::RaidMarkNPC(Mob* mob, uint32 parameter)
 {
 	Client* c = mob->CastToClient();
@@ -2604,26 +2490,12 @@ void Raid::RaidMarkNPC(Mob* mob, uint32 parameter)
 			strcpy(mnpcs->Name, c->GetTarget()->GetCleanName());
 			QueuePacket(outapp);
 			safe_delete(outapp);
-			UpdateXtargetMarkedNPC();
 			return;
 		}
 	}
 		//client is not delegated the mark ability
 		c->MessageString(Chat::Cyan, NOT_DELEGATED_MARKER);
 		return;
-}
-
-void Raid::UpdateXtargetMarkedNPC()
-{
-	for (int i = 0; i < MAX_MARKED_NPCS; i++) {
-		auto mm = entity_list.GetNPCByID(marked_npcs[i].entity_id);
-		if (mm) {
-			UpdateXTargetType(static_cast<XTargetType>(RaidMarkTarget1 + i), mm->CastToMob(), mm->CastToMob()->GetName());
-		}
-		else {
-			UpdateXTargetType(static_cast<XTargetType>(RaidMarkTarget1 + i), nullptr);
-		}
-	}
 }
 
 void Raid::RaidClearNPCMarks(Client* c)
@@ -2662,7 +2534,6 @@ void Raid::RaidClearNPCMarks(Client* c)
 		mnpcs->Number = 0;
 		QueuePacket(outapp);
 		safe_delete(outapp);
-		UpdateXtargetMarkedNPC();
 	}
 	else {
 		c->MessageString(Chat::Cyan, NOT_DELEGATED_MARKER);
@@ -2675,76 +2546,11 @@ void Raid::RemoveRaidDelegates(const char* delegatee)
 	auto mm = members[GetPlayerIndex(delegatee)].main_marker;
 
 	if (ma) {
-		SendRemoveRaidXTargets(static_cast<XTargetType>(RaidAssist1 + ma - 1));
-		SendRemoveRaidXTargets(static_cast<XTargetType>(RaidAssist1Target + ma - 1));
 		DelegateAbilityAssist(leader->CastToMob(), delegatee);
 	}
 
 	if (mm) {
-		SendRemoveRaidXTargets(static_cast<XTargetType>(RaidMarkTarget1 + mm - 1));
 		DelegateAbilityMark(leader->CastToMob(), delegatee);
-	}
-}
-
-void Raid::SendRemoveAllRaidXTargets(const char* client_name)
-{
-
-	auto c = entity_list.GetClientByName(client_name);
-
-	for (int i = 0; i < c->GetMaxXTargets(); ++i)
-	{
-		if ((c->XTargets[i].Type == RaidAssist1) ||
-			(c->XTargets[i].Type == RaidAssist2) ||
-			(c->XTargets[i].Type == RaidAssist3) ||
-			(c->XTargets[i].Type == RaidAssist1Target) ||
-			(c->XTargets[i].Type == RaidAssist2Target) ||
-			(c->XTargets[i].Type == RaidAssist3Target) ||
-			(c->XTargets[i].Type == RaidMarkTarget1) ||
-			(c->XTargets[i].Type == RaidMarkTarget2) ||
-			(c->XTargets[i].Type == RaidMarkTarget3))
-		{
-			c->XTargets[i].ID = 0;
-			c->XTargets[i].Name[0] = 0;
-			c->SendXTargetPacket(i, nullptr);
-		}
-	}
-}
-
-void Raid::SendRemoveRaidXTargets(XTargetType Type)
-{
-	for (const auto &m: members) {
-		if (m.member && !m.is_bot) {
-			for (int i = 0; i < m.member->GetMaxXTargets(); ++i) {
-				if (m.member->XTargets[i].Type == Type) {
-					m.member->XTargets[i].ID = 0;
-					m.member->XTargets[i].Name[0] = 0;
-					m.member->SendXTargetPacket(i, nullptr);
-				}
-			}
-		}
-	}
-}
-
-void Raid::SendRemoveAllRaidXTargets()
-{
-	for (const auto &m: members) {
-		if (m.member && !m.is_bot) {
-			for (int i = 0; i < m.member->GetMaxXTargets(); ++i) {
-				if ((m.member->XTargets[i].Type == RaidAssist1) ||
-					(m.member->XTargets[i].Type == RaidAssist2) ||
-					(m.member->XTargets[i].Type == RaidAssist3) ||
-					(m.member->XTargets[i].Type == RaidAssist1Target) ||
-					(m.member->XTargets[i].Type == RaidAssist2Target) ||
-					(m.member->XTargets[i].Type == RaidAssist3Target) ||
-					(m.member->XTargets[i].Type == RaidMarkTarget1) ||
-					(m.member->XTargets[i].Type == RaidMarkTarget2) ||
-					(m.member->XTargets[i].Type == RaidMarkTarget3)) {
-					m.member->XTargets[i].ID = 0;
-					m.member->XTargets[i].Name[0] = 0;
-					m.member->SendXTargetPacket(i, nullptr);
-				}
-			}
-		}
 	}
 }
 
@@ -2974,7 +2780,6 @@ void Raid::SendMarkTargets(Client* c)
 			}
 		}
 	}
-	UpdateXtargetMarkedNPC();
 }
 
 void Raid::EmptyRaidMembers()

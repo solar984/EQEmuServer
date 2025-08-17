@@ -493,7 +493,6 @@ void ChatChannel::SendMessageToChannel(const std::string& Message, Client* Sende
 					break;
 				case EQ::versions::ClientVersion::SoF:
 				case EQ::versions::ClientVersion::SoD:
-				case EQ::versions::ClientVersion::UF:
 				default:
 					ServerToClient50SayLink(cv_messages[static_cast<uint32>(channel_client->GetClientVersion())], Message);
 					break;

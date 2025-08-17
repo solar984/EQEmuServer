@@ -7051,9 +7051,7 @@ luabind::scope lua_register_client_version() {
 			luabind::value("Unknown", static_cast<int>(EQ::versions::ClientVersion::Unknown)),
 			luabind::value("Titanium", static_cast<int>(EQ::versions::ClientVersion::Titanium)),
 			luabind::value("SoF", static_cast<int>(EQ::versions::ClientVersion::SoF)),
-			luabind::value("SoD", static_cast<int>(EQ::versions::ClientVersion::SoD)),
-			luabind::value("Underfoot", static_cast<int>(EQ::versions::ClientVersion::UF)), // deprecated
-			luabind::value("UF", static_cast<int>(EQ::versions::ClientVersion::UF))
+			luabind::value("SoD", static_cast<int>(EQ::versions::ClientVersion::SoD))
 		)];
 }
 

@@ -44,7 +44,6 @@ enum : int {	//values for pTimerType
 	pTimerBeggingPickPocket = 27,
 	pTimerLinkedSpellReuseStart = 28,
 	pTimerLinkedSpellReuseEnd = 48,
-	pTimerClearXTarget = 50,
 
 	pTimerShieldAbility = 86,
 

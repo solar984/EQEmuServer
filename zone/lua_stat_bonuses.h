@@ -229,7 +229,6 @@ public:
 	int32 GetImprovedReclaimEnergy() const;
 	int32 GetPetMeleeMitigation() const;
 	bool GetIllusionPersistence() const;
-	uint16 Getextra_xtargets() const;
 	bool GetShroudofStealth() const;
 	uint16 GetReduceFallDamage() const;
 	uint8 GetTradeSkillMastery() const;

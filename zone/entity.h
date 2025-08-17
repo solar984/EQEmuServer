@@ -420,10 +420,8 @@ public:
 	void	ExpeditionWarning(uint32 minutes_left);
 	void    UpdateGuildTributes(uint32 guild_id);
 
-	void	RemoveFromTargets(Mob* mob, bool RemoveFromXTargets = false);
-	void	RemoveFromTargetsFadingMemories(Mob* spell_target, bool RemoveFromXTargets = false, uint32 max_level = 0);
-	void	RemoveFromXTargets(Mob* mob);
-	void	RemoveFromAutoXTargets(Mob* mob);
+	void	RemoveFromTargets(Mob* mob);
+	void	RemoveFromTargetsFadingMemories(Mob* spell_target, uint32 max_level = 0);
 	void	ReplaceWithTarget(Mob* pOldMob, Mob*pNewTarget);
 	void	QueueCloseClients(Mob* sender, const EQApplicationPacket* app, bool ignore_sender=false, float distance=200, Mob* skipped_mob = 0, bool is_ack_required = true, eqFilterType filter=FilterNone);
 	void	QueueClients(Mob* sender, const EQApplicationPacket* app, bool ignore_sender=false, bool ackreq = true);
@@ -431,8 +429,6 @@ public:
 	void	QueueClientsGuild(const EQApplicationPacket* app, uint32 guildeqid = 0);
 	void	QueueClientsGuildBankItemUpdate(GuildBankItemUpdate_Struct *gbius, uint32 GuildID);
 	void	QueueClientsByTarget(Mob* sender, const EQApplicationPacket* app, bool iSendToSender = true, Mob* SkipThisMob = 0, bool ackreq = true, bool HoTT = true, uint32 ClientVersionBits = 0xFFFFFFFF, bool inspect_buffs = false, bool clear_target_window  = false);
-
-	void	QueueClientsByXTarget(Mob* sender, const EQApplicationPacket* app, bool iSendToSender = true, EQ::versions::ClientVersionBitmask client_version_bits = EQ::versions::ClientVersionBitmask::maskAllClients);
 	void	QueueToGroupsForNPCHealthAA(Mob* sender, const EQApplicationPacket* app);
 
 	void AEAttack(
@@ -566,8 +562,6 @@ public:
 	void	DepopAll(int NPCTypeID, bool StartSpawnTimer = true);
 
 	uint16 GetFreeID();
-	void RefreshAutoXTargets(Client *c);
-	void RefreshClientXTargets(Client *c);
 	void SendAlternateAdvancementStats();
 	void ScanCloseMobs(Mob *scanning_mob);
 

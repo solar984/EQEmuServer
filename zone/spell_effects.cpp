@@ -155,12 +155,6 @@ bool Mob::SpellEffect(Mob* caster, uint16 spell_id, float partial, int level_ove
 
 		if (spells[spell_id].endurance_upkeep > 0)
 			SetEndurUpkeep(true);
-
-		if (IsClient() && CastToClient()->ClientVersionBit() & EQ::versions::maskUFAndLater)
-		{
-			EQApplicationPacket *outapp = MakeBuffsPacket(false);
-			CastToClient()->FastQueuePacket(&outapp);
-		}
 	}
 
 	if (IsClient()) {
@@ -1306,26 +1300,6 @@ bool Mob::SpellEffect(Mob* caster, uint16 spell_id, float partial, int level_ove
 				else
 				{
 					MakePet(spell_id, spell.teleport_zone);
-					// TODO: we need to sync the states for these clients ...
-					// Will fix buttons for now
-					Mob *pet=GetPet();
-					if (IsClient() && pet) {
-						auto c = CastToClient();
-						if (c->ClientVersionBit() & EQ::versions::maskUFAndLater) {
-							c->SetPetCommandState(PetButton::Sit, PetButtonState::Off);
-							c->SetPetCommandState(PetButton::Stop, PetButtonState::Off);
-							c->SetPetCommandState(PetButton::Regroup, PetButtonState::Off);
-							c->SetPetCommandState(PetButton::Follow, PetButtonState::On);
-							c->SetPetCommandState(PetButton::Guard, PetButtonState::Off);
-							// Creating pet from spell - taunt always false
-							// If suspended pet - that will be restore there
-							// If logging in, client will send toggle
-							c->SetPetCommandState(PetButton::Hold, PetButtonState::Off);
-							c->SetPetCommandState(PetButton::GreaterHold, PetButtonState::Off);
-							c->SetPetCommandState(PetButton::Focus, PetButtonState::Off);
-							c->SetPetCommandState(PetButton::SpellHold, PetButtonState::Off);
-						}
-					}
 				}
 				break;
 			}
@@ -2349,7 +2323,7 @@ bool Mob::SpellEffect(Mob* caster, uint16 spell_id, float partial, int level_ove
 				if(zone->random.Roll(spells[spell_id].base_value[i])) {
 					if (IsClient()) {
 						int pre_aggro_count = CastToClient()->GetAggroCount();
-						entity_list.RemoveFromTargetsFadingMemories(this, true, max_level);
+						entity_list.RemoveFromTargetsFadingMemories(this, max_level);
 						entity_list.ClearZoneFeignAggro(this);
 
 						if (spellbonuses.ShroudofStealth || aabonuses.ShroudofStealth || itembonuses.ShroudofStealth) {
@@ -3886,9 +3860,6 @@ void Mob::BuffProcess()
 				if(buffs[buffs_i].UpdateClient == true)
 				{
 					CastToClient()->SendBuffDurationPacket(buffs[buffs_i], buffs_i);
-					// Hack to get UF to play nicer, RoF seems fine without it
-					if (CastToClient()->ClientVersion() == EQ::versions::ClientVersion::UF && buffs[buffs_i].hit_number > 0)
-						CastToClient()->SendBuffNumHitPacket(buffs[buffs_i], buffs_i);
 					buffs[buffs_i].UpdateClient = false;
 				}
 			}
@@ -4697,12 +4668,6 @@ void Mob::BuffFadeBySlot(int slot, bool iRecalcBonuses)
 		EQApplicationPacket *outapp = MakeBuffsPacket();
 		entity_list.QueueClientsByTarget(this, outapp, false, nullptr, true, false, EQ::versions::maskSoDAndLater, true);
 		safe_delete(outapp);
-	}
-
-	if (IsClient() && CastToClient()->ClientVersionBit() & EQ::versions::maskUFAndLater)
-	{
-		EQApplicationPacket *outapp = MakeBuffsPacket(false);
-		CastToClient()->FastQueuePacket(&outapp);
 	}
 
 	// we will eventually call CalcBonuses() even if we skip it right here, so should correct itself if we still have them
@@ -7072,8 +7037,6 @@ void Mob::CheckNumHitsRemaining(NumHit type, int32 buff_slot, uint16 spell_id)
 					CastOnNumHitFade(buffs[d].spellid);
 					if (!TryFadeEffect(d))
 						BuffFadeBySlot(d, true);
-				} else if (IsClient()) { // still have numhits and client, update
-					CastToClient()->SendBuffNumHitPacket(buffs[d], d);
 				}
 			}
 		}
@@ -7087,9 +7050,7 @@ void Mob::CheckNumHitsRemaining(NumHit type, int32 buff_slot, uint16 spell_id)
 				CastOnNumHitFade(buffs[buff_slot].spellid);
 				if (!TryFadeEffect(buff_slot))
 					BuffFadeBySlot(buff_slot , true);
-			} else if (IsClient()) { // still have numhits and client, update
-				CastToClient()->SendBuffNumHitPacket(buffs[buff_slot], buff_slot);
-			}
+			} 
 		}
 	}
 	else {
@@ -7105,9 +7066,7 @@ void Mob::CheckNumHitsRemaining(NumHit type, int32 buff_slot, uint16 spell_id)
 					CastOnNumHitFade(buffs[d].spellid);
 					if (!TryFadeEffect(d))
 						BuffFadeBySlot(d, true);
-				} else if (IsClient()) { // still have numhits and client, update
-					CastToClient()->SendBuffNumHitPacket(buffs[d], d);
-				}
+				} 
 			}
 		}
 	}

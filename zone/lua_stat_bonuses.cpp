@@ -1026,11 +1026,6 @@ bool Lua_StatBonuses::GetIllusionPersistence() const {
 	return self->IllusionPersistence;
 }
 
-uint16 Lua_StatBonuses::Getextra_xtargets() const {
-	Lua_Safe_Call_Int();
-	return self->extra_xtargets;
-}
-
 bool Lua_StatBonuses::GetShroudofStealth() const {
 	Lua_Safe_Call_Bool();
 	return self->ShroudofStealth;
@@ -1379,7 +1374,6 @@ luabind::scope lua_register_stat_bonuses() {
 	.def("Endurance", &Lua_StatBonuses::GetEndurance)
 	.def("EnduranceReduction", &Lua_StatBonuses::GetEnduranceReduction)
 	.def("EnduranceRegen", &Lua_StatBonuses::GetEnduranceRegen)
-	.def("extra_xtargets", &Lua_StatBonuses::Getextra_xtargets)
 	.def("ExtraAttackChance", &Lua_StatBonuses::GetExtraAttackChance)
 	.def("FactionModPct", &Lua_StatBonuses::GetFactionModPct)
 	.def("Fearless", &Lua_StatBonuses::GetFearless)

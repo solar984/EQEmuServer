@@ -666,7 +666,7 @@ bool SharedDatabase::GetInventory(Client *c)
 	);
 
 	if (results.empty()) {
-		LogError("Error loading inventory for char_id {} from the database.", char_id);
+		LogDebug("inventory for char_id {} is empty.", char_id);
 		return false;
 	}
 

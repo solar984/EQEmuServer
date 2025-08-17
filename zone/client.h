@@ -51,8 +51,6 @@ namespace EQ
 #include "../common/seperator.h"
 #include "../common/inventory_profile.h"
 #include "../common/guilds.h"
-//#include "../common/item_data.h"
-#include "xtargetautohaters.h"
 #include "common.h"
 #include "merc.h"
 #include "mob.h"
@@ -91,7 +89,6 @@ namespace EQ
 
 #define CLIENT_LD_TIMEOUT 30000 // length of time client stays in zone after LDing
 #define TARGETING_RANGE 200 // range for /assist and /target
-#define XTARGET_HARDCAP 20
 #define MAX_SPECIALIZED_SKILL 50
 
 extern Zone* zone;
@@ -144,46 +141,6 @@ typedef enum
 	Disciplines,
 	Spells
 } ShowSpellType;
-
-typedef enum
-{
-	Empty = 0,
-	Auto = 1,
-	CurrentTargetPC = 2,
-	CurrentTargetNPC = 3,
-	TargetsTarget = 4,
-	GroupTank = 5,
-	GroupTankTarget = 6,
-	GroupAssist = 7,
-	GroupAssistTarget = 8,
-	Puller = 9,
-	PullerTarget = 10,
-	GroupMarkTarget1 = 11,
-	GroupMarkTarget2 = 12,
-	GroupMarkTarget3 = 13,
-	RaidAssist1 = 14,
-	RaidAssist2 = 15,
-	RaidAssist3 = 16,
-	RaidAssist1Target = 17,
-	RaidAssist2Target = 18,
-	RaidAssist3Target = 19,
-	RaidMarkTarget1 = 20,
-	RaidMarkTarget2 = 21,
-	RaidMarkTarget3 = 22,
-	MyPet = 23,
-	MyPetTarget = 24,
-	MyMercenary = 25,
-	MyMercenaryTarget = 26
-
-} XTargetType;
-
-struct XTarget_Struct
-{
-	XTargetType Type;
-	bool dirty;
-	uint16 ID;
-	char Name[65];
-};
 
 struct RespawnOption
 {
@@ -1253,7 +1210,6 @@ public:
 	//This is used to later set the buff duration of the spell, in slot to duration.
 	//Doesn't appear to work directly after the client recieves an action packet.
 	void SendBuffDurationPacket(Buffs_Struct &buff, int slot);
-	void SendBuffNumHitPacket(Buffs_Struct &buff, int slot);
 
 	void ProcessInspectRequest(Client* requestee, Client* requester);
 	bool ClientFinishedLoading() { return (conn_state == ClientConnectFinished); }
@@ -1703,28 +1659,9 @@ public:
 	void HandleLFGuildResponse(ServerPacket *pack);
 	void SendLFGuildStatus();
 	void SendGuildLFGuildStatus();
-	inline bool XTargettingAvailable() const { return ((m_ClientVersionBit & EQ::versions::maskUFAndLater) && RuleB(Character, EnableXTargetting)); }
-	inline uint8 GetMaxXTargets() const { return MaxXTargets; }
-	void SetMaxXTargets(uint8 NewMax);
-	bool IsXTarget(const Mob *m) const;
-	bool IsClientXTarget(const Client *c) const;
-	void UpdateClientXTarget(Client *c);
-	void UpdateXTargetType(XTargetType Type, Mob *m, const char *Name = nullptr);
-	void AddAutoXTarget(Mob *m, bool send = true);
-	void RemoveXTarget(Mob *m, bool OnlyAutoSlots);
-	void SendXTargetPacket(uint32 Slot, Mob *m);
-	void SendXTargetUpdates();
-	void RemoveGroupXTargets();
-	void RemoveAutoXTargets();
-	void ShowXTargets(Client *c);
-	inline XTargetAutoHaters *GetXTargetAutoMgr() { return m_activeautohatermgr; } // will be either raid or group or self
-	inline void SetXTargetAutoMgr(XTargetAutoHaters *in) { if (in) m_activeautohatermgr = in; else m_activeautohatermgr = &m_autohatermgr; }
+
 	inline void SetDirtyAutoHaters() { m_dirtyautohaters = true; }
-	void ProcessXTargetAutoHaters(); // fixes up our auto haters
-	void JoinGroupXTargets(Group *g);
-	void LeaveGroupXTargets(Group *g);
-	void LeaveRaidXTargets(Raid *r);
-	void ClearXTargets();
+
 	bool GroupFollow(Client* inviter);
 	inline bool  GetRunMode() const { return runmode; }
 
@@ -2232,7 +2169,6 @@ private:
 public:
 	void SetSharedTaskId(int64 shared_task_id);
 	int64 GetSharedTaskId() const;
-	struct XTarget_Struct XTargets[XTARGET_HARDCAP];
 private:
 
 	bool m_exp_enabled;
@@ -2287,9 +2223,6 @@ private:
 	uint8 MaxXTargets;
 	bool XTargetAutoAddHaters;
 	bool m_dirtyautohaters;
-
-	XTargetAutoHaters m_autohatermgr;
-	XTargetAutoHaters *m_activeautohatermgr;
 
 	Timer ItemQuestTimer;
 	std::map<std::string,std::string> accountflags;

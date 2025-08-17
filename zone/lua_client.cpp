@@ -3251,12 +3251,6 @@ bool Lua_Client::HasItemOnCorpse(uint32 item_id)
 	return self->HasItemOnCorpse(item_id);
 }
 
-void Lua_Client::ClearXTargets()
-{
-	Lua_Safe_Call_Void();
-	self->ClearXTargets();
-}
-
 int Lua_Client::GetAAEXPPercentage()
 {
 	Lua_Safe_Call_Int();
@@ -3681,7 +3675,6 @@ luabind::scope lua_register_client() {
 	.def("ClearCompassMark",(void(Lua_Client::*)(void))&Lua_Client::ClearCompassMark)
 	.def("ClearAccountFlag", (void(Lua_Client::*)(const std::string&))&Lua_Client::ClearAccountFlag)
 	.def("ClearPEQZoneFlag", (void(Lua_Client::*)(uint32))&Lua_Client::ClearPEQZoneFlag)
-	.def("ClearXTargets", (void(Lua_Client::*)(void))&Lua_Client::ClearXTargets)
 	.def("ClearZoneFlag", (void(Lua_Client::*)(uint32))&Lua_Client::ClearZoneFlag)
 	.def("CompleteTask", (bool(Lua_Client::*)(int))&Lua_Client::CompleteTask)
 	.def("Connected", (bool(Lua_Client::*)(void))&Lua_Client::Connected)

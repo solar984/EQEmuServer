@@ -2617,25 +2617,18 @@ bool Bot::TryAutoDefend(Client* bot_owner, float leash_distance) {
 			NOT_HOLDING &&
 			NOT_PASSIVE
 		) {
-			XTargetAutoHaters* temp_haters;
-			std::vector<XTargetAutoHaters*> assistee_haters;
 			std::vector<Client*> assistee_members;
 			bool found = false;
 
 			if (bot_owner->GetAggroCount()) {
-				temp_haters = bot_owner->GetXTargetAutoMgr();
-
-				if (temp_haters && !temp_haters->empty()) {
-					assistee_haters.emplace_back(temp_haters);
-					assistee_members.emplace_back(bot_owner);
-				}
+				assistee_members.emplace_back(bot_owner);
+				
 			}
 
 			if (
 				(!bot_owner->GetAssistee() || !entity_list.GetClientByCharID(bot_owner->GetAssistee())) &&
 				RuleB(Bots, AllowCrossGroupRaidAssist)
 			) {
-				XTargetAutoHaters* temp_xhaters = bot_owner->GetXTargetAutoMgr();
 				bool assistee_found = false;
 
 				if (IsRaidGrouped()) {
@@ -2648,13 +2641,7 @@ bool Bot::TryAutoDefend(Client* bot_owner, float leash_distance) {
 								m.member->GetAggroCount() &&
 								raid->IsAssister(m.member_name)
 							) {
-								temp_xhaters = m.member->GetXTargetAutoMgr();
 
-								if (!temp_xhaters || temp_xhaters->empty()) {
-									continue;
-								}
-
-								assistee_haters.emplace_back(temp_xhaters);
 								assistee_members.emplace_back(m.member);
 							}
 						}
@@ -2670,13 +2657,7 @@ bool Bot::TryAutoDefend(Client* bot_owner, float leash_distance) {
 								m->CastToClient()->GetAggroCount() &&
 								g->AmIMainAssist(m->GetName())
 							) {
-								temp_xhaters = m->CastToClient()->GetXTargetAutoMgr();
-
-								if (!temp_xhaters || temp_xhaters->empty()) {
-									continue;
-								}
-
-								assistee_haters.emplace_back(temp_xhaters);
+								
 								assistee_members.emplace_back(m->CastToClient());
 							}
 						}
@@ -2691,65 +2672,7 @@ bool Bot::TryAutoDefend(Client* bot_owner, float leash_distance) {
 					Client* c = entity_list.GetClientByCharID(bot_owner->GetAssistee());
 
 					if (bot_owner->IsInGroupOrRaid(c) && c->GetAggroCount()) {
-						temp_haters = bot_owner->GetXTargetAutoMgr();
-
-						if (temp_haters && !temp_haters->empty()) {
-							assistee_haters.emplace_back(temp_haters);
-							assistee_members.emplace_back(c);
-						}
-					}
-				}
-			}
-
-			if (!assistee_haters.empty()) {
-				for (XTargetAutoHaters* x_haters : assistee_haters) {
-					if (!x_haters->empty()) {
-						for (auto hater_iter : x_haters->get_list()) {
-							if (!hater_iter.spawn_id) {
-								continue;
-							}
-
-							Mob* hater = nullptr;
-
-							for (Client* x_member : assistee_members) {
-								if (
-									x_member &&
-									x_member->GetBotPulling() &&
-									x_member->GetTarget() &&
-									(hater_iter.spawn_id == x_member->GetTarget()->GetID())
-								) {
-									continue;
-								}
-
-								hater = entity_list.GetMob(hater_iter.spawn_id);
-
-								if (
-									hater &&
-									!hater->IsMezzed() &&
-									(DistanceSquared(hater->GetPosition(), bot_owner->GetPosition()) <= leash_distance) &&
-									hater->CastToNPC()->IsOnHatelist(x_member)
-								) {
-									break;
-								}
-
-								hater = nullptr;
-							}
-
-							if (hater) {
-								AddToHateList(hater, 1);
-								SetTarget(hater);
-								SetAttackingFlag();
-
-								if (HasControllablePet(BotAnimEmpathy::Attack)) {
-									GetPet()->AddToHateList(hater, 1);
-									GetPet()->SetTarget(hater);
-								}
-
-								m_auto_defend_timer.Disable();
-
-								return true;
-							}
-						}
+						
 					}
 				}
 			}
@@ -8606,7 +8529,7 @@ void Bot::SetSpellDuration(
 
 void Bot::Escape()
 {
-	entity_list.RemoveFromTargets(this, true);
+	entity_list.RemoveFromTargets(this);
 	SetInvisible(Invisibility::Invisible);
 }
 

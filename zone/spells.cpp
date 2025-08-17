@@ -2891,24 +2891,6 @@ bool Mob::SpellFinished(uint16 spell_id, Mob *spell_target, CastingSlot slot, in
 
 	ApplyHealthTransferDamage(this, target, spell_id);
 
-	//This needs to be here for bind sight to update correctly on client.
-	if (IsClient() && IsEffectInSpell(spell_id, SE_BindSight)) {
-		for (int i = 0; i < GetMaxTotalSlots(); i++) {
-			if (buffs[i].spellid == spell_id) {
-				CastToClient()->SendBuffNumHitPacket(buffs[i], i);//its hack, it works.
-			}
-		}
-	}
-	//Check if buffs has numhits, then resend packet so it displays the hit count.
-	if (IsClient() && spells[spell_id].hit_number) {
-		for (int i = 0; i < GetMaxTotalSlots(); i++) {
-			if (buffs[i].spellid == spell_id && buffs[i].hit_number > 0) {
-				CastToClient()->SendBuffNumHitPacket(buffs[i], i);
-				break;
-			}
-		}
-	}
-
 	return true;
 }
 
@@ -6610,28 +6592,6 @@ void Client::SendBuffDurationPacket(Buffs_Struct &buff, int slot)
 
 	sbf->slotid = slot;
 	sbf->bufffade = 0;
-	FastQueuePacket(&outapp);
-}
-
-void Client::SendBuffNumHitPacket(Buffs_Struct &buff, int slot)
-{
-	// UF+ use this packet
-	if (ClientVersion() < EQ::versions::ClientVersion::UF)
-		return;
-	EQApplicationPacket *outapp = nullptr;
-	outapp = new EQApplicationPacket(OP_BuffCreate, sizeof(BuffIcon_Struct) + sizeof(BuffIconEntry_Struct));
-	BuffIcon_Struct *bi = (BuffIcon_Struct *)outapp->pBuffer;
-	bi->entity_id = GetID();
-	bi->count = 1;
-	bi->all_buffs = 0;
-	bi->tic_timer = tic_timer.GetRemainingTime();
-
-	bi->entries[0].buff_slot = slot;
-	bi->entries[0].spell_id = buff.spellid;
-	bi->entries[0].tics_remaining = buff.ticsremaining;
-	bi->entries[0].num_hits = buff.hit_number;
-	strn0cpy(bi->entries[0].caster, buff.caster_name, 64);
-	bi->name_lengths = strlen(bi->entries[0].caster);
 	FastQueuePacket(&outapp);
 }
 

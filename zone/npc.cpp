@@ -461,7 +461,7 @@ NPC::NPC(const NPCType *npc_type_data, Spawn2 *in_respawn, const glm::vec4 &posi
 		m_can_open_doors = false;
 	}
 
-	GetInv().SetInventoryVersion(EQ::versions::MobVersion::UF);
+	GetInv().SetInventoryVersion(EQ::versions::MobVersion::Titanium);
 	GetInv().SetGMInventory(false);
 }
 
@@ -569,15 +569,6 @@ void NPC::SetTarget(Mob* mob) {
 			owner = nullptr;
 	}
 
-	if (owner) {
-		auto client = owner->CastToClient();
-		if (client->ClientVersionBit() & EQ::versions::maskUFAndLater) {
-			auto app = new EQApplicationPacket(OP_PetHoTT, sizeof(ClientTarget_Struct));
-			auto ct = (ClientTarget_Struct *)app->pBuffer;
-			ct->new_target = mob ? mob->GetID() : 0;
-			client->FastQueuePacket(&app);
-		}
-	}
 	Mob::SetTarget(mob);
 }
 

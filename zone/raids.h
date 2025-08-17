@@ -20,7 +20,6 @@
 
 #include "../common/types.h"
 #include "groups.h"
-#include "xtargetautohaters.h"
 #include "client.h"
 
 class Client;
@@ -194,12 +193,9 @@ public:
 	void	DelegateAbilityAssist(Mob* mob, const char* who);
 	void	DelegateAbilityMark(Mob* mob, const char* who);
 	void    RaidMarkNPC(Mob* mob, uint32 parameter);
-	void    UpdateXTargetType(XTargetType Type, Mob* m, const char* name = (const char*)nullptr);
 	int     FindNextRaidDelegateSlot(int option);
-	void    UpdateXtargetMarkedNPC();
 	void    RaidClearNPCMarks(Client* c);
 	void    RemoveRaidDelegates(const char* delegatee);
-	void	UpdateRaidXTargets();
 
 	//Packet Functions
 	void	SendRaidCreate(Client *to);
@@ -214,9 +210,6 @@ public:
 	void	SendBulkRaid(Client *to);
 	void    SendRaidNotes();
 	void    SendRaidNotesToWorld();
-	void    SendRemoveRaidXTargets(XTargetType Type);
-	void    SendRemoveAllRaidXTargets();
-	void    SendRemoveAllRaidXTargets(const char* client_name);
 	void    SendRaidAssistTarget();
 	void    SendAssistTarget(Client* c);
 	void	GroupUpdate(uint32 gid, bool initial = true);
@@ -267,7 +260,6 @@ public:
 	inline Client *GetMentoree(uint32 group_id) { return group_mentor[group_id].mentoree; }
 
 	void SetDirtyAutoHaters();
-	inline XTargetAutoHaters *GetXTargetAutoMgr() { return &m_autohatermgr; }
 
 	void	QueueClients(Mob *sender, const EQApplicationPacket *app, bool ack_required = true, bool ignore_sender = true, float distance = 0, bool group_only = true);
 
@@ -296,8 +288,6 @@ protected:
 	GroupLeadershipAA_Struct group_aa[MAX_RAID_GROUPS]{};
 
 	GroupMentor group_mentor[MAX_RAID_GROUPS];
-
-	XTargetAutoHaters m_autohatermgr;
 };
 
 

@@ -561,7 +561,7 @@ Mob::~Mob()
 		entity_list.QueueClients(this, &app, true);
 	}
 
-	entity_list.RemoveFromTargets(this, true);
+	entity_list.RemoveFromTargets(this);
 
 	if (trade) {
 		Mob *with = trade->With();
@@ -1576,9 +1576,6 @@ void Mob::SendHPUpdate(bool force_update_all)
 
 	// update those who have us targeted
 	entity_list.QueueClientsByTarget(this, &hp_packet, false, 0, false, true, EQ::versions::maskAllClients);
-
-	// Update those who have us on x-target
-	entity_list.QueueClientsByXTarget(this, &hp_packet, false);
 
 	// Update groups using Group LAA health name tag counter
 	entity_list.QueueToGroupsForNPCHealthAA(this, &hp_packet);
@@ -5501,10 +5498,6 @@ void Mob::SetTarget(Mob *mob)
 
 	parse->EventMob(EVENT_TARGET_CHANGE, this, mob, [&]() { return ""; }, 0, &args);
 
-	if (IsPet() && GetOwner() && GetOwner()->IsClient()) {
-		GetOwner()->CastToClient()->UpdateXTargetType(MyPetTarget, mob);
-	}
-
 	if (IsClient() && GetTarget()) {
 		GetTarget()->SendHPUpdate(true);
 	}
@@ -5512,7 +5505,6 @@ void Mob::SetTarget(Mob *mob)
 	if (IsOfClientBot()) {
 		Raid* r = GetRaid();
 		if (r) {
-			r->UpdateRaidXTargets();
 			r->SendRaidAssistTarget();
 		}
 	}
@@ -6643,10 +6635,6 @@ void Mob::SetGrouped(bool v)
 	if (IsClient()) {
 		if (parse->PlayerHasQuestSub(EVENT_GROUP_CHANGE)) {
 			parse->EventPlayer(EVENT_GROUP_CHANGE, CastToClient(), "", 0);
-		}
-
-		if (!v) {
-			CastToClient()->RemoveGroupXTargets();
 		}
 	}
 }

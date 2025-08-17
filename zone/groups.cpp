@@ -70,8 +70,6 @@ Group::Group(uint32 gid)
 		MarkedNPCs[i] = 0;
 
 	NPCMarkerID = 0;
-
-	m_autohatermgr.SetOwner(nullptr, this, nullptr);
 }
 
 //creating a new group
@@ -103,7 +101,6 @@ Group::Group(Mob* leader)
 		MarkedNPCs[i] = 0;
 
 	NPCMarkerID = 0;
-	m_autohatermgr.SetOwner(nullptr, this, nullptr);
 }
 
 Group::~Group()
@@ -350,10 +347,6 @@ bool Group::AddMember(Mob* new_member, std::string new_member_name, uint32 chara
 				.character_id = character_id,
 			}
 		);
-	}
-
-	if (new_member && new_member->IsClient()) {
-		new_member->CastToClient()->JoinGroupXTargets(this);
 	}
 
 	safe_delete(outapp);
@@ -791,7 +784,6 @@ bool Group::DelMember(Mob* oldmember, bool ignoresender)
 
 	if(oldmember->IsClient()) {
 		SendMarkedNPCsToMember(oldmember->CastToClient(), true);
-		oldmember->CastToClient()->LeaveGroupXTargets(this);
 	}
 
 	if(GroupCount() < 3)
@@ -952,8 +944,6 @@ void Group::DisbandGroup(bool joinraid) {
 			RemoveFromGroup(members[i]);
 			members[i]->CastToClient()->QueuePacket(outapp);
 			SendMarkedNPCsToMember(members[i]->CastToClient(), true);
-			if (!joinraid)
-				members[i]->CastToClient()->LeaveGroupXTargets(this);
 		}
 
 		if (members[i]->IsMerc())
@@ -1501,7 +1491,6 @@ void Group::MarkNPC(Mob* Target, int Number)
 			if(i == (Number - 1))
 				return;
 
-			UpdateXTargetMarkedNPC(i+1, nullptr);
 			MarkedNPCs[i] = 0;
 
 			AlreadyMarked = true;
@@ -1517,7 +1506,6 @@ void Group::MarkNPC(Mob* Target, int Number)
 			if(m)
 				m->IsTargeted(-1);
 
-			UpdateXTargetMarkedNPC(Number, nullptr);
 		}
 
 		if(EntityID)
@@ -1547,7 +1535,6 @@ void Group::MarkNPC(Mob* Target, int Number)
 
 	safe_delete(outapp);
 
-	UpdateXTargetMarkedNPC(Number, m);
 }
 
 void Group::DelegateMainTank(const char *NewMainTankName, uint8 toggle)
@@ -1584,8 +1571,6 @@ void Group::DelegateMainTank(const char *NewMainTankName, uint8 toggle)
 		if(members[i] && members[i]->IsClient())
 		{
 			NotifyMainTank(members[i]->CastToClient(), toggle);
-			members[i]->CastToClient()->UpdateXTargetType(GroupTank, m, NewMainTankName);
-			members[i]->CastToClient()->UpdateXTargetType(GroupTankTarget, mtt);
 		}
 	}
 
@@ -1630,8 +1615,6 @@ void Group::DelegateMainAssist(const char *NewMainAssistName, uint8 toggle)
 		if(members[i] && members[i]->IsClient())
 		{
 			NotifyMainAssist(members[i]->CastToClient(), toggle);
-			members[i]->CastToClient()->UpdateXTargetType(GroupAssist, m, NewMainAssistName);
-			members[i]->CastToClient()->UpdateXTargetType(GroupAssistTarget, m->GetTarget());
 		}
 	}
 
@@ -1677,8 +1660,6 @@ void Group::DelegatePuller(const char *NewPullerName, uint8 toggle)
 		if(members[i] && members[i]->IsClient())
 		{
 			NotifyPuller(members[i]->CastToClient(), toggle);
-			members[i]->CastToClient()->UpdateXTargetType(Puller, m, NewPullerName);
-			members[i]->CastToClient()->UpdateXTargetType(PullerTarget, m->GetTarget());
 		}
 	}
 
@@ -1846,8 +1827,6 @@ void Group::UnDelegateMainTank(const char *OldMainTankName, uint8 toggle)
 				if(members[i] && members[i]->IsClient())
 				{
 					NotifyMainTank(members[i]->CastToClient(), toggle);
-					members[i]->CastToClient()->UpdateXTargetType(GroupTank, nullptr, "");
-					members[i]->CastToClient()->UpdateXTargetType(GroupTankTarget, nullptr);
 				}
 			}
 		}
@@ -1880,7 +1859,6 @@ void Group::UnDelegateMainAssist(const char *OldMainAssistName, uint8 toggle)
 			if(members[i] && members[i]->IsClient())
 			{
 				members[i]->CastToClient()->QueuePacket(outapp);
-				members[i]->CastToClient()->UpdateXTargetType(GroupAssist, nullptr, "");
 			}
 
 		safe_delete(outapp);
@@ -1897,7 +1875,6 @@ void Group::UnDelegateMainAssist(const char *OldMainAssistName, uint8 toggle)
 				if(members[i] && members[i]->IsClient())
 				{
 					NotifyMainAssist(members[i]->CastToClient(), toggle);
-					members[i]->CastToClient()->UpdateXTargetType(GroupAssistTarget, nullptr);
 				}
 			}
 		}
@@ -1923,8 +1900,6 @@ void Group::UnDelegatePuller(const char *OldPullerName, uint8 toggle)
 				if(members[i] && members[i]->IsClient())
 				{
 					NotifyPuller(members[i]->CastToClient(), toggle);
-					members[i]->CastToClient()->UpdateXTargetType(Puller, nullptr, "");
-					members[i]->CastToClient()->UpdateXTargetType(PullerTarget, nullptr);
 				}
 			}
 		}
@@ -1970,7 +1945,6 @@ void Group::SetGroupTankTarget(Mob *m)
 	{
 		if(members[i] && members[i]->IsClient())
 		{
-			members[i]->CastToClient()->UpdateXTargetType(GroupTankTarget, m);
 		}
 	}
 }
@@ -1983,7 +1957,6 @@ void Group::SetGroupPullerTarget(Mob *m)
 	{
 		if(members[i] && members[i]->IsClient())
 		{
-			members[i]->CastToClient()->UpdateXTargetType(PullerTarget, m);
 		}
 	}
 }
@@ -2034,7 +2007,6 @@ void Group::NotifyAssistTarget(Client *c)
 
 	Mob *m = entity_list.GetMob(AssistTargetID);
 
-	c->UpdateXTargetType(GroupAssistTarget, m);
 
 }
 
@@ -2045,7 +2017,6 @@ void Group::NotifyTankTarget(Client *c)
 
 	Mob *m = entity_list.GetMob(TankTargetID);
 
-	c->UpdateXTargetType(GroupTankTarget, m);
 }
 
 void Group::NotifyPullerTarget(Client *c)
@@ -2055,7 +2026,6 @@ void Group::NotifyPullerTarget(Client *c)
 
 	Mob *m = entity_list.GetMob(PullerTargetID);
 
-	c->UpdateXTargetType(PullerTarget, m);
 }
 
 void Group::DelegateMarkNPC(const char *NewNPCMarkerName)
@@ -2206,7 +2176,6 @@ void Group::UnMarkNPC(uint16 ID)
 		if(MarkedNPCs[i] == ID)
 		{
 			MarkedNPCs[i] = 0;
-			UpdateXTargetMarkedNPC(i + 1, nullptr);
 		}
 	}
 }
@@ -2241,7 +2210,6 @@ void Group::SendMarkedNPCsToMember(Client *c, bool Clear)
 				mnpcs->Number = 0;
 
 			c->QueuePacket(outapp);
-			c->UpdateXTargetType((mnpcs->Number == 1) ? GroupMarkTarget1 : ((mnpcs->Number == 2) ? GroupMarkTarget2 : GroupMarkTarget3), m);
 		}
 	}
 
@@ -2382,39 +2350,11 @@ const char *Group::GetClientNameByIndex(uint8 index)
 	return membername[index];
 }
 
-void Group::UpdateXTargetMarkedNPC(uint32 Number, Mob *m)
-{
-	for(uint32 i = 0; i < MAX_GROUP_MEMBERS; ++i)
-	{
-		if(members[i] && members[i]->IsClient())
-		{
-			members[i]->CastToClient()->UpdateXTargetType((Number == 1) ? GroupMarkTarget1 : ((Number == 2) ? GroupMarkTarget2 : GroupMarkTarget3), m);
-		}
-	}
-}
-
 void Group::SetDirtyAutoHaters()
 {
 	for (int i = 0; i < MAX_GROUP_MEMBERS; ++i)
 		if (members[i] && members[i]->IsClient())
 			members[i]->CastToClient()->SetDirtyAutoHaters();
-}
-
-void Group::JoinRaidXTarget(Raid *raid, bool first)
-{
-	if (!GetXTargetAutoMgr()->empty())
-		raid->GetXTargetAutoMgr()->merge(*GetXTargetAutoMgr());
-
-	for (int i = 0; i < MAX_GROUP_MEMBERS; ++i) {
-		if (members[i] && members[i]->IsClient()) {
-			auto *client = members[i]->CastToClient();
-			if (!first)
-				client->RemoveAutoXTargets();
-			client->SetXTargetAutoMgr(raid->GetXTargetAutoMgr());
-			if (!client->GetXTargetAutoMgr()->empty())
-				client->SetDirtyAutoHaters();
-		}
-	}
 }
 
 void Group::SetMainTank(const char *NewMainTankName)

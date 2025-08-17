@@ -371,13 +371,11 @@ Pet::Pet(NPCType *type_data, Mob *owner, uint8 pet_type, uint16 spell_id, int16 
 	// Older clients didn't track state, and default taunting is on (per @mackal)
 	// Familiar and animation pets don't get taunt until an AA.
 	if (owner && owner->IsClient()) {
-		if (!(owner->CastToClient()->ClientVersionBit() & EQ::versions::maskUFAndLater)) {
-			if (
-				(GetPetType() != PetType::Familiar && GetPetType() != PetType::Animation) ||
-				aabonuses.PetCommands[PetCommand::Taunt]
-			) {
-				SetTaunting(true);
-			}
+		if (
+			(GetPetType() != PetType::Familiar && GetPetType() != PetType::Animation) ||
+			aabonuses.PetCommands[PetCommand::Taunt]
+		) {
+			SetTaunting(true);
 		}
 	}
 
@@ -477,7 +475,6 @@ void Mob::SetPetID(uint16 NewPetID) {
 	if(IsClient())
 	{
 		Mob* NewPet = entity_list.GetMob(NewPetID);
-		CastToClient()->UpdateXTargetType(MyPet, NewPet);
 	}
 }
 

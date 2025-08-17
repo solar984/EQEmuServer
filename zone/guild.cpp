@@ -108,38 +108,7 @@ void Client::SendGuildChannel()
 
 void Client::SendGuildRanks()
 {
-	if (ClientVersion() < EQ::versions::ClientVersion::UF)
-		return;
 
-	int permissions = GUILD_MAX_FUNCTIONS + 1; //Static number of permissions in all EQ clients as of May 2014
-	int ranks = GUILD_RECRUIT + 1; // Static number of RoF+ ranks as of May 2014
-	int j = 1;
-	int i = 1;
-	if(IsInAGuild())
-	{
-		while(j < ranks)
-		{
-			while(i < permissions)
-			{
-					auto outapp = new EQApplicationPacket(OP_GuildUpdate,
-						sizeof(GuildUpdateRanks_Struct));
-					GuildUpdateRanks_Struct* guuacs = (GuildUpdateRanks_Struct*)outapp->pBuffer;
-					strncpy(guuacs->Unknown0012, GetCleanName(), 64);
-					guuacs->Action = GuildUpdatePermissions;
-					guuacs->RankID = j;
-					guuacs->GuildID = GuildID();
-					guuacs->PermissionID = i;
-					guuacs->PermissionVal = guild_mgr.CheckPermission(GuildID(), j, (GuildAction)i);
-					guuacs->Unknown0089[0] = 0x2c;
-					guuacs->Unknown0089[1] = 0x01;
-					guuacs->Unknown0089[2] = 0x00;
-					FastQueuePacket(&outapp);
-					i++;
-			}
-			j++;
-			i = 1;
-		}
-	}
 }
 
 void Client::SendGuildRankNames()
@@ -250,9 +219,7 @@ void Client::RefreshGuildInfo()
 
 		if((guild_id != OldGuildID) && GuildBanks)
 		{
-			// Unsure about this for RoF+ ... But they don't have that action anymore so fuck it
-			if (ClientVersion() < EQ::versions::ClientVersion::UF)
-				ClearGuildBank();
+			ClearGuildBank();
 
 			if (guild_id != GUILD_NONE)
 				GuildBanks->SendGuildBank(this);

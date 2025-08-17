@@ -248,7 +248,6 @@ void Bot::ProcessBotGroupAdd(Group* group, Raid* raid, Client* client, bool new_
 				}
 			}
 		}
-		group->JoinRaidXTarget(raid, initial);
 		group->DisbandGroup(true);
 	} else if (client) {
 		raid->SendRaidCreate(client);

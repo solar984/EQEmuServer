@@ -562,7 +562,6 @@ struct StatBonuses {
 	uint8	AssassinateLevel[2];				// Max Level Assassinate will be effective at.
 	int32	PetMeleeMitigation;					// Add AC to owner's pet.
 	int		IllusionPersistence;				// 1=Causes illusions not to fade when zoning 2=Allow to persist after death.
-	uint16	extra_xtargets;						// extra xtarget entries
 	bool	ShroudofStealth;					// rogue improved invisiblity
 	uint16  ReduceFallDamage;					// reduce fall damage by percent
 	int32	ReduceTradeskillFail[EQ::skills::HIGHEST_SKILL + 1]; // Reduces chance for trade skills to fail by percent.

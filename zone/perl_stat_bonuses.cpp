@@ -1021,11 +1021,6 @@ bool Perl_StatBonuses_GetIllusionPersistence(StatBonuses* self)
 	return self->IllusionPersistence;
 }
 
-uint16 Perl_StatBonuses_GetExtraXTargets(StatBonuses* self)
-{
-	return self->extra_xtargets;
-}
-
 bool Perl_StatBonuses_GetShroudOfStealth(StatBonuses* self)
 {
 	return self->ShroudofStealth;
@@ -1376,7 +1371,6 @@ void perl_register_stat_bonuses()
 	package.add("GetEndurance", &Perl_StatBonuses_GetEndurance);
 	package.add("GetEnduranceReduction", &Perl_StatBonuses_GetEnduranceReduction);
 	package.add("GetEnduranceRegen", &Perl_StatBonuses_GetEnduranceRegen);
-	package.add("GetExtraXTargets", &Perl_StatBonuses_GetExtraXTargets);
 	package.add("GetExtraAttackChance", &Perl_StatBonuses_GetExtraAttackChance);
 	package.add("GetFactionModifierPercent", &Perl_StatBonuses_GetFactionModifierPercent);
 	package.add("GetFearless", &Perl_StatBonuses_GetFearless);

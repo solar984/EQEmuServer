@@ -107,7 +107,6 @@ SET(zone_sources
     water_map_v2.cpp
     waypoints.cpp
     worldserver.cpp
-    xtargetautohaters.cpp
     zone.cpp
     zone_config.cpp
     zonedb.cpp
@@ -226,7 +225,6 @@ SET(zone_headers
     water_map_v1.h
     water_map_v2.h
     worldserver.h
-    xtargetautohaters.h
     zone.h
     zone_event_scheduler.h
     zone_config.h
@@ -322,7 +320,6 @@ set(gm_command_sources
     gm_commands/camerashake.cpp
     gm_commands/castspell.cpp
     gm_commands/chat.cpp
-    gm_commands/clearxtargets.cpp
     gm_commands/copycharacter.cpp
     gm_commands/corpse.cpp
     gm_commands/corpsefix.cpp

@@ -999,9 +999,6 @@ bool Client::HandleEnterWorldPacket(const EQApplicationPacket *app) {
 			case EQ::versions::ClientVersion::SoD:
 				connection_type = EQ::versions::ucsSoDCombined;
 				break;
-			case EQ::versions::ClientVersion::UF:
-				connection_type = EQ::versions::ucsUFCombined;
-				break;
 			default:
 				connection_type = EQ::versions::ucsUnknown;
 				break;

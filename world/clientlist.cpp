@@ -1399,8 +1399,7 @@ void ClientList::SendClientVersionSummary(const char *Name)
 	std::map<EQ::versions::ClientVersion,int> client_count = {
 		{ EQ::versions::ClientVersion::Titanium, 0 },
 		{ EQ::versions::ClientVersion::SoF, 0 },
-		{ EQ::versions::ClientVersion::SoD, 0 },
-		{ EQ::versions::ClientVersion::UF, 0 }
+		{ EQ::versions::ClientVersion::SoD, 0 }
 	};
 
 	LinkedListIterator<ClientListEntry*> Iterator(clientlist);
@@ -1411,7 +1410,7 @@ void ClientList::SendClientVersionSummary(const char *Name)
 			auto client_version = CLE->GetClientVersion();
 			if (
 				client_version >= (uint8) EQ::versions::ClientVersion::Titanium &&
-				client_version <= (uint8) EQ::versions::ClientVersion::UF
+				client_version <= (uint8) EQ::versions::ClientVersion::SoD
 			) {
 				client_count[(EQ::versions::ClientVersion)client_version]++;
 			}
@@ -1427,8 +1426,7 @@ void ClientList::SendClientVersionSummary(const char *Name)
 	uint32 total_clients = (
 		client_count[EQ::versions::ClientVersion::Titanium] +
 		client_count[EQ::versions::ClientVersion::SoF] +
-		client_count[EQ::versions::ClientVersion::SoD] +
-		client_count[EQ::versions::ClientVersion::UF]
+		client_count[EQ::versions::ClientVersion::SoD]
 	);
 
 	if (client_count[EQ::versions::ClientVersion::Titanium]) {
@@ -1466,19 +1464,6 @@ void ClientList::SendClientVersionSummary(const char *Name)
 			fmt::format(
 				"Client Counts | SOD: {}",
 				client_count[EQ::versions::ClientVersion::SoD]
-			).c_str()
-		);
-	}
-
-	if (client_count[EQ::versions::ClientVersion::UF]) {
-		ZSList::Instance()->SendEmoteMessage(
-			Name,
-			0,
-			AccountStatus::Player,
-			Chat::White,
-			fmt::format(
-				"Client Counts | UF: {}",
-				client_count[EQ::versions::ClientVersion::UF]
 			).c_str()
 		);
 	}

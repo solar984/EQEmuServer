@@ -493,7 +493,6 @@ public:
 	void RemoveRadiantCrystals(uint32 amount);
 	void SummonItemIntoInventory(luabind::object item_table);
 	bool HasItemOnCorpse(uint32 item_id);
-	void ClearXTargets();
 	int GetAAEXPPercentage();
 	int GetEXPPercentage();
 	bool IsInAGuild();

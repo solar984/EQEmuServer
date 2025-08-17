@@ -1960,9 +1960,8 @@ bool Client::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::Skil
 		}
 	}
 
-	entity_list.RemoveFromTargets(this, true);
+	entity_list.RemoveFromTargets(this);
 	hate_list.RemoveEntFromHateList(this);
-	RemoveAutoXTargets();
 
 	//remove ourself from all proximities
 	ClearAllProximities();
@@ -2218,10 +2217,6 @@ bool NPC::Attack(Mob* other, int Hand, bool bRiposte, bool IsStrikethrough, bool
 	if (!IsAttackAllowed(other)) {
 		if (GetOwnerID()) {
 			SayString(NOT_LEGAL_TARGET);
-		}
-
-		if (other->IsClient()) {
-			other->CastToClient()->RemoveXTarget(this, false);
 		}
 
 		RemoveFromHateList(other);
@@ -2551,7 +2546,7 @@ bool NPC::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::SkillTy
 
 	auto* killer = GetHateDamageTop(this);
 
-	entity_list.RemoveFromTargets(this, p_depop);
+	entity_list.RemoveFromTargets(this);
 
 	if (p_depop) {
 		return false;
@@ -2827,8 +2822,6 @@ bool NPC::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::SkillTy
 			}
 		}
 
-		entity_list.RemoveFromAutoXTargets(this);
-
 		corpse = new Corpse(
 			this,
 			&m_loot_items,
@@ -2936,8 +2929,6 @@ bool NPC::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::SkillTy
 				}
 			}
 		}
-	} else {
-		entity_list.RemoveFromXTargets(this);
 	}
 
 	if (IsNPC()) {
@@ -3184,9 +3175,7 @@ void Mob::AddToHateList(Mob* other, int64 hate /*= 0*/, int64 damage /*= 0*/, bo
 
 	hate_list.AddEntToHateList(other, hate, damage, bFrenzy, !iBuffTic);
 
-	if (other->IsClient() && !on_hatelist && !IsOnFeignMemory(other))
-		other->CastToClient()->AddAutoXTarget(this);
-
+	
 	// if other is a bot, add the bots client to the hate list
 	if (RuleB(Bots, Enabled)) {
 		 if (other->IsBot()) {
@@ -3198,7 +3187,7 @@ void Mob::AddToHateList(Mob* other, int64 hate /*= 0*/, int64 damage /*= 0*/, bo
 
 			auto owner_ = other_->GetBotOwner()->CastToClient();
 			if (!owner_ || owner_->IsDead() ||
-				!owner_->InZone()) { // added isdead and inzone checks to avoid issues in AddAutoXTarget(...) below
+				!owner_->InZone()) {
 				return;
 			}
 
@@ -3207,7 +3196,6 @@ void Mob::AddToHateList(Mob* other, int64 hate /*= 0*/, int64 damage /*= 0*/, bo
 			}
 			else if (!hate_list.IsEntOnHateList(owner_)) {
 				hate_list.AddEntToHateList(owner_, 0, 0, false, true);
-				owner_->AddAutoXTarget(this); // this was being called on dead/out-of-zone clients
 			}
 		}
 	}
@@ -3240,9 +3228,6 @@ void Mob::AddToHateList(Mob* other, int64 hate /*= 0*/, int64 damage /*= 0*/, bo
 				!(owner->IsClient() && GetSpecialAbility(SpecialAbility::ClientAggroImmunity)) &&
 				!(owner->IsNPC() && GetSpecialAbility(SpecialAbility::NPCAggroImmunity))
 			) {
-				if (owner->IsClient() && !CheckAggro(owner)) {
-					owner->CastToClient()->AddAutoXTarget(this);
-				}
 				hate_list.AddEntToHateList(owner, 0, 0, false, !iBuffTic);
 			}
 		}
