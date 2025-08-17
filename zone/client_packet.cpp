@@ -926,11 +926,6 @@ void Client::CompleteConnect()
 		delete pack;
 	}
 
-	if (IsClient() && CastToClient()->ClientVersionBit() & EQ::versions::maskUFAndLater) {
-		EQApplicationPacket *outapp = MakeBuffsPacket(false);
-		CastToClient()->FastQueuePacket(&outapp);
-	}
-
 	database.LoadAuras(this); // this ends up spawning them so probably safer to load this later (here)
 	database.LoadCharacterDisciplines(this);
 

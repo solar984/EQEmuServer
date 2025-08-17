@@ -85,15 +85,6 @@ static const EQ::constants::LookupEntry constants_static_lookup_entries[EQ::vers
 		SoD::constants::CHARACTER_CREATION_LIMIT,
 		SoD::constants::SAY_LINK_BODY_SIZE,
 		SoD::INULL
-	),
-	/*[ClientVersion::UF] =*/
-	EQ::constants::LookupEntry(
-		UF::constants::EXPANSION,
-		UF::constants::EXPANSION_BIT,
-		UF::constants::EXPANSIONS_MASK,
-		UF::constants::CHARACTER_CREATION_LIMIT,
-		UF::constants::SAY_LINK_BODY_SIZE,
-		UF::INULL
 	)
 };
 
@@ -268,31 +259,6 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		SoD::inventory::AllowClickCastFromBag,
 		SoD::inventory::ConcatenateInvTypeLimbo,
 		SoD::inventory::AllowOverLevelEquipment
-	),
-	/*[MobVersion::UF] =*/
-	EQ::inventory::LookupEntry(
-		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
-			EQ::invtype::POSSESSIONS_SIZE,    UF::invtype::BANK_SIZE,          UF::invtype::SHARED_BANK_SIZE,
-			UF::invtype::TRADE_SIZE,          UF::invtype::WORLD_SIZE,         UF::invtype::LIMBO_SIZE,
-			UF::invtype::TRIBUTE_SIZE,        UF::invtype::GUILD_TRIBUTE_SIZE, UF::invtype::MERCHANT_SIZE,
-			UF::invtype::CORPSE_SIZE,         UF::invtype::BAZAAR_SIZE,        UF::invtype::INSPECT_SIZE,
-			UF::invtype::VIEW_MOD_PC_SIZE,    UF::invtype::VIEW_MOD_BANK_SIZE, UF::invtype::VIEW_MOD_SHARED_BANK_SIZE,
-			UF::invtype::VIEW_MOD_LIMBO_SIZE, UF::invtype::ALT_STORAGE_SIZE,   UF::invtype::ARCHIVED_SIZE,
-			UF::invtype::OTHER_SIZE
-		),
-
-		UF::invslot::EQUIPMENT_BITMASK,
-		UF::invslot::GENERAL_BITMASK,
-		UF::invslot::CURSOR_BITMASK,
-		UF::invslot::POSSESSIONS_BITMASK,
-		UF::invslot::CORPSE_BITMASK,
-		UF::invbag::SLOT_COUNT,
-		UF::invaug::SOCKET_COUNT,
-
-		UF::inventory::AllowEmptyBagInBag,
-		UF::inventory::AllowClickCastFromBag,
-		UF::inventory::ConcatenateInvTypeLimbo,
-		UF::inventory::AllowOverLevelEquipment
 	),
 	/*[MobVersion::NPC] =*/
 	EQ::inventory::LookupEntry(
@@ -568,31 +534,6 @@ static const EQ::inventory::LookupEntry inventory_static_lookup_entries[EQ::vers
 		false,
 		false,
 		false
-	),
-	/*[MobVersion::OfflineUF] =*/
-	EQ::inventory::LookupEntry(
-		EQ::inventory::LookupEntry::InventoryTypeSize_Struct(
-			UF::INULL,							UF::INULL,							UF::INULL,
-			UF::invtype::TRADE_SIZE,			UF::INULL,							UF::INULL,
-			UF::INULL,							UF::INULL,							UF::invtype::MERCHANT_SIZE,
-			UF::INULL,							UF::invtype::BAZAAR_SIZE,			UF::invtype::INSPECT_SIZE,
-			UF::invtype::VIEW_MOD_PC_SIZE,		UF::invtype::VIEW_MOD_BANK_SIZE,	UF::invtype::VIEW_MOD_SHARED_BANK_SIZE,
-			UF::invtype::VIEW_MOD_LIMBO_SIZE,	UF::INULL,							UF::INULL,
-			UF::INULL
-		),
-
-		UF::INULL,
-		UF::INULL,
-		UF::INULL,
-		UF::INULL,
-		UF::INULL,
-		UF::invbag::SLOT_COUNT,
-		UF::invaug::SOCKET_COUNT,
-
-		false,
-		false,
-		false,
-		false
 	)
 };
 
@@ -705,7 +646,6 @@ void EQ::inventory::InitializeDynamicLookups() {
 		if (~RuleI(World, ExpansionSettings) & EQ::expansions::bitTBS) {
 			// update power source
 			switch (iter) {
-			case versions::bitUF:
 			case versions::bitSoD:
 			case versions::bitSoF:
 				// gm flag does not override expansion-based behavior
@@ -794,10 +734,6 @@ static const EQ::behavior::LookupEntry behavior_static_lookup_entries[EQ::versio
 	EQ::behavior::LookupEntry(
 		SoD::behavior::CoinHasWeight
 	),
-	/*[MobVersion::UF] =*/
-	EQ::behavior::LookupEntry(
-		UF::behavior::CoinHasWeight
-	),
 	/*[MobVersion::NPC] =*/
 	EQ::behavior::LookupEntry(
 		EQ::behavior::CoinHasWeight
@@ -841,10 +777,6 @@ static const EQ::behavior::LookupEntry behavior_static_lookup_entries[EQ::versio
 	/*[MobVersion::OfflineSoD] =*/
 	EQ::behavior::LookupEntry(
 		SoD::behavior::CoinHasWeight
-	),
-	/*[MobVersion::OfflineUF] =*/
-	EQ::behavior::LookupEntry(
-		UF::behavior::CoinHasWeight
 	)
 };
 
@@ -959,19 +891,6 @@ static const EQ::spells::LookupEntry spells_static_lookup_entries[EQ::versions::
 		SoD::spells::NPC_BUFFS,
 		SoD::spells::PET_BUFFS,
 		SoD::spells::MERC_BUFFS
-	),
-	/*[ClientVersion::UF] =*/
-	EQ::spells::LookupEntry(
-		UF::spells::SPELL_ID_MAX,
-		UF::spells::SPELLBOOK_SIZE,
-		UF::spells::SPELL_GEM_COUNT,
-		UF::spells::LONG_BUFFS,
-		UF::spells::SHORT_BUFFS,
-		UF::spells::DISC_BUFFS,
-		UF::spells::TOTAL_BUFFS,
-		UF::spells::NPC_BUFFS,
-		UF::spells::PET_BUFFS,
-		UF::spells::MERC_BUFFS
 	)
 };
 

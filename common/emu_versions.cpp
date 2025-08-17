@@ -50,8 +50,6 @@ const char* EQ::versions::ClientVersionName(ClientVersion client_version)
 		return "SoF";
 	case ClientVersion::SoD:
 		return "SoD";
-	case ClientVersion::UF:
-		return "UF";
 	default:
 		return "Invalid Version";
 	};
@@ -66,8 +64,6 @@ uint32 EQ::versions::ConvertClientVersionToClientVersionBit(ClientVersion client
 		return bitSoF;
 	case ClientVersion::SoD:
 		return bitSoD;
-	case ClientVersion::UF:
-		return bitUF;
 	default:
 		return bitUnknown;
 	}
@@ -82,8 +78,6 @@ EQ::versions::ClientVersion EQ::versions::ConvertClientVersionBitToClientVersion
 		return ClientVersion::SoF;
 	case ((uint32)1 << (static_cast<unsigned int>(ClientVersion::SoD) - 1)) :
 		return ClientVersion::SoD;
-	case ((uint32)1 << (static_cast<unsigned int>(ClientVersion::UF) - 1)) :
-		return ClientVersion::UF;
 	default:
 		return ClientVersion::Unknown;
 	}
@@ -166,8 +160,6 @@ const char* EQ::versions::MobVersionName(MobVersion mob_version)
 		return "SoF";
 	case MobVersion::SoD:
 		return "SoD";
-	case MobVersion::UF:
-		return "UF";
 	case MobVersion::NPC:
 		return "NPC";
 	case MobVersion::NPCMerchant:
@@ -190,8 +182,6 @@ const char* EQ::versions::MobVersionName(MobVersion mob_version)
 		return "Offline SoF";
 	case MobVersion::OfflineSoD:
 		return "Offline SoD";
-	case MobVersion::OfflineUF:
-		return "Offline UF";
 	default:
 		return "Invalid Version";
 	};
@@ -209,8 +199,6 @@ EQ::versions::ClientVersion EQ::versions::ConvertMobVersionToClientVersion(MobVe
 		return ClientVersion::SoF;
 	case MobVersion::SoD:
 		return ClientVersion::SoD;
-	case MobVersion::UF:
-		return ClientVersion::UF;
 	default:
 		return ClientVersion::Unknown;
 	}
@@ -228,8 +216,6 @@ EQ::versions::MobVersion EQ::versions::ConvertClientVersionToMobVersion(ClientVe
 		return MobVersion::SoF;
 	case ClientVersion::SoD:
 		return MobVersion::SoD;
-	case ClientVersion::UF:
-		return MobVersion::UF;
 	default:
 		return MobVersion::Unknown;
 	}
@@ -244,8 +230,6 @@ EQ::versions::MobVersion EQ::versions::ConvertPCMobVersionToOfflinePCMobVersion(
 		return MobVersion::OfflineSoF;
 	case MobVersion::SoD:
 		return MobVersion::OfflineSoD;
-	case MobVersion::UF:
-		return MobVersion::OfflineUF;
 	default:
 		return MobVersion::Unknown;
 	}
@@ -260,8 +244,6 @@ EQ::versions::MobVersion EQ::versions::ConvertOfflinePCMobVersionToPCMobVersion(
 		return MobVersion::SoF;
 	case MobVersion::OfflineSoD:
 		return MobVersion::SoD;
-	case MobVersion::OfflineUF:
-		return MobVersion::UF;
 	default:
 		return MobVersion::Unknown;
 	}
@@ -276,8 +258,6 @@ EQ::versions::ClientVersion EQ::versions::ConvertOfflinePCMobVersionToClientVers
 		return ClientVersion::SoF;
 	case MobVersion::OfflineSoD:
 		return ClientVersion::SoD;
-	case MobVersion::OfflineUF:
-		return ClientVersion::UF;
 	default:
 		return ClientVersion::Unknown;
 	}
@@ -292,8 +272,6 @@ EQ::versions::MobVersion EQ::versions::ConvertClientVersionToOfflinePCMobVersion
 		return MobVersion::OfflineSoF;
 	case ClientVersion::SoD:
 		return MobVersion::OfflineSoD;
-	case ClientVersion::UF:
-		return MobVersion::OfflineUF;
 	default:
 		return MobVersion::Unknown;
 	}
@@ -334,8 +312,6 @@ const char* EQ::expansions::ExpansionName(Expansion expansion)
 		return "Secrets of Faydwer";
 	case Expansion::SoD:
 		return "Seeds of Destruction";
-	case Expansion::UF:
-		return "Underfoot";
 	default:
 		return "Invalid Expansion";
 	}
@@ -379,8 +355,6 @@ uint32 EQ::expansions::ConvertExpansionToExpansionBit(Expansion expansion)
 		return bitSoF;
 	case Expansion::SoD:
 		return bitSoD;
-	case Expansion::UF:
-		return bitUF;
 	default:
 		return bitEverQuest;
 	}
@@ -419,8 +393,6 @@ EQ::expansions::Expansion EQ::expansions::ConvertExpansionBitToExpansion(uint32 
 		return Expansion::SoF;
 	case bitSoD:
 		return Expansion::SoD;
-	case bitUF:
-		return Expansion::UF;
 	default:
 		return Expansion::EverQuest;
 	}
@@ -459,8 +431,6 @@ uint32 EQ::expansions::ConvertExpansionToExpansionsMask(Expansion expansion)
 		return maskSoF;
 	case Expansion::SoD:
 		return maskSoD;
-	case Expansion::UF:
-		return maskUF;
 	default:
 		return maskEverQuest;
 	}

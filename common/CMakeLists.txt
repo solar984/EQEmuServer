@@ -122,8 +122,6 @@ SET(common_sources
     patches/sof_limits.cpp
     patches/titanium.cpp
     patches/titanium_limits.cpp
-    patches/uf.cpp
-    patches/uf_limits.cpp
     StackWalker/StackWalker.cpp
     util/directory.cpp
     util/uuid.cpp)
@@ -696,10 +694,6 @@ SET(common_headers
     patches/titanium_limits.h
     patches/titanium_ops.h
     patches/titanium_structs.h
-    patches/uf.h
-    patches/uf_limits.h
-    patches/uf_ops.h
-    patches/uf_structs.h
     termcolor/rang.hpp
     stacktrace/backward.hpp
     StackWalker/StackWalker.h
@@ -776,10 +770,6 @@ SOURCE_GROUP(Patches FILES
     patches/titanium_limits.h
     patches/titanium_ops.h
     patches/titanium_structs.h
-    patches/uf.h
-    patches/uf_limits.h
-    patches/uf_ops.h
-    patches/uf_structs.h
     patches/patches.cpp
     patches/sod.cpp
     patches/sod_limits.cpp
@@ -787,8 +777,6 @@ SOURCE_GROUP(Patches FILES
     patches/sof_limits.cpp
     patches/titanium.cpp
     patches/titanium_limits.cpp
-    patches/uf.cpp
-    patches/uf_limits.cpp
 )
 
 SOURCE_GROUP(StackWalker FILES
@@ -810,7 +798,7 @@ ADD_LIBRARY(common ${common_sources} ${common_headers} ${repositories})
 
 IF (UNIX)
     SET_SOURCE_FILES_PROPERTIES("SocketLib/Mime.cpp" PROPERTY COMPILE_FLAGS -Wno-unused-result)
-    SET_SOURCE_FILES_PROPERTIES("patches/sod.cpp" "patches/sof.cpp" "patches/uf.cpp" PROPERTIES COMPILE_FLAGS -O0)
+    SET_SOURCE_FILES_PROPERTIES("patches/sod.cpp" "patches/sof.cpp" PROPERTIES COMPILE_FLAGS -O0)
 ENDIF (UNIX)
 
 IF (EQEMU_BUILD_PCH)

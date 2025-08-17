@@ -21,7 +21,6 @@
 #include "patches.h"
 
 #include "titanium.h"
-#include "uf.h"
 #include "sof.h"
 #include "sod.h"
 
@@ -31,7 +30,6 @@ void RegisterAllPatches(EQStreamIdentifier &into)
 	Titanium::Register(into);
 	SoF::Register(into);
 	SoD::Register(into);
-	UF::Register(into);
 }
 
 void ReloadAllPatches()
@@ -39,5 +37,4 @@ void ReloadAllPatches()
 	Titanium::Reload();
 	SoF::Reload();
 	SoD::Reload();
-	UF::Reload();
 }

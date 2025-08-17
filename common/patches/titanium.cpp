@@ -2122,8 +2122,8 @@ namespace Titanium
 				);
 
 				eq->action = structs::TiBazaarTraderBuyerActions::ListTraderItems;
-				std::copy_n(emu->items, UF::invtype::BAZAAR_SIZE, eq->item_id);
-				std::copy_n(emu->item_cost, UF::invtype::BAZAAR_SIZE, eq->item_cost);
+				std::copy_n(emu->items, Titanium::invtype::BAZAAR_SIZE, eq->item_id);
+				std::copy_n(emu->item_cost, Titanium::invtype::BAZAAR_SIZE, eq->item_cost);
 
 				FINISH_ENCODE();
 				break;
