@@ -199,6 +199,7 @@ public:
 	Lua_Spawn GetSpawn(lua_State* L);
 	bool IsResumedFromZoneSuspend();
 	void SetNPCTintIndex(uint32 id);
+	uint32 GetNPCTintIndex();
 
 };
 
