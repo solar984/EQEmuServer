@@ -540,7 +540,6 @@ void Client::SendGuildMemberAdd(
 	out->level      = level;
 	out->zone_id    = zone_id;
 	out->rank_      = rank_;
-	out->guild_show = guild_show;
 	out->class_     = class_;
 	strn0cpy(out->player_name, player_name.c_str(), sizeof(out->player_name));
 

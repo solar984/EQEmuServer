@@ -5871,88 +5871,6 @@ std::string Perl__GetZoneShortNameByLongName(std::string zone_long_name)
 	return ZoneStore::Instance()->GetZoneShortNameByLongName(zone_long_name);
 }
 
-bool Perl__send_parcel(perl::reference table_ref)
-{
-	perl::hash table = table_ref;
-	if (
-		(!table.exists("name") && !table.exists("character_id")) ||
-		!table.exists("item_id") ||
-		!table.exists("quantity")
-	) {
-		return false;
-	}
-
-	std::string name         = table.exists("name") ? table["name"] : std::string();
-	uint32      character_id = table.exists("character_id") ? table["character_id"] : 0;
-
-	if (character_id) {
-		const std::string& character_name = database.GetCharName(character_id);
-		if (character_name.empty()) {
-			return false;
-		}
-
-		name = character_name;
-	} else {
-		auto v = CharacterParcelsRepository::GetParcelCountAndCharacterName(database, name);
-		if (v.at(0).character_name.empty()) {
-			return false;
-		}
-
-		character_id = v.at(0).char_id;
-	}
-
-	if (!character_id) {
-		return false;
-	}
-
-	const int next_parcel_slot = CharacterParcelsRepository::GetNextFreeParcelSlot(database, character_id, RuleI(Parcel, ParcelMaxItems));
-	if (next_parcel_slot == INVALID_INDEX) {
-		return false;
-	}
-
-	const uint32 item_id         = table["item_id"];
-	const int16  quantity        = table["quantity"];
-	const uint32 augment_one     = table.exists("augment_one") ? table["augment_one"] : 0;
-	const uint32 augment_two     = table.exists("augment_two") ? table["augment_two"] : 0;
-	const uint32 augment_three   = table.exists("augment_three") ? table["augment_three"] : 0;
-	const uint32 augment_four    = table.exists("augment_four") ? table["augment_four"] : 0;
-	const uint32 augment_five    = table.exists("augment_five") ? table["augment_five"] : 0;
-	const std::string& from_name = table.exists("from_name") ? table["from_name"] : std::string();
-	const std::string& note      = table.exists("note") ? table["note"] : std::string();
-
-	auto e = CharacterParcelsRepository::NewEntity();
-
-	e.char_id    = character_id;
-	e.item_id    = item_id;
-	e.aug_slot_1 = augment_one;
-	e.aug_slot_2 = augment_two;
-	e.aug_slot_3 = augment_three;
-	e.aug_slot_4 = augment_four;
-	e.aug_slot_5 = augment_five;
-	e.slot_id    = next_parcel_slot;
-	e.quantity   = quantity;
-	e.from_name  = from_name;
-	e.note       = note;
-	e.sent_date  = std::time(nullptr);
-
-	auto out = CharacterParcelsRepository::InsertOne(database, e).id;
-	if (out) {
-		Parcel_Struct ps{};
-		ps.item_slot = e.slot_id;
-		strn0cpy(ps.send_to, name.c_str(), sizeof(ps.send_to));
-
-		std::unique_ptr<ServerPacket> server_packet(new ServerPacket(ServerOP_ParcelDelivery, sizeof(Parcel_Struct)));
-		auto                          data = (Parcel_Struct *) server_packet->pBuffer;
-
-		data->item_slot = ps.item_slot;
-		strn0cpy(data->send_to, ps.send_to, sizeof(data->send_to));
-
-		worldserver.SendPacket(server_packet.get());
-	}
-
-	return out;
-}
-
 bool Perl__aretaskscompleted(perl::array task_ids)
 {
 	std::vector<int> v;
@@ -6869,7 +6787,6 @@ void perl_register_quest()
 	package.add("send_channel_message", (void(*)(uint8, uint32, uint8, uint8, const char*))&Perl__send_channel_message);
 	package.add("send_channel_message", (void(*)(Client*, uint8, uint32, uint8, uint8, const char*))&Perl__send_channel_message);
 	package.add("send_channel_message", (void(*)(Client*, const char*, uint8, uint32, uint8, uint8, const char*))&Perl__send_channel_message);
-	package.add("send_parcel", &Perl__send_parcel);
 	package.add("setaaexpmodifierbycharid", (void(*)(uint32, uint32, double))&Perl__setaaexpmodifierbycharid);
 	package.add("setaaexpmodifierbycharid", (void(*)(uint32, uint32, double, int16))&Perl__setaaexpmodifierbycharid);
 	package.add("set_data", (void(*)(std::string, std::string))&Perl__set_data);

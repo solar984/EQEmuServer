@@ -88,7 +88,6 @@
 #include "../common/path_manager.h"
 #include "../common/events/player_event_logs.h"
 #include "../common/skill_caps.h"
-#include "../common/repositories/character_parcels_repository.h"
 #include "../common/ip_util.h"
 
 GroupLFPList        LFPGroupList;

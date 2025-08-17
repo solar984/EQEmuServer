@@ -53,8 +53,6 @@ namespace EQ
 #include "../common/guilds.h"
 //#include "../common/item_data.h"
 #include "xtargetautohaters.h"
-#include "aggromanager.h"
-
 #include "common.h"
 #include "merc.h"
 #include "mob.h"
@@ -68,7 +66,6 @@ namespace EQ
 #include "cheat_manager.h"
 #include "../common/events/player_events.h"
 #include "../common/data_verification.h"
-#include "../common/repositories/character_parcels_repository.h"
 #include "../common/repositories/trader_repository.h"
 #include "../common/guild_base.h"
 #include "../common/repositories/buyer_buy_lines_repository.h"
