@@ -24,8 +24,6 @@
 #include "uf.h"
 #include "sof.h"
 #include "sod.h"
-#include "rof.h"
-#include "rof2.h"
 
 
 void RegisterAllPatches(EQStreamIdentifier &into)
@@ -34,8 +32,6 @@ void RegisterAllPatches(EQStreamIdentifier &into)
 	SoF::Register(into);
 	SoD::Register(into);
 	UF::Register(into);
-	RoF::Register(into);
-	RoF2::Register(into);
 }
 
 void ReloadAllPatches()
@@ -44,6 +40,4 @@ void ReloadAllPatches()
 	SoF::Reload();
 	SoD::Reload();
 	UF::Reload();
-	RoF::Reload();
-	RoF2::Reload();
 }

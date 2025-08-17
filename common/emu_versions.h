@@ -34,9 +34,7 @@ namespace EQ
 			Titanium,	// Build: 'Oct 31 2005 10:33:37'
 			SoF,		// Build: 'Sep  7 2007 09:11:49'
 			SoD,		// Build: 'Dec 19 2008 15:22:49'
-			UF,			// Build: 'Jun  8 2010 16:44:32'
-			RoF,		// Build: 'Dec 10 2012 17:35:44'
-			RoF2		// Build: 'May 10 2013 23:30:08'
+			UF			// Build: 'Jun  8 2010 16:44:32'
 		};
 
 		enum ClientVersionBitmask : uint32 {
@@ -46,23 +44,18 @@ namespace EQ
 			bitSoF = 0x00000004,
 			bitSoD = 0x00000008,
 			bitUF = 0x00000010,
-			bitRoF = 0x00000020,
-			bitRoF2 = 0x00000040,
 			maskUnknown = 0x00000000,
 			maskTitaniumAndEarlier = 0x00000003,
 			maskSoFAndEarlier = 0x00000007,
 			maskSoDAndEarlier = 0x0000000F,
 			maskUFAndEarlier = 0x0000001F,
-			maskRoFAndEarlier = 0x0000003F,
 			maskSoFAndLater = 0xFFFFFFFC,
 			maskSoDAndLater = 0xFFFFFFF8,
 			maskUFAndLater = 0xFFFFFFF0,
-			maskRoFAndLater = 0xFFFFFFE0,
-			maskRoF2AndLater = 0xFFFFFFC0,
 			maskAllClients = 0xFFFFFFFF
 		};
 
-		const ClientVersion LastClientVersion = ClientVersion::RoF2;
+		const ClientVersion LastClientVersion = ClientVersion::UF;
 		const size_t ClientVersionCount = (static_cast<size_t>(LastClientVersion) + 1);
 
 		bool IsValidClientVersion(ClientVersion client_version);
@@ -78,8 +71,6 @@ namespace EQ
 			SoF,
 			SoD,
 			UF,
-			RoF,
-			RoF2,
 			NPC,
 			NPCMerchant,
 			Merc,
@@ -91,15 +82,13 @@ namespace EQ
 			OfflineTitanium,
 			OfflineSoF,
 			OfflineSoD,
-			OfflineUF,
-			OfflineRoF,
-			OfflineRoF2
+			OfflineUF
 		};
 
-		const MobVersion LastMobVersion = MobVersion::OfflineRoF2;
-		const MobVersion LastPCMobVersion = MobVersion::RoF2;
+		const MobVersion LastMobVersion = MobVersion::OfflineUF;
+		const MobVersion LastPCMobVersion = MobVersion::UF;
 		const MobVersion LastNonPCMobVersion = MobVersion::BotPet;
-		const MobVersion LastOfflinePCMobVersion = MobVersion::OfflineRoF2;
+		const MobVersion LastOfflinePCMobVersion = MobVersion::OfflineUF;
 		const size_t MobVersionCount = (static_cast<size_t>(LastMobVersion) + 1);
 
 		bool IsValidMobVersion(MobVersion mob_version);
@@ -129,9 +118,7 @@ namespace EQ
 			ucsTitaniumMail = 'b',
 			ucsSoFCombined = 'C',
 			ucsSoDCombined = 'D',
-			ucsUFCombined = 'E',
-			ucsRoFCombined = 'F',
-			ucsRoF2Combined = 'G'
+			ucsUFCombined = 'E'
 		};
 
 	} /*versions*/
@@ -154,11 +141,7 @@ namespace EQ
 			TBS,
 			SoF,
 			SoD,
-			UF,
-			HoT,
-			VoA,
-			RoF,
-			CotF
+			UF
 		};
 
 		enum ExpansionBitmask : uint32 {
@@ -179,10 +162,6 @@ namespace EQ
 			bitSoF = 0x00002000,
 			bitSoD = 0x00004000,
 			bitUF = 0x00008000,
-			bitHoT = 0x00010000,
-			bitVoA = 0x00020000,
-			bitRoF = 0x00040000,
-			bitCotF = 0x00080000,
 			maskEverQuest = 0x00000000,
 			maskRoK = 0x00000001,
 			maskSoV = 0x00000003,
@@ -199,11 +178,7 @@ namespace EQ
 			maskTBS = 0x00001FFF,
 			maskSoF = 0x00003FFF,
 			maskSoD = 0x00007FFF,
-			maskUF = 0x0000FFFF,
-			maskHoT = 0x0001FFFF,
-			maskVoA = 0x0003FFFF,
-			maskRoF = 0x0007FFFF,
-			maskCotF = 0x000FFFFF
+			maskUF = 0x0000FFFF
 		};
 
 		const char* ExpansionName(Expansion expansion);

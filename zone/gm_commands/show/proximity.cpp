@@ -66,8 +66,4 @@ void ShowProximity(Client *c, const Seperator *sep)
 		p.y = t->GetProximityMinY();
 		v.push_back(p);
 	}
-
-	if (c->ClientVersion() >= EQ::versions::ClientVersion::RoF) {
-		c->SendPathPacket(v);
-	}
 }

@@ -52,10 +52,6 @@ const char* EQ::versions::ClientVersionName(ClientVersion client_version)
 		return "SoD";
 	case ClientVersion::UF:
 		return "UF";
-	case ClientVersion::RoF:
-		return "RoF";
-	case ClientVersion::RoF2:
-		return "RoF2";
 	default:
 		return "Invalid Version";
 	};
@@ -72,10 +68,6 @@ uint32 EQ::versions::ConvertClientVersionToClientVersionBit(ClientVersion client
 		return bitSoD;
 	case ClientVersion::UF:
 		return bitUF;
-	case ClientVersion::RoF:
-		return bitRoF;
-	case ClientVersion::RoF2:
-		return bitRoF2;
 	default:
 		return bitUnknown;
 	}
@@ -92,10 +84,6 @@ EQ::versions::ClientVersion EQ::versions::ConvertClientVersionBitToClientVersion
 		return ClientVersion::SoD;
 	case ((uint32)1 << (static_cast<unsigned int>(ClientVersion::UF) - 1)) :
 		return ClientVersion::UF;
-	case ((uint32)1 << (static_cast<unsigned int>(ClientVersion::RoF) - 1)) :
-		return ClientVersion::RoF;
-	case ((uint32)1 << (static_cast<unsigned int>(ClientVersion::RoF2) - 1)) :
-		return ClientVersion::RoF2;
 	default:
 		return ClientVersion::Unknown;
 	}
@@ -180,10 +168,6 @@ const char* EQ::versions::MobVersionName(MobVersion mob_version)
 		return "SoD";
 	case MobVersion::UF:
 		return "UF";
-	case MobVersion::RoF:
-		return "RoF";
-	case MobVersion::RoF2:
-		return "RoF2";
 	case MobVersion::NPC:
 		return "NPC";
 	case MobVersion::NPCMerchant:
@@ -208,10 +192,6 @@ const char* EQ::versions::MobVersionName(MobVersion mob_version)
 		return "Offline SoD";
 	case MobVersion::OfflineUF:
 		return "Offline UF";
-	case MobVersion::OfflineRoF:
-		return "Offline RoF";
-	case MobVersion::OfflineRoF2:
-		return "Offline RoF2";
 	default:
 		return "Invalid Version";
 	};
@@ -231,10 +211,6 @@ EQ::versions::ClientVersion EQ::versions::ConvertMobVersionToClientVersion(MobVe
 		return ClientVersion::SoD;
 	case MobVersion::UF:
 		return ClientVersion::UF;
-	case MobVersion::RoF:
-		return ClientVersion::RoF;
-	case MobVersion::RoF2:
-		return ClientVersion::RoF2;
 	default:
 		return ClientVersion::Unknown;
 	}
@@ -254,10 +230,6 @@ EQ::versions::MobVersion EQ::versions::ConvertClientVersionToMobVersion(ClientVe
 		return MobVersion::SoD;
 	case ClientVersion::UF:
 		return MobVersion::UF;
-	case ClientVersion::RoF:
-		return MobVersion::RoF;
-	case ClientVersion::RoF2:
-		return MobVersion::RoF2;
 	default:
 		return MobVersion::Unknown;
 	}
@@ -274,10 +246,6 @@ EQ::versions::MobVersion EQ::versions::ConvertPCMobVersionToOfflinePCMobVersion(
 		return MobVersion::OfflineSoD;
 	case MobVersion::UF:
 		return MobVersion::OfflineUF;
-	case MobVersion::RoF:
-		return MobVersion::OfflineRoF;
-	case MobVersion::RoF2:
-		return MobVersion::OfflineRoF2;
 	default:
 		return MobVersion::Unknown;
 	}
@@ -294,10 +262,6 @@ EQ::versions::MobVersion EQ::versions::ConvertOfflinePCMobVersionToPCMobVersion(
 		return MobVersion::SoD;
 	case MobVersion::OfflineUF:
 		return MobVersion::UF;
-	case MobVersion::OfflineRoF:
-		return MobVersion::RoF;
-	case MobVersion::OfflineRoF2:
-		return MobVersion::RoF2;
 	default:
 		return MobVersion::Unknown;
 	}
@@ -314,10 +278,6 @@ EQ::versions::ClientVersion EQ::versions::ConvertOfflinePCMobVersionToClientVers
 		return ClientVersion::SoD;
 	case MobVersion::OfflineUF:
 		return ClientVersion::UF;
-	case MobVersion::OfflineRoF:
-		return ClientVersion::RoF;
-	case MobVersion::OfflineRoF2:
-		return ClientVersion::RoF2;
 	default:
 		return ClientVersion::Unknown;
 	}
@@ -334,10 +294,6 @@ EQ::versions::MobVersion EQ::versions::ConvertClientVersionToOfflinePCMobVersion
 		return MobVersion::OfflineSoD;
 	case ClientVersion::UF:
 		return MobVersion::OfflineUF;
-	case ClientVersion::RoF:
-		return MobVersion::OfflineRoF;
-	case ClientVersion::RoF2:
-		return MobVersion::OfflineRoF2;
 	default:
 		return MobVersion::Unknown;
 	}
@@ -380,14 +336,6 @@ const char* EQ::expansions::ExpansionName(Expansion expansion)
 		return "Seeds of Destruction";
 	case Expansion::UF:
 		return "Underfoot";
-	case Expansion::HoT:
-		return "House of Thule";
-	case Expansion::VoA:
-		return "Veil of Alaris";
-	case Expansion::RoF:
-		return "Rain of Fear";
-	case Expansion::CotF:
-		return "Call of the Forsaken";
 	default:
 		return "Invalid Expansion";
 	}
@@ -433,14 +381,6 @@ uint32 EQ::expansions::ConvertExpansionToExpansionBit(Expansion expansion)
 		return bitSoD;
 	case Expansion::UF:
 		return bitUF;
-	case Expansion::HoT:
-		return bitHoT;
-	case Expansion::VoA:
-		return bitVoA;
-	case Expansion::RoF:
-		return bitRoF;
-	case Expansion::CotF:
-		return bitCotF;
 	default:
 		return bitEverQuest;
 	}
@@ -481,14 +421,6 @@ EQ::expansions::Expansion EQ::expansions::ConvertExpansionBitToExpansion(uint32 
 		return Expansion::SoD;
 	case bitUF:
 		return Expansion::UF;
-	case bitHoT:
-		return Expansion::HoT;
-	case bitVoA:
-		return Expansion::VoA;
-	case bitRoF:
-		return Expansion::RoF;
-	case bitCotF:
-		return Expansion::CotF;
 	default:
 		return Expansion::EverQuest;
 	}
@@ -529,14 +461,6 @@ uint32 EQ::expansions::ConvertExpansionToExpansionsMask(Expansion expansion)
 		return maskSoD;
 	case Expansion::UF:
 		return maskUF;
-	case Expansion::HoT:
-		return maskHoT;
-	case Expansion::VoA:
-		return maskVoA;
-	case Expansion::RoF:
-		return maskRoF;
-	case Expansion::CotF:
-		return maskCotF;
 	default:
 		return maskEverQuest;
 	}
