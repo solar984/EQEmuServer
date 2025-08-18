@@ -666,7 +666,7 @@ bool SharedDatabase::GetInventory(Client *c)
 	);
 
 	if (results.empty()) {
-		LogDebug("inventory for char_id {} is empty.", char_id);
+		LogError("Error loading inventory for char_id {} from the database.", char_id);
 		return false;
 	}
 
@@ -1137,7 +1137,6 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		item.NoRent = disable_no_rent ? static_cast<uint8>(255) : static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::norent]));
 		item.NoTransfer = !disable_no_transfer && Strings::ToBool(row[ItemField::notransfer]);
 		item.PendingLoreFlag = Strings::ToBool(row[ItemField::pendingloreflag]);
-		item.QuestItemFlag = Strings::ToBool(row[ItemField::questitemflag]);
 		item.Stackable = Strings::ToBool(row[ItemField::stackable]);
 		item.Tradeskills = Strings::ToBool(row[ItemField::tradeskills]);
 		item.SummonedFlag = Strings::ToBool(row[ItemField::summonedflag]);
@@ -1149,10 +1148,8 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		// Type
 		item.AugType = Strings::ToUnsignedInt(row[ItemField::augtype]);
 		item.ItemType = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::itemtype]));
-		item.SubType = Strings::ToInt(row[ItemField::subtype]);
 
 		// Miscellaneous
-		item.ExpendableArrow = static_cast<uint16>(Strings::ToUnsignedInt(row[ItemField::expendablearrow]));
 		item.Light = static_cast<int8>(Strings::ToInt(row[ItemField::light]));
 		item.MaxCharges = static_cast<int16>(Strings::ToInt(row[ItemField::maxcharges]));
 		item.Size = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::size]));
@@ -1171,7 +1168,6 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 
 		// Display
 		item.Color = Strings::ToUnsignedInt(row[ItemField::color]);
-		item.EliteMaterial = Strings::ToUnsignedInt(row[ItemField::elitematerial]);
 		item.Icon = Strings::ToUnsignedInt(row[ItemField::icon]);
 		strn0cpy(item.IDFile, row[ItemField::idfile], sizeof(item.IDFile));
 		item.Material = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::material]));
@@ -1182,15 +1178,6 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		item.FR = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::fr]), -128, 127));
 		item.MR = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::mr]), -128, 127));
 		item.PR = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::pr]), -128, 127));
-		item.SVCorruption = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::svcorruption]), -128, 127));
-
-		// Heroic Resists
-		item.HeroicCR = Strings::ToInt(row[ItemField::heroic_cr]);
-		item.HeroicDR = Strings::ToInt(row[ItemField::heroic_dr]);
-		item.HeroicFR = Strings::ToInt(row[ItemField::heroic_fr]);
-		item.HeroicMR = Strings::ToInt(row[ItemField::heroic_mr]);
-		item.HeroicPR = Strings::ToInt(row[ItemField::heroic_pr]);
-		item.HeroicSVCorrup = Strings::ToInt(row[ItemField::heroic_svcorrup]);
 
 		// Stats
 		item.AAgi = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::aagi]), -128, 127));
@@ -1200,15 +1187,6 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		item.ASta = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::asta]), -128, 127));
 		item.AStr = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::astr]), -128, 127));
 		item.AWis = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::awis]), -128, 127));
-
-		// Heroic Stats
-		item.HeroicAgi = Strings::ToInt(row[ItemField::heroic_agi]);
-		item.HeroicCha = Strings::ToInt(row[ItemField::heroic_cha]);
-		item.HeroicDex = Strings::ToInt(row[ItemField::heroic_dex]);
-		item.HeroicInt = Strings::ToInt(row[ItemField::heroic_int]);
-		item.HeroicSta = Strings::ToInt(row[ItemField::heroic_sta]);
-		item.HeroicStr = Strings::ToInt(row[ItemField::heroic_str]);
-		item.HeroicWis = Strings::ToInt(row[ItemField::heroic_wis]);
 
 		// Health, Mana, and Endurance
 		item.HP = Strings::ToInt(row[ItemField::hp]);
@@ -1229,7 +1207,6 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		item.ElemDmgAmt = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::elemdmgamt]));
 
 		// Combat
-		item.BackstabDmg = Strings::ToUnsignedInt(row[ItemField::backstabdmg]);
 		item.Damage = Strings::ToUnsignedInt(row[ItemField::damage]);
 		item.Delay = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::delay]));
 		item.Range = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::range]));
@@ -1239,16 +1216,11 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		item.Accuracy = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::accuracy]), -128, 127));
 		item.Attack = Strings::ToInt(row[ItemField::attack]);
 		item.Avoidance = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::avoidance]), -128, 127));
-		item.Clairvoyance = Strings::ToUnsignedInt(row[ItemField::clairvoyance]);
 		item.CombatEffects = Strings::IsNumber(row[ItemField::combateffects]) ? static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::combateffects]), -128, 127)) : 0;
 		item.DamageShield = Strings::ToInt(row[ItemField::damageshield]);
 		item.DotShielding = Strings::ToInt(row[ItemField::dotshielding]);
-		item.DSMitigation = Strings::ToUnsignedInt(row[ItemField::dsmitigation]);
 		item.Haste = Strings::ToInt(row[ItemField::haste]);
-		item.HealAmt = Strings::ToInt(row[ItemField::healamt]);
-		item.Purity = Strings::ToUnsignedInt(row[ItemField::purity]);
 		item.Shielding = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::shielding]), -128, 127));
-		item.SpellDmg = Strings::ToInt(row[ItemField::spelldmg]);
 		item.SpellShield = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::spellshield]), -128, 127));
 		item.StrikeThrough = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::strikethrough]), -128, 127));
 		item.StunResist = static_cast<int8>(EQ::Clamp(Strings::ToInt(row[ItemField::stunresist]), -128, 127));
@@ -1308,7 +1280,6 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		// LDoN
 		item.LDoNTheme = Strings::ToUnsignedInt(row[ItemField::ldontheme]);
 		item.LDoNPrice = Strings::ToUnsignedInt(row[ItemField::ldonprice]);
-		item.LDoNSellBackRate = Strings::ToUnsignedInt(row[ItemField::ldonsellbackrate]);
 		item.LDoNSold = Strings::ToUnsignedInt(row[ItemField::ldonsold]);
 		item.PointType = Strings::ToUnsignedInt(row[ItemField::pointtype]);
 
@@ -1317,12 +1288,6 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		item.BagSlots = static_cast<uint8>(EQ::Clamp(Strings::ToInt(row[ItemField::bagslots]), 0, static_cast<int>(EQ::invbag::SLOT_COUNT)));
 		item.BagType = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::bagtype]));
 		item.BagWR = static_cast<uint8>(EQ::Clamp(Strings::ToInt(row[ItemField::bagwr]), 0, 100));
-
-		// Bard Effect
-		item.Bard.Effect = disable_bard_focus_effects ? 0 : Strings::ToInt(row[ItemField::bardeffect]);
-		item.Bard.Type = disable_bard_focus_effects ? 0 : static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::bardtype]));
-		item.Bard.Level = disable_bard_focus_effects ? 0 : static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::bardlevel]));
-		item.Bard.Level2 = disable_bard_focus_effects ? 0 : static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::bardlevel2]));
 
 		// Book
 		item.Book = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::book]));
@@ -1335,7 +1300,6 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		item.Click.Type = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::clicktype]));
 		item.Click.Level = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::clicklevel]));
 		item.Click.Level2 = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::clicklevel2]));
-		strn0cpy(item.ClickName, row[ItemField::clickname], sizeof(item.ClickName));
 		item.RecastDelay = Strings::ToUnsignedInt(row[ItemField::recastdelay]);
 		item.RecastType = Strings::ToInt(row[ItemField::recasttype]);
 
@@ -1344,14 +1308,12 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		item.Focus.Type = disable_spell_focus_effects ? 0 : static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::focustype]));
 		item.Focus.Level = disable_spell_focus_effects ? 0 : static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::focuslevel]));
 		item.Focus.Level2 = disable_spell_focus_effects ? 0 : static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::focuslevel2]));
-		strn0cpy(item.FocusName, disable_spell_focus_effects ? "" : row[ItemField::focusname], sizeof(item.FocusName));
 
 		// Proc Effect
 		item.Proc.Effect = Strings::ToInt(row[ItemField::proceffect]);
 		item.Proc.Type = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::proctype]));
 		item.Proc.Level = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::proclevel]));
 		item.Proc.Level2 = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::proclevel2]));
-		strn0cpy(item.ProcName, row[ItemField::procname], sizeof(item.ProcName));
 		item.ProcRate = Strings::ToInt(row[ItemField::procrate]);
 
 		// Scroll Effect
@@ -1359,14 +1321,12 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		item.Scroll.Type = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::scrolltype]));
 		item.Scroll.Level = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::scrolllevel]));
 		item.Scroll.Level2 = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::scrolllevel2]));
-		strn0cpy(item.ScrollName, row[ItemField::scrollname], sizeof(item.ScrollName));
 
 		// Worn Effect
 		item.Worn.Effect = Strings::ToInt(row[ItemField::worneffect]);
 		item.Worn.Type = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::worntype]));
 		item.Worn.Level = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::wornlevel]));
 		item.Worn.Level2 = static_cast<uint8>(Strings::ToUnsignedInt(row[ItemField::wornlevel2]));
-		strn0cpy(item.WornName, row[ItemField::wornname], sizeof(item.WornName));
 
 		// Evolving Item
 		item.EvolvingID = Strings::ToUnsignedInt(row[ItemField::evoid]);
@@ -1378,7 +1338,6 @@ void SharedDatabase::LoadItems(void *data, uint32 size, int32 items, uint32 max_
 		item.CharmFileID = Strings::IsNumber(row[ItemField::charmfileid]) ? Strings::ToUnsignedInt(row[ItemField::charmfileid]) : 0;
 		strn0cpy(item.CharmFile, row[ItemField::charmfile], sizeof(item.CharmFile));
 		strn0cpy(item.Filename, row[ItemField::filename], sizeof(item.Filename));
-		item.ScriptFileID = Strings::ToUnsignedInt(row[ItemField::scriptfileid]);
 
 		try {
 			hash.insert(item.ID, item);

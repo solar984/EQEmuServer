@@ -100,7 +100,6 @@ public:
 	double GetSellRate();
 	uint32 GetFulfilment();
 	int GetCastTime();
-	uint32 GetEliteMaterial();
 	int GetProcRate();
 	int GetCombatEffects();
 	int GetShielding();
@@ -146,7 +145,6 @@ public:
 	bool GetPotionBelt();
 	bool GetStackable();
 	bool GetNoTransfer();
-	bool GetQuestItemFlag();
 	int GetStackSize();
 	int GetPotionBeltSlots();
 	int GetClick_Effect();
@@ -169,41 +167,9 @@ public:
 	int GetScroll_Type();
 	int GetScroll_Level();
 	int GetScroll_Level2();
-	int GetBard_Effect();
-	int GetBard_Type();
-	int GetBard_Level();
-	int GetBard_Level2();
 	int GetBook();
 	uint32 GetBookType();
 	const char *GetFilename();
-	int GetSVCorruption();
-	uint32 GetPurity();
-	uint32 GetBackstabDmg();
-	uint32 GetDSMitigation();
-	int GetHeroicStr();
-	int GetHeroicInt();
-	int GetHeroicWis();
-	int GetHeroicAgi();
-	int GetHeroicDex();
-	int GetHeroicSta();
-	int GetHeroicCha();
-	int GetHeroicMR();
-	int GetHeroicFR();
-	int GetHeroicCR();
-	int GetHeroicDR();
-	int GetHeroicPR();
-	int GetHeroicSVCorrup();
-	int GetHealAmt();
-	int GetSpellDmg();
-	uint32 GetLDoNSellBackRate();
-	uint32 GetScriptFileID();
-	int GetExpendableArrow();
-	uint32 GetClairvoyance();
-	const char *GetClickName();
-	const char *GetProcName();
-	const char *GetWornName();
-	const char *GetFocusName();
-	const char *GetScrollName();
 };
 
 #endif

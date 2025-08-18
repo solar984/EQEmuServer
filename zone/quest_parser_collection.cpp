@@ -293,12 +293,7 @@ bool QuestParserCollection::ItemHasQuestSub(EQ::ItemInstance* inst, QuestEventID
 	}
 
 	std::string item_script;
-	if (inst->GetItem()->ScriptFileID != 0) {
-		item_script = fmt::format(
-			"script_{}",
-			inst->GetItem()->ScriptFileID
-		);
-	} else if (strlen(inst->GetItem()->CharmFile) > 0) {
+	if (strlen(inst->GetItem()->CharmFile) > 0) {
 		item_script = inst->GetItem()->CharmFile;
 	} else {
 		item_script = std::to_string(inst->GetID());
@@ -607,12 +602,7 @@ int QuestParserCollection::EventItem(
 	}
 
 	std::string item_script;
-	if (inst->GetItem()->ScriptFileID != 0) {
-		item_script = fmt::format(
-			"script_{}",
-			inst->GetItem()->ScriptFileID
-		);
-	} else if (strlen(inst->GetItem()->CharmFile) > 0) {
+	if (strlen(inst->GetItem()->CharmFile) > 0) {
 		item_script = inst->GetItem()->CharmFile;
 	} else {
 		item_script = std::to_string(inst->GetID());

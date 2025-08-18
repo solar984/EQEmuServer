@@ -448,7 +448,6 @@ public:
 	bool HasShieldEquipped();
 	bool HasTwoHandBluntEquipped();
 	bool HasTwoHanderEquipped();
-	uint32 IsEliteMaterialItem(uint8 material_slot);
 	float GetBaseSize();
 	bool HasOwner();
 	bool IsPet();

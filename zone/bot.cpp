@@ -1947,10 +1947,9 @@ bool Bot::BotRangedAttack(Mob* other, bool can_double_attack) {
 
 		int chance_avoid_consume = aabonuses.ConsumeProjectile + itembonuses.ConsumeProjectile + spellbonuses.ConsumeProjectile;
 		bool consumes_ammo = RuleB(Bots, BotArcheryConsumesAmmo);
-		bool is_expendable_arrow = ranged_weapon->ExpendableArrow;
 		bool no_chance_to_avoid = chance_avoid_consume == 0;
 		bool failed_avoid_check = chance_avoid_consume < 100 && zone->random.Int(0, 99) > chance_avoid_consume;
-		bool should_consume_ammo = consumes_ammo && (is_expendable_arrow || no_chance_to_avoid || failed_avoid_check);
+		bool should_consume_ammo = consumes_ammo && (no_chance_to_avoid || failed_avoid_check);
 
 		if (should_consume_ammo) {
 			ammo_item->SetCharges(ammo_item->GetCharges() - 1);
@@ -3017,7 +3016,6 @@ CombatRangeOutput Bot::EvaluateCombatRange(const CombatRangeInput& input) {
 
 	bool is_two_hander          = input.p_item && input.p_item->GetItem()->IsType2HWeapon();
 	bool is_shield              = input.s_item && input.s_item->GetItem()->IsTypeShield();
-	bool is_backstab_weapon     = input.p_item && input.p_item->GetItemBackstabDamage();
 
 	if (IsTaunting()) { // Taunting bots
 		o.melee_distance_min    = o.melee_distance_max * 0.25f;
@@ -3729,7 +3727,6 @@ void Bot::FillSpawnStruct(NewSpawn_Struct* ns, Mob* ForWho) {
 				item = inst->GetItem();
 				if (item != nullptr) {
 					ns->spawn.equipment.Slot[i].Material = item->Material;
-					ns->spawn.equipment.Slot[i].EliteModel = item->EliteMaterial;
 					if (armor_tint.Slot[i].Color)
 						ns->spawn.equipment_tint.Slot[i].Color = armor_tint.Slot[i].Color;
 					else
@@ -5104,9 +5101,7 @@ int Bot::GetBaseSkillDamage(EQ::skills::SkillType skill, Mob *target)
 			float skill_bonus = static_cast<float>(skill_level) * 0.02f;
 			auto inst = GetBotItem(EQ::invslot::slotPrimary);
 			if (inst && inst->GetItem() && inst->GetItem()->ItemType == EQ::item::ItemType1HPiercing) {
-				base = inst->GetItemBackstabDamage(true);
-				if (!inst->GetItemBackstabDamage())
-					base += inst->GetItemWeaponDamage(true);
+				base = inst->GetItemWeaponDamage(true);
 				if (target) {
 					if (
 						inst->GetItemElementalFlag(true) &&

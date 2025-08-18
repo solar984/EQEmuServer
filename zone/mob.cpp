@@ -1354,7 +1354,6 @@ void Mob::FillSpawnStruct(NewSpawn_Struct* ns, Mob* ForWho)
 	for (i = 0; i < EQ::textures::materialCount; i++) {
 		if (IsPlayerRace(race) || i > EQ::textures::armorFeet) {
 			ns->spawn.equipment.Slot[i].Material        = GetEquipmentMaterial(i);
-			ns->spawn.equipment.Slot[i].EliteModel      = IsEliteMaterialItem(i);
 			ns->spawn.equipment_tint.Slot[i].Color      = GetEquipmentColor(i);
 		}
 	}
@@ -4955,19 +4954,6 @@ uint32 Mob::RandomTimer(int min, int max)
 		r = zone->random.Int(min, max);
 	}
 	return r;
-}
-
-uint32 Mob::IsEliteMaterialItem(uint8 material_slot) const
-{
-	const EQ::ItemData *item = nullptr;
-
-	item = database.GetItem(GetEquippedItemFromTextureSlot(material_slot));
-	if(item != 0)
-	{
-		return item->EliteMaterial;
-	}
-
-	return 0;
 }
 
 // works just like a printf

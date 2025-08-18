@@ -2535,11 +2535,6 @@ bool Perl_Mob_HasTwoHanderEquipped(Mob* self) // @categories Stats and Attribute
 	return self->HasTwoHanderEquipped();
 }
 
-bool Perl_Mob_IsEliteMaterialItem(Mob* self, uint8_t material_slot) // @categories Script Utility, Stats and Attributes
-{
-	return self->IsEliteMaterialItem(material_slot);
-}
-
 float Perl_Mob_GetBaseSize(Mob* self) // @categories Stats and Attributes
 {
 	return self->GetBaseSize();
@@ -3998,7 +3993,6 @@ void perl_register_mob()
 	package.add("IsCorpse", &Perl_Mob_IsCorpse);
 	package.add("IsDestructibleObject", &Perl_Mob_IsDestructibleObject);
 	package.add("IsDoor", &Perl_Mob_IsDoor);
-	package.add("IsEliteMaterialItem", &Perl_Mob_IsEliteMaterialItem);
 	package.add("IsEncounter", &Perl_Mob_IsEncounter);
 	package.add("IsEngaged", &Perl_Mob_IsEngaged);
 	package.add("IsEnraged", &Perl_Mob_IsEnraged);

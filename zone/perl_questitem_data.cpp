@@ -366,10 +366,6 @@ int Perl_QuestItemData_GetCastTime(EQ::ItemData* self)
 	return self->CastTime;
 }
 
-uint32 Perl_QuestItemData_GetEliteMaterial(EQ::ItemData* self)
-{
-	return self->EliteMaterial;
-}
 
 int Perl_QuestItemData_GetProcRate(EQ::ItemData* self)
 {
@@ -608,11 +604,6 @@ bool Perl_QuestItemData_GetNoTransfer(EQ::ItemData* self)
 	return self->NoTransfer;
 }
 
-bool Perl_QuestItemData_GetQuestItemFlag(EQ::ItemData* self)
-{
-	return self->QuestItemFlag;
-}
-
 int Perl_QuestItemData_GetStackSize(EQ::ItemData* self)
 {
 	return self->StackSize;
@@ -723,26 +714,6 @@ int Perl_QuestItemData_GetScrollLevel2(EQ::ItemData* self)
 	return self->Scroll.Level2;
 }
 
-int Perl_QuestItemData_GetBardEffect(EQ::ItemData* self)
-{
-	return self->Bard.Effect;
-}
-
-int Perl_QuestItemData_GetBardType(EQ::ItemData* self)
-{
-	return self->Bard.Type;
-}
-
-int Perl_QuestItemData_GetBardLevel(EQ::ItemData* self)
-{
-	return self->Bard.Level;
-}
-
-int Perl_QuestItemData_GetBardLevel2(EQ::ItemData* self)
-{
-	return self->Bard.Level2;
-}
-
 int Perl_QuestItemData_GetBook(EQ::ItemData* self)
 {
 	return self->Book;
@@ -756,146 +727,6 @@ uint32 Perl_QuestItemData_GetBookType(EQ::ItemData* self)
 const char* Perl_QuestItemData_GetFilename(EQ::ItemData* self)
 {
 	return self->Filename;
-}
-
-int Perl_QuestItemData_GetCorruption(EQ::ItemData* self)
-{
-	return self->SVCorruption;
-}
-
-uint32 Perl_QuestItemData_GetPurity(EQ::ItemData* self)
-{
-	return self->Purity;
-}
-
-uint32 Perl_QuestItemData_GetBackstabDamage(EQ::ItemData* self)
-{
-	return self->BackstabDmg;
-}
-
-uint32 Perl_QuestItemData_GetDSMitigation(EQ::ItemData* self)
-{
-	return self->DSMitigation;
-}
-
-int Perl_QuestItemData_GetHeroicSTR(EQ::ItemData* self)
-{
-	return self->HeroicStr;
-}
-
-int Perl_QuestItemData_GetHeroicINT(EQ::ItemData* self)
-{
-	return self->HeroicInt;
-}
-
-int Perl_QuestItemData_GetHeroicWIS(EQ::ItemData* self)
-{
-	return self->HeroicWis;
-}
-
-int Perl_QuestItemData_GetHeroicAGI(EQ::ItemData* self)
-{
-	return self->HeroicAgi;
-}
-
-int Perl_QuestItemData_GetHeroicDEX(EQ::ItemData* self)
-{
-	return self->HeroicDex;
-}
-
-int Perl_QuestItemData_GetHeroicSTA(EQ::ItemData* self)
-{
-	return self->HeroicSta;
-}
-
-int Perl_QuestItemData_GetHeroicCHA(EQ::ItemData* self)
-{
-	return self->HeroicCha;
-}
-
-int Perl_QuestItemData_GetHeroicMR(EQ::ItemData* self)
-{
-	return self->HeroicMR;
-}
-
-int Perl_QuestItemData_GetHeroicFR(EQ::ItemData* self)
-{
-	return self->HeroicFR;
-}
-
-int Perl_QuestItemData_GetHeroicCR(EQ::ItemData* self)
-{
-	return self->HeroicCR;
-}
-
-int Perl_QuestItemData_GetHeroicDR(EQ::ItemData* self)
-{
-	return self->HeroicDR;
-}
-
-int Perl_QuestItemData_GetHeroicPR(EQ::ItemData* self)
-{
-	return self->HeroicPR;
-}
-
-int Perl_QuestItemData_GetHeroicCorruption(EQ::ItemData* self)
-{
-	return self->HeroicSVCorrup;
-}
-
-int Perl_QuestItemData_GetHealAmount(EQ::ItemData* self)
-{
-	return self->HealAmt;
-}
-
-int Perl_QuestItemData_GetSpellDamage(EQ::ItemData* self)
-{
-	return self->SpellDmg;
-}
-
-uint32 Perl_QuestItemData_GetLDoNSellBackRate(EQ::ItemData* self)
-{
-	return self->LDoNSellBackRate;
-}
-
-uint32 Perl_QuestItemData_GetScriptFileID(EQ::ItemData* self)
-{
-	return self->ScriptFileID;
-}
-
-int Perl_QuestItemData_GetExpendableArrow(EQ::ItemData* self)
-{
-	return self->ExpendableArrow;
-}
-
-uint32 Perl_QuestItemData_GetClairvoyance(EQ::ItemData* self)
-{
-	return self->Clairvoyance;
-}
-
-const char* Perl_QuestItemData_GetClickName(EQ::ItemData* self)
-{
-	return self->ClickName;
-}
-
-const char* Perl_QuestItemData_GetProcName(EQ::ItemData* self)
-{
-	return self->ProcName;
-}
-
-const char* Perl_QuestItemData_GetWornName(EQ::ItemData* self)
-{
-	return self->WornName;
-}
-
-const char* Perl_QuestItemData_GetFocusName(EQ::ItemData* self)
-{
-	return self->FocusName;
-}
-
-const char* Perl_QuestItemData_GetScrollName(EQ::ItemData* self)
-{
-	return self->ScrollName;
 }
 
 void perl_register_questitem_data()
@@ -922,7 +753,6 @@ void perl_register_questitem_data()
 	package.add("GetAugmentSlotVisible", &Perl_QuestItemData_GetAugmentSlotVisible);
 	package.add("GetAugmentType", &Perl_QuestItemData_GetAugmentType);
 	package.add("GetAvoidance", &Perl_QuestItemData_GetAvoidance);
-	package.add("GetBackstabDamage", &Perl_QuestItemData_GetBackstabDamage);
 	package.add("GetBagSize", &Perl_QuestItemData_GetBagSize);
 	package.add("GetBagSlots", &Perl_QuestItemData_GetBagSlots);
 	package.add("GetBagType", &Perl_QuestItemData_GetBagType);
@@ -931,10 +761,6 @@ void perl_register_questitem_data()
 	package.add("GetBaneDamageBody", &Perl_QuestItemData_GetBaneDamageBody);
 	package.add("GetBaneDamageRace", &Perl_QuestItemData_GetBaneDamageRace);
 	package.add("GetBaneDamageRaceAmount", &Perl_QuestItemData_GetBaneDamageRaceAmount);
-	package.add("GetBardEffect", &Perl_QuestItemData_GetBardEffect);
-	package.add("GetBardLevel", &Perl_QuestItemData_GetBardLevel);
-	package.add("GetBardLevel2", &Perl_QuestItemData_GetBardLevel2);
-	package.add("GetBardType", &Perl_QuestItemData_GetBardType);
 	package.add("GetBardSkillType", &Perl_QuestItemData_GetBardSkillType);
 	package.add("GetBardSkillValue", &Perl_QuestItemData_GetBardSkillValue);
 	package.add("GetBenefitFlag", &Perl_QuestItemData_GetBenefitFlag);
@@ -945,9 +771,7 @@ void perl_register_questitem_data()
 	package.add("GetCastTime_", &Perl_QuestItemData_GetCastTime_);
 	package.add("GetCharmFile", &Perl_QuestItemData_GetCharmFile);
 	package.add("GetCharmFileID", &Perl_QuestItemData_GetCharmFileID);
-	package.add("GetClairvoyance", &Perl_QuestItemData_GetClairvoyance);
 	package.add("GetClasses", &Perl_QuestItemData_GetClasses);
-	package.add("GetClickName", &Perl_QuestItemData_GetClickName);
 	package.add("GetClickEffect", &Perl_QuestItemData_GetClickEffect);
 	package.add("GetClickLevel", &Perl_QuestItemData_GetClickLevel);
 	package.add("GetClickLevel2", &Perl_QuestItemData_GetClickLevel2);
@@ -955,9 +779,7 @@ void perl_register_questitem_data()
 	package.add("GetColor", &Perl_QuestItemData_GetColor);
 	package.add("GetCombatEffects", &Perl_QuestItemData_GetCombatEffects);
 	package.add("GetComment", &Perl_QuestItem_GetComment);
-	package.add("GetCorruption", &Perl_QuestItemData_GetCorruption);
 	package.add("GetDR", &Perl_QuestItemData_GetDR);
-	package.add("GetDSMitigation", &Perl_QuestItemData_GetDSMitigation);
 	package.add("GetDamage", &Perl_QuestItemData_GetDamage);
 	package.add("GetDamageShield", &Perl_QuestItemData_GetDamageShield);
 	package.add("GetDeity", &Perl_QuestItemData_GetDeity);
@@ -965,10 +787,8 @@ void perl_register_questitem_data()
 	package.add("GetDOTShielding", &Perl_QuestItemData_GetDOTShielding);
 	package.add("GetElementalDamageAmount", &Perl_QuestItemData_GetElementalDamageAmount);
 	package.add("GetElementalDamageType", &Perl_QuestItemData_GetElementalDamageType);
-	package.add("GetEliteMaterial", &Perl_QuestItemData_GetEliteMaterial);
 	package.add("GetEndurance", &Perl_QuestItemData_GetEndurance);
 	package.add("GetEnduranceRegen", &Perl_QuestItemData_GetEnduranceRegen);
-	package.add("GetExpendableArrow", &Perl_QuestItemData_GetExpendableArrow);
 	package.add("GetExtraDamageAmount", &Perl_QuestItemData_GetExtraDamageAmount);
 	package.add("GetExtraDamageSkill", &Perl_QuestItemData_GetExtraDamageSkill);
 	package.add("GetFR", &Perl_QuestItemData_GetFR);
@@ -984,7 +804,6 @@ void perl_register_questitem_data()
 	package.add("GetFavor", &Perl_QuestItemData_GetFavor);
 	package.add("GetFilename", &Perl_QuestItemData_GetFilename);
 	package.add("GetFocusEffect", &Perl_QuestItemData_GetFocusEffect);
-	package.add("GetFocusName", &Perl_QuestItemData_GetFocusName);
 	package.add("GetFocusLevel", &Perl_QuestItemData_GetFocusLevel);
 	package.add("GetFocusLevel2", &Perl_QuestItemData_GetFocusLevel2);
 	package.add("GetFocusType", &Perl_QuestItemData_GetFocusType);
@@ -992,27 +811,12 @@ void perl_register_questitem_data()
 	package.add("GetGuildFavor", &Perl_QuestItemData_GetGuildFavor);
 	package.add("GetHP", &Perl_QuestItemData_GetHP);
 	package.add("GetHaste", &Perl_QuestItemData_GetHaste);
-	package.add("GetHealAmount", &Perl_QuestItemData_GetHealAmount);
-	package.add("GetHeroicAGI", &Perl_QuestItemData_GetHeroicAGI);
-	package.add("GetHeroicCR", &Perl_QuestItemData_GetHeroicCR);
-	package.add("GetHeroicCHA", &Perl_QuestItemData_GetHeroicCHA);
-	package.add("GetHeroicCorruption", &Perl_QuestItemData_GetHeroicCorruption);
-	package.add("GetHeroicDR", &Perl_QuestItemData_GetHeroicDR);
-	package.add("GetHeroicDEX", &Perl_QuestItemData_GetHeroicDEX);
-	package.add("GetHeroicFR", &Perl_QuestItemData_GetHeroicFR);
-	package.add("GetHeroicINT", &Perl_QuestItemData_GetHeroicINT);
-	package.add("GetHeroicMR", &Perl_QuestItemData_GetHeroicMR);
-	package.add("GetHeroicPR", &Perl_QuestItemData_GetHeroicPR);
-	package.add("GetHeroicSTA", &Perl_QuestItemData_GetHeroicSTA);
-	package.add("GetHeroicSTR", &Perl_QuestItemData_GetHeroicSTR);
-	package.add("GetHeroicWIS", &Perl_QuestItemData_GetHeroicWIS);
 	package.add("GetID", &Perl_QuestItemData_GetID);
 	package.add("GetIDFile", &Perl_QuestItemData_GetIDFile);
 	package.add("GetIcon", &Perl_QuestItemData_GetIcon);
 	package.add("GetItemClass", &Perl_QuestItemData_GetItemClass);
 	package.add("GetItemType", &Perl_QuestItemData_GetItemType);
 	package.add("GetLDoNPrice", &Perl_QuestItemData_GetLDoNPrice);
-	package.add("GetLDoNSellBackRate", &Perl_QuestItemData_GetLDoNSellBackRate);
 	package.add("GetLDoNSold", &Perl_QuestItemData_GetLDoNSold);
 	package.add("GetLDoNTheme", &Perl_QuestItemData_GetLDoNTheme);
 	package.add("GetLight", &Perl_QuestItemData_GetLight);
@@ -1038,13 +842,10 @@ void perl_register_questitem_data()
 	package.add("GetPotionBeltSlots", &Perl_QuestItemData_GetPotionBeltSlots);
 	package.add("GetPrice", &Perl_QuestItemData_GetPrice);
 	package.add("GetProcEffect", &Perl_QuestItemData_GetProcEffect);
-	package.add("GetProcName", &Perl_QuestItemData_GetProcName);
 	package.add("GetProcRate", &Perl_QuestItemData_GetProcRate);
 	package.add("GetProcLevel", &Perl_QuestItemData_GetProcLevel);
 	package.add("GetProcLevel2", &Perl_QuestItemData_GetProcLevel2);
 	package.add("GetProcType", &Perl_QuestItemData_GetProcType);
-	package.add("GetPurity", &Perl_QuestItemData_GetPurity);
-	package.add("GetQuestItemFlag", &Perl_QuestItemData_GetQuestItemFlag);
 	package.add("GetRaces", &Perl_QuestItemData_GetRaces);
 	package.add("GetRange", &Perl_QuestItemData_GetRange);
 	package.add("GetRecLevel", &Perl_QuestItemData_GetRecLevel);
@@ -1053,9 +854,7 @@ void perl_register_questitem_data()
 	package.add("GetRecastType", &Perl_QuestItemData_GetRecastType);
 	package.add("GetRegen", &Perl_QuestItemData_GetRegen);
 	package.add("GetReqLevel", &Perl_QuestItemData_GetReqLevel);
-	package.add("GetScriptFileID", &Perl_QuestItemData_GetScriptFileID);
 	package.add("GetScrollEffect", &Perl_QuestItemData_GetScrollEffect);
-	package.add("GetScrollName", &Perl_QuestItemData_GetScrollName);
 	package.add("GetScrollLevel", &Perl_QuestItemData_GetScrollLevel);
 	package.add("GetScrollLevel2", &Perl_QuestItemData_GetScrollLevel2);
 	package.add("GetScrollType", &Perl_QuestItemData_GetScrollType);
@@ -1065,7 +864,6 @@ void perl_register_questitem_data()
 	package.add("GetSkillModifierType", &Perl_QuestItemData_GetSkillModifierType);
 	package.add("GetSkillModifierValue", &Perl_QuestItemData_GetSkillModifierValue);
 	package.add("GetSlots", &Perl_QuestItemData_GetSlots);
-	package.add("GetSpellDamage", &Perl_QuestItemData_GetSpellDamage);
 	package.add("GetSpellShield", &Perl_QuestItemData_GetSpellShield);
 	package.add("GetStackSize", &Perl_QuestItemData_GetStackSize);
 	package.add("GetStackable", &Perl_QuestItemData_GetStackable);
@@ -1074,7 +872,6 @@ void perl_register_questitem_data()
 	package.add("GetSummonedFlag", &Perl_QuestItemData_GetSummonedFlag);
 	package.add("GetTradeskills", &Perl_QuestItemData_GetTradeskills);
 	package.add("GetWeight", &Perl_QuestItemData_GetWeight);
-	package.add("GetWornName", &Perl_QuestItemData_GetWornName);
 	package.add("GetWornEffect", &Perl_QuestItemData_GetWornEffect);
 	package.add("GetWornLevel", &Perl_QuestItemData_GetWornLevel);
 	package.add("GetWornLevel2", &Perl_QuestItemData_GetWornLevel2);

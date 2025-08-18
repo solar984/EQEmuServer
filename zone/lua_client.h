@@ -450,8 +450,6 @@ public:
 	uint32 CountItemEquippedByID(uint32 item_id);
 	bool HasAugmentEquippedByID(uint32 item_id);
 	bool HasItemEquippedByID(uint32 item_id);
-	int GetHealAmount();
-	int GetSpellDamage();
 	void UpdateAdmin();
 	void UpdateAdmin(bool from_database);
 	luabind::object GetPEQZoneFlags(lua_State* L);

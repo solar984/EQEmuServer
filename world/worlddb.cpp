@@ -140,7 +140,6 @@ void WorldDatabase::GetCharSelectInfo(uint32 account_id, EQApplicationPacket **o
 		for (auto &s: cse->Equip) {
 			s.Material        = 0;
 			s.Unknown1        = 0;
-			s.EliteModel      = 0;
 			s.Unknown2        = 0;
 			s.Color           = 0;
 		}
@@ -357,7 +356,6 @@ void WorldDatabase::GetCharSelectInfo(uint32 account_id, EQApplicationPacket **o
 							inst->GetColor()
 					);
 					cse->Equip[matslot].Material        = item->Material;
-					cse->Equip[matslot].EliteModel      = item->EliteMaterial;
 					cse->Equip[matslot].Color           = color;
 				}
 			}

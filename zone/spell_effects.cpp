@@ -5038,12 +5038,14 @@ int64 Mob::CalcAAFocus(focusType type, const AA::Rank &rank, uint16 spell_id)
 										exclude_this_item = false;
 									}
 								}
+#if 0 // post titanium
 								//SubType (if set to -1, ignore and exclude all SubTypes)
 								if (limit_value >= 0) {
 									if (limit_value != item->GetItem()->SubType) {
 										exclude_this_item = false;
 									}
 								}
+#endif
 								if (exclude_this_item) {
 									LimitFailure = true;
 								}
@@ -5057,12 +5059,14 @@ int64 Mob::CalcAAFocus(focusType type, const AA::Rank &rank, uint16 spell_id)
 										include_this_item = false;
 									}
 								}
+#if 0 // post titanium
 								//SubType (if set to -1, ignore and include any SubType)
 								if (limit_value >= 0) {
 									if (limit_value != item->GetItem()->SubType) {
 										include_this_item = false;
 									}
 								}
+#endif
 								if (include_this_item) {
 									LimitInclude[IncludeFoundSEFFItemClass] = true;
 								}
@@ -5815,12 +5819,14 @@ int64 Mob::CalcFocusEffect(focusType type, uint16 focus_id, uint16 spell_id, boo
 										exclude_this_item = false;
 									}
 								}
+#if 0 // post titanium
 								//SubType (if set to -1, ignore and exclude all SubTypes)
 								if (focus_spell.limit_value[i] >= 0) {
 									if (focus_spell.limit_value[i] != item->GetItem()->SubType) {
 										exclude_this_item = false;
 									}
 								}
+#endif
 								//item slot bitmask (if set to -1, ignore and exclude all SubTypes)
 								if (focus_spell.max_value[i] >= 0) {
 									if (focus_spell.max_value[i] != item->GetItem()->Slots) {
@@ -5840,12 +5846,14 @@ int64 Mob::CalcFocusEffect(focusType type, uint16 focus_id, uint16 spell_id, boo
 										include_this_item = false;
 									}
 								}
+#if 0 // post titanium
 								//SubType (if set to -1, ignore and include any SubType)
 								if (focus_spell.limit_value[i] >= 0) {
 									if (focus_spell.limit_value[i] != item->GetItem()->SubType) {
 										include_this_item = false;
 									}
 								}
+#endif
 								//item slot bitmask (if set to -1, ignore and include any slot)
 								if (focus_spell.max_value[i] >= 0) {
 									if (focus_spell.max_value[i] != item->GetItem()->Slots) {

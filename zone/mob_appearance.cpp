@@ -275,7 +275,6 @@ void Mob::SendWearChange(uint8 material_slot, Client *one_client)
 
 	w->spawn_id         = GetID();
 	w->material         = static_cast<uint32>(GetEquipmentMaterial(material_slot));
-	w->elite_material   = IsEliteMaterialItem(material_slot);
 
 	if (IsBot()) {
 		const auto item_inst = CastToBot()->GetBotItem(EQ::InventoryProfile::CalcSlotFromMaterial(material_slot));

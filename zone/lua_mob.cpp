@@ -2247,11 +2247,6 @@ bool Lua_Mob::HasTwoHanderEquipped() {
 	return self->HasTwoHanderEquipped();
 }
 
-uint32 Lua_Mob::IsEliteMaterialItem(uint8 material_slot) {
-	Lua_Safe_Call_Int();
-	return self->IsEliteMaterialItem(material_slot);
-}
-
 float Lua_Mob::GetBaseSize() {
 	Lua_Safe_Call_Real();
 	return self->GetBaseSize();
@@ -3937,7 +3932,6 @@ luabind::scope lua_register_mob() {
 	.def("IsCharmed", &Lua_Mob::IsCharmed)
 	.def("IsControllableBoat", &Lua_Mob::IsControllableBoat)
 	.def("IsDestructibleObject", &Lua_Mob::IsDestructibleObject)
-	.def("IsEliteMaterialItem", (uint32(Lua_Mob::*)(uint8))&Lua_Mob::IsEliteMaterialItem)
 	.def("IsEngaged", (bool(Lua_Mob::*)(void))&Lua_Mob::IsEngaged)
 	.def("IsEnraged", (bool(Lua_Mob::*)(void))&Lua_Mob::IsEnraged)
 	.def("IsFamiliar", &Lua_Mob::IsFamiliar)

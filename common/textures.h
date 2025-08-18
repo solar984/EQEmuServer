@@ -62,7 +62,6 @@ namespace EQ
 		struct Texture_Struct {
 			uint32 Material;
 			uint32 Unknown1;
-			uint32 EliteModel;
 			uint32 Unknown2; // same as material?
 		};
 

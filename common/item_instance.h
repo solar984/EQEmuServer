@@ -151,7 +151,6 @@ namespace EQ
 
 		// Accessors
 		const uint32 GetID() const { return ((m_item) ? m_item->ID : 0); }
-		const uint32 GetItemScriptID() const { return ((m_item) ? m_item->ScriptFileID : 0); }
 		const ItemData* GetItem() const;
 		const ItemData* GetUnscaledItem() const;
 
@@ -251,7 +250,6 @@ namespace EQ
 		int GetItemRecommendedLevel(bool augments = false) const;
 		int GetItemRequiredLevel(bool augments = false) const;
 		int GetItemWeaponDamage(bool augments = false) const;
-		int GetItemBackstabDamage(bool augments = false) const;
 		// these two are just quick checks
 		int GetItemBaneDamageBody(bool augments = false) const;
 		int GetItemBaneDamageRace(bool augments = false) const;
@@ -275,27 +273,9 @@ namespace EQ
 		int GetItemCR(bool augments = false) const;
 		int GetItemPR(bool augments = false) const;
 		int GetItemDR(bool augments = false) const;
-		int GetItemCorrup(bool augments = false) const;
-		int GetItemHeroicStr(bool augments = false) const;
-		int GetItemHeroicSta(bool augments = false) const;
-		int GetItemHeroicDex(bool augments = false) const;
-		int GetItemHeroicAgi(bool augments = false) const;
-		int GetItemHeroicInt(bool augments = false) const;
-		int GetItemHeroicWis(bool augments = false) const;
-		int GetItemHeroicCha(bool augments = false) const;
-		int GetItemHeroicMR(bool augments = false) const;
-		int GetItemHeroicFR(bool augments = false) const;
-		int GetItemHeroicCR(bool augments = false) const;
-		int GetItemHeroicPR(bool augments = false) const;
-		int GetItemHeroicDR(bool augments = false) const;
-		int GetItemHeroicCorrup(bool augments = false) const;
 		int GetItemHaste(bool augments = false) const;
 		int GetItemRegen(bool augments = false) const;
 		int GetItemDamageShield(bool augments = false) const;
-		int GetItemDSMitigation(bool augments = false) const;
-		int GetItemHealAmt(bool augments = false) const;
-		int GetItemSpellDamage(bool augments = false) const;
-		int GetItemClairvoyance(bool augments = false) const;
 		int GetItemSkillsStat(EQ::skills::SkillType skill, bool augments = false) const;
 		uint32 GetItemGuildFavor() const;
 		std::vector<uint32> GetAugmentIDs() const;

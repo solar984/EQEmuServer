@@ -2438,16 +2438,6 @@ void Perl_Client_SetPEQZoneFlag(Client* self, uint32 zone_id)
 	self->SetPEQZoneFlag(zone_id);
 }
 
-int Perl_Client_GetHealAmount(Client* self)
-{
-	return self->GetHealAmt();
-}
-
-int Perl_Client_GetSpellDamage(Client* self)
-{
-	return self->GetSpellDmg();
-}
-
 void Perl_Client_TaskSelector(Client* self, perl::array task_ids)
 {
 	std::vector<int> tasks;
@@ -3549,7 +3539,6 @@ void perl_register_client()
 	package.add("GetGroupPoints", &Perl_Client_GetGroupPoints);
 	package.add("GetGuildPublicNote", &Perl_Client_GetGuildPublicNote);
 	package.add("GetHorseId", &Perl_Client_GetHorseId);
-	package.add("GetHealAmount", &Perl_Client_GetHealAmount);
 	package.add("GetHunger", &Perl_Client_GetHunger);
 	package.add("GetIntoxication", &Perl_Client_GetIntoxication);
 	package.add("GetIP", &Perl_Client_GetIP);
@@ -3600,7 +3589,6 @@ void perl_register_client()
 	package.add("GetScribeableSpells", (perl::array(*)(Client*, uint8, uint8))&Perl_Client_GetScribeableSpells);
 	package.add("GetScribedSpells", &Perl_Client_GetScribedSpells);
 	package.add("GetSkillPoints", &Perl_Client_GetSkillPoints);
-	package.add("GetSpellDamage", &Perl_Client_GetSpellDamage);
 	package.add("GetSpellBookSlotBySpellID", &Perl_Client_GetSpellBookSlotBySpellID);
 	package.add("GetSpellIDByBookSlot", &Perl_Client_GetSpellIDByBookSlot);
 	package.add("GetSpentAA", &Perl_Client_GetSpentAA);

@@ -370,11 +370,6 @@ int Lua_Item::GetCastTime() {
 	return self->CastTime;
 }
 
-uint32 Lua_Item::GetEliteMaterial() {
-	Lua_Safe_Call_Int();
-	return self->EliteMaterial;
-}
-
 int Lua_Item::GetProcRate() {
 	Lua_Safe_Call_Int();
 	return self->ProcRate;
@@ -615,11 +610,6 @@ bool Lua_Item::GetNoTransfer() {
 	return self->NoTransfer;
 }
 
-bool Lua_Item::GetQuestItemFlag() {
-	Lua_Safe_Call_Bool();
-	return self->QuestItemFlag;
-}
-
 int Lua_Item::GetStackSize() {
 	Lua_Safe_Call_Int();
 	return self->StackSize;
@@ -730,26 +720,6 @@ int Lua_Item::GetScroll_Level2() {
 	return self->Scroll.Level2;
 }
 
-int Lua_Item::GetBard_Effect() {
-	Lua_Safe_Call_Int();
-	return self->Bard.Effect;
-}
-
-int Lua_Item::GetBard_Type() {
-	Lua_Safe_Call_Int();
-	return self->Bard.Type;
-}
-
-int Lua_Item::GetBard_Level() {
-	Lua_Safe_Call_Int();
-	return self->Bard.Level;
-}
-
-int Lua_Item::GetBard_Level2() {
-	Lua_Safe_Call_Int();
-	return self->Bard.Level2;
-}
-
 int Lua_Item::GetBook() {
 	Lua_Safe_Call_Int();
 	return self->Book;
@@ -763,146 +733,6 @@ uint32 Lua_Item::GetBookType() {
 const char *Lua_Item::GetFilename() {
 	Lua_Safe_Call_String();
 	return self->Filename;
-}
-
-int Lua_Item::GetSVCorruption() {
-	Lua_Safe_Call_Int();
-	return self->SVCorruption;
-}
-
-uint32 Lua_Item::GetPurity() {
-	Lua_Safe_Call_Int();
-	return self->Purity;
-}
-
-uint32 Lua_Item::GetBackstabDmg() {
-	Lua_Safe_Call_Int();
-	return self->BackstabDmg;
-}
-
-uint32 Lua_Item::GetDSMitigation() {
-	Lua_Safe_Call_Int();
-	return self->DSMitigation;
-}
-
-int Lua_Item::GetHeroicStr() {
-	Lua_Safe_Call_Int();
-	return self->HeroicStr;
-}
-
-int Lua_Item::GetHeroicInt() {
-	Lua_Safe_Call_Int();
-	return self->HeroicInt;
-}
-
-int Lua_Item::GetHeroicWis() {
-	Lua_Safe_Call_Int();
-	return self->HeroicWis;
-}
-
-int Lua_Item::GetHeroicAgi() {
-	Lua_Safe_Call_Int();
-	return self->HeroicAgi;
-}
-
-int Lua_Item::GetHeroicDex() {
-	Lua_Safe_Call_Int();
-	return self->HeroicDex;
-}
-
-int Lua_Item::GetHeroicSta() {
-	Lua_Safe_Call_Int();
-	return self->HeroicSta;
-}
-
-int Lua_Item::GetHeroicCha() {
-	Lua_Safe_Call_Int();
-	return self->HeroicCha;
-}
-
-int Lua_Item::GetHeroicMR() {
-	Lua_Safe_Call_Int();
-	return self->HeroicMR;
-}
-
-int Lua_Item::GetHeroicFR() {
-	Lua_Safe_Call_Int();
-	return self->HeroicFR;
-}
-
-int Lua_Item::GetHeroicCR() {
-	Lua_Safe_Call_Int();
-	return self->HeroicCR;
-}
-
-int Lua_Item::GetHeroicDR() {
-	Lua_Safe_Call_Int();
-	return self->HeroicDR;
-}
-
-int Lua_Item::GetHeroicPR() {
-	Lua_Safe_Call_Int();
-	return self->HeroicPR;
-}
-
-int Lua_Item::GetHeroicSVCorrup() {
-	Lua_Safe_Call_Int();
-	return self->HeroicSVCorrup;
-}
-
-int Lua_Item::GetHealAmt() {
-	Lua_Safe_Call_Int();
-	return self->HealAmt;
-}
-
-int Lua_Item::GetSpellDmg() {
-	Lua_Safe_Call_Int();
-	return self->SpellDmg;
-}
-
-uint32 Lua_Item::GetLDoNSellBackRate() {
-	Lua_Safe_Call_Int();
-	return self->LDoNSellBackRate;
-}
-
-uint32 Lua_Item::GetScriptFileID() {
-	Lua_Safe_Call_Int();
-	return self->ScriptFileID;
-}
-
-int Lua_Item::GetExpendableArrow() {
-	Lua_Safe_Call_Int();
-	return self->ExpendableArrow;
-}
-
-uint32 Lua_Item::GetClairvoyance() {
-	Lua_Safe_Call_Int();
-	return self->Clairvoyance;
-}
-
-const char *Lua_Item::GetClickName() {
-	Lua_Safe_Call_String();
-	return self->ClickName;
-}
-
-const char *Lua_Item::GetProcName() {
-	Lua_Safe_Call_String();
-	return self->ProcName;
-}
-
-const char *Lua_Item::GetWornName() {
-	Lua_Safe_Call_String();
-	return self->WornName;
-}
-
-const char *Lua_Item::GetFocusName() {
-	Lua_Safe_Call_String();
-	return self->FocusName;
-}
-
-const char *Lua_Item::GetScrollName() {
-	Lua_Safe_Call_String();
-	return self->ScrollName;
 }
 
 luabind::scope lua_register_item() {
@@ -930,7 +760,6 @@ luabind::scope lua_register_item() {
 	.def("AugSlotVisible", &Lua_Item::GetAugSlotVisible)
 	.def("AugType", &Lua_Item::GetAugType)
 	.def("Avoidance", &Lua_Item::GetAvoidance)
-	.def("BackstabDmg", &Lua_Item::GetBackstabDmg)
 	.def("BagSize", &Lua_Item::GetBagSize)
 	.def("BagSlots", &Lua_Item::GetBagSlots)
 	.def("BagType", &Lua_Item::GetBagType)
@@ -941,10 +770,6 @@ luabind::scope lua_register_item() {
 	.def("BaneDmgRaceAmt", &Lua_Item::GetBaneDmgRaceAmt)
 	.def("BardType", &Lua_Item::GetBardType)
 	.def("BardValue", &Lua_Item::GetBardValue)
-	.def("Bard_Effect", &Lua_Item::GetBard_Effect)
-	.def("Bard_Level", &Lua_Item::GetBard_Level)
-	.def("Bard_Level2", &Lua_Item::GetBard_Level2)
-	.def("Bard_Type", &Lua_Item::GetBard_Type)
 	.def("BenefitFlag", &Lua_Item::GetBenefitFlag)
 	.def("Book", &Lua_Item::GetBook)
 	.def("BookType", &Lua_Item::GetBookType)
@@ -953,9 +778,7 @@ luabind::scope lua_register_item() {
 	.def("CastTime_", &Lua_Item::GetCastTime_)
 	.def("CharmFile", &Lua_Item::GetCharmFile)
 	.def("CharmFileID", &Lua_Item::GetCharmFileID)
-	.def("Clairvoyance", &Lua_Item::GetClairvoyance)
 	.def("Classes", &Lua_Item::GetClasses)
-	.def("ClickName", &Lua_Item::GetClickName)
 	.def("Click_Effect", &Lua_Item::GetClick_Effect)
 	.def("Click_Level", &Lua_Item::GetClick_Level)
 	.def("Click_Level2", &Lua_Item::GetClick_Level2)
@@ -964,7 +787,6 @@ luabind::scope lua_register_item() {
 	.def("CombatEffects", &Lua_Item::GetCombatEffects)
 	.def("Comment", &Lua_Item::GetComment)
 	.def("DR", &Lua_Item::GetDR)
-	.def("DSMitigation", &Lua_Item::GetDSMitigation)
 	.def("Damage", &Lua_Item::GetDamage)
 	.def("DamageShield", &Lua_Item::GetDamageShield)
 	.def("Deity", &Lua_Item::GetDeity)
@@ -972,10 +794,8 @@ luabind::scope lua_register_item() {
 	.def("DotShielding", &Lua_Item::GetDotShielding)
 	.def("ElemDmgAmt", &Lua_Item::GetElemDmgAmt)
 	.def("ElemDmgType", &Lua_Item::GetElemDmgType)
-	.def("EliteMaterial", &Lua_Item::GetEliteMaterial)
 	.def("Endur", &Lua_Item::GetEndur)
 	.def("EnduranceRegen", &Lua_Item::GetEnduranceRegen)
-	.def("ExpendableArrow", &Lua_Item::GetExpendableArrow)
 	.def("ExtraDmgAmt", &Lua_Item::GetExtraDmgAmt)
 	.def("ExtraDmgSkill", &Lua_Item::GetExtraDmgSkill)
 	.def("FR", &Lua_Item::GetFR)
@@ -990,7 +810,6 @@ luabind::scope lua_register_item() {
 	.def("FactionMod4", &Lua_Item::GetFactionMod4)
 	.def("Favor", &Lua_Item::GetFavor)
 	.def("Filename", &Lua_Item::GetFilename)
-	.def("FocusName", &Lua_Item::GetFocusName)
 	.def("Focus_Effect", &Lua_Item::GetFocus_Effect)
 	.def("Focus_Level", &Lua_Item::GetFocus_Level)
 	.def("Focus_Level2", &Lua_Item::GetFocus_Level2)
@@ -999,27 +818,12 @@ luabind::scope lua_register_item() {
 	.def("GuildFavor", &Lua_Item::GetGuildFavor)
 	.def("HP", &Lua_Item::GetHP)
 	.def("Haste", &Lua_Item::GetHaste)
-	.def("HealAmt", &Lua_Item::GetHealAmt)
-	.def("HeroicAgi", &Lua_Item::GetHeroicAgi)
-	.def("HeroicCR", &Lua_Item::GetHeroicCR)
-	.def("HeroicCha", &Lua_Item::GetHeroicCha)
-	.def("HeroicDR", &Lua_Item::GetHeroicDR)
-	.def("HeroicDex", &Lua_Item::GetHeroicDex)
-	.def("HeroicFR", &Lua_Item::GetHeroicFR)
-	.def("HeroicInt", &Lua_Item::GetHeroicInt)
-	.def("HeroicMR", &Lua_Item::GetHeroicMR)
-	.def("HeroicPR", &Lua_Item::GetHeroicPR)
-	.def("HeroicSVCorrup", &Lua_Item::GetHeroicSVCorrup)
-	.def("HeroicSta", &Lua_Item::GetHeroicSta)
-	.def("HeroicStr", &Lua_Item::GetHeroicStr)
-	.def("HeroicWis", &Lua_Item::GetHeroicWis)
 	.def("ID", &Lua_Item::GetID)
 	.def("IDFile", &Lua_Item::GetIDFile)
 	.def("Icon", &Lua_Item::GetIcon)
 	.def("ItemClass", &Lua_Item::GetItemClass)
 	.def("ItemType", &Lua_Item::GetItemType)
 	.def("LDoNPrice", &Lua_Item::GetLDoNPrice)
-	.def("LDoNSellBackRate", &Lua_Item::GetLDoNSellBackRate)
 	.def("LDoNSold", &Lua_Item::GetLDoNSold)
 	.def("LDoNTheme", &Lua_Item::GetLDoNTheme)
 	.def("Light", &Lua_Item::GetLight)
@@ -1044,14 +848,11 @@ luabind::scope lua_register_item() {
 	.def("PotionBelt", &Lua_Item::GetPotionBelt)
 	.def("PotionBeltSlots", &Lua_Item::GetPotionBeltSlots)
 	.def("Price", &Lua_Item::GetPrice)
-	.def("ProcName", &Lua_Item::GetProcName)
 	.def("ProcRate", &Lua_Item::GetProcRate)
 	.def("Proc_Effect", &Lua_Item::GetProc_Effect)
 	.def("Proc_Level", &Lua_Item::GetProc_Level)
 	.def("Proc_Level2", &Lua_Item::GetProc_Level2)
 	.def("Proc_Type", &Lua_Item::GetProc_Type)
-	.def("Purity", &Lua_Item::GetPurity)
-	.def("QuestItemFlag", &Lua_Item::GetQuestItemFlag)
 	.def("Races", &Lua_Item::GetRaces)
 	.def("Range", &Lua_Item::GetRange)
 	.def("RecLevel", &Lua_Item::GetRecLevel)
@@ -1060,9 +861,6 @@ luabind::scope lua_register_item() {
 	.def("RecastType", &Lua_Item::GetRecastType)
 	.def("Regen", &Lua_Item::GetRegen)
 	.def("ReqLevel", &Lua_Item::GetReqLevel)
-	.def("SVCorruption", &Lua_Item::GetSVCorruption)
-	.def("ScriptFileID", &Lua_Item::GetScriptFileID)
-	.def("ScrollName", &Lua_Item::GetScrollName)
 	.def("Scroll_Effect", &Lua_Item::GetScroll_Effect)
 	.def("Scroll_Level", &Lua_Item::GetScroll_Level)
 	.def("Scroll_Level2", &Lua_Item::GetScroll_Level2)
@@ -1073,7 +871,6 @@ luabind::scope lua_register_item() {
 	.def("SkillModType", &Lua_Item::GetSkillModType)
 	.def("SkillModValue", &Lua_Item::GetSkillModValue)
 	.def("Slots", &Lua_Item::GetSlots)
-	.def("SpellDmg", &Lua_Item::GetSpellDmg)
 	.def("SpellShield", &Lua_Item::GetSpellShield)
 	.def("StackSize", &Lua_Item::GetStackSize)
 	.def("Stackable", &Lua_Item::GetStackable)
@@ -1082,7 +879,6 @@ luabind::scope lua_register_item() {
 	.def("SummonedFlag", &Lua_Item::GetSummonedFlag)
 	.def("Tradeskills", &Lua_Item::GetTradeskills)
 	.def("Weight", &Lua_Item::GetWeight)
-	.def("WornName", &Lua_Item::GetWornName)
 	.def("Worn_Effect", &Lua_Item::GetWorn_Effect)
 	.def("Worn_Level", &Lua_Item::GetWorn_Level)
 	.def("Worn_Level2", &Lua_Item::GetWorn_Level2)

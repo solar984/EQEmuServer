@@ -438,7 +438,6 @@ namespace EQ
 		//uint32	Unk054 {};
 		int16	MaxCharges {};		// Maximum charges items can hold: -1 if not a chargeable item
 		uint8	ItemType {};		// Item Type/Skill (itemClass* from above)
-		int32	SubType {};		// Some items have sub types that can be used for other things (unbreakable fishing poles, SE_FFItemClass)
 		uint8	Material {};		// Item material type
 		float	SellRate {};		// Sell rate
 		//uint32	Unk059 {};
@@ -446,7 +445,6 @@ namespace EQ
 			uint32 Fulfilment;	// Food fulfilment (How long it lasts)
 			uint32 CastTime;		// Cast Time for clicky effects, in milliseconds
 		};
-		uint32 EliteMaterial {};
 		int32	ProcRate {};
 		int8	CombatEffects {};	// PoP: Combat Effects +
 		int8	Shielding {};		// PoP: Shielding %
@@ -492,7 +490,6 @@ namespace EQ
 		bool	PotionBelt {};
 		bool	Stackable {};
 		bool	NoTransfer {};
-		bool	QuestItemFlag {};
 		int16	StackSize {};
 		uint8	PotionBeltSlots {};
 		item::ItemEffect_Struct Click {};
@@ -500,45 +497,15 @@ namespace EQ
 		item::ItemEffect_Struct Worn {};
 		item::ItemEffect_Struct Focus {};
 		item::ItemEffect_Struct Scroll {};
-		item::ItemEffect_Struct Bard {};
 
 		uint8	Book {};			// 0=Not book, 1=Book
 		uint32	BookType {};
 		char	Filename[33] {};	// Filename for book data
 		// Begin SoF Fields
-		int32 SVCorruption {};
-		uint32 Purity {};
 		uint8 EvolvingItem {};
 		uint32 EvolvingID {};
 		uint8 EvolvingLevel {};
 		uint8 EvolvingMax {};
-		uint32 BackstabDmg {};
-		uint32 DSMitigation {};
-		int32 HeroicStr {};
-		int32 HeroicInt {};
-		int32 HeroicWis {};
-		int32 HeroicAgi {};
-		int32 HeroicDex {};
-		int32 HeroicSta {};
-		int32 HeroicCha {};
-		int32 HeroicMR {};
-		int32 HeroicFR {};
-		int32 HeroicCR {};
-		int32 HeroicDR {};
-		int32 HeroicPR {};
-		int32 HeroicSVCorrup {};
-		int32 HealAmt {};
-		int32 SpellDmg {};
-		uint32 LDoNSellBackRate {};
-		uint32 ScriptFileID {};
-		uint16 ExpendableArrow {};
-		uint32 Clairvoyance {};
-		char	ClickName[65] {};
-		char	ProcName[65] {};
-		char	WornName[65] {};
-		char	FocusName[65] {};
-		char	ScrollName[65] {};
-		//BardName
 
 		bool IsEquipable(uint16 Race, uint16 Class) const;
 		bool IsClassEquipable(uint16 Class) const;
@@ -550,7 +517,6 @@ namespace EQ
 		bool IsType2HWeapon() const;
 		bool IsTypeShield() const;
 		bool IsPetUsable() const;
-		bool IsQuestItem() const;
 
 		static bool CheckLoreConflict(const ItemData* l_item, const ItemData* r_item);
 		bool CheckLoreConflict(const ItemData* item) const { return CheckLoreConflict(this, item); }

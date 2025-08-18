@@ -135,11 +135,6 @@ uint32 Lua_ItemInst::GetID() {
 	return self->GetID();
 }
 
-uint32 Lua_ItemInst::GetItemScriptID() {
-	Lua_Safe_Call_Int();
-	return self->GetItemScriptID();
-}
-
 int Lua_ItemInst::GetCharges() {
 	Lua_Safe_Call_Int();
 	return self->GetCharges();
@@ -478,7 +473,6 @@ luabind::scope lua_register_iteminst() {
 	.def("GetItem", (Lua_ItemInst(Lua_ItemInst::*)(uint8))&Lua_ItemInst::GetItem)
 	.def("GetItemID", (uint32(Lua_ItemInst::*)(int))&Lua_ItemInst::GetItemID)
 	.def("GetItemLink", (std::string(Lua_ItemInst::*)(void))&Lua_ItemInst::GetItemLink)
-	.def("GetItemScriptID", (uint32(Lua_ItemInst::*)(void))&Lua_ItemInst::GetItemScriptID)
 	.def("GetMaxEvolveLvl", (int(Lua_ItemInst::*)(void))&Lua_ItemInst::GetMaxEvolveLvl)
 	.def("GetName", (std::string(Lua_ItemInst::*)(void))&Lua_ItemInst::GetName)
 	.def("GetSerialNumber", (int(Lua_ItemInst::*)(void))&Lua_ItemInst::GetSerialNumber)

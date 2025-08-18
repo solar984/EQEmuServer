@@ -295,51 +295,6 @@ void Mob::AddItemBonuses(const EQ::ItemInstance* inst, StatBonuses* b, bool is_a
 	b->Endurance += CalcItemBonus(item->Endur);
 	b->AC += CalcItemBonus(item->AC);
 
-	b->STR += CalcItemBonus(item->AStr + item->HeroicStr);
-	b->STA += CalcItemBonus(item->ASta + item->HeroicSta);
-	b->DEX += CalcItemBonus(item->ADex + item->HeroicDex);
-	b->AGI += CalcItemBonus(item->AAgi + item->HeroicAgi);
-	b->INT += CalcItemBonus(item->AInt + item->HeroicInt);
-	b->WIS += CalcItemBonus(item->AWis + item->HeroicWis);
-	b->CHA += CalcItemBonus(item->ACha + item->HeroicCha);
-
-	b->HeroicSTR += CalcItemBonus(item->HeroicStr);
-	b->HeroicSTA += CalcItemBonus(item->HeroicSta);
-	b->HeroicDEX += CalcItemBonus(item->HeroicDex);
-	b->HeroicAGI += CalcItemBonus(item->HeroicAgi);
-	b->HeroicINT += CalcItemBonus(item->HeroicInt);
-	b->HeroicWIS += CalcItemBonus(item->HeroicWis);
-	b->HeroicCHA += CalcItemBonus(item->HeroicCha);
-
-	b->STRCapMod += item->HeroicStr;
-	b->STACapMod += item->HeroicSta;
-	b->DEXCapMod += item->HeroicDex;
-	b->AGICapMod += item->HeroicAgi;
-	b->INTCapMod += item->HeroicInt;
-	b->WISCapMod += item->HeroicWis;
-	b->CHACapMod += item->HeroicCha;
-
-	b->MR += CalcItemBonus(item->MR + item->HeroicMR);
-	b->FR += CalcItemBonus(item->FR + item->HeroicFR);
-	b->CR += CalcItemBonus(item->CR + item->HeroicCR);
-	b->PR += CalcItemBonus(item->PR + item->HeroicPR);
-	b->DR += CalcItemBonus(item->DR + item->HeroicDR);
-	b->Corrup += CalcItemBonus(item->SVCorruption + item->HeroicSVCorrup);
-
-	b->HeroicMR += CalcItemBonus(item->HeroicMR);
-	b->HeroicFR += CalcItemBonus(item->HeroicFR);
-	b->HeroicCR += CalcItemBonus(item->HeroicCR);
-	b->HeroicPR += CalcItemBonus(item->HeroicPR);
-	b->HeroicDR += CalcItemBonus(item->HeroicDR);
-	b->HeroicCorrup += CalcItemBonus(item->HeroicSVCorrup);
-
-	b->MRCapMod += item->HeroicMR;
-	b->FRCapMod += item->HeroicFR;
-	b->CRCapMod += item->HeroicCR;
-	b->PRCapMod += item->HeroicPR;
-	b->DRCapMod += item->HeroicDR;
-	b->CorrupCapMod += item->HeroicSVCorrup;
-
 	b->HPRegen += CalcItemBonus(item->Regen);
 	b->ManaRegen += CalcItemBonus(item->ManaRegen);
 	b->EnduranceRegen += CalcItemBonus(item->EnduranceRegen);
@@ -355,10 +310,6 @@ void Mob::AddItemBonuses(const EQ::ItemInstance* inst, StatBonuses* b, bool is_a
 	b->HitChance        = CalcCappedItemBonus(b->HitChance, item->Accuracy, RuleI(Character, ItemAccuracyCap));
 	b->ProcChance       = CalcCappedItemBonus(b->ProcChance, item->CombatEffects, RuleI(Character, ItemCombatEffectsCap));
 	b->DoTShielding     = CalcCappedItemBonus(b->DoTShielding, item->DotShielding, RuleI(Character, ItemDoTShieldingCap));
-	b->HealAmt          = CalcCappedItemBonus(b->HealAmt, item->HealAmt, RuleI(Character, ItemHealAmtCap));
-	b->SpellDmg         = CalcCappedItemBonus(b->SpellDmg, item->SpellDmg, RuleI(Character, ItemSpellDmgCap));
-	b->Clairvoyance     = CalcCappedItemBonus(b->Clairvoyance, item->Clairvoyance, RuleI(Character, ItemClairvoyanceCap));
-	b->DSMitigation     = CalcCappedItemBonus(b->DSMitigation, item->DSMitigation, RuleI(Character, ItemDSMitigationCap));
 
 	if (b->haste < item->Haste) {
 		b->haste = item->Haste;

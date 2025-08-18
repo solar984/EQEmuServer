@@ -130,8 +130,6 @@ public:
 	uint32 CountItemEquippedByID(uint32 item_id);
 	bool HasAugmentEquippedByID(uint32 item_id);
 	bool HasItemEquippedByID(uint32 item_id);
-	int GetHealAmount();
-	int GetSpellDamage();
 
 	void Escape();
 	int GetInstrumentMod(int spell_id);

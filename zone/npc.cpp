@@ -4300,7 +4300,6 @@ bool NPC::CanPetTakeItem(const EQ::ItemInstance *inst)
 	const Check checks[] = {
 		{inst->IsAttuned(), "I cannot equip attuned items, master."},
 		{!can_take_nodrop || is_charmed_with_attuned, "I cannot equip no-drop items, master."},
-		{inst->GetItem()->IsQuestItem(), "I cannot equip quest items, master."},
 		{!inst->GetItem()->IsPetUsable(), "I cannot equip that item, master."}
 	};
 

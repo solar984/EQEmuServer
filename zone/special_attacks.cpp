@@ -173,10 +173,7 @@ int Mob::GetBaseSkillDamage(EQ::skills::SkillType skill, Mob *target)
 			if (IsClient()) {
 				auto *inst = CastToClient()->GetInv().GetItem(EQ::invslot::slotPrimary);
 				if (inst && inst->GetItem() && inst->GetItem()->ItemType == EQ::item::ItemType1HPiercing) {
-					base = inst->GetItemBackstabDamage(true);
-					if (!inst->GetItemBackstabDamage()) {
-						base += inst->GetItemWeaponDamage(true);
-					}
+					base = inst->GetItemWeaponDamage(true);
 
 					if (target) {
 						if (inst->GetItemElementalFlag(true) && inst->GetItemElementalDamage(true) &&
@@ -989,7 +986,6 @@ bool Client::RangedAttack(Mob* other, bool CanDoubleAttack) {
 	if (
 		consumes_ammo &&
 		(
-			RangeItem->ExpendableArrow ||
 			!ChanceAvoidConsume ||
 			(ChanceAvoidConsume < 100 && zone->random.Int(0,99) > ChanceAvoidConsume)
 		)

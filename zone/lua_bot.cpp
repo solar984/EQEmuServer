@@ -359,16 +359,6 @@ Lua_Group Lua_Bot::GetGroup() {
 	return self->GetGroup();
 }
 
-int Lua_Bot::GetHealAmount() {
-	Lua_Safe_Call_Int();
-	return self->GetHealAmt();
-}
-
-int Lua_Bot::GetSpellDamage() {
-	Lua_Safe_Call_Int();
-	return self->GetSpellDmg();
-}
-
 int Lua_Bot::GetInstrumentMod(int spell_id) {
 	Lua_Safe_Call_Int();
 	return self->GetInstrumentMod(spell_id);
@@ -726,7 +716,6 @@ luabind::scope lua_register_bot() {
 	.def("GetClassAbbreviation", (std::string(Lua_Bot::*)(void))&Lua_Bot::GetClassAbbreviation)
 	.def("GetExpansionBitmask", (int(Lua_Bot::*)(void))&Lua_Bot::GetExpansionBitmask)
 	.def("GetGroup", (Lua_Group(Lua_Bot::*)(void))&Lua_Bot::GetGroup)
-	.def("GetHealAmount", (int(Lua_Bot::*)(void))&Lua_Bot::GetHealAmount)
 	.def("GetInstrumentMod", (int(Lua_Bot::*)(int))&Lua_Bot::GetInstrumentMod)
 	.def("GetItemAt", (Lua_ItemInst(Lua_Bot::*)(int16))&Lua_Bot::GetItemAt)
 	.def("GetItemIDAt", (int(Lua_Bot::*)(int16))&Lua_Bot::GetItemIDAt)
@@ -735,7 +724,6 @@ luabind::scope lua_register_bot() {
 	.def("GetOwner", (Lua_Mob(Lua_Bot::*)(void))&Lua_Bot::GetOwner)
 	.def("GetRaceAbbreviation", (std::string(Lua_Bot::*)(void))&Lua_Bot::GetRaceAbbreviation)
 	.def("GetRawItemAC", (int(Lua_Bot::*)(void))&Lua_Bot::GetRawItemAC)
-	.def("GetSpellDamage", (int(Lua_Bot::*)(void))&Lua_Bot::GetSpellDamage)
 	.def("GetSpellRecastTimer", (uint32(Lua_Bot::*)())&Lua_Bot::GetSpellRecastTimer)
 	.def("GetSpellRecastTimer", (uint32(Lua_Bot::*)(uint16))&Lua_Bot::GetSpellRecastTimer)
 	.def("HasAugmentEquippedByID", (bool(Lua_Bot::*)(uint32))&Lua_Bot::HasAugmentEquippedByID)

@@ -3821,10 +3821,6 @@ const int EQ::InventoryProfile::GetItemStatValue(uint32 item_id, const std::stri
 		stat = static_cast<int>(item->CastTime);
 	}
 
-	if (Strings::EqualFold(identifier, "elitematerial")) {
-		stat = static_cast<int>(item->EliteMaterial);
-	}
-
 	if (Strings::EqualFold(identifier, "procrate")) {
 		stat = static_cast<int>(item->ProcRate);
 	}
@@ -3989,10 +3985,6 @@ const int EQ::InventoryProfile::GetItemStatValue(uint32 item_id, const std::stri
 		stat = static_cast<int>(item->NoTransfer);
 	}
 
-	if (Strings::EqualFold(identifier, "questitemflag")) {
-		stat = static_cast<int>(item->QuestItemFlag);
-	}
-
 	if (Strings::EqualFold(identifier, "stacksize")) {
 		stat = static_cast<int>(item->StackSize);
 	}
@@ -4007,98 +3999,6 @@ const int EQ::InventoryProfile::GetItemStatValue(uint32 item_id, const std::stri
 
 	if (Strings::EqualFold(identifier, "booktype")) {
 		stat = static_cast<int>(item->BookType);
-	}
-
-	if (Strings::EqualFold(identifier, "svcorruption")) {
-		stat = static_cast<int>(item->SVCorruption);
-	}
-
-	if (Strings::EqualFold(identifier, "purity")) {
-		stat = static_cast<int>(item->Purity);
-	}
-
-	if (Strings::EqualFold(identifier, "backstabdmg")) {
-		stat = static_cast<int>(item->BackstabDmg);
-	}
-
-	if (Strings::EqualFold(identifier, "dsmitigation")) {
-		stat = static_cast<int>(item->DSMitigation);
-	}
-
-	if (Strings::EqualFold(identifier, "heroicstr")) {
-		stat = static_cast<int>(item->HeroicStr);
-	}
-
-	if (Strings::EqualFold(identifier, "heroicint")) {
-		stat = static_cast<int>(item->HeroicInt);
-	}
-
-	if (Strings::EqualFold(identifier, "heroicwis")) {
-		stat = static_cast<int>(item->HeroicWis);
-	}
-
-	if (Strings::EqualFold(identifier, "heroicagi")) {
-		stat = static_cast<int>(item->HeroicAgi);
-	}
-
-	if (Strings::EqualFold(identifier, "heroicdex")) {
-		stat = static_cast<int>(item->HeroicDex);
-	}
-
-	if (Strings::EqualFold(identifier, "heroicsta")) {
-		stat = static_cast<int>(item->HeroicSta);
-	}
-
-	if (Strings::EqualFold(identifier, "heroiccha")) {
-		stat = static_cast<int>(item->HeroicCha);
-	}
-
-	if (Strings::EqualFold(identifier, "heroicmr")) {
-		stat = static_cast<int>(item->HeroicMR);
-	}
-
-	if (Strings::EqualFold(identifier, "heroicfr")) {
-		stat = static_cast<int>(item->HeroicFR);
-	}
-
-	if (Strings::EqualFold(identifier, "heroiccr")) {
-		stat = static_cast<int>(item->HeroicCR);
-	}
-
-	if (Strings::EqualFold(identifier, "heroicdr")) {
-		stat = static_cast<int>(item->HeroicDR);
-	}
-
-	if (Strings::EqualFold(identifier, "heroicpr")) {
-		stat = static_cast<int>(item->HeroicPR);
-	}
-
-	if (Strings::EqualFold(identifier, "heroicsvcorrup")) {
-		stat = static_cast<int>(item->HeroicSVCorrup);
-	}
-
-	if (Strings::EqualFold(identifier, "healamt")) {
-		stat = static_cast<int>(item->HealAmt);
-	}
-
-	if (Strings::EqualFold(identifier, "spelldmg")) {
-		stat = static_cast<int>(item->SpellDmg);
-	}
-
-	if (Strings::EqualFold(identifier, "ldonsellbackrate")) {
-		stat = static_cast<int>(item->LDoNSellBackRate);
-	}
-
-	if (Strings::EqualFold(identifier, "scriptfileid")) {
-		stat = static_cast<int>(item->ScriptFileID);
-	}
-
-	if (Strings::EqualFold(identifier, "expendablearrow")) {
-		stat = static_cast<int>(item->ExpendableArrow);
-	}
-
-	if (Strings::EqualFold(identifier, "clairvoyance")) {
-		stat = static_cast<int>(item->Clairvoyance);
 	}
 
 	if (Strings::EqualFold(identifier, "clickeffect")) {

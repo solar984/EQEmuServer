@@ -429,7 +429,7 @@ void Client::GoFish(bool guarantee, bool use_bait)
 
 	if (Pole) {
 		const EQ::ItemData* fishing_item = Pole->GetItem();
-		if (fishing_item && fishing_item->SubType == 0 && zone->random.Int(0, 49) == 1) {
+		if (fishing_item && zone->random.Int(0, 49) == 1) {
 			MessageString(Chat::Skills, FISHING_POLE_BROKE);	//Your fishing pole broke!
 			DeleteItemInInventory(EQ::invslot::slotPrimary, 0, true);
 		}
