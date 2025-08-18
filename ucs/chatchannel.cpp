@@ -482,16 +482,7 @@ void ChatChannel::SendMessageToChannel(const std::string& Message, Client* Sende
 			LogDebug("Sending message to [{}] from [{}]",
 				channel_client->GetName().c_str(), Sender->GetName().c_str());
 
-			if (cv_messages[static_cast<uint32>(channel_client->GetClientVersion())].length() == 0) {
-				switch (channel_client->GetClientVersion()) {
-				case EQ::versions::ClientVersion::Titanium:
-				default:
-					cv_messages[static_cast<uint32>(channel_client->GetClientVersion())] = Message;
-					break;
-				}
-			}
-
-			channel_client->SendChannelMessage(m_name, cv_messages[static_cast<uint32>(channel_client->GetClientVersion())], Sender);
+			channel_client->SendChannelMessage(m_name, Message, Sender);
 		}
 
 		iterator.Advance();

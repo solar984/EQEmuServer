@@ -127,15 +127,7 @@ void WorldServer::ProcessMessage(uint16 opcode, EQ::Net::Packet &p)
 
 		if (Message[0] == ';')
 		{
-			std::string new_message;
-			switch (c->GetClientVersion()) {
-			case EQ::versions::ClientVersion::Titanium:
-			default:
-				new_message = Message.substr(1, std::string::npos);
-				break;
-			}
-
-			c->SendChannelMessageByNumber(new_message);
+			c->SendChannelMessageByNumber(Message.substr(1, std::string::npos));
 		}
 		else if (Message[0] == '[')
 		{
