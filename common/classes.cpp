@@ -354,8 +354,7 @@ const char *GetClassIDName(uint8 class_id, uint8 level)
 			return "Fellowship Master";
 		case Class::AlternateCurrencyMerchant:
 			return "Alternate Currency Merchant";
-		case Class::MercenaryLiaison:
-			return "Mercenary Liaison";
+
 		default:
 			return "Unknown";
 	}

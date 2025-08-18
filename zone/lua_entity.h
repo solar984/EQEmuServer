@@ -38,7 +38,6 @@ public:
 	bool IsClient();
 	bool IsNPC();
 	bool IsMob();
-	bool IsMerc();
 	bool IsCorpse();
 	bool IsPlayerCorpse();
 	bool IsNPCCorpse();
@@ -60,7 +59,6 @@ public:
 	Lua_Object CastToObject();
 	Lua_Door CastToDoor();
 	Lua_Bot CastToBot();
-	Lua_Merc CastToMerc();
 };
 
 #endif

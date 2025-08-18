@@ -49,8 +49,8 @@ void HateList::WipeHateList(bool npc_only) {
 		if (
 			m &&
 			(
-				m->IsOfClientBotMerc() ||
-				(m->IsPet() && m->GetOwner() && m->GetOwner()->IsOfClientBotMerc())
+				m->IsOfClientBot() ||
+				(m->IsPet() && m->GetOwner() && m->GetOwner()->IsOfClientBot())
 			) &&
 			npc_only
 		) {
@@ -482,13 +482,6 @@ Mob *HateList::GetMobWithMostHateOnList(
 			bool is_top_client_type = top_hate->IsClient();
 			if (!is_top_client_type) {
 				if (top_hate->IsBot()) {
-					is_top_client_type          = true;
-					top_client_type_in_range = top_hate;
-				}
-			}
-
-			if (!is_top_client_type) {
-				if (top_hate->IsMerc()) {
 					is_top_client_type          = true;
 					top_client_type_in_range = top_hate;
 				}

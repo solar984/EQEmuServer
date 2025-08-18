@@ -313,31 +313,30 @@ Corpse::Corpse(Client *c, int32 rez_exp, KilledByTypes in_killed_by) : Mob(
 		// cash
 		// Let's not move the cash when 'RespawnFromHover = true' && 'client->GetClientVersion() < EQClientSoF' since the client doesn't.
 		// (change to first client that supports 'death hover' mode, if not SoF.)
-		if (!RuleB(Character, RespawnFromHover) || c->ClientVersion() < EQ::versions::ClientVersion::SoF) {
-			auto corpse_copper   = pp->copper;
-			auto corpse_silver   = pp->silver;
-			auto corpse_gold     = pp->gold;
-			auto corpse_platinum = pp->platinum;
+		auto corpse_copper   = pp->copper;
+		auto corpse_silver   = pp->silver;
+		auto corpse_gold     = pp->gold;
+		auto corpse_platinum = pp->platinum;
 
-			pp->copper   = 0;
-			pp->silver   = 0;
-			pp->gold     = 0;
-			pp->platinum = 0;
+		pp->copper   = 0;
+		pp->silver   = 0;
+		pp->gold     = 0;
+		pp->platinum = 0;
 
-			if (RuleB(Character, LeaveCursorMoneyOnCorpse)) {
-				corpse_copper += pp->copper_cursor;
-				corpse_silver += pp->silver_cursor;
-				corpse_gold += pp->gold_cursor;
-				corpse_platinum += pp->platinum_cursor;
+		if (RuleB(Character, LeaveCursorMoneyOnCorpse)) {
+			corpse_copper += pp->copper_cursor;
+			corpse_silver += pp->silver_cursor;
+			corpse_gold += pp->gold_cursor;
+			corpse_platinum += pp->platinum_cursor;
 
-				pp->copper_cursor   = 0;
-				pp->silver_cursor   = 0;
-				pp->gold_cursor     = 0;
-				pp->platinum_cursor = 0;
-			}
-
-			SetCash(corpse_copper, corpse_silver, corpse_gold, corpse_platinum);
+			pp->copper_cursor   = 0;
+			pp->silver_cursor   = 0;
+			pp->gold_cursor     = 0;
+			pp->platinum_cursor = 0;
 		}
+
+		SetCash(corpse_copper, corpse_silver, corpse_gold, corpse_platinum);
+
 
 		// get their tints
 		memcpy(&m_item_tint.Slot, &c->GetPP().item_tint, sizeof(m_item_tint));
@@ -1159,7 +1158,8 @@ void Corpse::MakeLootRequestPackets(Client *c, const EQApplicationPacket *app)
 		if (c->Admin() >= AccountStatus::GMAdmin) {
 			m_loot_request_type = LootRequestType::GMAllowed;
 			c->Message(Chat::White, "Your GM Status allows you to loot any items on this corpse.");
-		} else {
+		}
+		else {
 			m_loot_request_type = LootRequestType::GMPeek;
 			c->Message(Chat::White, "Your GM flag allows you to look at the items on this corpse.");
 		}
@@ -1192,7 +1192,7 @@ void Corpse::MakeLootRequestPackets(Client *c, const EQApplicationPacket *app)
 
 	LogInventory(
 		"m_loot_request_type [{}] for [{}]",
-		(int) m_loot_request_type,
+		(int)m_loot_request_type,
 		c->GetName()
 	);
 
@@ -1231,15 +1231,15 @@ void Corpse::MakeLootRequestPackets(Client *c, const EQApplicationPacket *app)
 		}
 
 		auto outapp = new EQApplicationPacket(OP_MoneyOnCorpse, sizeof(moneyOnCorpseStruct));
-		auto *d     = (moneyOnCorpseStruct *) outapp->pBuffer;
+		auto *d = (moneyOnCorpseStruct *)outapp->pBuffer;
 
 		d->response = static_cast<uint8>(LootResponse::Normal);
 		d->unknown1 = 0x42;
 		d->unknown2 = 0xef;
 
-		d->copper   = 0;
-		d->silver   = 0;
-		d->gold     = 0;
+		d->copper = 0;
+		d->silver = 0;
+		d->gold = 0;
 		d->platinum = 0;
 
 		outapp->priority = 6;
@@ -1249,7 +1249,7 @@ void Corpse::MakeLootRequestPackets(Client *c, const EQApplicationPacket *app)
 	}
 	else {
 		auto outapp = new EQApplicationPacket(OP_MoneyOnCorpse, sizeof(moneyOnCorpseStruct));
-		auto *d     = (moneyOnCorpseStruct *) outapp->pBuffer;
+		auto *d = (moneyOnCorpseStruct *)outapp->pBuffer;
 
 		d->response = static_cast<uint8>(LootResponse::Normal);
 		d->unknown1 = 0x42;
@@ -1259,16 +1259,16 @@ void Corpse::MakeLootRequestPackets(Client *c, const EQApplicationPacket *app)
 
 		// this can be reworked into a switch and/or massaged to include specialized pve loot rules based on 'LootRequestType'
 		if (!IsPlayerCorpse() && c->IsGrouped() && c->AutoSplitEnabled() && cgroup) {
-			d->copper   = 0;
-			d->silver   = 0;
-			d->gold     = 0;
+			d->copper = 0;
+			d->silver = 0;
+			d->gold = 0;
 			d->platinum = 0;
 			cgroup->SplitMoney(GetCopper(), GetSilver(), GetGold(), GetPlatinum(), c);
 		}
 		else {
-			d->copper   = GetCopper();
-			d->silver   = GetSilver();
-			d->gold     = GetGold();
+			d->copper = GetCopper();
+			d->silver = GetSilver();
+			d->gold = GetGold();
 			d->platinum = GetPlatinum();
 			c->AddMoneyToPP(GetCopper(), GetSilver(), GetGold(), GetPlatinum());
 		}
@@ -1287,8 +1287,8 @@ void Corpse::MakeLootRequestPackets(Client *c, const EQApplicationPacket *app)
 
 	if (m_loot_request_type == LootRequestType::AllowedPVPDefined) {
 		auto pkitemid = GetPlayerKillItem();
-		auto pkitem   = database.GetItem(pkitemid);
-		auto pkinst   = database.CreateItem(pkitem, pkitem->MaxCharges);
+		auto pkitem = database.GetItem(pkitemid);
+		auto pkinst = database.CreateItem(pkitem, pkitem->MaxCharges);
 
 		if (pkinst) {
 			if (pkitem->RecastDelay) {
@@ -1317,16 +1317,16 @@ void Corpse::MakeLootRequestPackets(Client *c, const EQApplicationPacket *app)
 		return;
 	}
 
-	auto loot_slot   = EQ::invslot::CORPSE_BEGIN;
+	auto loot_slot = EQ::invslot::CORPSE_BEGIN;
 	auto corpse_mask = c->GetInv().GetLookup()->CorpseBitmask;
 
-	for (auto i: m_item_list) {
+	for (auto i : m_item_list) {
 		// every loot session must either set all items' lootslots to 'invslot::SLOT_INVALID'
 		// or to a valid enumerated client-versioned corpse slot (lootslot is not equip_slot)
 		i->lootslot = 0xFFFF;
 
 		// align server and client corpse slot mappings so translators can function properly
-		while (loot_slot <= EQ::invslot::CORPSE_END && (((uint64) 1 << loot_slot) & corpse_mask) == 0)
+		while (loot_slot <= EQ::invslot::CORPSE_END && (((uint64)1 << loot_slot) & corpse_mask) == 0)
 			++loot_slot;
 		if (loot_slot > EQ::invslot::CORPSE_END) {
 			continue;
@@ -1379,12 +1379,6 @@ void Corpse::MakeLootRequestPackets(Client *c, const EQApplicationPacket *app)
 
 	// Disgrace: Client seems to require that we send the packet back...
 	c->QueuePacket(app);
-
-	// This is required for the 'Loot All' feature to work for SoD clients. I expect it is to tell the client that the
-	// server has now sent all the items on the corpse.
-	if (c->ClientVersion() >= EQ::versions::ClientVersion::SoD) {
-		SendLootReqErrorPacket(c, LootResponse::LootAll);
-	}
 }
 
 void Corpse::LootCorpseItem(Client *c, const EQApplicationPacket *app)

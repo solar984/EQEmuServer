@@ -816,7 +816,6 @@ bool Mob::SpellEffect(Mob* caster, uint16 spell_id, float partial, int level_ove
 				// This was done in AddBuff, but we were not a pet yet, so
 				// the target windows didn't get updated.
 				EQApplicationPacket *outapp = MakeBuffsPacket();
-				entity_list.QueueClientsByTarget(this, outapp, false, nullptr, true, false, EQ::versions::maskSoDAndLater);
 				safe_delete(outapp);
 
 				if(caster->IsClient()){
@@ -874,36 +873,7 @@ bool Mob::SpellEffect(Mob* caster, uint16 spell_id, float partial, int level_ove
 #endif
 				if(IsClient())
 				{
-					if (CastToClient()->ClientVersionBit() & EQ::versions::maskSoDAndLater)
-					{
-						uint8 bt = BodyType::Undead;
-
-						int MessageID = SENSE_UNDEAD;
-
-						if(effect == SE_SenseSummoned)
-						{
-							bt = BodyType::Summoned;
-							MessageID = SENSE_SUMMONED;
-						}
-						else if(effect == SE_SenseAnimals)
-						{
-							bt = BodyType::Animal;
-							MessageID = SENSE_ANIMAL;
-						}
-
-						Mob *ClosestMob = entity_list.GetClosestMobByBodyType(this, bt, true);
-
-						if(ClosestMob)
-						{
-							MessageString(Chat::Spells, MessageID);
-							SetHeading(CalculateHeadingToTarget(ClosestMob->GetX(), ClosestMob->GetY()));
-							SetTarget(ClosestMob);
-							CastToClient()->SendTargetCommand(ClosestMob->GetID());
-							SentPositionPacket(0.0f, 0.0f, 0.0f, 0.0f, 0, true);
-						}
-						else
-							MessageString(Chat::Red, SENSE_NOTHING);
-					}
+					MessageString(Chat::Red, SENSE_NOTHING);
 				}
 				break;
 			}
@@ -1679,11 +1649,6 @@ bool Mob::SpellEffect(Mob* caster, uint16 spell_id, float partial, int level_ove
 #ifdef SPELL_EFFECT_SPAM
 				snprintf(effect_desc, _EDLEN, "Locate Corpse");
 #endif
-				// This is handled by the client prior to SoD.
-				//
-				if (IsClient() && (CastToClient()->ClientVersionBit() & EQ::versions::maskSoDAndLater))
-					CastToClient()->LocateCorpse();
-
 				break;
 			}
 
@@ -3849,7 +3814,7 @@ void Mob::BuffProcess()
 						LogSpells("Buff [{}] in slot [{}] has [{}] tics remaining", buffs[buffs_i].spellid, buffs_i, buffs[buffs_i].ticsremaining);
 					}
 				}
-				else if (IsClient() && !(CastToClient()->ClientVersionBit() & EQ::versions::maskSoFAndLater))
+				else if (IsClient())
 				{
 					buffs[buffs_i].UpdateClient = true;
 				}
@@ -4128,8 +4093,6 @@ void Mob::DoBuffTic(const Buffs_Struct &buff, int slot, Mob *caster)
 		case SE_LocateCorpse: {
 			// This is handled by the client prior to SoD.
 
-			if (IsClient() && (CastToClient()->ClientVersionBit() & EQ::versions::maskSoDAndLater))
-				CastToClient()->LocateCorpse();
 		}
 
 		case SE_DistanceRemoval: {
@@ -4422,8 +4385,6 @@ void Mob::BuffFadeBySlot(int slot, bool iRecalcBonuses)
 
 				EQApplicationPacket *outapp = MakeBuffsPacket(true, true);
 
-				entity_list.QueueClientsByTarget(this, outapp, false, nullptr, true, false, EQ::versions::maskSoDAndLater, true, true);
-
 				if (IsAIControlled())
 				{
 					//Remove damage over time effects on charmed pet and those applied by charmed pet.
@@ -4651,12 +4612,10 @@ void Mob::BuffFadeBySlot(int slot, bool iRecalcBonuses)
 	}
 	if((IsClient() && !CastToClient()->GetPVP()) ||
 		(IsPet() && GetOwner() && GetOwner()->IsClient() && !GetOwner()->CastToClient()->GetPVP()) ||
-		(IsBot() && GetOwner() && GetOwner()->IsClient() && !GetOwner()->CastToClient()->GetPVP()) ||
-		(IsMerc() && GetOwner() && GetOwner()->IsClient() && !GetOwner()->CastToClient()->GetPVP()))
+		(IsBot() && GetOwner() && GetOwner()->IsClient() && !GetOwner()->CastToClient()->GetPVP()))
 	{
 		EQApplicationPacket *outapp = MakeBuffsPacket();
 
-		entity_list.QueueClientsByTarget(this, outapp, false, nullptr, true, false, EQ::versions::maskSoDAndLater);
 		if(IsClient() && GetTarget() == this) {
 			CastToClient()->QueuePacket(outapp);
 		}
@@ -4666,7 +4625,6 @@ void Mob::BuffFadeBySlot(int slot, bool iRecalcBonuses)
 
 	if (IsNPC()) {
 		EQApplicationPacket *outapp = MakeBuffsPacket();
-		entity_list.QueueClientsByTarget(this, outapp, false, nullptr, true, false, EQ::versions::maskSoDAndLater, true);
 		safe_delete(outapp);
 	}
 
@@ -7575,7 +7533,7 @@ bool Mob::PassCastRestriction(int value)
 			break;
 
 		case IS_NOT_ON_HORSE:
-			if ((IsClient() && !CastToClient()->GetHorseId()) || IsBot() || IsMerc()) {
+			if ((IsClient() && !CastToClient()->GetHorseId()) || IsBot()) {
 				return true;
 			}
 			break;

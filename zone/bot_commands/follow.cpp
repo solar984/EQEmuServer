@@ -71,7 +71,7 @@ void bot_command_follow(Client* c, const Seperator* sep)
 	else {
 		target_mob = c->GetTarget();
 
-		if (!target_mob || !target_mob->IsOfClientBotMerc() || !c->IsInGroupOrRaid(target_mob)) {
+		if (!target_mob || !target_mob->IsOfClientBot() || !c->IsInGroupOrRaid(target_mob)) {
 			c->Message(Chat::Yellow, "You must <target> a friendly player, bot or merc within your group or raid to use this command");
 			return;
 		}

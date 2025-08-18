@@ -41,7 +41,6 @@ class EQApplicationPacket;
 class Entity;
 class EntityList;
 class Group;
-class Merc;
 class Mob;
 class NPC;
 class Object;
@@ -71,7 +70,6 @@ public:
 	virtual bool IsClient()			    const { return false; }
 	virtual bool IsNPC()			    const { return false; }
 	virtual bool IsMob()			    const { return false; }
-	virtual bool IsMerc()			    const { return false; }
 	virtual bool IsCorpse()			    const { return false; }
 	virtual bool IsPlayerCorpse()	    const { return false; }
 	virtual bool IsNPCCorpse()		    const { return false; }
@@ -83,7 +81,6 @@ public:
 	virtual bool IsBot()                const { return false; }
 	virtual bool IsAura()			    const { return false; }
 	virtual bool IsOfClientBot()        const { return false; }
-	virtual bool IsOfClientBotMerc()    const { return false; }
 
 	virtual bool Process() { return false; }
 	virtual bool Save() { return true; }
@@ -92,7 +89,6 @@ public:
 	Client	*CastToClient();
 	NPC		*CastToNPC();
 	Mob		*CastToMob();
-	Merc	*CastToMerc();
 	Corpse	*CastToCorpse();
 	Object	*CastToObject();
 	Doors	*CastToDoors();
@@ -103,7 +99,6 @@ public:
 	const Client	*CastToClient() const;
 	const NPC		*CastToNPC() const;
 	const Mob		*CastToMob() const;
-	const Merc		*CastToMerc() const;
 	const Corpse	*CastToCorpse() const;
 	const Object	*CastToObject() const;
 	const Doors		*CastToDoors() const;
@@ -167,13 +162,7 @@ public:
 	}
 	NPC *GetNPCByNPCTypeID(uint32 npc_id);
 	NPC *GetNPCBySpawnID(uint32 spawn_id);
-	inline Merc *GetMercByID(uint16 id)
-	{
-		auto it = merc_list.find(id);
-		if (it != merc_list.end())
-			return it->second;
-		return nullptr;
-	}
+
 	Client *GetClientByName(const char* name);
 	Client *GetClientByAccID(uint32 accid);
 	inline Client *GetClientByID(uint16 id)
@@ -244,8 +233,6 @@ public:
 	void ClearClientPetitionQueue();
 	bool CanAddHateForMob(Mob *p);
 	void SendGuildMOTD(uint32 guild_id);
-	void SendGuildChannel(uint32 guild_id);
-	void SendGuildURL(uint32 guild_id);
 	void SendGuildSpawnAppearance(uint32 guild_id);
 	void SendGuildMembers(uint32 guild_id);
 	void SendGuildMembersList(uint32 guild_id);
@@ -286,7 +273,6 @@ public:
 	void	SendTraders(Client* client);
 	void	AddClient(Client*);
 	void	AddNPC(NPC*, bool send_spawn_packet = true, bool dont_queue = false);
-	void	AddMerc(Merc*, bool SendSpawnPacket = true, bool dontqueue = false);
 	void	AddCorpse(Corpse* pc, uint32 in_id = 0xFFFFFFFF);
 	void	AddObject(Object*, bool SendSpawnPacket = true);
 	void	AddGroup(Group*);
@@ -303,7 +289,6 @@ public:
 	bool	RemoveClient(uint16 delete_id);
 	bool	RemoveClient(Client* delete_client);
 	bool	RemoveNPC(uint16 delete_id);
-	bool	RemoveMerc(uint16 delete_id);
 	bool	RemoveGroup(uint32 delete_id);
 	bool	RemoveCorpse(uint16 delete_id);
 	bool	RemoveDoor(uint16 delete_id);
@@ -316,7 +301,6 @@ public:
 	void	RemoveAllClients();
 	void	RemoveAllNPCs();
 	void	RemoveAllBots();
-	void	RemoveAllMercs();
 	void	RemoveAllGroups();
 	void	RemoveAllCorpses();
 	void	RemoveAllDoors();
@@ -331,7 +315,6 @@ public:
 	void	AddTempPetsToHateList(Mob *owner, Mob* other, bool bFrenzy = false);
 	void	AddTempPetsToHateListOnOwnerDamage(Mob *owner, Mob* attacker, int32 spell_id);
 	Entity *GetEntityMob(uint16 id);
-	Entity *GetEntityMerc(uint16 id);
 	Entity *GetEntityDoor(uint16 id);
 	Entity *GetEntityObject(uint16 id);
 	Entity *GetEntityCorpse(uint16 id);
@@ -497,7 +480,6 @@ public:
 	bool	LimitCheckName(const char* npc_name);
 
 	int		GetHatedCount(Mob *attacker, Mob *exclude, bool inc_gray_con);
-	bool	Merc_AICheckCloseBeneficialSpells(Merc* caster, uint8 iChance, float iRange, uint32 iSpellTypes);
 	Mob*	GetTargetForMez(Mob* caster);
 	uint32	CheckNPCsClose(Mob *center);
 
@@ -530,7 +512,6 @@ public:
 
 	void GetMobList(std::list<Mob*> &m_list);
 	void GetNPCList(std::list<NPC*> &n_list);
-	void GetMercList(std::list<Merc*> &n_list);
 	void GetClientList(std::list<Client*> &c_list);
 	void GetCorpseList(std::list<Corpse*> &c_list);
 	void GetObjectList(std::list<Object*> &o_list);
@@ -541,7 +522,6 @@ public:
 
 	inline const std::unordered_map<uint16, Mob *> &GetMobList() { return mob_list; }
 	inline const std::unordered_map<uint16, NPC *> &GetNPCList() { return npc_list; }
-	inline const std::unordered_map<uint16, Merc *> &GetMercList() { return merc_list; }
 	inline const std::unordered_map<uint16, Client *> &GetClientList() { return client_list; }
 	inline const std::unordered_map<uint16, Bot*> &GetBotList() { return bot_list; }
 	std::vector<Bot *> GetBotListByCharacterID(uint32 character_id, uint8 class_id = Class::None);
@@ -596,7 +576,6 @@ private:
 	std::unordered_map<uint16, Client *> client_list;
 	std::unordered_map<uint16, Mob *> mob_list;
 	std::unordered_map<uint16, NPC *> npc_list;
-	std::unordered_map<uint16, Merc *> merc_list;
 	std::unordered_map<uint16, Corpse *> corpse_list;
 	std::unordered_map<uint16, Object *> object_list;
 	std::unordered_map<uint16, Doors *> door_list;

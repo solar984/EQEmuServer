@@ -797,7 +797,6 @@ public:
 	bool IsBotCharmer() { return _botCharmer; }
 	bool IsBot() const override { return true; }
 	bool IsOfClientBot() const override { return true; }
-	bool IsOfClientBotMerc() const override { return true; }
 
 	bool GetRangerAutoWeaponSelect() { return _rangerAutoWeaponSelect; }
 	uint8 GetBotStance() { return _botStance; }

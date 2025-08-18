@@ -4004,16 +4004,6 @@ Bot* QuestManager::GetBot() const
 	return nullptr;
 }
 
-Merc* QuestManager::GetMerc() const
-{
-	if (!m_running_quests.empty()) {
-		RunningQuest e = m_running_quests.top();
-		return (e.owner && e.owner->IsMerc()) ? e.owner->CastToMerc() : nullptr;
-	}
-
-	return nullptr;
-}
-
 Mob* QuestManager::GetOwner() const
 {
 	if (!m_running_quests.empty()) {

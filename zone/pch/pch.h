@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../merc.h"
 #include "../mob.h"
 #include "../npc.h"
 #include "../corpse.h"

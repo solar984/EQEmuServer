@@ -135,24 +135,6 @@ public:
 		std::vector<std::any>* extra_pointers
 	);
 
-	virtual int EventMerc(
-		QuestEventID event_id,
-		Merc* merc,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any>* extra_pointers
-	);
-
-	virtual int EventGlobalMerc(
-		QuestEventID event_id,
-		Merc* merc,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any>* extra_pointers
-	);
-
 	virtual int EventZone(
 		QuestEventID event_id,
 		Zone* zone,
@@ -177,8 +159,6 @@ public:
 	virtual bool ItemHasQuestSub(EQ::ItemInstance* inst, QuestEventID event_id);
 	virtual bool BotHasQuestSub(QuestEventID event_id);
 	virtual bool GlobalBotHasQuestSub(QuestEventID event_id);
-	virtual bool MercHasQuestSub(QuestEventID event_id);
-	virtual bool GlobalMercHasQuestSub(QuestEventID event_id);
 	virtual bool ZoneHasQuestSub(QuestEventID event_id);
 	virtual bool GlobalZoneHasQuestSub(QuestEventID event_id);
 
@@ -190,8 +170,6 @@ public:
 	virtual void LoadSpellScript(std::string filename, uint32 spell_id);
 	virtual void LoadBotScript(std::string filename);
 	virtual void LoadGlobalBotScript(std::string filename);
-	virtual void LoadMercScript(std::string filename);
-	virtual void LoadGlobalMercScript(std::string filename);
 	virtual void LoadZoneScript(std::string filename);
 	virtual void LoadGlobalZoneScript(std::string filename);
 

@@ -216,13 +216,6 @@
 	void Handle_OP_Medding(const EQApplicationPacket *app);
 	void Handle_OP_MemorizeSpell(const EQApplicationPacket *app);
 	void Handle_OP_Mend(const EQApplicationPacket *app);
-	void Handle_OP_MercenaryCommand(const EQApplicationPacket *app);
-	void Handle_OP_MercenaryDataRequest(const EQApplicationPacket *app);
-	void Handle_OP_MercenaryDataUpdateRequest(const EQApplicationPacket *app);
-	void Handle_OP_MercenaryDismiss(const EQApplicationPacket *app);
-	void Handle_OP_MercenaryHire(const EQApplicationPacket *app);
-	void Handle_OP_MercenarySuspendRequest(const EQApplicationPacket *app);
-	void Handle_OP_MercenaryTimerRequest(const EQApplicationPacket *app);
 	void Handle_OP_MoveCoin(const EQApplicationPacket *app);
 	void Handle_OP_MoveItem(const EQApplicationPacket *app);
 	void Handle_OP_MoveMultipleItems(const EQApplicationPacket *app);

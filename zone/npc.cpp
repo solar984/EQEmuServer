@@ -306,11 +306,6 @@ NPC::NPC(const NPCType *npc_type_data, Spawn2 *in_respawn, const glm::vec4 &posi
 	innate_proc_spell_id = 0;
 	m_record_loot_stats  = false;
 
-	if (GetClass() == Class::MercenaryLiaison && RuleB(Mercs, AllowMercs)) {
-		LoadMercenaryTypes();
-		LoadMercenaries();
-	}
-
 	SpellFocusDMG  = 0;
 	SpellFocusHeal = 0;
 
@@ -848,7 +843,7 @@ void NPC::Depop(bool start_spawn_timer) {
 		DoNPCEmote(EQ::constants::EmoteEventTypes::OnDespawn, emoteid);
 	}
 
-	parse->EventBotMercNPC(EVENT_DESPAWN, this, nullptr);
+	parse->EventMob(EVENT_DESPAWN, this, nullptr);
 
 	if (parse->HasQuestSub(ZONE_CONTROLLER_NPC_ID, EVENT_DESPAWN_ZONE)) {
 		DispatchZoneControllerEvent(EVENT_DESPAWN_ZONE, this, "", 0, nullptr);

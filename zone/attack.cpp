@@ -346,7 +346,7 @@ bool Mob::CheckHitChance(Mob* other, DamageHitInfo &hit)
 	Mob *defender = this;
 	Log(Logs::Detail, Logs::Attack, "CheckHitChance(%s) attacked by %s", defender->GetName(), attacker->GetName());
 
-	if (defender->IsOfClientBotMerc() && defender->IsSitting()) {
+	if (defender->IsOfClientBot() && defender->IsSitting()) {
 		return true;
 	}
 
@@ -1025,7 +1025,7 @@ int Mob::offense(EQ::skills::SkillType skill)
 	// This causes attack to be significantly more important than it should be based on era rule of thumbs.  I do not want to change the GetATK() function in case doing so breaks something,
 	// so instead I am just adding a /2 to remedy the double counting.  NPCs do not have this issue, so they are broken up.
 	// PCAttackPowerScaling is used to help bring attack power further in line with era estimates.
-	if (IsOfClientBotMerc()) {
+	if (IsOfClientBot()) {
 		offense += (GetATK() / 2 + GetPetATKBonusFromOwner()) * RuleI(Combat, PCAttackPowerScaling) / 100;
 	} else {
 		offense += GetATK();
@@ -1045,7 +1045,7 @@ double Mob::RollD20(int offense, int mitigation)
 		1.6, 1.7, 1.8, 1.9, 2.0
 	};
 
-	if (IsOfClientBotMerc() && IsSitting()) {
+	if (IsOfClientBot() && IsSitting()) {
 		return mods[19];
 	}
 
@@ -1547,16 +1547,6 @@ void Mob::DoAttack(Mob *other, DamageHitInfo &hit, ExtraAttackOptions *opts, boo
 			LogCombat("Attack missed. Damage set to 0");
 			hit.damage_done = 0;
 		}
-
-		parse->EventBotMerc(EVENT_USE_SKILL, this, nullptr,
-			[&]() {
-				return fmt::format(
-					"{} {}",
-					hit.skill,
-					GetSkill(hit.skill)
-				);
-			}
-		);
 	}
 }
 
@@ -1913,12 +1903,8 @@ bool Client::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::Skil
 		m_pet->BuffFadeByEffect(SE_Charm);
 	}
 
-	if (GetMerc()) {
-		GetMerc()->Suspend();
-	}
-
 	if (killer_mob) {
-		parse->EventBotMercNPC(EVENT_SLAY, killer_mob, this);
+		parse->EventMob(EVENT_SLAY, killer_mob, this);
 
 		if (killer_mob->IsNPC()) {
 			killed_by = KilledByTypes::Killed_NPC;
@@ -2052,11 +2038,7 @@ bool Client::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::Skil
 		}
 
 		if (RuleB(Character, UnmemSpellsOnDeath)) {
-			if ((ClientVersionBit() & EQ::versions::maskSoFAndLater) && RuleB(Character, RespawnFromHover)) {
-				UnmemSpellAll(true);
-			} else {
-				UnmemSpellAll(false);
-			}
+			UnmemSpellAll(false);
 		}
 
 		if (
@@ -2129,16 +2111,10 @@ bool Client::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::Skil
 	from these and overwrite what we set in pp anyway
 	*/
 
-	if (leave_corpse && (ClientVersionBit() & EQ::versions::maskSoFAndLater) && RuleB(Character, RespawnFromHover)) {
-		ClearDraggedCorpses();
-		RespawnFromHoverTimer.Start(RuleI(Character, RespawnFromHoverTimer) * 1000);
-		SendRespawnBinds();
-	} else {
-		if (isgrouped) {
-			auto* g = GetGroup();
-			if (g) {
-				g->MemberZoned(this);
-			}
+	if (isgrouped) {
+		auto* g = GetGroup();
+		if (g) {
+			g->MemberZoned(this);
 		}
 
 		auto* r = entity_list.GetRaidByClient(this);
@@ -2434,7 +2410,7 @@ void NPC::Damage(Mob* other, int64 damage, uint16 spell_id, EQ::skills::SkillTyp
 
 	//handle EVENT_ATTACK. Resets after we have not been attacked for 12 seconds
 	if (attacked_timer.Check()) {
-		parse->EventMercNPC(EVENT_ATTACK, this, other);
+		parse->EventMob(EVENT_ATTACK, this, other);
 	}
 
 	attacked_timer.Start(CombatEventTimer_expire);
@@ -2487,7 +2463,7 @@ bool NPC::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::SkillTy
 		);
 	};
 
-	if (parse->EventBotMercNPC(EVENT_DEATH, this, owner_or_self, exports) != 0) {
+	if (parse->EventMob(EVENT_DEATH, this, owner_or_self, exports) != 0) {
 		if (GetHP() < 0) {
 			SetHP(0);
 		}
@@ -2785,7 +2761,6 @@ bool NPC::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::SkillTy
 	if (
 		(
 			!HasOwner() &&
-			!IsMerc() &&
 			!GetSwarmInfo() &&
 			(!is_merchant || allow_merchant_corpse) &&
 			(
@@ -2955,7 +2930,6 @@ bool NPC::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::SkillTy
 	}
 
 	if (killer_mob) {
-		parse->EventBotMerc(EVENT_NPC_SLAY, killer_mob, this);
 
 		killer_mob->TrySpellOnKill(killed_level, spell);
 	}
@@ -2985,7 +2959,7 @@ bool NPC::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::SkillTy
 
 	std::vector<std::any> args = { corpse };
 
-	parse->EventMercNPC(EVENT_DEATH_COMPLETE, this, owner_or_self,
+	parse->EventMob(EVENT_DEATH_COMPLETE, this, owner_or_self,
 		[&]() {
 			return fmt::format(
 				"{} {} {} {} {} {} {} {} {}",
@@ -3199,18 +3173,6 @@ void Mob::AddToHateList(Mob* other, int64 hate /*= 0*/, int64 damage /*= 0*/, bo
 			}
 		}
 	}
-
-	// if other is a merc, add the merc client to the hate list
-	if (other->IsMerc()) {
-		if (other->CastToMerc()->GetMercenaryOwner() && other->CastToMerc()->GetMercenaryOwner()->CastToClient()->GetFeigned()) {
-			AddFeignMemory(other->CastToMerc()->GetMercenaryOwner()->CastToClient());
-		}
-		else {
-			if (!hate_list.IsEntOnHateList(other->CastToMerc()->GetMercenaryOwner()))
-				hate_list.AddEntToHateList(other->CastToMerc()->GetMercenaryOwner(), 0, 0, false, true);
-			// if mercs are reworked to include adding 'this' to owner's xtarget list, this should reflect bots code above
-		}
-	} //MERC
 
 	//if I am a pet, then add pet owner if there's one
 	if (owner) { // Other is a pet, add him and it
@@ -4302,7 +4264,7 @@ void Mob::CommonDamage(Mob* attacker, int64 &damage, const uint16 spell_id, cons
 		if (attacker) {
 			if (skill_used == EQ::skills::SkillBash) {
 				can_stun = true;
-				if (attacker->IsClient() || attacker->IsBot() || attacker->IsMerc()) {
+				if (attacker->IsClient() || attacker->IsBot()) {
 					stunbash_chance = attacker->spellbonuses.StunBashChance +
 					                  attacker->itembonuses.StunBashChance +
 					                  attacker->aabonuses.StunBashChance;
@@ -4319,7 +4281,7 @@ void Mob::CommonDamage(Mob* attacker, int64 &damage, const uint16 spell_id, cons
 
 			bool is_immune_to_frontal_stun = false;
 
-			if (IsOfClientBotMerc()) {
+			if (IsOfClientBot()) {
 				if (
 					IsPlayerClass(GetClass()) &&
 					RuleI(Combat, FrontalStunImmunityClasses) & GetPlayerClassBit(GetClass())
@@ -4787,33 +4749,18 @@ void Mob::HealDamage(uint64 amount, Mob* caster, uint16 spell_id)
 			if (IsBuffSpell(spell_id)) { // hots
 				// message to caster
 				if ((caster->IsClient() && caster == this)) {
-					if (caster->CastToClient()->ClientVersionBit() & EQ::versions::maskSoFAndLater) {
-						FilteredMessageString(caster, Chat::NonMelee, FilterHealOverTime,
-							HOT_HEAL_SELF, itoa(acthealed), spells[spell_id].name);
-					}
-					else
-						FilteredMessageString(caster, Chat::NonMelee, FilterHealOverTime,
-							YOU_HEALED, GetCleanName(), itoa(acthealed));
+					FilteredMessageString(caster, Chat::NonMelee, FilterHealOverTime,
+						YOU_HEALED, GetCleanName(), itoa(acthealed));
 				}
 				else if ((caster->IsClient() && caster != this)) {
-					if (caster->CastToClient()->ClientVersionBit() & EQ::versions::maskSoFAndLater)
-						caster->FilteredMessageString(caster, Chat::NonMelee, FilterHealOverTime,
-							HOT_HEAL_OTHER, GetCleanName(), itoa(acthealed),
-							spells[spell_id].name);
-					else
-						caster->FilteredMessageString(caster, Chat::NonMelee, FilterHealOverTime,
-							YOU_HEAL, GetCleanName(), itoa(acthealed));
+					caster->FilteredMessageString(caster, Chat::NonMelee, FilterHealOverTime,
+						YOU_HEAL, GetCleanName(), itoa(acthealed));
 				}
 
 				// message to target
 				if (IsClient() && caster != this) {
-					if (CastToClient()->ClientVersionBit() & EQ::versions::maskSoFAndLater)
-						FilteredMessageString(caster, Chat::NonMelee, FilterHealOverTime,
-							HOT_HEALED_OTHER, caster->GetCleanName(),
-							itoa(acthealed), spells[spell_id].name);
-					else
-						FilteredMessageString(this, Chat::NonMelee, FilterHealOverTime,
-							YOU_HEALED, caster->GetCleanName(), itoa(acthealed));
+					FilteredMessageString(this, Chat::NonMelee, FilterHealOverTime,
+						YOU_HEALED, caster->GetCleanName(), itoa(acthealed));
 				}
 			}
 			else { // normal heals
@@ -5687,11 +5634,11 @@ void Mob::ApplyMeleeDamageMods(uint16 skill, int64 &damage, Mob *defender, Extra
 	}
 
 	if (defender) {
-		if (defender->IsOfClientBotMerc() && defender->GetClass() == Class::Warrior) {
+		if (defender->IsOfClientBot() && defender->GetClass() == Class::Warrior) {
 			damage_bonus_mod -= 5;
 		}
 
-		if (defender->IsOfClientBotMerc()) {
+		if (defender->IsOfClientBot()) {
 			damage_bonus_mod += (
 				defender->spellbonuses.MeleeMitigationEffect +
 				defender->itembonuses.MeleeMitigationEffect +

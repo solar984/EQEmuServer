@@ -993,12 +993,6 @@ bool Client::HandleEnterWorldPacket(const EQApplicationPacket *app) {
 			case EQ::versions::ClientVersion::Titanium:
 				connection_type = EQ::versions::ucsTitaniumChat;
 				break;
-			case EQ::versions::ClientVersion::SoF:
-				connection_type = EQ::versions::ucsSoFCombined;
-				break;
-			case EQ::versions::ClientVersion::SoD:
-				connection_type = EQ::versions::ucsSoDCombined;
-				break;
 			default:
 				connection_type = EQ::versions::ucsUnknown;
 				break;
@@ -1708,17 +1702,9 @@ bool Client::OPCharCreate(char *name, CharCreate_Struct *cc)
 	LogInfo("Hair [{}] Hair Color [{}]", cc->hairstyle, cc->haircolor);
 	LogInfo("Beard [{}] Beard Color [{}]", cc->beard, cc->beardcolor);
 
-	/* Validate the char creation struct */
-	if (m_ClientVersionBit & EQ::versions::maskSoFAndLater) {
-		if (!CheckCharCreateInfoSoF(cc)) {
-			LogInfo("CheckCharCreateInfo did not validate the request (bad race/class/stats)");
-			return false;
-		}
-	} else {
-		if (!CheckCharCreateInfoTitanium(cc)) {
-			LogInfo("CheckCharCreateInfo did not validate the request (bad race/class/stats)");
-			return false;
-		}
+	if (!CheckCharCreateInfoTitanium(cc)) {
+		LogInfo("CheckCharCreateInfo did not validate the request (bad race/class/stats)");
+		return false;
 	}
 
 	/* Convert incoming cc_s to the new PlayerProfile_Struct */
@@ -1776,18 +1762,10 @@ bool Client::OPCharCreate(char *name, CharCreate_Struct *cc)
 	pp.pvp = database.GetServerType() == 1 ? 1 : 0;
 
 	/* If it is an SoF Client and the SoF Start Zone rule is set, send new chars there */
-	if (m_ClientVersionBit & EQ::versions::maskSoFAndLater) {
-		LogInfo("Found [SoFStartZoneID] rule setting [{}]", RuleI(World, SoFStartZoneID));
-		if (RuleI(World, SoFStartZoneID) > 0) {
-			pp.zone_id = RuleI(World, SoFStartZoneID);
-			cc->start_zone = pp.zone_id;
-		}
-	} else {
-		LogInfo("Found [TitaniumStartZoneID] rule setting [{}]", RuleI(World, TitaniumStartZoneID));
-		if (RuleI(World, TitaniumStartZoneID) > 0) { 	/* if there's a startzone variable put them in there */
-			pp.zone_id     = RuleI(World, TitaniumStartZoneID);
-			cc->start_zone = pp.zone_id;
-		}
+	LogInfo("Found [TitaniumStartZoneID] rule setting [{}]", RuleI(World, TitaniumStartZoneID));
+	if (RuleI(World, TitaniumStartZoneID) > 0) { 	/* if there's a startzone variable put them in there */
+		pp.zone_id     = RuleI(World, TitaniumStartZoneID);
+		cc->start_zone = pp.zone_id;
 	}
 
 	/* use normal starting zone logic to either get defaults, or if startzone was set, load that from the db table.*/

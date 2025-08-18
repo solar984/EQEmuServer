@@ -70,7 +70,6 @@ namespace Class {
 	constexpr uint8 DarkReignMerchant         = 68;
 	constexpr uint8 FellowshipMaster          = 69;
 	constexpr uint8 AlternateCurrencyMerchant = 70;
-	constexpr uint8 MercenaryLiaison          = 71;
 
 	constexpr uint8  PLAYER_CLASS_COUNT  = 16;
 	constexpr uint16 ALL_CLASSES_BITMASK = 65535;

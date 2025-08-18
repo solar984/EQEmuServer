@@ -47,8 +47,6 @@ QuestParserCollection::QuestParserCollection()
 	_global_npc_quest_status    = QuestUnloaded;
 	_bot_quest_status           = QuestUnloaded;
 	_global_bot_quest_status    = QuestUnloaded;
-	_merc_quest_status          = QuestUnloaded;
-	_global_merc_quest_status   = QuestUnloaded;
 	_zone_quest_status          = QuestUnloaded;
 	_global_zone_quest_status   = QuestUnloaded;
 }
@@ -99,8 +97,6 @@ void QuestParserCollection::ReloadQuests(bool reset_timers)
 	_global_npc_quest_status    = QuestUnloaded;
 	_bot_quest_status           = QuestUnloaded;
 	_global_bot_quest_status    = QuestUnloaded;
-	_merc_quest_status          = QuestUnloaded;
-	_global_merc_quest_status   = QuestUnloaded;
 	_zone_quest_status          = QuestUnloaded;
 	_global_zone_quest_status   = QuestUnloaded;
 
@@ -386,49 +382,6 @@ bool QuestParserCollection::BotHasQuestSubGlobal(QuestEventID event_id)
 bool QuestParserCollection::BotHasQuestSub(QuestEventID event_id)
 {
 	return BotHasQuestSubLocal(event_id) || BotHasQuestSubGlobal(event_id);
-}
-
-bool QuestParserCollection::MercHasQuestSubLocal(QuestEventID event_id)
-{
-	if (_merc_quest_status == QuestUnloaded) {
-		std::string filename;
-		auto        qi = GetQIByMercQuest(filename);
-
-		if (qi) {
-			_merc_quest_status = qi->GetIdentifier();
-			qi->LoadMercScript(filename);
-			return qi->MercHasQuestSub(event_id);
-		}
-	} else if (_merc_quest_status != QuestFailedToLoad) {
-		auto iter = _interfaces.find(_merc_quest_status);
-		return iter->second->MercHasQuestSub(event_id);
-	}
-
-	return false;
-}
-
-bool QuestParserCollection::MercHasQuestSubGlobal(QuestEventID event_id)
-{
-	if (_global_merc_quest_status == QuestUnloaded) {
-		std::string filename;
-		auto        qi = GetQIByGlobalMercQuest(filename);
-
-		if (qi) {
-			_global_merc_quest_status = qi->GetIdentifier();
-			qi->LoadGlobalMercScript(filename);
-			return qi->GlobalMercHasQuestSub(event_id);
-		}
-	} else if (_global_merc_quest_status != QuestFailedToLoad) {
-		auto iter = _interfaces.find(_global_merc_quest_status);
-		return iter->second->GlobalMercHasQuestSub(event_id);
-	}
-
-	return false;
-}
-
-bool QuestParserCollection::MercHasQuestSub(QuestEventID event_id)
-{
-	return MercHasQuestSubLocal(event_id) || MercHasQuestSubGlobal(event_id);
 }
 
 bool QuestParserCollection::ZoneHasQuestSubLocal(QuestEventID event_id)
@@ -886,86 +839,6 @@ int QuestParserCollection::EventBotGlobal(
 		if (_global_bot_quest_status != QuestFailedToLoad) {
 			auto iter = _interfaces.find(_global_bot_quest_status);
 			return iter->second->EventGlobalBot(event_id, bot, init, data, extra_data, extra_pointers);
-		}
-	}
-
-	return 0;
-}
-
-int QuestParserCollection::EventMerc(
-	QuestEventID event_id,
-	Merc* merc,
-	Mob* init,
-	std::string data,
-	uint32 extra_data,
-	std::vector<std::any>* extra_pointers
-)
-{
-	const int local_return   = EventMercLocal(event_id, merc, init, data, extra_data, extra_pointers);
-	const int global_return  = EventMercGlobal(event_id, merc, init, data, extra_data, extra_pointers);
-	const int default_return = DispatchEventMerc(event_id, merc, init, data, extra_data, extra_pointers);
-
-	if (local_return != 0) {
-		return local_return;
-	} else if (global_return != 0) {
-		return global_return;
-	} else if (default_return != 0) {
-		return default_return;
-	}
-
-	return 0;
-}
-
-int QuestParserCollection::EventMercLocal(
-	QuestEventID event_id,
-	Merc* merc,
-	Mob* init,
-	std::string data,
-	uint32 extra_data,
-	std::vector<std::any>* extra_pointers
-)
-{
-	if (_merc_quest_status == QuestUnloaded) {
-		std::string filename;
-		auto        qi = GetQIByMercQuest(filename);
-
-		if (qi) {
-			_merc_quest_status = qi->GetIdentifier();
-			qi->LoadMercScript(filename);
-			return qi->EventMerc(event_id, merc, init, data, extra_data, extra_pointers);
-		}
-	} else {
-		if (_merc_quest_status != QuestFailedToLoad) {
-			auto iter = _interfaces.find(_merc_quest_status);
-			return iter->second->EventMerc(event_id, merc, init, data, extra_data, extra_pointers);
-		}
-	}
-
-	return 0;
-}
-
-int QuestParserCollection::EventMercGlobal(
-	QuestEventID event_id,
-	Merc* merc,
-	Mob* init,
-	std::string data,
-	uint32 extra_data,
-	std::vector<std::any>* extra_pointers
-)
-{
-	if (_global_merc_quest_status == QuestUnloaded) {
-		std::string filename;
-		auto        qi = GetQIByGlobalMercQuest(filename);
-
-		if (qi) {
-			_global_merc_quest_status = qi->GetIdentifier();
-			qi->LoadGlobalMercScript(filename);
-			return qi->EventGlobalMerc(event_id, merc, init, data, extra_data, extra_pointers);
-		}
-	} else {
-		if (_global_merc_quest_status != QuestFailedToLoad) {
-			auto iter = _interfaces.find(_global_merc_quest_status);
-			return iter->second->EventGlobalMerc(event_id, merc, init, data, extra_data, extra_pointers);
 		}
 	}
 
@@ -1745,27 +1618,6 @@ int QuestParserCollection::DispatchEventBot(
 	return ret;
 }
 
-int QuestParserCollection::DispatchEventMerc(
-	QuestEventID event_id,
-	Merc* merc,
-	Mob* init,
-	std::string data,
-	uint32 extra_data,
-	std::vector<std::any>* extra_pointers
-)
-{
-	int ret = 0;
-
-	for (const auto& e: _load_precedence) {
-		int i = e->DispatchEventMerc(event_id, merc, init, data, extra_data, extra_pointers);
-		if (i != 0) {
-			ret = i;
-		}
-	}
-
-	return ret;
-}
-
 int QuestParserCollection::DispatchEventZone(
 	QuestEventID event_id,
 	Zone* zone,
@@ -1809,62 +1661,6 @@ void QuestParserCollection::LoadPerlEventExportSettings(PerlEventExportSettings*
 	LogInfo("Loaded [{}] Perl Event Export Settings", l.size());
 }
 
-int QuestParserCollection::EventBotMerc(
-	QuestEventID event_id,
-	Mob* e,
-	Mob* init,
-	std::function<std::string()> lazy_data,
-	uint32 extra_data,
-	std::vector<std::any>* extra_pointers
-)
-{
-	if (e->IsBot() && BotHasQuestSub(event_id)) {
-		return EventBot(event_id, e->CastToBot(), init, lazy_data(), extra_data, extra_pointers);
-	} else if (e->IsMerc() && MercHasQuestSub(event_id)) {
-		return EventMerc(event_id, e->CastToMerc(), init, lazy_data(), extra_data, extra_pointers);
-	}
-
-	return false; // No quest subscription found
-}
-
-int QuestParserCollection::EventMercNPC(
-	QuestEventID event_id,
-	Mob* e,
-	Mob* init,
-	std::function<std::string()> lazy_data,
-	uint32 extra_data,
-	std::vector<std::any>* extra_pointers
-)
-{
-	if (e->IsMerc() && MercHasQuestSub(event_id)) {
-		return EventMerc(event_id, e->CastToMerc(), init, lazy_data(), extra_data, extra_pointers);
-	} else if (e->IsNPC() && HasQuestSub(e->GetNPCTypeID(), event_id)) {
-		return EventNPC(event_id, e->CastToNPC(), init, lazy_data(), extra_data, extra_pointers);
-	}
-
-	return false; // No quest subscription found
-}
-
-int QuestParserCollection::EventBotMercNPC(
-	QuestEventID event_id,
-	Mob* e,
-	Mob* init,
-	std::function<std::string()> lazy_data,
-	uint32 extra_data,
-	std::vector<std::any>* extra_pointers
-)
-{
-	if (e->IsBot() && BotHasQuestSub(event_id)) {
-		return EventBot(event_id, e->CastToBot(), init, lazy_data(), extra_data, extra_pointers);
-	} else if (e->IsMerc() && MercHasQuestSub(event_id)) {
-		return EventMerc(event_id, e->CastToMerc(), init, lazy_data(), extra_data, extra_pointers);
-	} else if (e->IsNPC() && HasQuestSub(e->GetNPCTypeID(), event_id)) {
-		return EventNPC(event_id, e->CastToNPC(), init, lazy_data(), extra_data, extra_pointers);
-	}
-
-	return false; // No quest subscription found
-}
-
 int QuestParserCollection::EventMob(
 	QuestEventID event_id,
 	Mob* e,
@@ -1878,8 +1674,6 @@ int QuestParserCollection::EventMob(
 		return EventPlayer(event_id, e->CastToClient(), lazy_data(), extra_data, extra_pointers);
 	} else if (e->IsBot() && BotHasQuestSub(event_id)) {
 		return EventBot(event_id, e->CastToBot(), init, lazy_data(), extra_data, extra_pointers);
-	} else if (e->IsMerc() && MercHasQuestSub(event_id)) {
-		return EventMerc(event_id, e->CastToMerc(), init, lazy_data(), extra_data, extra_pointers);
 	} else if (e->IsNPC() && HasQuestSub(e->GetNPCTypeID(), event_id)) {
 		return EventNPC(event_id, e->CastToNPC(), init, lazy_data(), extra_data, extra_pointers);
 	}

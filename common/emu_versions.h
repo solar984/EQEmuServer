@@ -31,27 +31,19 @@ namespace EQ
 		enum class ClientVersion : uint32 {
 			Unknown = 0,
 			Client62,	// Build: 'Aug  4 2005 15:40:59'
-			Titanium,	// Build: 'Oct 31 2005 10:33:37'
-			SoF,		// Build: 'Sep  7 2007 09:11:49'
-			SoD			// Build: 'Dec 19 2008 15:22:49'
+			Titanium	// Build: 'Oct 31 2005 10:33:37'
 		};
 
 		enum ClientVersionBitmask : uint32 {
 			bitUnknown = 0x00000000,
 			bitClient62 = 0x00000001, // unsupported (placeholder for scripts)
 			bitTitanium = 0x00000002,
-			bitSoF = 0x00000004,
-			bitSoD = 0x00000008,
 			maskUnknown = 0x00000000,
 			maskTitaniumAndEarlier = 0x00000003,
-			maskSoFAndEarlier = 0x00000007,
-			maskSoDAndEarlier = 0x0000000F,
-			maskSoFAndLater = 0xFFFFFFFC,
-			maskSoDAndLater = 0xFFFFFFF8,
 			maskAllClients = 0xFFFFFFFF
 		};
 
-		const ClientVersion LastClientVersion = ClientVersion::SoD;
+		const ClientVersion LastClientVersion = ClientVersion::Titanium;
 		const size_t ClientVersionCount = (static_cast<size_t>(LastClientVersion) + 1);
 
 		bool IsValidClientVersion(ClientVersion client_version);
@@ -64,25 +56,19 @@ namespace EQ
 			Unknown = 0,
 			Client62,
 			Titanium,
-			SoF,
-			SoD,
 			NPC,
 			NPCMerchant,
-			Merc,
 			Bot,
 			ClientPet,
 			NPCPet,
-			MercPet,
 			BotPet,
-			OfflineTitanium,
-			OfflineSoF,
-			OfflineSoD
+			OfflineTitanium
 		};
 
-		const MobVersion LastMobVersion = MobVersion::OfflineSoD;
-		const MobVersion LastPCMobVersion = MobVersion::SoD;
+		const MobVersion LastMobVersion = MobVersion::OfflineTitanium;
+		const MobVersion LastPCMobVersion = MobVersion::Titanium;
 		const MobVersion LastNonPCMobVersion = MobVersion::BotPet;
-		const MobVersion LastOfflinePCMobVersion = MobVersion::OfflineSoD;
+		const MobVersion LastOfflinePCMobVersion = MobVersion::OfflineTitanium;
 		const size_t MobVersionCount = (static_cast<size_t>(LastMobVersion) + 1);
 
 		bool IsValidMobVersion(MobVersion mob_version);
@@ -109,9 +95,7 @@ namespace EQ
 			ucsClient62Chat = 'A',
 			ucsClient62Mail = 'a',
 			ucsTitaniumChat = 'B',
-			ucsTitaniumMail = 'b',
-			ucsSoFCombined = 'C',
-			ucsSoDCombined = 'D'
+			ucsTitaniumMail = 'b'
 		};
 
 	} /*versions*/
@@ -128,12 +112,7 @@ namespace EQ
 			GoD,
 			OoW,
 			DoN,
-			DoD,
-			PoR,
-			TSS,
-			TBS,
-			SoF,
-			SoD
+			DoD
 		};
 
 		enum ExpansionBitmask : uint32 {
@@ -148,11 +127,6 @@ namespace EQ
 			bitOoW = 0x00000080,
 			bitDoN = 0x00000100,
 			bitDoD = 0x00000200,
-			bitPoR = 0x00000400,
-			bitTSS = 0x00000800,
-			bitTBS = 0x00001000,
-			bitSoF = 0x00002000,
-			bitSoD = 0x00004000,
 			maskEverQuest = 0x00000000,
 			maskRoK = 0x00000001,
 			maskSoV = 0x00000003,
@@ -163,12 +137,7 @@ namespace EQ
 			maskGoD = 0x0000007F,
 			maskOoW = 0x000000FF,
 			maskDoN = 0x000001FF,
-			maskDoD = 0x000003FF,
-			maskPoR = 0x000007FF,
-			maskTSS = 0x00000FFF,
-			maskTBS = 0x00001FFF,
-			maskSoF = 0x00003FFF,
-			maskSoD = 0x00007FFF
+			maskDoD = 0x000003FF
 		};
 
 		const char* ExpansionName(Expansion expansion);

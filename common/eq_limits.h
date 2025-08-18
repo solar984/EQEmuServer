@@ -24,8 +24,6 @@
 #include "eq_constants.h"
 #include "emu_versions.h"
 #include "../common/patches/titanium_limits.h"
-#include "../common/patches/sof_limits.h"
-#include "../common/patches/sod_limits.h"
 
 namespace EQ
 {
@@ -192,7 +190,6 @@ namespace EQ
 			int TotalBuffs;
 			int NPCBuffs;
 			int PetBuffs;
-			int MercBuffs;
 			
 			LookupEntry(const LookupEntry *lookup_entry) { }
 			LookupEntry(
@@ -204,8 +201,7 @@ namespace EQ
 				int DiscBuffs,
 				int TotalBuffs,
 				int NPCBuffs,
-				int PetBuffs,
-				int MercBuffs
+				int PetBuffs
 			) :
 				SpellIdMax(SpellIdMax),
 				SpellbookSize(SpellbookSize),
@@ -215,8 +211,7 @@ namespace EQ
 				DiscBuffs(DiscBuffs),
 				TotalBuffs(TotalBuffs),
 				NPCBuffs(NPCBuffs),
-				PetBuffs(PetBuffs),
-				MercBuffs(MercBuffs)
+				PetBuffs(PetBuffs)
 			{ }
 		};
 		

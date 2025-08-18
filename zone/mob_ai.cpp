@@ -1755,8 +1755,6 @@ void Mob::AI_Event_Engaged(Mob *attacker, bool yell_for_help)
 
 	SetAppearance(eaStanding);
 
-	parse->EventBotMerc(EVENT_COMBAT, this, attacker, [&] { return "1"; });
-
 	if (IsNPC()) {
 		CastToNPC()->AIautocastspell_timer->Start(300, false);
 
@@ -1835,9 +1833,7 @@ void Mob::AI_Event_NoLongerEngaged() {
 			m_combat_record.Stop();
 			CastToNPC()->SetCombatEvent(false);
 		}
-	} else {
-		parse->EventBotMerc(EVENT_COMBAT, this, nullptr, [&]() { return "0"; });
-	}
+	} 
 }
 
 //this gets called from InterruptSpell() for failure or SpellFinished() for success

@@ -60,7 +60,6 @@ SET(zone_sources
     loot.cpp
     main.cpp
     map.cpp
-    merc.cpp
     mob.cpp
     mob_ai.cpp
     mob_appearance.cpp
@@ -170,7 +169,6 @@ SET(zone_headers
     lua_inventory.h
     lua_item.h
     lua_iteminst.h
-    lua_merc.h
     lua_mob.h
     lua_mod.h
     lua_npc.h
@@ -186,7 +184,6 @@ SET(zone_headers
     lua_zone.h
     map.h
     masterentity.h
-    merc.h
     mob.h
     mob_movement_manager.h
     npc.h
@@ -254,7 +251,6 @@ set(lua_sources
     lua_inventory.cpp
     lua_item.cpp
     lua_iteminst.cpp
-    lua_merc.cpp
     lua_mob.cpp
     lua_mod.cpp
     lua_npc.cpp
@@ -284,7 +280,6 @@ set(perl_sources
     perl_groups.cpp
     perl_hateentry.cpp
     perl_inventory.cpp
-    perl_merc.cpp
     perl_mob.cpp
     perl_npc.cpp
     perl_object.cpp

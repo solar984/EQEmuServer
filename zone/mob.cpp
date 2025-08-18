@@ -1227,9 +1227,6 @@ void Mob::SetSpawnLastNameByClass(NewSpawn_Struct* ns)
 		case Class::BerserkerGM:
 			strcpy(ns->spawn.lastName, "Berserker Guildmaster");
 			break;
-		case Class::MercenaryLiaison:
-			strcpy(ns->spawn.lastName, "Mercenary Liaison");
-			break;
 		default:
 			break;
 	}
@@ -1314,7 +1311,6 @@ void Mob::FillSpawnStruct(NewSpawn_Struct* ns, Mob* ForWho)
 
 	ns->spawn.invis		= (invisible || hidden) ? 1 : 0;	// TODO: load this before spawning players
 	ns->spawn.NPC		= IsClient() ? 0 : 1;
-	ns->spawn.IsMercenary = IsMerc() ? 1 : 0;
 	ns->spawn.targetable_with_hotkey = no_target_hotkey ? 0 : 1; // opposite logic!
 	ns->spawn.untargetable = IsTargetable();
 
@@ -2543,7 +2539,7 @@ void Mob::SendStatsWindow(Client* c, bool use_window)
 
 	if (use_window) {
 		if (final_string.size() < 4096) {
-			const uint32 popup_buttons = (c->ClientVersion() < EQ::versions::ClientVersion::SoD) ? 0 : 1;
+			const uint32 popup_buttons = 0;
 			c->SendWindow(
 				0,
 				POPUPID_UPDATE_SHOWSTATSWINDOW,
@@ -5426,8 +5422,7 @@ int Mob::GetHaste()
 		level > 25 ||
 		(
 			(IsNPC() && RuleB(NPC, NPCIgnoreLevelBasedHasteCaps)) ||
-			(IsBot() && RuleB(Bots, BotsIgnoreLevelBasedHasteCaps)) ||
-			(IsMerc() && RuleB(Mercs, MercsIgnoreLevelBasedHasteCaps))
+			(IsBot() && RuleB(Bots, BotsIgnoreLevelBasedHasteCaps))
 		)
 	) {
 		h += itembonuses.haste;
@@ -5446,7 +5441,7 @@ int Mob::GetHaste()
 		cap = 10 + level;
 		cap += std::max(0, owner->GetLevel() - 39) + std::max(0, owner->GetLevel() - 60);
 	} else {
-		cap = (IsNPC() ? RuleI(NPC, NPCHasteCap) : IsBot() ? RuleI(Bots, BotsHasteCap) : IsMerc() ? RuleI(Mercs, MercsHasteCap) : 150);
+		cap = (IsNPC() ? RuleI(NPC, NPCHasteCap) : IsBot() ? RuleI(Bots, BotsHasteCap) : 150);
 	}
 
 	if(h > cap)
@@ -5455,11 +5450,10 @@ int Mob::GetHaste()
 	// 51+ 25 (despite there being higher spells...), 1-50 10
 	if (
 		(IsNPC() && !RuleB(NPC, NPCIgnoreLevelBasedHasteCaps)) ||
-		(IsBot() && !RuleB(Bots, BotsIgnoreLevelBasedHasteCaps)) ||
-		(IsMerc() && !RuleB(Mercs, MercsIgnoreLevelBasedHasteCaps))
+		(IsBot() && !RuleB(Bots, BotsIgnoreLevelBasedHasteCaps))
 	) {
 		if (level > 50) { // 51+
-			cap = (IsNPC() ? RuleI(NPC, NPCHastev3Cap) : IsBot() ? RuleI(Bots, BotsHastev3Cap) : IsMerc() ? RuleI(Mercs, MercsHastev3Cap) : RuleI(Character, Hastev3Cap));
+			cap = (IsNPC() ? RuleI(NPC, NPCHastev3Cap) : IsBot() ? RuleI(Bots, BotsHastev3Cap) : RuleI(Character, Hastev3Cap));
 
 			if (spellbonuses.hastetype3 > cap) {
 				h += cap;
@@ -6177,7 +6171,7 @@ bool Mob::TryFadeEffect(int slot)
 
 void Mob::TrySympatheticProc(Mob* target, uint32 spell_id)
 {
-	if (!target || !IsValidSpell(spell_id) || !IsOfClientBotMerc()) {
+	if (!target || !IsValidSpell(spell_id) || !IsOfClientBot()) {
 		return;
 	}
 
@@ -8595,7 +8589,7 @@ void Mob::ClearDataBucketCache()
 }
 
 bool Mob::IsInGroupOrRaid(Mob* other, bool same_raid_group) {
-	if (!other || !IsOfClientBotMerc() || !other->IsOfClientBotMerc()) {
+	if (!other || !IsOfClientBot() || !other->IsOfClientBot()) {
 		return false;
 	}
 
@@ -8653,7 +8647,7 @@ bool Mob::DoLosChecks(Mob* other) {
 }
 
 bool Mob::CheckDoorLoSCheat(Mob* other) {
-	if (!other->IsOfClientBotMerc() && other->CastToNPC()->IsOnHatelist(this)) {
+	if (!other->IsOfClientBot() && other->CastToNPC()->IsOnHatelist(this)) {
 		return true;
 	}
 

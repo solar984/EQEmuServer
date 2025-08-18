@@ -18,7 +18,6 @@
 
 class Client;
 class Corpse;
-class Merc;
 class NPC;
 class Petition;
 class Spawn2;
@@ -573,16 +572,6 @@ public:
 	/*Bots	*/
 	DBbotspells_Struct*	GetBotSpells(uint32 bot_spell_id);
 	void ClearBotSpells() { bot_spells_cache.clear(); bot_spells_loadtried.clear(); }
-
-	/* Mercs   */
-	const NPCType* GetMercenaryType(uint32 id, uint16 race_id, uint32 owner_level);
-	void LoadMercenaryEquipment(Merc* m);
-	void SaveMercenaryBuffs(Merc* m);
-	void LoadMercenaryBuffs(Merc* m);
-	bool LoadMercenaryInfo(Client* c);
-	bool LoadCurrentMercenary(Client* c);
-	bool SaveMercenary(Merc* m);
-	bool DeleteMercenary(uint32 mercenary_id);
 
 	/* Petitions   */
 	void	DeletePetitionFromDB(Petition* wpet);

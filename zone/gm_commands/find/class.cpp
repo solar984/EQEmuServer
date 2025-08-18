@@ -41,7 +41,7 @@ void FindClass(Client *c, const Seperator *sep)
 
 	auto found_count = 0;
 
-	for (uint16 class_id = Class::Warrior; class_id <= Class::MercenaryLiaison; class_id++) {
+	for (uint16 class_id = Class::Warrior; class_id <= Class::AlternateCurrencyMerchant; class_id++) {
 		const std::string& class_name       = GetClassIDName(class_id);
 		const auto&        class_name_lower = Strings::ToLower(class_name);
 		if (!Strings::Contains(class_name_lower, search_criteria)) {

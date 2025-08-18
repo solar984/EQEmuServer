@@ -52,7 +52,6 @@ namespace EQ
 #include "../common/inventory_profile.h"
 #include "../common/guilds.h"
 #include "common.h"
-#include "merc.h"
 #include "mob.h"
 #include "qglobals.h"
 #include "questmgr.h"
@@ -295,7 +294,6 @@ public:
 	bool ChangePetName(std::string new_name);
 	bool IsClient() const override { return true; }
 	bool IsOfClientBot() const override { return true; }
-	bool IsOfClientBotMerc() const override { return true; }
 	void CompleteConnect();
 	bool TryStacking(EQ::ItemInstance* item, uint8 type = ItemPacketTrade, bool try_worn = true, bool try_cursor = true);
 	void SendTraderPacket(Client* trader, uint32 Unknown72 = 51);
@@ -793,15 +791,11 @@ public:
 	void SetGuildRank(uint32 rank);
 	void SetGuildID(uint32 guild_id);
 	void SendGuildMOTD(bool GetGuildMOTDReply = false);
-	void SendGuildURL();
-	void SendGuildChannel();
 	void SendGuildSpawnAppearance();
-	void SendGuildRanks();
 	void SendGuildMembers();
 	void SendGuildList();
 	void SendGuildJoin(GuildJoin_Struct* gj);
 	void RefreshGuildInfo();
-	void SendGuildRankNames();
 	void SendGuildTributeDetails(uint32 tribute_id, uint32 tier);
 	void DoGuildTributeUpdate();
 	void SendGuildActiveTributes(uint32 guild_id);
@@ -1674,39 +1668,6 @@ public:
 	void DeleteItemRecastTimer(uint32 item_id);
 	bool HasItemRecastTimer(int32 spell_id, uint32 inventory_slot);
 
-	void InitializeMercInfo();
-	bool CheckCanSpawnMerc(uint32 template_id);
-	bool CheckCanHireMerc(Mob* merchant, uint32 template_id);
-	bool CheckCanRetainMerc(uint32 upkeep);
-	bool CheckCanUnsuspendMerc();
-	bool DismissMerc(uint32 MercID);
-	bool MercOnlyOrNoGroup();
-	inline uint32 GetMercenaryID() const { return mercid; }
-	inline uint8 GetMercSlot() const { return mercSlot; }
-	void SetMercID( uint32 newmercid) { mercid = newmercid; }
-	void SetMercSlot( uint8 newmercslot) { mercSlot = newmercslot; }
-	Merc* GetMerc();
-	MercInfo& GetMercInfo(uint8 slot) { return m_mercinfo[slot]; }
-	MercInfo& GetMercInfo() { return m_mercinfo[mercSlot]; }
-	uint8 GetNumberOfMercenaries();
-	void SetMerc(Merc* newmerc);
-	void SendMercResponsePackets(uint32 ResponseType);
-	void SendMercMerchantResponsePacket(int32 response_type);
-	void SendMercenaryUnknownPacket(uint8 type);
-	void SendMercenaryUnsuspendPacket(uint8 type);
-	void SendMercTimer(Merc* merc = nullptr);
-	void SendMercTimerPacket(int32 entity_id, int32 merc_state, int32 suspended_time, int32 update_interval = 900000, int32 unk01 = 180000);
-	void SendMercSuspendResponsePacket(uint32 suspended_time);
-	void SendMercAssignPacket(uint32 entityID, uint32 unk01, uint32 unk02);
-	void SendMercPersonalInfo();
-	void SendClearMercInfo();
-	void SuspendMercCommand();
-	void SpawnMercOnZone();
-	void SpawnMerc(Merc* merc, bool setMaxStats);
-	void UpdateMercTimer();
-	void UpdateMercLevel();
-	void CheckMercSuspendTimer();
-	Timer* GetMercTimer() { return &merc_timer; };
 	Timer* GetPickLockTimer() { return &pick_lock_timer; };
 
 	void SendWebLink(const char* website);
@@ -2002,8 +1963,6 @@ private:
 	uint32 account_creation;
 	bool first_login;
 	bool ingame;
-	uint32 mercid; // current merc
-	uint8 mercSlot; // selected merc slot
 	time_t                                                         m_trader_transaction_date;
 	uint32                                                         m_trader_count{};
 	uint32                                                         m_buyer_id;
@@ -2046,7 +2005,6 @@ private:
 	Object* m_tradeskill_object;
 	PetInfo m_petinfo; // current pet data, used while loading from and saving to DB
 	PetInfo m_suspendedminion; // pet data for our suspended minion.
-	MercInfo m_mercinfo[MAXMERCS]; // current mercenary
 	InspectMessage_Struct m_inspect_message;
 	bool temp_pvp;
 
@@ -2099,7 +2057,6 @@ private:
 	Timer qglobal_purge_timer;
 	Timer TrackingTimer;
 	Timer RespawnFromHoverTimer;
-	Timer merc_timer;
 	Timer anon_toggle_timer;
 	Timer afk_toggle_timer;
 	Timer helm_toggle_timer;

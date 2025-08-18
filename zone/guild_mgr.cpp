@@ -603,24 +603,10 @@ void ZoneGuildManager::ProcessWorldPacket(ServerPacket *pack)
 			}
 			break;
 		}
-		case ServerOP_GuildChannel: {
-			if (is_zone_loaded) {
-				auto s_in = (ServerOP_GuildMessage_Struct *) pack->pBuffer;
-				entity_list.SendGuildChannel(s_in->guild_id);
-			}
-			break;
-		}
 		case ServerOP_GuildMembersList: {
 			if (is_zone_loaded) {
 				auto s_in = (ServerOP_GuildMessage_Struct *) pack->pBuffer;
 				entity_list.SendGuildMembersList(s_in->guild_id);
-			}
-			break;
-		}
-		case ServerOP_GuildURL: {
-			if (is_zone_loaded) {
-				auto s_in = (ServerOP_GuildMessage_Struct *) pack->pBuffer;
-				entity_list.SendGuildURL(s_in->guild_id);
 			}
 			break;
 		}

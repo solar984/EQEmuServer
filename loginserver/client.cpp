@@ -535,13 +535,6 @@ void Client::SendExpansionPacketData(PlayerLoginReply &plrs)
 
 		}
 		else if (m_client_version == cv_titanium) {
-			if (expansion >= EQ::expansions::bitPoR) {
-				// Titanium shipped with 10 expansions.  Set owned expansions to be max 10.
-				plrs.offer_min_days = ((EQ::expansions::bitDoD << 2) | 1) - 2;
-			}
-			else {
-				plrs.offer_min_days = owned_expansion;
-			}
 			// Titanium shipped with 10 expansions.  Set owned expansions to be max 10.
 			plrs.web_offer_min_views = ((EQ::expansions::bitDoD << 2) | 1) - 2;
 		}

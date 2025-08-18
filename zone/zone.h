@@ -315,8 +315,6 @@ public:
 	void LoadLDoNTraps();
 	void LoadLevelEXPMods();
 	void LoadGrids();
-	void LoadMercenarySpells();
-	void LoadMercenaryTemplates();
 	void LoadNewMerchantData(uint32 merchantid);
 	void LoadNPCEmotes(std::vector<NPC_Emote_Struct*>* v);
 	void LoadTempMerchantData();

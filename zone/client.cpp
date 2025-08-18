@@ -172,7 +172,6 @@ Client::Client() : Mob(
 				   qglobal_purge_timer(30000),
 				   TrackingTimer(2000),
 				   RespawnFromHoverTimer(0),
-				   merc_timer(RuleI(Mercs, UpkeepIntervalMS)),
 				   ItemQuestTimer(500),
 				   anon_toggle_timer(250),
 				   afk_toggle_timer(250),
@@ -252,7 +251,6 @@ Client::Client() : Mob(
 	dead_timer.Disable();
 	camp_timer.Disable();
 	autosave_timer.Disable();
-	GetMercTimer()->Disable();
 	instalog = false;
 	m_pp.autosplit = false;
 	// initialise haste variable
@@ -273,10 +271,6 @@ Client::Client() : Mob(
 	keyring.clear();
 	bind_sight_target = nullptr;
 	p_raid_instance = nullptr;
-	mercid = 0;
-	mercSlot = 0;
-	InitializeMercInfo();
-	SetMerc(0);
 	if (RuleI(World, PVPMinLevel) > 0 && level >= RuleI(World, PVPMinLevel) && m_pp.pvp == 0) SetPVP(true, false);
 	dynamiczone_removal_timer.Disable();
 
@@ -458,7 +452,6 @@ Client::Client(EQStreamInterface *ieqs) : Mob(
 	qglobal_purge_timer(30000),
 	TrackingTimer(2000),
 	RespawnFromHoverTimer(0),
-	merc_timer(RuleI(Mercs, UpkeepIntervalMS)),
 	ItemQuestTimer(500),
 	anon_toggle_timer(250),
 	afk_toggle_timer(250),
@@ -541,7 +534,6 @@ Client::Client(EQStreamInterface *ieqs) : Mob(
 	camp_timer.Disable();
 	bot_camp_timer.Disable();
 	autosave_timer.Disable();
-	GetMercTimer()->Disable();
 	instalog = false;
 	m_pp.autosplit = false;
 	// initialise haste variable
@@ -562,10 +554,7 @@ Client::Client(EQStreamInterface *ieqs) : Mob(
 	keyring.clear();
 	bind_sight_target = nullptr;
 	p_raid_instance = nullptr;
-	mercid = 0;
-	mercSlot = 0;
-	InitializeMercInfo();
-	SetMerc(0);
+
 	if (RuleI(World, PVPMinLevel) > 0 && level >= RuleI(World, PVPMinLevel) && m_pp.pvp == 0) SetPVP(true, false);
 	dynamiczone_removal_timer.Disable();
 
@@ -690,10 +679,6 @@ Client::~Client() {
 	Mob* horse = entity_list.GetMob(CastToClient()->GetHorseId());
 	if (horse)
 		horse->Depop();
-
-	Mob* merc = entity_list.GetMob(GetMercenaryID());
-	if (merc)
-		merc->Depop();
 
 	if(IsTrader()) {
 		TraderEndTrader();
@@ -831,9 +816,6 @@ void Client::SendZoneInPackets()
 
 	if (IsInAGuild()) {
 		guild_mgr.UpdateDbMemberOnline(CharacterID(), true);
-		//SendGuildMembers();
-		SendGuildURL();
-		SendGuildChannel();
 		if (RuleB(Guild, EnableLFGuild)) {
 			SendGuildLFGuildStatus();
 		}
@@ -991,19 +973,6 @@ bool Client::Save(uint8 iCommitNow) {
 	TotalSecondsPlayed += (time(nullptr) - m_pp.lastlogin);
 	m_pp.timePlayedMin = (TotalSecondsPlayed / 60);
 	m_pp.RestTimer = GetRestTimer();
-
-	/* Save Mercs */
-	if (GetMercInfo().MercTimerRemaining > RuleI(Mercs, UpkeepIntervalMS)) {
-		GetMercInfo().MercTimerRemaining = RuleI(Mercs, UpkeepIntervalMS);
-	}
-
-	if (GetMercTimer()->Enabled()) {
-		GetMercInfo().MercTimerRemaining = GetMercTimer()->GetRemainingTime();
-	}
-
-	if (dead || (!GetMerc() && !GetMercInfo().IsSuspended)) {
-		memset(&m_mercinfo, 0, sizeof(struct MercInfo));
-	}
 
 	m_pp.lastlogin = time(nullptr);
 
@@ -1588,9 +1557,9 @@ void Client::ChannelMessageReceived(uint8 chan_num, uint8 language, uint8 lang_s
 			const bool is_engaged = t->IsEngaged();
 
 			if (is_engaged) {
-				parse->EventBotMercNPC(EVENT_AGGRO_SAY, t, this, [&]() { return message; }, language);
+				parse->EventMob(EVENT_AGGRO_SAY, t, this, [&]() { return message; }, language);
 			} else {
-				parse->EventBotMercNPC(EVENT_SAY, t, this, [&]() { return message; }, language);
+				parse->EventMob(EVENT_SAY, t, this, [&]() { return message; }, language);
 			}
 
 			if (t->IsNPC() && !is_engaged) {
@@ -2384,11 +2353,6 @@ void Client::CheckManaEndUpdate() {
 
 	if (last_reported_mana != current_mana || last_reported_endurance != current_endurance) {
 
-		if (ClientVersion() >= EQ::versions::ClientVersion::SoD) {
-			SendManaUpdate();
-			SendEnduranceUpdate();
-		}
-
 		auto outapp = new EQApplicationPacket(OP_ManaChange, sizeof(ManaChange_Struct));
 		ManaChange_Struct* mana_change = (ManaChange_Struct*)outapp->pBuffer;
 		mana_change->new_mana = current_mana;
@@ -2417,8 +2381,7 @@ void Client::CheckManaEndUpdate() {
 			mana_update->cur_mana = GetMana();
 			mana_update->max_mana = GetMaxMana();
 			mana_update->spawn_id = GetID();
-			if ((ClientVersionBit() & EQ::versions::ClientVersionBitmask::maskSoDAndLater) != 0)
-				QueuePacket(mana_packet); // do we need this with the OP_ManaChange packet above?
+			QueuePacket(mana_packet); // do we need this with the OP_ManaChange packet above?
 			safe_delete(mana_packet);
 
 			last_reported_mana_percent = GetManaPercent();
@@ -2441,8 +2404,7 @@ void Client::CheckManaEndUpdate() {
 			endurance_update->cur_end = GetEndurance();
 			endurance_update->max_end = GetMaxEndurance();
 			endurance_update->spawn_id = GetID();
-			if ((ClientVersionBit() & EQ::versions::ClientVersionBitmask::maskSoDAndLater) != 0)
-				QueuePacket(endurance_packet); // do we need this with the OP_ManaChange packet above?
+			QueuePacket(endurance_packet); // do we need this with the OP_ManaChange packet above?
 			safe_delete(endurance_packet);
 
 			last_reported_endurance_percent = GetEndurancePercent();
@@ -2656,21 +2618,6 @@ void Client::ReadBook(BookRequest_Struct* book)
 		t->target_id  = book->target_id;
 		t->can_cast   = 0; // todo: implement
 		t->can_scribe = false;
-
-		if (ClientVersion() >= EQ::versions::ClientVersion::SoF && book->invslot <= EQ::invbag::GENERAL_BAGS_END) {
-			if (inst && inst->GetItem()) {
-				auto recipe = TradeskillRecipeRepository::GetWhere(
-					content_db,
-					fmt::format(
-						"learned_by_item_id = {} LIMIT 1",
-						inst->GetItem()->ID
-					)
-				);
-
-				t->type       = inst->GetItem()->Book;
-				t->can_scribe = !recipe.empty();
-			}
-		}
 
 		memcpy(t->booktext, b.text.c_str(), b.text.size());
 
@@ -3720,22 +3667,10 @@ void Client::ServerFilter(SetServerFilter_Struct* filter){
 	Filter0(FilterMissedMe);
 	Filter1(FilterDamageShields);
 
-	if (ClientVersionBit() & EQ::versions::maskSoDAndLater) {
-		if (filter->filters[FilterDOT] == 0) {
-			SetFilter(FilterDOT, FilterShow);
-		} else if (filter->filters[FilterDOT] == 1) {
-			SetFilter(FilterDOT, FilterShowSelfOnly);
-		} else if (filter->filters[FilterDOT] == 2) {
-			SetFilter(FilterDOT, FilterShowGroupOnly);
-		} else {
-			SetFilter(FilterDOT, FilterHide);
-		}
+	if (filter->filters[FilterDOT] == 0) { // show functions as self only
+		SetFilter(FilterDOT, FilterShowSelfOnly);
 	} else {
-		if (filter->filters[FilterDOT] == 0) { // show functions as self only
-			SetFilter(FilterDOT, FilterShowSelfOnly);
-		} else {
-			SetFilter(FilterDOT, FilterHide);
-		}
+		SetFilter(FilterDOT, FilterHide);
 	}
 
 	Filter1(FilterPetHits);
@@ -3743,17 +3678,7 @@ void Client::ServerFilter(SetServerFilter_Struct* filter){
 	Filter1(FilterFocusEffects);
 	Filter1(FilterPetSpells);
 
-	if (ClientVersionBit() & EQ::versions::maskSoDAndLater) {
-		if (filter->filters[FilterHealOverTime] == 0) {
-			SetFilter(FilterHealOverTime, FilterShow);
-		} else if (filter->filters[FilterHealOverTime] == 1) {
-			SetFilter(FilterHealOverTime, FilterShowSelfOnly);
-		} else {
-			SetFilter(FilterHealOverTime, FilterHide);
-		}
-	} else { // these clients don't have a 'self only' filter
-		Filter1(FilterHealOverTime);
-	}
+	Filter1(FilterHealOverTime);
 
 	Filter1(FilterItemSpeech);
 	Filter1(FilterStrikethrough);
@@ -4038,10 +3963,6 @@ void Client::LinkDead()
 	{
 		entity_list.MessageGroup(this,true,15,"%s has gone linkdead.",GetName());
 		GetGroup()->DelMember(this);
-		if (GetMerc())
-		{
-			GetMerc()->RemoveMercFromGroup(GetMerc(), GetMerc()->GetGroup());
-		}
 	}
 	Raid *raid = entity_list.GetRaidByClient(this);
 	if(raid){
@@ -5020,11 +4941,6 @@ bool Client::GroupFollow(Client* inviter) {
 
 		//inviter has a raid don't do group stuff instead do raid stuff!
 		if (raid) {
-			// Suspend the merc while in a raid (maybe a rule could be added for this)
-			if (GetMerc()) {
-				GetMerc()->Suspend();
-			}
-
 			uint32 groupToUse = 0xFFFFFFFF;
 			for (const auto& m : raid->members) {
 				if (m.member && m.member == inviter) {
@@ -5103,24 +5019,14 @@ bool Client::GroupFollow(Client* inviter) {
 			group->UpdateGroupAAs();
 
 			//Invite the inviter into the group first.....dont ask
-			if (inviter->ClientVersion() < EQ::versions::ClientVersion::SoD)
-			{
-				auto outapp = new EQApplicationPacket(OP_GroupUpdate, sizeof(GroupJoin_Struct));
-				GroupJoin_Struct* outgj = (GroupJoin_Struct*)outapp->pBuffer;
-				strcpy(outgj->membername, inviter->GetName());
-				strcpy(outgj->yourname, inviter->GetName());
-				outgj->action = groupActInviteInitial; // 'You have formed the group'.
-				group->GetGroupAAs(&outgj->leader_aas);
-				inviter->QueuePacket(outapp);
-				safe_delete(outapp);
-			}
-			else
-			{
-				// SoD and later
-				inviter->SendGroupCreatePacket();
-				inviter->SendGroupLeaderChangePacket(inviter->GetName());
-				inviter->SendGroupJoinAcknowledge();
-			}
+			auto outapp = new EQApplicationPacket(OP_GroupUpdate, sizeof(GroupJoin_Struct));
+			GroupJoin_Struct* outgj = (GroupJoin_Struct*)outapp->pBuffer;
+			strcpy(outgj->membername, inviter->GetName());
+			strcpy(outgj->yourname, inviter->GetName());
+			outgj->action = groupActInviteInitial; // 'You have formed the group'.
+			group->GetGroupAAs(&outgj->leader_aas);
+			inviter->QueuePacket(outapp);
+			safe_delete(outapp);
 		}
 
 		if (!group)
@@ -5128,41 +5034,10 @@ bool Client::GroupFollow(Client* inviter) {
 			return false;
 		}
 
-		// Remove merc from old group before adding client to the new one
-		if (GetMerc() && GetMerc()->HasGroup())
-		{
-			GetMerc()->RemoveMercFromGroup(GetMerc(), GetMerc()->GetGroup());
-		}
-
 		if (!group->AddMember(this))
 		{
-			// If failed to add client to new group, regroup with merc
-			if (GetMerc())
-			{
-				GetMerc()->MercJoinClientGroup();
-			}
-			else
-			{
-				isgrouped = false;
-			}
+			isgrouped = false;
 			return false;
-		}
-
-		if (ClientVersion() >= EQ::versions::ClientVersion::SoD)
-		{
-			SendGroupJoinAcknowledge();
-		}
-
-		// Temporary hack for SoD, as things seem to work quite differently
-		if (inviter->IsClient() && inviter->ClientVersion() >= EQ::versions::ClientVersion::SoD)
-		{
-			database.RefreshGroupFromDB(inviter);
-		}
-
-		// Add the merc back into the new group if possible
-		if (GetMerc())
-		{
-			GetMerc()->MercJoinClientGroup();
 		}
 
 		if (inviter->IsLFP())
@@ -5376,15 +5251,6 @@ void Client::IncrementAggroCount(bool raid_target)
 	//
 	if(AggroCount > 1)
 		return;
-
-	if (ClientVersion() >= EQ::versions::ClientVersion::SoF) {
-		auto outapp = new EQApplicationPacket(OP_RestState, 1);
-		char *Buffer = (char *)outapp->pBuffer;
-		VARSTRUCT_ENCODE_TYPE(uint8, Buffer, 0x01);
-		QueuePacket(outapp);
-		safe_delete(outapp);
-	}
-
 }
 
 void Client::DecrementAggroCount()
@@ -5408,14 +5274,6 @@ void Client::DecrementAggroCount()
 
 	rest_timer.Start(m_pp.RestTimer * 1000);
 
-	if (ClientVersion() >= EQ::versions::ClientVersion::SoF) {
-		auto outapp = new EQApplicationPacket(OP_RestState, 5);
-		char *Buffer = (char *)outapp->pBuffer;
-		VARSTRUCT_ENCODE_TYPE(uint8, Buffer, 0x00);
-		VARSTRUCT_ENCODE_TYPE(uint32, Buffer, m_pp.RestTimer);
-		QueuePacket(outapp);
-		safe_delete(outapp);
-	}
 }
 
 // when we cast a beneficial spell we need to steal our targets current timer
@@ -5436,14 +5294,6 @@ void Client::UpdateRestTimer(uint32 new_timer)
 	} else { // if we're not aggro, we need to check if current timer needs updating
 		if (rest_timer.GetRemainingTime() / 1000 < new_timer) {
 			rest_timer.Start(new_timer * 1000);
-			if (ClientVersion() >= EQ::versions::ClientVersion::SoF) {
-				auto outapp = new EQApplicationPacket(OP_RestState, 5);
-				char *Buffer = (char *)outapp->pBuffer;
-				VARSTRUCT_ENCODE_TYPE(uint8, Buffer, 0x00);
-				VARSTRUCT_ENCODE_TYPE(uint32, Buffer, new_timer);
-				QueuePacket(outapp);
-				safe_delete(outapp);
-			}
 		}
 	}
 }
@@ -7208,39 +7058,7 @@ void Client::RemoveFromInstance(uint16 instance_id)
 }
 
 void Client::SendAltCurrencies() {
-	if (ClientVersion() >= EQ::versions::ClientVersion::SoF) {
-		const uint32 currency_count = zone->AlternateCurrencies.size();
-		if (!currency_count) {
-			return;
-		}
 
-		auto outapp = new EQApplicationPacket(
-			OP_AltCurrency,
-			sizeof(AltCurrencyPopulate_Struct) +
-			sizeof(AltCurrencyPopulateEntry_Struct) * currency_count
-		);
-
-		auto a = (AltCurrencyPopulate_Struct*) outapp->pBuffer;
-
-		a->opcode = AlternateCurrencyMode::Populate;
-		a->count  = currency_count;
-
-		uint32 currency_id = 0;
-		for (const auto& c : zone->AlternateCurrencies) {
-			const auto* item = database.GetItem(c.item_id);
-
-			a->entries[currency_id].currency_number  = c.id;
-			a->entries[currency_id].unknown00        = 1;
-			a->entries[currency_id].currency_number2 = c.id;
-			a->entries[currency_id].item_id          = c.item_id;
-			a->entries[currency_id].item_icon        = item ? item->Icon : 1000;
-			a->entries[currency_id].stack_size       = item ? item->StackSize : 1000;
-
-			currency_id++;
-		}
-
-		FastQueuePacket(&outapp);
-	}
 }
 
 void Client::SetAlternateCurrencyValue(uint32 currency_id, uint32 new_amount)
@@ -7425,77 +7243,6 @@ void Client::SendWebLink(const char *website)
 		}
 	}
 }
-
-void Client::SendMercPersonalInfo()
-{
-	uint32 mercTypeCount = 1;
-	uint32 mercCount = 1; //TODO: Un-hardcode this and support multiple mercs like in later clients than SoD.
-	uint32 i = 0;
-	uint32 altCurrentType = 19; //TODO: Implement alternate currency purchases involving mercs!
-
-	MercTemplate *mercData = &zone->merc_templates[GetMercInfo().MercTemplateID];
-
-	int stancecount = 0;
-	stancecount += zone->merc_stance_list[GetMercInfo().MercTemplateID].size();
-	if(stancecount > MAX_MERC_STANCES || mercCount > MAX_MERC || mercTypeCount > MAX_MERC_GRADES)
-	{
-		Log(Logs::General, Logs::Mercenaries, "SendMercPersonalInfo canceled: (%i) (%i) (%i) for %s", stancecount, mercCount, mercTypeCount, GetName());
-		SendMercMerchantResponsePacket(0);
-		return;
-	}
-
-	auto outapp = new EQApplicationPacket(OP_MercenaryDataResponse, sizeof(MercenaryMerchantList_Struct));
-	auto mml    = (MercenaryMerchantList_Struct *) outapp->pBuffer;
-
-	mml->MercTypeCount = mercTypeCount; //We should only have one merc entry.
-	mml->MercGrades[i] = 1;
-
-	mml->MercCount                  = mercCount;
-	mml->Mercs[i].MercID            = mercData->MercTemplateID;
-	mml->Mercs[i].MercType          = mercData->MercType;
-	mml->Mercs[i].MercSubType       = mercData->MercSubType;
-	mml->Mercs[i].PurchaseCost      = RuleB(Mercs, ChargeMercPurchaseCost) ? Merc::CalcPurchaseCost(mercData->MercTemplateID, GetLevel(), 0) : 0;
-	mml->Mercs[i].UpkeepCost        = RuleB(Mercs, ChargeMercUpkeepCost) ? Merc::CalcUpkeepCost(mercData->MercTemplateID, GetLevel(), 0) : 0;
-	mml->Mercs[i].Status            = 0;
-	mml->Mercs[i].AltCurrencyCost   = RuleB(Mercs, ChargeMercPurchaseCost) ? Merc::CalcPurchaseCost(mercData->MercTemplateID, GetLevel(), altCurrentType) : 0;
-	mml->Mercs[i].AltCurrencyUpkeep = RuleB(Mercs, ChargeMercUpkeepCost) ? Merc::CalcUpkeepCost(mercData->MercTemplateID, GetLevel(), altCurrentType) : 0;
-	mml->Mercs[i].AltCurrencyType   = altCurrentType;
-	mml->Mercs[i].MercUnk01         = 0;
-	mml->Mercs[i].TimeLeft          = GetMercInfo().MercTimerRemaining;
-	mml->Mercs[i].MerchantSlot      = i + 1;
-	mml->Mercs[i].MercUnk02         = 1;
-	mml->Mercs[i].StanceCount       = zone->merc_stance_list[mercData->MercTemplateID].size();
-	mml->Mercs[i].MercUnk03         = 0;
-	mml->Mercs[i].MercUnk04         = 1;
-
-	strn0cpy(mml->Mercs[i].MercName, GetMercInfo().merc_name, sizeof(mml->Mercs[i].MercName));
-
-	int stanceindex = 0;
-	if (mml->Mercs[i].StanceCount != 0) {
-		auto iter = zone->merc_stance_list[mercData->MercTemplateID].begin();
-		while (iter != zone->merc_stance_list[mercData->MercTemplateID].end()) {
-			mml->Mercs[i].Stances[stanceindex].StanceIndex = stanceindex;
-			mml->Mercs[i].Stances[stanceindex].Stance      = (iter->StanceID);
-			stanceindex++;
-			++iter;
-		}
-	}
-
-	FastQueuePacket(&outapp);
-	safe_delete(outapp);
-	return;
-}
-
-void Client::SendClearMercInfo()
-{
-	auto outapp = new EQApplicationPacket(OP_MercenaryDataUpdate, sizeof(NoMercenaryHired_Struct));
-	NoMercenaryHired_Struct *nmhs = (NoMercenaryHired_Struct*)outapp->pBuffer;
-	nmhs->MercStatus = -1;
-	nmhs->MercCount = 0;
-	nmhs->MercID = 1;
-	FastQueuePacket(&outapp);
-}
-
 
 void Client::DuplicateLoreMessage(uint32 ItemID)
 {
@@ -10894,12 +10641,6 @@ void Client::ReconnectUCS()
 	switch (ClientVersion()) {
 		case EQ::versions::ClientVersion::Titanium:
 			connection_type = EQ::versions::ucsTitaniumChat;
-			break;
-		case EQ::versions::ClientVersion::SoF:
-			connection_type = EQ::versions::ucsSoFCombined;
-			break;
-		case EQ::versions::ClientVersion::SoD:
-			connection_type = EQ::versions::ucsSoDCombined;
 			break;
 		default:
 			connection_type = EQ::versions::ucsUnknown;

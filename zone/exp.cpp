@@ -703,9 +703,6 @@ void Client::SetEXP(ExpSource exp_source, uint64 set_exp, uint64 set_aaxp, bool 
 		}
 		level_count++;
 
-		if (GetMercenaryID()) {
-			UpdateMercLevel();
-		}
 	}
 	//see if we lost any levels
 	while (set_exp < GetEXPForLevel(check_level-1)) {
@@ -715,9 +712,6 @@ void Client::SetEXP(ExpSource exp_source, uint64 set_exp, uint64 set_aaxp, bool 
 			break;
 		}
 		level_increase = false;
-		if (GetMercenaryID()) {
-			UpdateMercLevel();
-		}
 	}
 	check_level--;
 
@@ -994,8 +988,6 @@ void Client::SetLevel(uint8 set_level, bool command)
 	SendHPUpdate();
 	SetMana(CalcMaxMana());
 	UpdateWho();
-
-	UpdateMercLevel();
 
 	Save();
 }

@@ -28,13 +28,9 @@
 void RegisterAllPatches(EQStreamIdentifier &into)
 {
 	Titanium::Register(into);
-	SoF::Register(into);
-	SoD::Register(into);
 }
 
 void ReloadAllPatches()
 {
 	Titanium::Reload();
-	SoF::Reload();
-	SoD::Reload();
 }

@@ -7049,9 +7049,7 @@ luabind::scope lua_register_client_version() {
 		.enum_("constants")
 		[(
 			luabind::value("Unknown", static_cast<int>(EQ::versions::ClientVersion::Unknown)),
-			luabind::value("Titanium", static_cast<int>(EQ::versions::ClientVersion::Titanium)),
-			luabind::value("SoF", static_cast<int>(EQ::versions::ClientVersion::SoF)),
-			luabind::value("SoD", static_cast<int>(EQ::versions::ClientVersion::SoD))
+			luabind::value("Titanium", static_cast<int>(EQ::versions::ClientVersion::Titanium))
 		)];
 }
 
@@ -7115,8 +7113,7 @@ luabind::scope lua_register_classes() {
 			luabind::value("NORRATHS_KEEPERS_MERCHANT", Class::NorrathsKeepersMerchant),
 			luabind::value("DARK_REIGN_MERCHANT", Class::DarkReignMerchant),
 			luabind::value("FELLOWSHIP_MASTER", Class::FellowshipMaster),
-			luabind::value("ALT_CURRENCY_MERCHANT", Class::AlternateCurrencyMerchant),
-			luabind::value("MERCENARY_MASTER", Class::MercenaryLiaison)
+			luabind::value("ALT_CURRENCY_MERCHANT", Class::AlternateCurrencyMerchant)
 		)];
 }
 

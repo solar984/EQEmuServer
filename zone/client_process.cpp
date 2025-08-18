@@ -110,9 +110,6 @@ bool Client::Process() {
 				HandleRespawnFromHover(0);
 		}
 
-		if (IsTracking() && (ClientVersion() >= EQ::versions::ClientVersion::SoD) && TrackingTimer.Check())
-			DoTracking();
-
 		// SendHPUpdate calls hpupdate_timer.Start so it can delay this timer, so lets not reset with the check
 		// since the function will anyways
 		if (hpupdate_timer.Check(false)) {
@@ -167,10 +164,6 @@ bool Client::Process() {
 		if (linkdead_timer.Check()) {
 			LeaveGroup();
 			Save();
-			if (GetMerc()) {
-				GetMerc()->Save();
-				GetMerc()->Depop();
-			}
 
 			Raid *myraid = entity_list.GetRaidByClient(this);
 			if (myraid) {
@@ -210,11 +203,6 @@ bool Client::Process() {
 				guild_mgr.SendGuildMemberUpdateToWorld(GetName(), GuildID(), 0, time(nullptr));
 			}
 
-			if (GetMerc())
-			{
-				GetMerc()->Save();
-				GetMerc()->Depop();
-			}
 			instalog = true;
 
 			camp_timer.Disable();
@@ -244,14 +232,6 @@ bool Client::Process() {
 					InterruptSpell(SONG_ENDS_ABRUPTLY, 0x121, bardsong);
 				}
 			}
-		}
-
-		if (GetMerc()) {
-			UpdateMercTimer();
-		}
-
-		if (GetMercInfo().MercTemplateID != 0 && GetMercInfo().IsSuspended) {
-			CheckMercSuspendTimer();
 		}
 
 		if (IsAIControlled())
@@ -593,10 +573,6 @@ bool Client::Process() {
 		LogInfo("Client linkdead: {}", name);
 
 		if (Admin() > AccountStatus::GMAdmin) {
-			if (GetMerc()) {
-				GetMerc()->Save();
-				GetMerc()->Depop();
-			}
 			if (IsInAGuild()) {
 				guild_mgr.UpdateDbMemberOnline(CharacterID(), false);
 				guild_mgr.SendGuildMemberUpdateToWorld(GetName(), GuildID(), 0, time(nullptr));
@@ -650,10 +626,6 @@ bool Client::Process() {
 				{
 					entity_list.MessageGroup(this, true, 15, "%s left the zone.", GetName());
 					mygroup->MemberZoned(this);
-					if (GetMerc() && GetMerc()->HasGroup())
-					{
-						GetMerc()->RemoveMercFromGroup(GetMerc(), GetMerc()->GetGroup());
-					}
 				}
 
 			}
@@ -694,11 +666,6 @@ bool Client::Process() {
 void Client::OnDisconnect(bool hard_disconnect) {
 	if (hard_disconnect) {
 		LeaveGroup();
-
-		if (GetMerc()) {
-			GetMerc()->Save();
-			GetMerc()->Depop();
-		}
 
 		auto* r = entity_list.GetRaidByClient(this);
 
@@ -1233,13 +1200,7 @@ void Client::CancelSneakHide()
 	if (hidden || improved_hidden) {
 		auto app = new EQApplicationPacket(OP_CancelSneakHide, 0);
 		FastQueuePacket(&app);
-		// SoF and Tit send back a OP_SpawnAppearance turning off AppearanceType::Invisibility
-		// so we need to handle our sneaking flag only
-		// The later clients send back a OP_Hide (this has a size but data is 0)
-		// as well as OP_SpawnAppearance with AppearanceType::Invisibility and one with AppearanceType::Sneak
-		// So we don't have to handle any of those flags
-		if (ClientVersionBit() & EQ::versions::maskSoFAndEarlier)
-			sneaking = false;
+		sneaking = false;
 	}
 }
 
@@ -1822,29 +1783,6 @@ void Client::OPGMTrainSkill(const EQApplicationPacket *app)
 
 
 		}
-	}
-
-	if (ClientVersion() >= EQ::versions::ClientVersion::SoF) {
-		// The following packet decreases the skill points left in the Training Window and
-		// produces the 'You have increased your skill / learned the basics of' message.
-		//
-		auto outapp = new EQApplicationPacket(OP_GMTrainSkillConfirm, sizeof(GMTrainSkillConfirm_Struct));
-
-		GMTrainSkillConfirm_Struct *gmtsc = (GMTrainSkillConfirm_Struct *)outapp->pBuffer;
-		gmtsc->SkillID = gmskill->skill_id;
-
-		if(gmskill->skillbank == 1) {
-			gmtsc->NewSkill = (GetLanguageSkill(gmtsc->SkillID) == 1);
-			gmtsc->SkillID += 100;
-		}
-		else
-			gmtsc->NewSkill = (GetRawSkill((EQ::skills::SkillType)gmtsc->SkillID) == 1);
-
-		gmtsc->Cost = Cost;
-
-		strcpy(gmtsc->TrainerName, pTrainer->GetCleanName());
-		QueuePacket(outapp);
-		safe_delete(outapp);
 	}
 
 	if(Cost)

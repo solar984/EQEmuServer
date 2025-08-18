@@ -2232,20 +2232,6 @@ void Client::SetConnectionType(char c) {
 		LogInfo("Connection type is Mail (Titanium)");
 		break;
 	}
-	case EQ::versions::ucsSoFCombined:
-	{
-		TypeOfConnection = ConnectionTypeCombined;
-		ClientVersion_ = EQ::versions::ClientVersion::SoF;
-		LogInfo("Connection type is Combined (SoF)");
-		break;
-	}
-	case EQ::versions::ucsSoDCombined:
-	{
-		TypeOfConnection = ConnectionTypeCombined;
-		ClientVersion_ = EQ::versions::ClientVersion::SoD;
-		LogInfo("Connection type is Combined (SoD)");
-		break;
-	}
 	default:
 	{
 		TypeOfConnection = ConnectionTypeUnknown;

@@ -139,30 +139,6 @@ public:
 		return 0;
 	}
 
-	virtual int EventMerc(
-		QuestEventID event_id,
-		Merc* merc,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any>* extra_pointers
-	)
-	{
-		return 0;
-	}
-
-	virtual int EventGlobalMerc(
-		QuestEventID event_id,
-		Merc* merc,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any>* extra_pointers
-	)
-	{
-		return 0;
-	}
-
 	virtual int EventZone(
 		QuestEventID event_id,
 		Zone* zone,
@@ -235,16 +211,6 @@ public:
 		return false;
 	}
 
-	virtual bool MercHasQuestSub(QuestEventID event_id)
-	{
-		return false;
-	}
-
-	virtual bool GlobalMercHasQuestSub(QuestEventID event_id)
-	{
-		return false;
-	}
-
 	virtual bool ZoneHasQuestSub(QuestEventID event_id)
 	{
 		return false;
@@ -264,8 +230,6 @@ public:
 	virtual void LoadEncounterScript(std::string filename, std::string encounter_name) { }
 	virtual void LoadBotScript(std::string filename) { }
 	virtual void LoadGlobalBotScript(std::string filename) { }
-	virtual void LoadMercScript(std::string filename) { }
-	virtual void LoadGlobalMercScript(std::string filename) { }
 	virtual void LoadZoneScript(std::string filename) { }
 	virtual void LoadGlobalZoneScript(std::string filename) { }
 
@@ -321,18 +285,6 @@ public:
 	virtual int DispatchEventBot(
 		QuestEventID event_id,
 		Bot* bot,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any>* extra_pointers
-	)
-	{
-		return 0;
-	}
-
-	virtual int DispatchEventMerc(
-		QuestEventID event_id,
-		Merc* merc,
 		Mob* init,
 		std::string data,
 		uint32 extra_data,

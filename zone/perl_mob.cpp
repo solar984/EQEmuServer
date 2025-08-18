@@ -26,11 +26,6 @@ bool Perl_Mob_IsMob(Mob* self) // @categories Script Utility
 	return self->IsMob();
 }
 
-bool Perl_Mob_IsMerc(Mob* self) // @categories Script Utility
-{
-	return self->IsMerc();
-}
-
 bool Perl_Mob_IsCorpse(Mob* self) // @categories Script Utility, Corpse
 {
 	return self->IsCorpse();
@@ -84,11 +79,6 @@ bool Perl_Mob_IsAura(Mob* self) // @categories Script Utility
 bool Perl_Mob_IsOfClientBot(Mob* self) // @categories Script Utility
 {
 	return self->IsOfClientBot();
-}
-
-bool Perl_Mob_IsOfClientBotMerc(Mob* self) // @categories Script Utility
-{
-	return self->IsOfClientBotMerc();
 }
 
 bool Perl_Mob_IsTemporaryPet(Mob* self) // @categories Script Utility
@@ -4021,7 +4011,6 @@ void perl_register_mob()
 	package.add("IsInvisible", (bool(*)(Mob*))&Perl_Mob_IsInvisible);
 	package.add("IsInvisible", (bool(*)(Mob*, Mob*))&Perl_Mob_IsInvisible);
 	package.add("IsMeleeDisabled", &Perl_Mob_IsMeleeDisabled);
-	package.add("IsMerc", &Perl_Mob_IsMerc);
 	package.add("IsMezzed", &Perl_Mob_IsMezzed);
 	package.add("IsMob", &Perl_Mob_IsMob);
 	package.add("IsMoving", &Perl_Mob_IsMoving);
@@ -4029,7 +4018,6 @@ void perl_register_mob()
 	package.add("IsNPCCorpse", &Perl_Mob_IsNPCCorpse);
 	package.add("IsObject", &Perl_Mob_IsObject);
 	package.add("IsOfClientBot", &Perl_Mob_IsOfClientBot);
-	package.add("IsOfClientBotMerc", &Perl_Mob_IsOfClientBotMerc);
 	package.add("IsPausedTimer", &Perl_Mob_IsPausedTimer);
 	package.add("IsPet", &Perl_Mob_IsPet);
 	package.add("IsPetOwnerBot", &Perl_Mob_IsPetOwnerBot);

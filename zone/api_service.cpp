@@ -664,7 +664,6 @@ Json::Value ApiGetClientListDetail(EQ::Net::WebsocketServerConnection *connectio
 		row["char_max_level_from_bucket"]              = client->GetCharMaxLevelFromBucket();
 		row["char_max_level_from_q_global"]            = client->GetCharMaxLevelFromQGlobal();
 		row["character_id"]                            = client->CharacterID();
-		row["check_can_unsuspend_merc"]                = client->CheckCanUnsuspendMerc();
 		row["check_double_attack"]                     = client->CheckDoubleAttack();
 		row["check_double_ranged_attack"]              = client->CheckDoubleRangedAttack();
 		row["check_dual_wield"]                        = client->CheckDualWield();
@@ -729,11 +728,7 @@ Json::Value ApiGetClientListDetail(EQ::Net::WebsocketServerConnection *connectio
 		row["level_regen"]                             = client->LevelRegen();
 		row["ls_account_id"]                           = client->LSAccountID();
 		row["max_endurance"]                           = client->GetMaxEndurance();
-		row["merc_id"]                                 = client->GetMercenaryID();
-		row["merc_only_or_no_group"]                   = client->MercOnlyOrNoGroup();
-		row["merc_slot"]                               = client->GetMercSlot();
 		row["next_inv_snapshot_time"]                  = client->GetNextInvSnapshotTime();
-		row["num_mercs"]                               = client->GetNumberOfMercenaries();
 		row["pending_adventure_create"]                = client->GetPendingAdventureCreate();
 		row["pending_adventure_door_click"]            = client->GetPendingAdventureDoorClick();
 		row["pending_adventure_leave"]                 = client->GetPendingAdventureLeave();

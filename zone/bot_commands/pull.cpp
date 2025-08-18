@@ -40,7 +40,7 @@ void bot_command_pull(Client *c, const Seperator *sep)
 
 	if (
 		!target_mob ||
-		target_mob->IsOfClientBotMerc() ||
+		target_mob->IsOfClientBot() ||
 		!c->IsAttackAllowed(target_mob)
 	) {
 		c->Message(Chat::White, "Your current target is not attackable!");

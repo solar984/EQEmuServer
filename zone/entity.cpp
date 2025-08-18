@@ -108,18 +108,6 @@ Mob *Entity::CastToMob()
 	return static_cast<Mob *>(this);
 }
 
-Merc *Entity::CastToMerc()
-{
-#ifdef _EQDEBUG
-	if (!IsMerc()) {
-		std::cout << "CastToMerc error" << std::endl;
-		return 0;
-	}
-#endif
-	return static_cast<Merc *>(this);
-}
-
-
 Trap *Entity::CastToTrap()
 {
 #ifdef DEBUG
@@ -212,17 +200,6 @@ const Mob *Entity::CastToMob() const
 	}
 #endif
 	return static_cast<const Mob *>(this);
-}
-
-const Merc *Entity::CastToMerc() const
-{
-#ifdef _EQDEBUG
-	if (!IsMerc()) {
-		std::cout << "CastToMerc error" << std::endl;
-		return 0;
-	}
-#endif
-	return static_cast<const Merc *>(this);
 }
 
 const Trap *Entity::CastToTrap() const
@@ -554,9 +531,7 @@ void EntityList::MobProcess()
 		}
 
 		if (mob_dead) {
-			if (mob->IsMerc()) {
-				entity_list.RemoveMerc(id);
-			} else if (mob->IsBot()) {
+			if (mob->IsBot()) {
 				entity_list.RemoveBot(id);
 			} else if (mob->IsNPC()) {
 				entity_list.RemoveNPC(id);
@@ -752,40 +727,6 @@ void EntityList::AddNPC(NPC *npc, bool send_spawn_packet, bool dont_queue)
 		npc->SetSpawnedInWater(false);
 		if (zone->watermap->InLiquid(npc->GetPosition())) {
 			npc->SetSpawnedInWater(true);
-		}
-	}
-}
-
-void EntityList::AddMerc(Merc *merc, bool SendSpawnPacket, bool dontqueue)
-{
-	if (merc)
-	{
-		merc->SetID(GetFreeID());
-		merc->SetSpawned();
-		if (SendSpawnPacket)
-		{
-			if (dontqueue) {
-				// Send immediately
-				auto outapp = new EQApplicationPacket();
-				merc->CreateSpawnPacket(outapp);
-				outapp->priority = 6;
-				QueueClients(merc, outapp, true);
-				safe_delete(outapp);
-			} else {
-				// Queue the packet
-				auto ns = new NewSpawn_Struct;
-				memset(ns, 0, sizeof(NewSpawn_Struct));
-				merc->FillSpawnStruct(ns, 0);
-				AddToSpawnQueue(merc->GetID(), &ns);
-				safe_delete(ns);
-			}
-		}
-
-		merc_list.emplace(std::pair<uint16, Merc *>(merc->GetID(), merc));
-		mob_list.emplace(std::pair<uint16, Mob *>(merc->GetID(), merc));
-
-		if (parse->MercHasQuestSub(EVENT_SPAWN)) {
-			parse->EventMerc(EVENT_SPAWN, merc, nullptr, "", 0);
 		}
 	}
 }
@@ -1020,14 +961,6 @@ Entity *EntityList::GetEntityMob(uint16 id)
 {
 	auto it = mob_list.find(id);
 	if (it != mob_list.end())
-		return it->second;
-	return nullptr;
-}
-
-Entity *EntityList::GetEntityMerc(uint16 id)
-{
-	auto it = merc_list.find(id);
-	if (it != merc_list.end())
 		return it->second;
 	return nullptr;
 }
@@ -2577,12 +2510,6 @@ void EntityList::RemoveAllBots()
 	bot_list.clear();
 }
 
-void EntityList::RemoveAllMercs()
-{
-	// doesn't clear the data
-	merc_list.clear();
-}
-
 void EntityList::RemoveAllGroups()
 {
 	while (group_list.size()) {
@@ -2860,16 +2787,6 @@ void EntityList::ScanCloseMobs(Mob *scanning_mob)
 	);
 }
 
-bool EntityList::RemoveMerc(uint16 delete_id)
-{
-	auto it = merc_list.find(delete_id);
-	if (it != merc_list.end()) {
-		merc_list.erase(it); // Already Deleted
-		return true;
-	}
-	return false;
-}
-
 bool EntityList::RemoveClient(uint16 delete_id)
 {
 	auto it = client_list.find(delete_id);
@@ -2962,7 +2879,6 @@ void EntityList::Clear()
 {
 	RemoveAllClients();
 	entity_list.RemoveAllTraps(); //we can have child npcs so we go first
-	entity_list.RemoveAllMercs();
 	entity_list.RemoveAllBots();
 	entity_list.RemoveAllNPCs();
 	entity_list.RemoveAllMobs();
@@ -3028,8 +2944,6 @@ void EntityList::RemoveEntity(uint16 id)
 	else if (entity_list.RemoveGroup(id))
 		return;
 	else if (entity_list.RemoveTrap(id))
-		return;
-	else if (entity_list.RemoveMerc(id))
 		return;
 	else if (entity_list.RemoveBot(id))
 		return;
@@ -3638,7 +3552,6 @@ bool EntityList::MakeTrackPacket(Client *client)
 		pack->Entrys[index].is_npc = !it->first->IsClient();
 		strn0cpy(pack->Entrys[index].name, it->first->GetName(), sizeof(pack->Entrys[index].name));
 		pack->Entrys[index].is_pet = it->first->IsPet();
-		pack->Entrys[index].is_merc = it->first->IsMerc();
 	}
 
 	client->QueuePacket(outapp);
@@ -5236,10 +5149,6 @@ void EntityList::UpdateFindableNPCState(NPC *n, bool Remove)
 	auto it = client_list.begin();
 	while (it != client_list.end()) {
 		Client *c = it->second;
-		if (c && (c->ClientVersion() >= EQ::versions::ClientVersion::SoD)) {
-			c->QueuePacket(&p);
-		}
-
 		++it;
 	}
 }
@@ -5443,10 +5352,10 @@ void EntityList::GetTargetsForConeArea(Mob *start, float min_radius, float radiu
 			continue;
 		}
 		// check PC/NPC only flag 1 = PCs, 2 = NPCs
-		if (pcnpc == 1 && !ptr->IsClient() && !ptr->IsMerc() && !ptr->IsBot()) {
+		if (pcnpc == 1 && !ptr->IsClient() && !ptr->IsBot()) {
 			++it;
 			continue;
-		} else if (pcnpc == 2 && (ptr->IsClient() || ptr->IsMerc() || ptr->IsBot())) {
+		} else if (pcnpc == 2 && (ptr->IsClient() || ptr->IsBot())) {
 			++it;
 			continue;
 		}
@@ -5510,10 +5419,10 @@ std::vector<Mob*> EntityList::GetTargetsForVirusEffect(Mob *spreader, Mob *origi
 		}
 
 		// check PC/NPC only flag 1 = PCs, 2 = NPCs
-		if (pcnpc == 1 && !mob->IsClient() && !mob->IsMerc() && !mob->IsBot()) {
+		if (pcnpc == 1 && !mob->IsClient() && !mob->IsBot()) {
 			continue;
 		}
-		else if (pcnpc == 2 && (mob->IsClient() || mob->IsMerc() || mob->IsBot())) {
+		else if (pcnpc == 2 && (mob->IsClient() || mob->IsBot())) {
 			continue;
 		}
 		if (mob->IsClient() && !mob->CastToClient()->ClientFinishedLoading()) {

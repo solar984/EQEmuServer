@@ -1154,7 +1154,7 @@ int64 Mob::Tuneoffense(EQ::skills::SkillType skill, int atk_override, int add_at
 	// This causes attack to be significantly more important than it should be based on era rule of thumbs.  I do not want to change the GetATK() function in case doing so breaks something,
 	// so instead I am just adding a /2 to remedy the double counting.  NPCs do not have this issue, so they are broken up.
 	// PCAttackPowerScaling is used to help bring attack power further in line with era estimates.
-	if (IsOfClientBotMerc()) {
+	if (IsOfClientBot()) {
 		offense += (GetATK() / 2 + GetPetATKBonusFromOwner()) * RuleI(Combat, PCAttackPowerScaling) / 100;
 	} else {
 		offense += GetATK();

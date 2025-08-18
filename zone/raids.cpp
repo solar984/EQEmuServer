@@ -1831,19 +1831,6 @@ void Raid::SendHPManaEndPacketsTo(Client *client)
 			client->QueuePacket(&hp_packet, false);
 			safe_delete_array(hp_packet.pBuffer);
 			hp_packet.size = 0;
-
-			if (client->ClientVersion() >= EQ::versions::ClientVersion::SoD) {
-				outapp.SetOpcode(OP_MobManaUpdate);
-				auto mana_update = (MobManaUpdate_Struct *)outapp.pBuffer;
-				mana_update->spawn_id = m.member->GetID();
-				mana_update->mana = m.member->GetManaPercent();
-				client->QueuePacket(&outapp, false);
-
-				outapp.SetOpcode(OP_MobEnduranceUpdate);
-				auto endurance_update = (MobEnduranceUpdate_Struct *)outapp.pBuffer;
-				endurance_update->endurance = m.member->GetEndurancePercent();
-				client->QueuePacket(&outapp, false);
-			}
 		}
 	}
 }
@@ -1872,19 +1859,6 @@ void Raid::SendHPManaEndPacketsFrom(Mob *mob)
 
 		if (m.member && (!mob->IsClient() || ((m.member != mob->CastToClient()) && (m.group_number == group_id)))) {
 			m.member->QueuePacket(&hpapp, false);
-
-			if (m.member->ClientVersion() >= EQ::versions::ClientVersion::SoD) {
-				outapp.SetOpcode(OP_MobManaUpdate);
-				MobManaUpdate_Struct *mana_update = (MobManaUpdate_Struct *)outapp.pBuffer;
-				mana_update->spawn_id = mob->GetID();
-				mana_update->mana = mob->GetManaPercent();
-				m.member->QueuePacket(&outapp, false);
-
-				outapp.SetOpcode(OP_MobEnduranceUpdate);
-				MobEnduranceUpdate_Struct *endurance_update = (MobEnduranceUpdate_Struct *)outapp.pBuffer;
-				endurance_update->endurance = mob->GetEndurancePercent();
-				m.member->QueuePacket(&outapp, false);
-			}
 		}
 	}
 }
@@ -1907,16 +1881,6 @@ void Raid::SendManaPacketFrom(Mob *mob)
 		if (m.is_bot) {
 			continue;
 		}
-
-		if (m.member && (!mob->IsClient() || ((m.member != mob->CastToClient()) && (m.group_number == group_id))) &&
-			m.member->ClientVersion() >= EQ::versions::ClientVersion::SoD
-		) {
-			outapp.SetOpcode(OP_MobManaUpdate);
-			MobManaUpdate_Struct *mana_update = (MobManaUpdate_Struct *)outapp.pBuffer;
-			mana_update->spawn_id = mob->GetID();
-			mana_update->mana = mob->GetManaPercent();
-			m.member->QueuePacket(&outapp, false);
-		}
 	}
 }
 
@@ -1937,16 +1901,6 @@ void Raid::SendEndurancePacketFrom(Mob *mob)
 	for (const auto& m : members) {
 		if (m.is_bot) {
 			continue;
-		}
-
-		if (m.member && (!mob->IsClient() || ((m.member != mob->CastToClient()) && (m.group_number == group_id))) &&
-			m.member->ClientVersion() >= EQ::versions::ClientVersion::SoD
-		) {
-			outapp.SetOpcode(OP_MobEnduranceUpdate);
-			auto endurance_update = (MobEnduranceUpdate_Struct *)outapp.pBuffer;
-			endurance_update->spawn_id = mob->GetID();
-			endurance_update->endurance = mob->GetEndurancePercent();
-			m.member->QueuePacket(&outapp, false);
 		}
 	}
 }

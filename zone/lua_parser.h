@@ -109,22 +109,6 @@ public:
 		uint32 extra_data,
 		std::vector<std::any> *extra_pointers
 	);
-	virtual int EventMerc(
-		QuestEventID evt,
-		Merc* merc,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any>* extra_pointers
-	);
-	virtual int EventGlobalMerc(
-		QuestEventID evt,
-		Merc* merc,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any>* extra_pointers
-	);
 	virtual int EventZone(
 		QuestEventID evt,
 		Zone* zone,
@@ -150,8 +134,6 @@ public:
 	virtual bool HasEncounterSub(const std::string& package_name, QuestEventID evt);
 	virtual bool BotHasQuestSub(QuestEventID evt);
 	virtual bool GlobalBotHasQuestSub(QuestEventID evt);
-	virtual bool MercHasQuestSub(QuestEventID evt);
-	virtual bool GlobalMercHasQuestSub(QuestEventID evt);
 	virtual bool ZoneHasQuestSub(QuestEventID evt);
 	virtual bool GlobalZoneHasQuestSub(QuestEventID evt);
 
@@ -164,8 +146,6 @@ public:
 	virtual void LoadEncounterScript(std::string filename, std::string encounter_name);
 	virtual void LoadBotScript(std::string filename);
 	virtual void LoadGlobalBotScript(std::string filename);
-	virtual void LoadMercScript(std::string filename);
-	virtual void LoadGlobalMercScript(std::string filename);
 	virtual void LoadZoneScript(std::string filename);
 	virtual void LoadGlobalZoneScript(std::string filename);
 
@@ -216,14 +196,6 @@ public:
 		std::string data,
 		uint32 extra_data,
 		std::vector<std::any> *extra_pointers
-	);
-	virtual int DispatchEventMerc(
-		QuestEventID evt,
-		Merc* merc,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any>* extra_pointers
 	);
 	virtual int DispatchEventZone(
 		QuestEventID evt,
@@ -321,16 +293,6 @@ private:
 		uint32 extra_data,
 		std::vector<std::any> *extra_pointers,
 		luabind::adl::object *l_func = nullptr
-	);
-	int _EventMerc(
-		std::string package_name,
-		QuestEventID evt,
-		Merc* merc,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any>* extra_pointers,
-		luabind::adl::object* l_func = nullptr
 	);
 	int _EventZone(
 		std::string package_name,

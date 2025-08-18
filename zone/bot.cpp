@@ -1277,29 +1277,14 @@ int32 Bot::GenerateBaseHitPoints() {
 	uint32 lm = GetClassLevelFactor();
 	int32 Post255;
 	int32 NormalSTA = GetSTA();
-	if (GetOwner() && GetOwner()->CastToClient() && GetOwner()->CastToClient()->ClientVersion() >= EQ::versions::ClientVersion::SoD && RuleB(Character, SoDClientUseSoDHPManaEnd)) {
-		float SoDPost255;
-		if (((NormalSTA - 255) / 2) > 0)
-			SoDPost255 = ((static_cast<float>(NormalSTA) - 255.0f) / 2.0f);
-		else
-			SoDPost255 = 0.0f;
 
-		int hp_factor = GetClassHPFactor();
+	if (((NormalSTA - 255) / 2) > 0)
+		Post255 = ((NormalSTA - 255) / 2);
+	else
+		Post255 = 0;
 
-		if (level < 41)
-			new_base_hp = (5 + (GetLevel() * hp_factor / 12) + ((NormalSTA - SoDPost255) * GetLevel() * hp_factor / 3600));
-		else if (level < 81)
-			new_base_hp = (5 + (40 * hp_factor / 12) + ((GetLevel() - 40) * hp_factor / 6) + ((NormalSTA - SoDPost255) * hp_factor / 90) + ((NormalSTA - SoDPost255) * (GetLevel() - 40) * hp_factor / 1800));
-		else
-			new_base_hp = (5 + (80 * hp_factor / 8) + ((GetLevel() - 80) * hp_factor / 10) + ((NormalSTA - SoDPost255) * hp_factor / 90) + ((NormalSTA - SoDPost255) * hp_factor / 45));
-	} else {
-		if (((NormalSTA - 255) / 2) > 0)
-			Post255 = ((NormalSTA - 255) / 2);
-		else
-			Post255 = 0;
+	new_base_hp = 5 + (GetLevel() * lm / 10) + ((NormalSTA - Post255) * GetLevel() * lm / 3000) + ((Post255 * 1) * lm / 6000);
 
-		new_base_hp = 5 + (GetLevel() * lm / 10) + ((NormalSTA - Post255) * GetLevel() * lm / 3000) + ((Post255 * 1) * lm / 6000);
-	}
 	base_hp = new_base_hp;
 	return new_base_hp;
 }
@@ -3087,7 +3072,7 @@ bool Bot::IsValidTarget(
 	if (HOLDING ||
 		!tar->IsNPC() ||
 		(tar->IsMezzed() && !HasBotAttackFlag(tar)) ||
-		(!Charmed() && tar->GetUltimateOwner()->IsOfClientBotMerc()) ||
+		(!Charmed() && tar->GetUltimateOwner()->IsOfClientBot()) ||
 		lo_distance > leash_distance ||
 		tar_distance > leash_distance ||
 		(!GetAttackingFlag() && !HasLoS()) ||
@@ -5973,91 +5958,31 @@ int32 Bot::GenerateBaseManaPoints()
 
 	if (IsIntelligenceCasterClass()) {
 		WisInt = INT;
-
-		if (
-			GetOwner() &&
-			GetOwner()->CastToClient() &&
-			GetOwner()->CastToClient()->ClientVersion() >= EQ::versions::ClientVersion::SoD &&
-			RuleB(Character, SoDClientUseSoDHPManaEnd)
-		) {
-			if (WisInt > 100) {
-				ConvertedWisInt = (((WisInt - 100) * 5 / 2) + 100);
-				if (WisInt > 201) {
-					ConvertedWisInt -= ((WisInt - 201) * 5 / 4);
-				}
-			} else {
-				ConvertedWisInt = WisInt;
-			}
-
-			if (GetLevel() < 41) {
-				wisint_mana = (GetLevel() * 75 * ConvertedWisInt / 1000);
-				base_mana   = (GetLevel() * 15);
-			} else if (GetLevel() < 81) {
-				wisint_mana = ((3 * ConvertedWisInt) + ((GetLevel() - 40) * 15 * ConvertedWisInt / 100));
-				base_mana   = (600 + ((GetLevel() - 40) * 30));
-			} else {
-				wisint_mana = (9 * ConvertedWisInt);
-				base_mana   = (1800 + ((GetLevel() - 80) * 18));
-			}
-
-			bot_mana = (base_mana + wisint_mana);
+		if (((WisInt - 199) / 2) > 0) {
+			MindLesserFactor = ((WisInt - 199) / 2);
 		} else {
-			if (((WisInt - 199) / 2) > 0) {
-				MindLesserFactor = ((WisInt - 199) / 2);
-			} else {
-				MindLesserFactor = 0;
-			}
+			MindLesserFactor = 0;
+		}
 
-			MindFactor = WisInt - MindLesserFactor;
-			if (WisInt > 100) {
-				bot_mana = (((5 * (MindFactor + 20)) / 2) * 3 * GetLevel() / 40);
-			} else {
-				bot_mana = (((5 * (MindFactor + 200)) / 2) * 3 * GetLevel() / 100);
-			}
+		MindFactor = WisInt - MindLesserFactor;
+		if (WisInt > 100) {
+			bot_mana = (((5 * (MindFactor + 20)) / 2) * 3 * GetLevel() / 40);
+		} else {
+			bot_mana = (((5 * (MindFactor + 200)) / 2) * 3 * GetLevel() / 100);
 		}
 	} else if (IsWisdomCasterClass()) {
 		WisInt = WIS;
-
-		if (
-			GetOwner() &&
-			GetOwner()->CastToClient() &&
-			GetOwner()->CastToClient()->ClientVersion() >= EQ::versions::ClientVersion::SoD &&
-			RuleB(Character, SoDClientUseSoDHPManaEnd)
-		) {
-			if (WisInt > 100) {
-				ConvertedWisInt = (((WisInt - 100) * 5 / 2) + 100);
-				if (WisInt > 201) {
-					ConvertedWisInt -= ((WisInt - 201) * 5 / 4);
-				}
-			} else {
-				ConvertedWisInt = WisInt;
-			}
-
-			if (GetLevel() < 41) {
-				wisint_mana = (GetLevel() * 75 * ConvertedWisInt / 1000);
-				base_mana   = (GetLevel() * 15);
-			} else if (GetLevel() < 81) {
-				wisint_mana = ((3 * ConvertedWisInt) + ((GetLevel() - 40) * 15 * ConvertedWisInt / 100));
-				base_mana   = (600 + ((GetLevel() - 40) * 30));
-			} else {
-				wisint_mana = (9 * ConvertedWisInt);
-				base_mana   = (1800 + ((GetLevel() - 80) * 18));
-			}
-
-			bot_mana = (base_mana + wisint_mana);
+		if (((WisInt - 199) / 2) > 0) {
+			MindLesserFactor = ((WisInt - 199) / 2);
 		} else {
-			if (((WisInt - 199) / 2) > 0) {
-				MindLesserFactor = ((WisInt - 199) / 2);
-			} else {
-				MindLesserFactor = 0;
-			}
+			MindLesserFactor = 0;
+		}
 
-			MindFactor = (WisInt - MindLesserFactor);
-			if (WisInt > 100) {
-				bot_mana = (((5 * (MindFactor + 20)) / 2) * 3 * GetLevel() / 40);
-			} else {
-				bot_mana = (((5 * (MindFactor + 200)) / 2) * 3 * GetLevel() / 100);
-			}
+		MindFactor = (WisInt - MindLesserFactor);
+		if (WisInt > 100) {
+			bot_mana = (((5 * (MindFactor + 20)) / 2) * 3 * GetLevel() / 40);
+		} else {
+			bot_mana = (((5 * (MindFactor + 200)) / 2) * 3 * GetLevel() / 100);
 		}
 	} else {
 		bot_mana = 0;
@@ -6184,7 +6109,7 @@ bool Bot::DoFinishedSpellGroupTarget(uint16 spell_id, Mob* spellTarget, EQ::spel
 			SpellOnTarget(spell_id, this);
 		}
 
-		if (spellTarget->IsOfClientBotMerc()) {
+		if (spellTarget->IsOfClientBot()) {
 			for (Mob* m : GetBuffTargets(spellTarget)) {
 				if (m == this && spellTarget != this) {
 					continue;
@@ -6257,8 +6182,6 @@ int32 Bot::GetMaxStat() {
 	int32 base = 0;
 	if (level < 61)
 		base = 255;
-	else if (GetOwner() && GetOwner()->CastToClient() && GetOwner()->CastToClient()->ClientVersion() >= EQ::versions::ClientVersion::SoF)
-		base = (255 + 5 * (level - 60));
 	else if (level < 71)
 		base = (255 + 5 * (level - 60));
 	else
@@ -6766,56 +6689,30 @@ int64 Bot::CalcBaseEndurance() {
 	int32 converted_stats = 0;
 	int32 sta_end = 0;
 	int stats = 0;
-	if (GetOwner() && GetOwner()->CastToClient() && GetOwner()->CastToClient()->ClientVersion() >= EQ::versions::ClientVersion::SoD && RuleB(Character, SoDClientUseSoDHPManaEnd)) {
-		stats = ((GetSTR() + GetSTA() + GetDEX() + GetAGI()) / 4);
+	stats = (GetSTR() + GetSTA() + GetDEX() + GetAGI());
+	int level_base = (GetLevel() * 15);
+	int at_most_800 = stats;
+	if(at_most_800 > 800)
+		at_most_800 = 800;
 
-		if (stats > 100) {
-			converted_stats = (((stats - 100) * 5 / 2) + 100);
-			if (stats > 201) {
-				converted_stats -= ((stats - 201) * 5 / 4);
-			}
-		} else {
-			converted_stats = stats;
+	int Bonus400to800 = 0;
+	int HalfBonus400to800 = 0;
+	int Bonus800plus = 0;
+	int HalfBonus800plus = 0;
+
+	auto BonusUpto800 = int(at_most_800 / 4) ;
+
+	if(stats > 400) {
+		Bonus400to800 = int((at_most_800 - 400) / 4);
+		HalfBonus400to800 = int(std::max((at_most_800 - 400), 0) / 8);
+		if(stats > 800) {
+			Bonus800plus = (int((stats - 800) / 8) * 2);
+			HalfBonus800plus = int((stats - 800) / 16);
 		}
-
-		if (GetLevel() < 41) {
-			sta_end = (GetLevel() * 75 * converted_stats / 1000);
-			base_endurance = (GetLevel() * 15);
-		} else if (GetLevel() < 81) {
-			sta_end = ((3 * converted_stats) + ((GetLevel() - 40) * 15 * converted_stats / 100));
-			base_endurance = (600 + ((GetLevel() - 40) * 30));
-		} else {
-			sta_end = (9 * converted_stats);
-			base_endurance = (1800 + ((GetLevel() - 80) * 18));
-		}
-		base_end = base_endurance + sta_end + itembonuses.heroic_max_end;
-	} else {
-
-		stats = (GetSTR() + GetSTA() + GetDEX() + GetAGI());
-		int level_base = (GetLevel() * 15);
-		int at_most_800 = stats;
-		if(at_most_800 > 800)
-			at_most_800 = 800;
-
-		int Bonus400to800 = 0;
-		int HalfBonus400to800 = 0;
-		int Bonus800plus = 0;
-		int HalfBonus800plus = 0;
-
-		auto BonusUpto800 = int(at_most_800 / 4) ;
-
-		if(stats > 400) {
-			Bonus400to800 = int((at_most_800 - 400) / 4);
-			HalfBonus400to800 = int(std::max((at_most_800 - 400), 0) / 8);
-			if(stats > 800) {
-				Bonus800plus = (int((stats - 800) / 8) * 2);
-				HalfBonus800plus = int((stats - 800) / 16);
-			}
-		}
-		int bonus_sum = (BonusUpto800 + Bonus400to800 + HalfBonus400to800 + Bonus800plus + HalfBonus800plus);
-		base_end = level_base;
-		base_end += ((bonus_sum * 3 * GetLevel()) / 40);
 	}
+	int bonus_sum = (BonusUpto800 + Bonus400to800 + HalfBonus400to800 + Bonus800plus + HalfBonus800plus);
+	base_end = level_base;
+	base_end += ((bonus_sum * 3 * GetLevel()) / 40);
 	return base_end;
 }
 
@@ -10224,7 +10121,7 @@ bool Bot::IsValidMezTarget(Mob* owner, Mob* npc, uint16 spell_id) {
 		return false;
 	}
 
-	if (npc->HasOwner() && npc->GetOwner() && npc->GetOwner()->IsOfClientBotMerc()) {
+	if (npc->HasOwner() && npc->GetOwner() && npc->GetOwner()->IsOfClientBot()) {
 		return false;
 	}
 

@@ -71,7 +71,6 @@ public:
 	bool SpellHasQuestSub(uint32 spell_id, QuestEventID event_id);
 	bool ItemHasQuestSub(EQ::ItemInstance* inst, QuestEventID event_id);
 	bool BotHasQuestSub(QuestEventID event_id);
-	bool MercHasQuestSub(QuestEventID event_id);
 	bool ZoneHasQuestSub(QuestEventID event_id);
 
 	int EventNPC(
@@ -128,42 +127,6 @@ public:
 		std::vector<std::any> *extra_pointers = nullptr
 	);
 
-	int EventMerc(
-		QuestEventID event_id,
-		Merc* merc,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any> *extra_pointers = nullptr
-	);
-
-	int EventBotMerc(
-		QuestEventID event_id,
-		Mob* e,
-		Mob* init,
-		std::function<std::string()> lazy_data = []() { return ""; },
-		uint32 extra_data = 0,
-		std::vector<std::any>* extra_pointers = nullptr
-	);
-
-	int EventMercNPC(
-		QuestEventID event_id,
-		Mob* e,
-		Mob* init,
-		std::function<std::string()> lazy_data = []() { return ""; },
-		uint32 extra_data = 0,
-		std::vector<std::any>* extra_pointers = nullptr
-	);
-
-	int EventBotMercNPC(
-		QuestEventID event_id,
-		Mob* e,
-		Mob* init,
-		std::function<std::string()> lazy_data = []() { return ""; },
-		uint32 extra_data = 0,
-		std::vector<std::any>* extra_pointers = nullptr
-	);
-
 	int EventMob(
 		QuestEventID event_id,
 		Mob* e,
@@ -216,8 +179,6 @@ private:
 	bool HasEncounterSub(QuestEventID event_id, const std::string& package_name);
 	bool BotHasQuestSubLocal(QuestEventID event_id);
 	bool BotHasQuestSubGlobal(QuestEventID event_id);
-	bool MercHasQuestSubLocal(QuestEventID event_id);
-	bool MercHasQuestSubGlobal(QuestEventID event_id);
 	bool ZoneHasQuestSubLocal(QuestEventID event_id);
 	bool ZoneHasQuestSubGlobal(QuestEventID event_id);
 
@@ -271,24 +232,6 @@ private:
 		std::string data,
 		uint32 extra_data,
 		std::vector<std::any> *extra_pointers
-	);
-
-	int EventMercLocal(
-		QuestEventID event_id,
-		Merc* merc,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any>* extra_pointers
-	);
-
-	int EventMercGlobal(
-		QuestEventID event_id,
-		Merc* merc,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any>* extra_pointers
 	);
 
 	int EventZoneLocal(
@@ -367,15 +310,6 @@ private:
 		std::vector<std::any>* extra_pointers
 	);
 
-	int DispatchEventMerc(
-		QuestEventID event_id,
-		Merc* merc,
-		Mob* init,
-		std::string data,
-		uint32 extra_data,
-		std::vector<std::any>* extra_pointers
-	);
-
 	int DispatchEventZone(
 		QuestEventID event_id,
 		Zone* zone,
@@ -394,8 +328,6 @@ private:
 	uint32                        _global_player_quest_status;
 	uint32                        _bot_quest_status;
 	uint32                        _global_bot_quest_status;
-	uint32                        _merc_quest_status;
-	uint32                        _global_merc_quest_status;
 	uint32                        _zone_quest_status;
 	uint32                        _global_zone_quest_status;
 	std::map<uint32, uint32>      _spell_quest_status;

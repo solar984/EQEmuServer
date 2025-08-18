@@ -85,7 +85,7 @@ int64 Mob::GetActSpellDamage(uint16 spell_id, int64 value, Mob* target) {
 			Critical = true;
 			ratio += itembonuses.SpellCritDmgIncrease + spellbonuses.SpellCritDmgIncrease + aabonuses.SpellCritDmgIncrease;
 			ratio += itembonuses.SpellCritDmgIncNoStack + spellbonuses.SpellCritDmgIncNoStack + aabonuses.SpellCritDmgIncNoStack;
-		} else if ((IsOfClientBot() && GetClass() == Class::Wizard) || (IsMerc() && GetClass() == CASTERDPS)) {
+		} else if ((IsOfClientBot() && GetClass() == Class::Wizard)) {
 			if ((GetLevel() >= RuleI(Spells, WizCritLevel)) && zone->random.Roll(RuleI(Spells, WizCritChance))) {
 				//Wizard innate critical chance is calculated seperately from spell effect and is not a set ratio. (20-70 is parse confirmed)
 				ratio += zone->random.Int(RuleI(Spells, WizardCritMinimumRandomRatio), RuleI(Spells, WizardCritMaximumRandomRatio));
@@ -111,7 +111,7 @@ int64 Mob::GetActSpellDamage(uint16 spell_id, int64 value, Mob* target) {
 				}
 
 				//This adds the extra damage from the AA Unholy Touch, 450 per level to the AA Improved Harm TOuch.
-				if (spell_id == SPELL_IMP_HARM_TOUCH && IsOfClientBotMerc()) { //Improved Harm Touch
+				if (spell_id == SPELL_IMP_HARM_TOUCH && IsOfClientBot()) { //Improved Harm Touch
 					value -= GetAA(aaUnholyTouch) * 450; //Unholy Touch
 				}
 			}
@@ -1192,11 +1192,11 @@ void EntityList::AESpell(
 			continue;
 		}
 
-		if (spells[spell_id].pcnpc_only_flag == PCNPCOnlyFlagType::PC && !current_mob->IsOfClientBotMerc()) {
+		if (spells[spell_id].pcnpc_only_flag == PCNPCOnlyFlagType::PC && !current_mob->IsOfClientBot()) {
 			continue;
 		}
 
-		if (spells[spell_id].pcnpc_only_flag == PCNPCOnlyFlagType::NPC && current_mob->IsOfClientBotMerc()) {
+		if (spells[spell_id].pcnpc_only_flag == PCNPCOnlyFlagType::NPC && current_mob->IsOfClientBot()) {
 			continue;
 		}
 

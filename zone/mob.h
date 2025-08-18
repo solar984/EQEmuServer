@@ -1097,7 +1097,7 @@ public:
 	void SetOwnerID(uint16 new_owner_id);
 	inline uint16 GetOwnerID() const { return ownerid; }
 	inline virtual bool HasOwner() { if (!GetOwnerID()){ return false; } return entity_list.GetMob(GetOwnerID()) != 0; }
-	inline virtual bool IsPet() { return HasOwner() && !IsMerc(); }
+	inline virtual bool IsPet() { return HasOwner(); }
 	bool HasPet() const;
 	virtual bool IsCharmedPet() { return IsPet() && IsCharmed(); }
 	inline bool HasTempPetsActive() const { return(hasTempPet); }

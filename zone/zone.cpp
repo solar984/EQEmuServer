@@ -66,7 +66,6 @@
 #include "../common/repositories/npc_emotes_repository.h"
 #include "../common/repositories/zone_state_spawns_repository.h"
 #include "../common/serverinfo.h"
-#include "../common/repositories/merc_stance_entries_repository.h"
 #include "../common/repositories/alternate_currency_repository.h"
 #include "../common/repositories/graveyard_repository.h"
 #include "../common/repositories/trader_repository.h"
@@ -750,76 +749,6 @@ void Zone::LoadMerchants()
 	}
 }
 
-void Zone::LoadMercenaryTemplates()
-{
-	std::list<MercStanceInfo> mercenary_stances;
-
-	merc_templates.clear();
-
-	const auto& l = MercStanceEntriesRepository::GetAllOrdered(database);
-	if (l.empty()) {
-		return;
-	}
-
-	for (const auto& e : l) {
-		MercStanceInfo t{
-			.ProficiencyID = e.proficiency_id,
-			.ClassID = static_cast<uint8>(e.class_id),
-			.StanceID = e.stance_id,
-			.IsDefault = static_cast<uint8>(e.isdefault)
-		};
-
-		mercenary_stances.push_back(t);
-	}
-
-	const std::string& query = SQL(
-		SELECT DISTINCT MTem.merc_template_id, MTyp.dbstring
-		AS merc_type_id, MTem.dbstring
-		AS merc_subtype_id, MTyp.race_id, MS.class_id, MTyp.proficiency_id, MS.tier_id, 0
-		AS CostFormula, MTem.clientversion, MTem.merc_npc_type_id
-		FROM merc_types MTyp, merc_templates MTem, merc_subtypes MS
-		WHERE MTem.merc_type_id = MTyp.merc_type_id AND MTem.merc_subtype_id = MS.merc_subtype_id
-		ORDER BY MTyp.race_id, MS.class_id, MTyp.proficiency_id
-	);
-	auto results = database.QueryDatabase(query);
-	if (!results.Success() || !results.RowCount()) {
-		return;
-	}
-
-	for (auto row: results) {
-		MercTemplate t{
-			.MercTemplateID = Strings::ToUnsignedInt(row[0]),
-			.MercType = Strings::ToUnsignedInt(row[1]),
-			.MercSubType = Strings::ToUnsignedInt(row[2]),
-			.RaceID = static_cast<uint16>(Strings::ToUnsignedInt(row[3])),
-			.ClassID = static_cast<uint8>(Strings::ToUnsignedInt(row[4])),
-			.MercNPCID = Strings::ToUnsignedInt(row[9]),
-			.ProficiencyID = static_cast<uint8>(Strings::ToUnsignedInt(row[5])),
-			.TierID = static_cast<uint8>(Strings::ToUnsignedInt(row[6])),
-			.CostFormula = static_cast<uint8>(Strings::ToUnsignedInt(row[7])),
-			.ClientVersion = Strings::ToUnsignedInt(row[8])
-		};
-
-		for (int i = 0; i < MaxMercStanceID; i++) {
-			t.Stances[i] = 0;
-		}
-
-		int stance_index = 0;
-
-		for (auto i = mercenary_stances.begin(); i != mercenary_stances.end(); ++i) {
-			if (i->ClassID != t.ClassID || i->ProficiencyID != t.ProficiencyID) {
-				continue;
-			}
-
-			zone->merc_stance_list[t.MercTemplateID].push_back((*i));
-			t.Stances[stance_index] = i->StanceID;
-			++stance_index;
-		}
-
-		merc_templates[t.MercTemplateID] = t;
-	}
-}
-
 void Zone::LoadLevelEXPMods()
 {
 	level_exp_mod.clear();
@@ -829,41 +758,6 @@ void Zone::LoadLevelEXPMods()
 	for (const auto& e : l) {
 		level_exp_mod[e.level].ExpMod   = e.exp_mod;
 		level_exp_mod[e.level].AAExpMod = e.aa_exp_mod;
-	}
-}
-
-void Zone::LoadMercenarySpells()
-{
-	merc_spells_list.clear();
-
-	const std::string& query = SQL(
-		SELECT msl.class_id, msl.proficiency_id, msle.spell_id, msle.spell_type,
-		msle.stance_id, msle.minlevel, msle.maxlevel, msle.slot, msle.procChance
-		FROM merc_spell_lists msl, merc_spell_list_entries msle
-		WHERE msle.merc_spell_list_id = msl.merc_spell_list_id
-		ORDER BY msl.class_id, msl.proficiency_id, msle.spell_type, msle.minlevel, msle.slot
-	);
-
-	auto results = database.QueryDatabase(query);
-	if (!results.Success() || !results.RowCount()) {
-		return;
-	}
-
-	for (auto row: results) {
-		const uint32 class_id = Strings::ToUnsignedInt(row[0]);
-
-		merc_spells_list[class_id].push_back(
-			MercSpellEntry{
-				.proficiencyid = static_cast<uint8>(Strings::ToUnsignedInt(row[1])),
-				.spellid = static_cast<uint16>(Strings::ToUnsignedInt(row[2])),
-				.type = Strings::ToUnsignedInt(row[3]),
-				.stance = static_cast<int16>(Strings::ToInt(row[4])),
-				.minlevel = static_cast<uint8>(Strings::ToUnsignedInt(row[5])),
-				.maxlevel = static_cast<uint8>(Strings::ToUnsignedInt(row[6])),
-				.slot = static_cast<int16>(Strings::ToInt(row[7])),
-				.proc_chance = static_cast<uint16>(Strings::ToUnsignedInt(row[8]))
-			}
-		);
 	}
 }
 
@@ -1226,12 +1120,6 @@ bool Zone::Init(bool is_static) {
 	LoadBaseData();
 	LoadMerchants();
 	LoadTempMerchantData();
-
-	// Merc data
-	if (RuleB(Mercs, AllowMercs)) {
-		LoadMercenaryTemplates();
-		LoadMercenarySpells();
-	}
 
 	PetitionList::Instance()->ClearPetitions();
 	PetitionList::Instance()->ReadDatabase();

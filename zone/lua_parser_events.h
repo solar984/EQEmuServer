@@ -8,7 +8,6 @@ typedef void(*ItemArgumentHandler)(QuestInterface*, lua_State*, Client*, EQ::Ite
 typedef void(*SpellArgumentHandler)(QuestInterface*, lua_State*, Mob*, Client*, uint32, std::string, uint32, std::vector<std::any>*);
 typedef void(*EncounterArgumentHandler)(QuestInterface*, lua_State*, Encounter* encounter, std::string, uint32, std::vector<std::any>*);
 typedef void(*BotArgumentHandler)(QuestInterface*, lua_State*, Bot*, Mob*, std::string, uint32, std::vector<std::any>*);
-typedef void(*MercArgumentHandler)(QuestInterface*, lua_State*, Merc*, Mob*, std::string, uint32, std::vector<std::any>*);
 typedef void(*ZoneArgumentHandler)(QuestInterface*, lua_State*, Zone*, std::string, uint32, std::vector<std::any>*);
 
 // NPC

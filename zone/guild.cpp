@@ -61,61 +61,6 @@ void Client::SendGuildMOTD(bool GetGuildMOTDReply) {
 	FastQueuePacket(&outapp);
 }
 
-void Client::SendGuildURL()
-{
-	if (ClientVersion() < EQ::versions::ClientVersion::SoF)
-		return;
-
-	if(IsInAGuild())
-	{
-		auto outapp =
-		    new EQApplicationPacket(OP_GuildUpdate, sizeof(GuildUpdateURLAndChannel_Struct));
-
-		GuildUpdateURLAndChannel_Struct *guuacs = (GuildUpdateURLAndChannel_Struct*) outapp->pBuffer;
-
-		if(guild_mgr.GetGuildURL(GuildID(), guuacs->Text))
-		{
-			guuacs->Action = GuildUpdateURL;
-			FastQueuePacket(&outapp);
-		}
-		else
-			safe_delete(outapp);
-	}
-}
-
-void Client::SendGuildChannel()
-{
-	if (ClientVersion() < EQ::versions::ClientVersion::SoF)
-		return;
-
-	if(IsInAGuild())
-	{
-		auto outapp =
-		    new EQApplicationPacket(OP_GuildUpdate, sizeof(GuildUpdateURLAndChannel_Struct));
-
-		GuildUpdateURLAndChannel_Struct *guuacs = (GuildUpdateURLAndChannel_Struct*) outapp->pBuffer;
-
-		if(guild_mgr.GetGuildChannel(GuildID(), guuacs->Text))
-		{
-			guuacs->Action = GuildUpdateChannel;
-
-			FastQueuePacket(&outapp);
-		}
-		else
-			safe_delete(outapp);
-	}
-}
-
-void Client::SendGuildRanks()
-{
-
-}
-
-void Client::SendGuildRankNames()
-{
-
-}
-
 void Client::SendGuildSpawnAppearance() {
 	if (!IsInAGuild()) {
 		// clear guildtag
@@ -175,10 +120,6 @@ void Client::SendGuildMembers() {
 	worldserver.SendPacket(pack);
 
 	safe_delete(pack);
-
-	// We need to send the Guild URL and Channel name again, as sending OP_GuildMemberList appears to clear this information out.
-	SendGuildURL();
-	SendGuildChannel();
 }
 
 void Client::RefreshGuildInfo()
@@ -238,32 +179,6 @@ void EntityList::SendGuildMOTD(uint32 guild_id)
 	for (auto const &c: client_list) {
 		if (c.second->GuildID() == guild_id) {
 			c.second->SendGuildMOTD();
-		}
-	}
-}
-
-void EntityList::SendGuildChannel(uint32 guild_id)
-{
-	if (guild_id == GUILD_NONE) {
-		return;
-	}
-
-	for (auto const &c: client_list) {
-		if (c.second->GuildID() == guild_id) {
-			c.second->SendGuildChannel();
-		}
-	}
-}
-
-void EntityList::SendGuildURL(uint32 guild_id)
-{
-	if (guild_id == GUILD_NONE) {
-		return;
-	}
-
-	for (auto const &c: client_list) {
-		if (c.second->GuildID() == guild_id) {
-			c.second->SendGuildURL();
 		}
 	}
 }
@@ -478,8 +393,6 @@ void Client::SendGuildMembersList()
 	FastQueuePacket(&outapp);
 
 	SendGuildMOTD();
-	SendGuildChannel();
-	SendGuildURL();
 
 	SetGuildListDirty(false);
 }

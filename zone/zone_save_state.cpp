@@ -742,7 +742,6 @@ void Zone::SaveZoneState()
 				 n.second->GetNPCTypeID() == 500 || // Trap::CreateHiddenTrigger
 				 n.second->IsAura() ||
 				 n.second->IsBot() ||
-				 n.second->IsMerc() ||
 				 n.second->IsTrap() ||
 				 n.second->GetSwarmOwner() ||
 				 n.second->IsPet();

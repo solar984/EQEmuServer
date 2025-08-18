@@ -491,10 +491,8 @@ void ChatChannel::SendMessageToChannel(const std::string& Message, Client* Sende
 				case EQ::versions::ClientVersion::Titanium:
 					ServerToClient45SayLink(cv_messages[static_cast<uint32>(channel_client->GetClientVersion())], Message);
 					break;
-				case EQ::versions::ClientVersion::SoF:
-				case EQ::versions::ClientVersion::SoD:
 				default:
-					ServerToClient50SayLink(cv_messages[static_cast<uint32>(channel_client->GetClientVersion())], Message);
+					ServerToClient45SayLink(cv_messages[static_cast<uint32>(channel_client->GetClientVersion())], Message);
 					break;
 				}
 			}

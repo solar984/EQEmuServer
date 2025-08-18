@@ -429,12 +429,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 				zc2->instanceID = ztz->requested_instance_id;
 				zc2->success = 1;
 
-				// This block is necessary to clean up any merc objects owned by a Client. Maybe we should do this for bots, too?
-				if (entity->CastToClient()->GetMerc() != nullptr)
-				{
-					entity->CastToClient()->GetMerc()->ProcessClientZoneChange(entity->CastToClient());
-				}
-
 				entity->CastToMob()->SetZone(ztz->requested_zone_id, ztz->requested_instance_id);
 
 				if (ztz->ignorerestrictions == 3)
@@ -1077,7 +1071,7 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 
 		Mob *Invitee = entity_list.GetMob(gis->invitee_name);
 
-		if (Invitee && Invitee->IsClient() && Invitee->CastToClient()->MercOnlyOrNoGroup() && !Invitee->IsRaidGrouped())
+		if (Invitee && Invitee->IsClient() && !Invitee->IsRaidGrouped())
 		{
 			auto outapp = new EQApplicationPacket(OP_GroupInvite, sizeof(GroupInvite_Struct));
 			memcpy(outapp->pBuffer, gis, sizeof(GroupInvite_Struct));
@@ -1118,25 +1112,15 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 				database.SetGroupLeaderName(group->GetID(), Inviter->GetName());
 				group->UpdateGroupAAs();
 
-				if (Inviter->CastToClient()->ClientVersion() < EQ::versions::ClientVersion::SoD)
-				{
-					auto outapp =
-						new EQApplicationPacket(OP_GroupUpdate, sizeof(GroupJoin_Struct));
-					auto outgj = (GroupJoin_Struct*)outapp->pBuffer;
-					strcpy(outgj->membername, Inviter->GetName());
-					strcpy(outgj->yourname, Inviter->GetName());
-					outgj->action = groupActInviteInitial; // 'You have formed the group'.
-					group->GetGroupAAs(&outgj->leader_aas);
-					Inviter->CastToClient()->QueuePacket(outapp);
-					safe_delete(outapp);
-				}
-				else
-				{
-					// SoD and later
-					Inviter->CastToClient()->SendGroupCreatePacket();
-					Inviter->CastToClient()->SendGroupLeaderChangePacket(Inviter->GetName());
-					Inviter->CastToClient()->SendGroupJoinAcknowledge();
-				}
+				auto outapp =
+					new EQApplicationPacket(OP_GroupUpdate, sizeof(GroupJoin_Struct));
+				auto outgj = (GroupJoin_Struct*)outapp->pBuffer;
+				strcpy(outgj->membername, Inviter->GetName());
+				strcpy(outgj->yourname, Inviter->GetName());
+				outgj->action = groupActInviteInitial; // 'You have formed the group'.
+				group->GetGroupAAs(&outgj->leader_aas);
+				Inviter->CastToClient()->QueuePacket(outapp);
+				safe_delete(outapp);
 			}
 
 			if (!group)
@@ -1210,10 +1194,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 				group->UpdatePlayer(client);
 			else
 			{
-				if (client->GetMerc()) {
-					Group::RemoveFromGroup(client->GetMerc());
-				}
-
 				Group::RemoveFromGroup(client);	//cannot re-establish group, kill it
 			}
 
@@ -1221,10 +1201,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 
 		if (group)
 		{
-			if (client->GetMerc())
-			{
-				client->GetMerc()->MercJoinClientGroup();
-			}
 			database.RefreshGroupFromDB(client);
 
 			group->SendHPManaEndPacketsTo(client);
@@ -1254,10 +1230,7 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 				group->SetGroupMentor(mentor_percent, mentoree_name);
 			}
 		}
-		else if (client->GetMerc())
-		{
-			client->GetMerc()->MercJoinClientGroup();
-		}
+
 		break;
 
 	}
@@ -2595,12 +2568,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 							}
 						}
 
-						if (RuleB(Zone, AllowCrossZoneSpellsOnMercs)) {
-							if (c->GetMerc()) {
-								c->GetMerc()->ApplySpellBuff(s->spell_id);
-							}
-						}
-
 						if (RuleB(Zone, AllowCrossZoneSpellsOnPets)) {
 							if (c->HasPet()) {
 								c->GetPet()->ApplySpellBuff(s->spell_id);
@@ -2623,12 +2590,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 							}
 						}
 
-						if (RuleB(Zone, AllowCrossZoneSpellsOnMercs)) {
-							if (c->GetMerc()) {
-								c->GetMerc()->BuffFadeBySpellID(s->spell_id);
-							}
-						}
-
 						if (RuleB(Zone, AllowCrossZoneSpellsOnPets)) {
 							if (c->HasPet()) {
 								c->GetPet()->BuffFadeBySpellID(s->spell_id);
@@ -2646,8 +2607,7 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 						m &&
 						(
 							m->IsClient() ||
-							(m->IsBot() && RuleB(Zone, AllowCrossZoneSpellsOnBots)) ||
-							(m->IsMerc() && RuleB(Zone, AllowCrossZoneSpellsOnMercs))
+							(m->IsBot() && RuleB(Zone, AllowCrossZoneSpellsOnBots))
 						)
 					) {
 						switch (s->update_subtype) {
@@ -2683,8 +2643,7 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 						m.member &&
 						(
 							m.member->IsClient() ||
-							(m.member->IsBot() && RuleB(Zone, AllowCrossZoneSpellsOnBots)) ||
-							(m.member->IsMerc() && RuleB(Zone, AllowCrossZoneSpellsOnMercs))
+							(m.member->IsBot() && RuleB(Zone, AllowCrossZoneSpellsOnBots))
 						)
 					){
 						switch (s->update_subtype) {
@@ -2731,12 +2690,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 								}
 							}
 
-							if (RuleB(Zone, AllowCrossZoneSpellsOnMercs)) {
-								if (c.second->GetMerc()) {
-									c.second->GetMerc()->ApplySpellBuff(s->spell_id);
-								}
-							}
-
 							if (RuleB(Zone, AllowCrossZoneSpellsOnPets)) {
 								if (c.second->HasPet()) {
 									c.second->GetPet()->ApplySpellBuff(s->spell_id);
@@ -2756,12 +2709,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 											b->GetPet()->BuffFadeBySpellID(s->spell_id);
 										}
 									}
-								}
-							}
-
-							if (RuleB(Zone, AllowCrossZoneSpellsOnMercs)) {
-								if (c.second->GetMerc()) {
-									c.second->GetMerc()->BuffFadeBySpellID(s->spell_id);
 								}
 							}
 
@@ -2794,12 +2741,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 								}
 							}
 
-							if (RuleB(Zone, AllowCrossZoneSpellsOnMercs)) {
-								if (c.second->GetMerc()) {
-									c.second->GetMerc()->ApplySpellBuff(s->spell_id);
-								}
-							}
-
 							if (RuleB(Zone, AllowCrossZoneSpellsOnPets)) {
 								if (c.second->HasPet()) {
 									c.second->GetPet()->ApplySpellBuff(s->spell_id);
@@ -2819,12 +2760,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 											b->GetPet()->BuffFadeBySpellID(s->spell_id);
 										}
 									}
-								}
-							}
-
-							if (RuleB(Zone, AllowCrossZoneSpellsOnMercs)) {
-								if (c.second->GetMerc()) {
-									c.second->GetMerc()->BuffFadeBySpellID(s->spell_id);
 								}
 							}
 
@@ -2857,12 +2792,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 							}
 						}
 
-						if (RuleB(Zone, AllowCrossZoneSpellsOnMercs)) {
-							if (c->GetMerc()) {
-								c->GetMerc()->ApplySpellBuff(s->spell_id);
-							}
-						}
-
 						if (RuleB(Zone, AllowCrossZoneSpellsOnPets)) {
 							if (c->HasPet()) {
 								c->GetPet()->ApplySpellBuff(s->spell_id);
@@ -2882,12 +2811,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 										b->GetPet()->BuffFadeBySpellID(s->spell_id);
 									}
 								}
-							}
-						}
-
-						if (RuleB(Zone, AllowCrossZoneSpellsOnMercs)) {
-							if (c->GetMerc()) {
-								c->GetMerc()->BuffFadeBySpellID(s->spell_id);
 							}
 						}
 
@@ -3245,12 +3168,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 						}
 					}
 
-					if (RuleB(Zone, AllowCrossZoneSpellsOnMercs)) {
-						if (c.second->GetMerc()) {
-							c.second->GetMerc()->ApplySpellBuff(s->spell_id);
-						}
-					}
-
 					if (RuleB(Zone, AllowCrossZoneSpellsOnPets)) {
 						if (c.second->HasPet()) {
 							c.second->GetPet()->ApplySpellBuff(s->spell_id);
@@ -3268,12 +3185,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 									b->GetPet()->BuffFadeBySpellID(s->spell_id);
 								}
 							}
-						}
-					}
-
-					if (RuleB(Zone, AllowCrossZoneSpellsOnMercs)) {
-						if (c.second->GetMerc()) {
-							c.second->GetMerc()->BuffFadeBySpellID(s->spell_id);
 						}
 					}
 

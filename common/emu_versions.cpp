@@ -46,10 +46,6 @@ const char* EQ::versions::ClientVersionName(ClientVersion client_version)
 		return "Client 6.2";
 	case ClientVersion::Titanium:
 		return "Titanium";
-	case ClientVersion::SoF:
-		return "SoF";
-	case ClientVersion::SoD:
-		return "SoD";
 	default:
 		return "Invalid Version";
 	};
@@ -60,10 +56,6 @@ uint32 EQ::versions::ConvertClientVersionToClientVersionBit(ClientVersion client
 	switch (client_version) {
 	case ClientVersion::Titanium:
 		return bitTitanium;
-	case ClientVersion::SoF:
-		return bitSoF;
-	case ClientVersion::SoD:
-		return bitSoD;
 	default:
 		return bitUnknown;
 	}
@@ -74,10 +66,6 @@ EQ::versions::ClientVersion EQ::versions::ConvertClientVersionBitToClientVersion
 	switch (client_version_bit) {
 	case ((uint32)1 << (static_cast<unsigned int>(ClientVersion::Titanium) - 1)) :
 		return ClientVersion::Titanium;
-	case ((uint32)1 << (static_cast<unsigned int>(ClientVersion::SoF) - 1)) :
-		return ClientVersion::SoF;
-	case ((uint32)1 << (static_cast<unsigned int>(ClientVersion::SoD) - 1)) :
-		return ClientVersion::SoD;
 	default:
 		return ClientVersion::Unknown;
 	}
@@ -156,32 +144,20 @@ const char* EQ::versions::MobVersionName(MobVersion mob_version)
 		return "Client 6.2";
 	case MobVersion::Titanium:
 		return "Titanium";
-	case MobVersion::SoF:
-		return "SoF";
-	case MobVersion::SoD:
-		return "SoD";
 	case MobVersion::NPC:
 		return "NPC";
 	case MobVersion::NPCMerchant:
 		return "NPC Merchant";
-	case MobVersion::Merc:
-		return "Merc";
 	case MobVersion::Bot:
 		return "Bot";
 	case MobVersion::ClientPet:
 		return "Client Pet";
 	case MobVersion::NPCPet:
 		return "NPC Pet";
-	case MobVersion::MercPet:
-		return "Merc Pet";
 	case MobVersion::BotPet:
 		return "Bot Pet";
 	case MobVersion::OfflineTitanium:
 		return "Offline Titanium";
-	case MobVersion::OfflineSoF:
-		return "Offline SoF";
-	case MobVersion::OfflineSoD:
-		return "Offline SoD";
 	default:
 		return "Invalid Version";
 	};
@@ -195,10 +171,6 @@ EQ::versions::ClientVersion EQ::versions::ConvertMobVersionToClientVersion(MobVe
 		return ClientVersion::Unknown;
 	case MobVersion::Titanium:
 		return ClientVersion::Titanium;
-	case MobVersion::SoF:
-		return ClientVersion::SoF;
-	case MobVersion::SoD:
-		return ClientVersion::SoD;
 	default:
 		return ClientVersion::Unknown;
 	}
@@ -212,10 +184,6 @@ EQ::versions::MobVersion EQ::versions::ConvertClientVersionToMobVersion(ClientVe
 		return MobVersion::Unknown;
 	case ClientVersion::Titanium:
 		return MobVersion::Titanium;
-	case ClientVersion::SoF:
-		return MobVersion::SoF;
-	case ClientVersion::SoD:
-		return MobVersion::SoD;
 	default:
 		return MobVersion::Unknown;
 	}
@@ -226,10 +194,6 @@ EQ::versions::MobVersion EQ::versions::ConvertPCMobVersionToOfflinePCMobVersion(
 	switch (mob_version) {
 	case MobVersion::Titanium:
 		return MobVersion::OfflineTitanium;
-	case MobVersion::SoF:
-		return MobVersion::OfflineSoF;
-	case MobVersion::SoD:
-		return MobVersion::OfflineSoD;
 	default:
 		return MobVersion::Unknown;
 	}
@@ -240,10 +204,6 @@ EQ::versions::MobVersion EQ::versions::ConvertOfflinePCMobVersionToPCMobVersion(
 	switch (mob_version) {
 	case MobVersion::OfflineTitanium:
 		return MobVersion::Titanium;
-	case MobVersion::OfflineSoF:
-		return MobVersion::SoF;
-	case MobVersion::OfflineSoD:
-		return MobVersion::SoD;
 	default:
 		return MobVersion::Unknown;
 	}
@@ -254,10 +214,6 @@ EQ::versions::ClientVersion EQ::versions::ConvertOfflinePCMobVersionToClientVers
 	switch (mob_version) {
 	case MobVersion::OfflineTitanium:
 		return ClientVersion::Titanium;
-	case MobVersion::OfflineSoF:
-		return ClientVersion::SoF;
-	case MobVersion::OfflineSoD:
-		return ClientVersion::SoD;
 	default:
 		return ClientVersion::Unknown;
 	}
@@ -268,10 +224,6 @@ EQ::versions::MobVersion EQ::versions::ConvertClientVersionToOfflinePCMobVersion
 	switch (client_version) {
 	case ClientVersion::Titanium:
 		return MobVersion::OfflineTitanium;
-	case ClientVersion::SoF:
-		return MobVersion::OfflineSoF;
-	case ClientVersion::SoD:
-		return MobVersion::OfflineSoD;
 	default:
 		return MobVersion::Unknown;
 	}
@@ -302,16 +254,6 @@ const char* EQ::expansions::ExpansionName(Expansion expansion)
 		return "Dragons of Norrath";
 	case Expansion::DoD:
 		return "Depths of Darkhollow";
-	case Expansion::PoR:
-		return "Prophecy of Ro";
-	case Expansion::TSS:
-		return "The Serpent's Spine";
-	case Expansion::TBS:
-		return "The Buried Sea";
-	case Expansion::SoF:
-		return "Secrets of Faydwer";
-	case Expansion::SoD:
-		return "Seeds of Destruction";
 	default:
 		return "Invalid Expansion";
 	}
@@ -345,16 +287,6 @@ uint32 EQ::expansions::ConvertExpansionToExpansionBit(Expansion expansion)
 		return bitDoN;
 	case Expansion::DoD:
 		return bitDoD;
-	case Expansion::PoR:
-		return bitPoR;
-	case Expansion::TSS:
-		return bitTSS;
-	case Expansion::TBS:
-		return bitTBS;
-	case Expansion::SoF:
-		return bitSoF;
-	case Expansion::SoD:
-		return bitSoD;
 	default:
 		return bitEverQuest;
 	}
@@ -383,16 +315,6 @@ EQ::expansions::Expansion EQ::expansions::ConvertExpansionBitToExpansion(uint32 
 		return Expansion::DoN;
 	case bitDoD:
 		return Expansion::DoD;
-	case bitPoR:
-		return Expansion::PoR;
-	case bitTSS:
-		return Expansion::TSS;
-	case bitTBS:
-		return Expansion::TBS;
-	case bitSoF:
-		return Expansion::SoF;
-	case bitSoD:
-		return Expansion::SoD;
 	default:
 		return Expansion::EverQuest;
 	}
@@ -421,16 +343,6 @@ uint32 EQ::expansions::ConvertExpansionToExpansionsMask(Expansion expansion)
 		return maskDoN;
 	case Expansion::DoD:
 		return maskDoD;
-	case Expansion::PoR:
-		return maskPoR;
-	case Expansion::TSS:
-		return maskTSS;
-	case Expansion::TBS:
-		return maskTBS;
-	case Expansion::SoF:
-		return maskSoF;
-	case Expansion::SoD:
-		return maskSoD;
 	default:
 		return maskEverQuest;
 	}

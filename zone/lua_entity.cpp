@@ -12,7 +12,6 @@
 #include "lua_door.h"
 
 #include "lua_bot.h"
-#include "lua_merc.h"
 
 bool Lua_Entity::IsClient() {
 	Lua_Safe_Call_Bool();
@@ -27,11 +26,6 @@ bool Lua_Entity::IsNPC() {
 bool Lua_Entity::IsMob() {
 	Lua_Safe_Call_Bool();
 	return self->IsMob();
-}
-
-bool Lua_Entity::IsMerc() {
-	Lua_Safe_Call_Bool();
-	return self->IsMerc();
 }
 
 bool Lua_Entity::IsCorpse() {
@@ -89,11 +83,6 @@ bool Lua_Entity::IsOfClientBot() {
 	return self->IsOfClientBot();
 }
 
-bool Lua_Entity::IsOfClientBotMerc() {
-	Lua_Safe_Call_Bool();
-	return self->IsOfClientBotMerc();
-}
-
 int Lua_Entity::GetID() {
 	Lua_Safe_Call_Bool();
 	return self->GetID();
@@ -141,12 +130,6 @@ Lua_Bot Lua_Entity::CastToBot() {
 	return Lua_Bot(b);
 }
 
-Lua_Merc Lua_Entity::CastToMerc() {
-	void *d = GetLuaPtrData();
-	Merc *m = reinterpret_cast<Merc*>(d);
-	return Lua_Merc(m);
-}
-
 luabind::scope lua_register_entity() {
 	return luabind::class_<Lua_Entity>("Entity")
 	.def(luabind::constructor<>())
@@ -156,7 +139,6 @@ luabind::scope lua_register_entity() {
 	.def("CastToClient", &Lua_Entity::CastToClient)
 	.def("CastToCorpse", &Lua_Entity::CastToCorpse)
 	.def("CastToDoor", &Lua_Entity::CastToDoor)
-	.def("CastToMerc", &Lua_Entity::CastToMerc)
 	.def("CastToMob", &Lua_Entity::CastToMob)
 	.def("CastToNPC", &Lua_Entity::CastToNPC)
 	.def("CastToObject", &Lua_Entity::CastToObject)
@@ -168,13 +150,11 @@ luabind::scope lua_register_entity() {
 	.def("IsCorpse", &Lua_Entity::IsCorpse)
 	.def("IsDoor", &Lua_Entity::IsDoor)
 	.def("IsEncounter", &Lua_Entity::IsEncounter)
-	.def("IsMerc", &Lua_Entity::IsMerc)
 	.def("IsMob", &Lua_Entity::IsMob)
 	.def("IsNPC", &Lua_Entity::IsNPC)
 	.def("IsNPCCorpse", &Lua_Entity::IsNPCCorpse)
 	.def("IsObject", &Lua_Entity::IsObject)
 	.def("IsOfClientBot", &Lua_Entity::IsOfClientBot)
-	.def("IsOfClientBotMerc", &Lua_Entity::IsOfClientBotMerc)
 	.def("IsPlayerCorpse", &Lua_Entity::IsPlayerCorpse)
 	.def("IsTrap", &Lua_Entity::IsTrap);
 }

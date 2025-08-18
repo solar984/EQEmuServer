@@ -845,13 +845,13 @@ bool Mob::DoCastingChecksOnTarget(bool check_on_casting, int32 spell_id, Mob *sp
 	*/
 	if (!ignore_on_casting) {
 		if (spells[spell_id].pcnpc_only_flag && spells[spell_id].target_type != ST_AETargetHateList && spells[spell_id].target_type != ST_HateList) {
-			if (spells[spell_id].pcnpc_only_flag == PCNPCOnlyFlagType::PC && !spell_target->IsClient() && !spell_target->IsMerc() && !spell_target->IsBot()) {
+			if (spells[spell_id].pcnpc_only_flag == PCNPCOnlyFlagType::PC && !spell_target->IsClient() && !spell_target->IsBot()) {
 				if (check_on_casting) {
 					Message(Chat::SpellFailure, "This spell only works on other PCs");
 				}
 				return false;
 			}
-			else if (spells[spell_id].pcnpc_only_flag == PCNPCOnlyFlagType::NPC && (spell_target->IsClient() || spell_target->IsMerc() || spell_target->IsBot())) {
+			else if (spells[spell_id].pcnpc_only_flag == PCNPCOnlyFlagType::NPC && (spell_target->IsClient() || spell_target->IsBot())) {
 				if (check_on_casting) {
 					Message(Chat::SpellFailure, "This spell only works on NPCs.");
 				}
@@ -1767,7 +1767,7 @@ void Mob::CastedSpellFinished(uint16 spell_id, uint32 target_id, CastingSlot slo
 		return;
 	}
 
-	if(IsOfClientBotMerc()) {
+	if(IsOfClientBot()) {
 		TrySympatheticProc(target, spell_id);
 	}
 
@@ -2742,7 +2742,7 @@ bool Mob::SpellFinished(uint16 spell_id, Mob *spell_target, CastingSlot slot, in
 
 		case CAHateList:
 		{
-			if(!IsOfClientBotMerc())
+			if(!IsOfClientBot())
 			{
 				hate_list.SpellCast(this, spell_id, spells[spell_id].range > spells[spell_id].aoe_range ? spells[spell_id].range : spells[spell_id].aoe_range);
 			}
@@ -3767,12 +3767,9 @@ int Mob::AddBuff(Mob *caster, uint16 spell_id, int duration, int32 level_overrid
 
 	if((IsClient() && !CastToClient()->GetPVP()) ||
 		(IsPet() && GetOwner() && GetOwner()->IsClient() && !GetOwner()->CastToClient()->GetPVP()) ||
-		(IsBot() && GetOwner() && GetOwner()->IsClient() && !GetOwner()->CastToClient()->GetPVP()) ||
-		(IsMerc() && GetOwner() && GetOwner()->IsClient() && !GetOwner()->CastToClient()->GetPVP()))
+		(IsBot() && GetOwner() && GetOwner()->IsClient() && !GetOwner()->CastToClient()->GetPVP()))
 	{
 		EQApplicationPacket *outapp = MakeBuffsPacket();
-
-		entity_list.QueueClientsByTarget(this, outapp, false, nullptr, true, false, EQ::versions::maskSoDAndLater);
 
 		if(IsClient() && GetTarget() == this)
 			CastToClient()->QueuePacket(outapp);
@@ -3782,7 +3779,6 @@ int Mob::AddBuff(Mob *caster, uint16 spell_id, int duration, int32 level_overrid
 
 	if (IsNPC()) {
 		EQApplicationPacket *outapp = MakeBuffsPacket();
-		entity_list.QueueClientsByTarget(this, outapp, false, nullptr, true, false, EQ::versions::maskSoDAndLater, true);
 		safe_delete(outapp);
 	}
 
@@ -3946,13 +3942,13 @@ bool Mob::SpellOnTarget(
 	) {
 		if (
 			spells[spell_id].pcnpc_only_flag == PCNPCOnlyFlagType::PC &&
-			!spelltar->IsOfClientBotMerc()
+			!spelltar->IsOfClientBot()
 		) {
 			return false;
 		} else if (
 			spells[spell_id].pcnpc_only_flag == PCNPCOnlyFlagType::NPC &&
 			(
-				spelltar->IsOfClientBotMerc()
+				spelltar->IsOfClientBot()
 			)
 		) {
 			return false;
@@ -6633,11 +6629,6 @@ void Mob::SendBuffsToClient(Client *c)
 	if(!c)
 		return;
 
-	if (c->ClientVersionBit() & EQ::versions::maskSoDAndLater)
-	{
-		EQApplicationPacket *outapp = MakeBuffsPacket();
-		c->FastQueuePacket(&outapp);
-	}
 }
 
 EQApplicationPacket *Mob::MakeBuffsPacket(bool for_target, bool clear_buffs)
@@ -7436,49 +7427,37 @@ bool Mob::CheckItemRaceClassDietyRestrictionsOnCast(uint32 inventory_slot) {
 	bitmask = bitmask << (CastToClient()->GetClass() - 1);
 	if (itm && itm->GetItem()->Classes != 65535) {
 		if ((itm->GetItem()->Click.Type == EQ::item::ItemEffectEquipClick) && !(itm->GetItem()->Classes & bitmask)) {
-			if (CastToClient()->ClientVersion() < EQ::versions::ClientVersion::SoF) {
-				std::string message = fmt::format(
-					"Attempted to click an equip-only effect on item_name [{}] item_id [{}] which they shouldn't be able to equip!",
-					itm->GetItem()->Name,
-					itm->GetItem()->ID
-				);
-
-				RecordPlayerEventLogWithClient(CastToClient(), PlayerEvent::POSSIBLE_HACK, PlayerEvent::PossibleHackEvent{.message = message});
-			}
-			else {
-				MessageString(Chat::Red, MUST_EQUIP_ITEM);
-			}
-			return(false);
-		}
-		if ((itm->GetItem()->Click.Type == EQ::item::ItemEffectClick2) && !(itm->GetItem()->Classes & bitmask)) {
-			if (CastToClient()->ClientVersion() < EQ::versions::ClientVersion::SoF) {
-				std::string message = fmt::format(
-					"Attempted to click a race/class restricted effect on item_name [{}] item_id [{}] which they shouldn't be able to click!",
-					itm->GetItem()->Name,
-					itm->GetItem()->ID
-				);
-
-				RecordPlayerEventLogWithClient(CastToClient(), PlayerEvent::POSSIBLE_HACK, PlayerEvent::PossibleHackEvent{.message = message});
-			}
-			else {
-				MessageString(Chat::Red, CANNOT_USE_ITEM);
-			}
-			return(false);
-		}
-	}
-	if (itm && (itm->GetItem()->Click.Type == EQ::item::ItemEffectEquipClick) && inventory_slot > EQ::invslot::EQUIPMENT_END) {
-		if (CastToClient()->ClientVersion() < EQ::versions::ClientVersion::SoF) {
 			std::string message = fmt::format(
-				"Attempted to click an equip-only effect on item_name [{}] item_id [{}] without equipping it!",
+				"Attempted to click an equip-only effect on item_name [{}] item_id [{}] which they shouldn't be able to equip!",
+				itm->GetItem()->Name,
+				itm->GetItem()->ID
+			);
+			RecordPlayerEventLogWithClient(CastToClient(), PlayerEvent::POSSIBLE_HACK, PlayerEvent::PossibleHackEvent{.message = message});
+
+			return(false);
+		}
+
+		if ((itm->GetItem()->Click.Type == EQ::item::ItemEffectClick2) && !(itm->GetItem()->Classes & bitmask)) {
+			std::string message = fmt::format(
+				"Attempted to click a race/class restricted effect on item_name [{}] item_id [{}] which they shouldn't be able to click!",
 				itm->GetItem()->Name,
 				itm->GetItem()->ID
 			);
 
 			RecordPlayerEventLogWithClient(CastToClient(), PlayerEvent::POSSIBLE_HACK, PlayerEvent::PossibleHackEvent{.message = message});
+
+			return(false);
 		}
-		else {
-			MessageString(Chat::Red, MUST_EQUIP_ITEM);
-		}
+	}
+	if (itm && (itm->GetItem()->Click.Type == EQ::item::ItemEffectEquipClick) && inventory_slot > EQ::invslot::EQUIPMENT_END) {
+		std::string message = fmt::format(
+			"Attempted to click an equip-only effect on item_name [{}] item_id [{}] without equipping it!",
+			itm->GetItem()->Name,
+			itm->GetItem()->ID
+		);
+
+		RecordPlayerEventLogWithClient(CastToClient(), PlayerEvent::POSSIBLE_HACK, PlayerEvent::PossibleHackEvent{.message = message});
+
 		return(false);
 	}
 

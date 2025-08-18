@@ -220,10 +220,6 @@ void Mob::CalcItemBonuses(StatBonuses* b) {
 			AdditiveWornBonuses(inst, b);
 		}
 	}
-
-	if (IsMerc()) {
-		SetAttackTimer();
-	}
 }
 
 // These item stat caps depend on spells/AAs so we process them after those are processed
@@ -243,11 +239,11 @@ void Mob::ProcessItemCaps()
 
 	itembonuses.ATK = std::min(itembonuses.ATK, CalcItemATKCap());
 
-	if (IsOfClientBotMerc() && itembonuses.SpellDmg > RuleI(Character, ItemSpellDmgCap)) {
+	if (IsOfClientBot() && itembonuses.SpellDmg > RuleI(Character, ItemSpellDmgCap)) {
 		itembonuses.SpellDmg = RuleI(Character, ItemSpellDmgCap);
 	}
 
-	if (IsOfClientBotMerc() && itembonuses.HealAmt > RuleI(Character, ItemHealAmtCap)) {
+	if (IsOfClientBot() && itembonuses.HealAmt > RuleI(Character, ItemHealAmtCap)) {
 		itembonuses.HealAmt = RuleI(Character, ItemHealAmtCap);
 	}
 }
@@ -291,7 +287,7 @@ void Mob::AddItemBonuses(const EQ::ItemInstance* inst, StatBonuses* b, bool is_a
 
 	auto CalcCappedItemBonus = [&](int currentStat, int bonus, int cap) -> int {
 		int calc_stat = currentStat + CalcItemBonus(bonus);
-		return IsOfClientBotMerc() ? std::min(cap, calc_stat) : calc_stat;
+		return IsOfClientBot() ? std::min(cap, calc_stat) : calc_stat;
 	};
 
 	b->HP += CalcItemBonus(item->HP);
@@ -384,7 +380,7 @@ void Mob::AddItemBonuses(const EQ::ItemInstance* inst, StatBonuses* b, bool is_a
 
 	if (item->Focus.Effect > 0 && item->Focus.Type == EQ::item::ItemEffectFocus) {
 		if (
-			IsOfClientBotMerc() ||
+			IsOfClientBot() ||
 			(IsNPC() && RuleB(Spells, NPC_UseFocusFromItems))
 		) {
 			ApplySpellsBonuses(item->Focus.Effect, item->Focus.Level, b, 0);
