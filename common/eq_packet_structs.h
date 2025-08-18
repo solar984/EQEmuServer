@@ -6329,13 +6329,11 @@ struct SayLinkBodyFrame_Struct {
 /*016*/	char Augment3[5];
 /*021*/	char Augment4[5];
 /*026*/	char Augment5[5];
-/*031*/	char Augment6[5];
-/*036*/	char IsEvolving[1];
-/*037*/	char EvolveGroup[4];
-/*041*/	char EvolveLevel[2];
-/*043*/	char OrnamentIcon[5];
-/*048*/	char Hash[8];
-/*056*/
+/*031*/	char IsEvolving[1];
+/*032*/	char EvolveGroup[4];
+/*036*/	char EvolveLevel[1];
+/*037*/	char Hash[8];
+/*045*/
 };
 
 struct Checksum_Struct {
