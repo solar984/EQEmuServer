@@ -431,21 +431,6 @@ int Lua_Mob::GetBeard() {
 	return self->GetBeard();
 }
 
-int Lua_Mob::GetDrakkinHeritage() {
-	Lua_Safe_Call_Int();
-	return self->GetDrakkinHeritage();
-}
-
-int Lua_Mob::GetDrakkinTattoo() {
-	Lua_Safe_Call_Int();
-	return self->GetDrakkinTattoo();
-}
-
-int Lua_Mob::GetDrakkinDetails() {
-	Lua_Safe_Call_Int();
-	return self->GetDrakkinDetails();
-}
-
 int Lua_Mob::GetClass() {
 	Lua_Safe_Call_Int();
 	return self->GetClass();
@@ -1639,9 +1624,6 @@ void Lua_Mob::SendIllusionPacket(luabind::adl::object illusion) {
 	uint8      luclinface              = self->GetLuclinFace();
 	uint8      beard                   = self->GetBeard();
 	uint8      aa_title                = 255;
-	uint32     drakkin_heritage        = self->GetDrakkinHeritage();
-	uint32     drakkin_tattoo          = self->GetDrakkinTattoo();
-	uint32     drakkin_details         = self->GetDrakkinDetails();
 	float      size                    = self->GetSize();
 	bool       send_appearance_effects = true;
 	Lua_Client target                  = Lua_Client();
@@ -1742,30 +1724,6 @@ void Lua_Mob::SendIllusionPacket(luabind::adl::object illusion) {
 		}
 	}
 
-	cur = illusion["drakkin_heritage"];
-	if (luabind::type(cur) != LUA_TNIL) {
-		try {
-			drakkin_heritage = luabind::object_cast<uint32>(cur);
-		} catch (luabind::cast_failed &) {
-		}
-	}
-
-	cur = illusion["drakkin_tattoo"];
-	if (luabind::type(cur) != LUA_TNIL) {
-		try {
-			drakkin_tattoo = luabind::object_cast<uint32>(cur);
-		} catch (luabind::cast_failed &) {
-		}
-	}
-
-	cur = illusion["drakkin_details"];
-	if (luabind::type(cur) != LUA_TNIL) {
-		try {
-			drakkin_details = luabind::object_cast<uint32>(cur);
-		} catch (luabind::cast_failed &) {
-		}
-	}
-
 	cur = illusion["size"];
 	if (luabind::type(cur) != LUA_TNIL) {
 		try {
@@ -1795,9 +1753,6 @@ void Lua_Mob::SendIllusionPacket(luabind::adl::object illusion) {
 			.aa_title = aa_title,
 			.beard = beard,
 			.beard_color = beardcolor,
-			.drakkin_details = drakkin_details,
-			.drakkin_heritage = drakkin_heritage,
-			.drakkin_tattoo = drakkin_tattoo,
 			.eye_color_one = eyecolor1,
 			.eye_color_two = eyecolor2,
 			.face = luclinface,
@@ -1867,21 +1822,6 @@ void Lua_Mob::ChangeLuclinFace(int in) {
 void Lua_Mob::ChangeBeard(int in) {
 	Lua_Safe_Call_Void();
 	self->ChangeBeard(in);
-}
-
-void Lua_Mob::ChangeDrakkinHeritage(int in) {
-	Lua_Safe_Call_Void();
-	self->ChangeDrakkinHeritage(in);
-}
-
-void Lua_Mob::ChangeDrakkinTattoo(int in) {
-	Lua_Safe_Call_Void();
-	self->ChangeDrakkinTattoo(in);
-}
-
-void Lua_Mob::ChangeDrakkinDetails(int in) {
-	Lua_Safe_Call_Void();
-	self->ChangeDrakkinDetails(in);
 }
 
 void Lua_Mob::CameraEffect(uint32 duration, float intensity) {
@@ -3592,9 +3532,6 @@ luabind::scope lua_register_mob() {
 	.def("CastSpell", (bool(Lua_Mob::*)(int,int,int,int,int,int,int,int,int))&Lua_Mob::CastSpell)
 	.def("ChangeBeard", (void(Lua_Mob::*)(int))&Lua_Mob::ChangeBeard)
 	.def("ChangeBeardColor", (void(Lua_Mob::*)(int))&Lua_Mob::ChangeBeardColor)
-	.def("ChangeDrakkinDetails", (void(Lua_Mob::*)(int))&Lua_Mob::ChangeDrakkinDetails)
-	.def("ChangeDrakkinHeritage", (void(Lua_Mob::*)(int))&Lua_Mob::ChangeDrakkinHeritage)
-	.def("ChangeDrakkinTattoo", (void(Lua_Mob::*)(int))&Lua_Mob::ChangeDrakkinTattoo)
 	.def("ChangeEyeColor1", (void(Lua_Mob::*)(int))&Lua_Mob::ChangeEyeColor1)
 	.def("ChangeEyeColor2", (void(Lua_Mob::*)(int))&Lua_Mob::ChangeEyeColor2)
 	.def("ChangeGender", (void(Lua_Mob::*)(int))&Lua_Mob::ChangeGender)
@@ -3765,9 +3702,6 @@ luabind::scope lua_register_mob() {
 	.def("GetDeity", &Lua_Mob::GetDeity)
 	.def("GetDeityName", &Lua_Mob::GetDeityName)
 	.def("GetDisplayAC", &Lua_Mob::GetDisplayAC)
-	.def("GetDrakkinDetails", &Lua_Mob::GetDrakkinDetails)
-	.def("GetDrakkinHeritage", &Lua_Mob::GetDrakkinHeritage)
-	.def("GetDrakkinTattoo", &Lua_Mob::GetDrakkinTattoo)
 	.def("GetEntityVariable", &Lua_Mob::GetEntityVariable)
 	.def("GetEntityVariables",&Lua_Mob::GetEntityVariables)
 	.def("GetExtraHaste",&Lua_Mob::GetExtraHaste)

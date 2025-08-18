@@ -7593,17 +7593,17 @@ bool Mob::PassCastRestriction(int value)
 
 		case IS_BIXIE:
 		case IS_BIXIE2:
-			if ((GetRace() == Race::Bixie) ||(GetRace() == Race::Bixie2))
+			if ((GetRace() == Race::Bixie))
 				return true;
 			break;
 
 		case IS_HARPY:
-			if ((GetRace() == Race::Harpy) ||(GetRace() == Race::Harpy2))
+			if ((GetRace() == Race::Harpy))
 				return true;
 			break;
 
 		case IS_GNOLL:
-			if ((GetRace() == Race::Gnoll) || (GetRace() == Race::Gnoll2) || (GetRace() == Race::Gnoll3))
+			if ((GetRace() == Race::Gnoll))
 				return true;
 			break;
 
@@ -7617,18 +7617,8 @@ bool Mob::PassCastRestriction(int value)
 				return true;
 			break;
 
-		case IS_FROSTCRYPT_SHADE:
-			if (GetRace() == Race::GiantShade)
-				return true;
-			break;
-
-		case IS_DRAKKIN:
-			if (GetRace() == Race::Drakkin)
-				return true;
-			break;
-
 		case IS_UNDEAD_OR_VALDEHOLM_GIANT:
-			if (GetBodyType() == BodyType::Undead || GetRace() == Race::Giant2 || GetRace() == Race::Giant3)
+			if (GetBodyType() == BodyType::Undead || GetRace() == Race::Giant2)
 				return true;
 			break;
 
@@ -8056,12 +8046,12 @@ bool Mob::PassCastRestriction(int value)
 			break;
 
 		case IS_TREANT:
-			if (GetRace() == Race::Treant || GetRace() == Race::Treant2 || GetRace() == Race::Treant3)
+			if (GetRace() == Race::Treant || GetRace() == Race::Treant2)
 				return true;
 			break;
 
 		case IS_SCARECROW:
-			if (GetRace() == Race::Scarecrow || GetRace() == Race::Scarecrow2)
+			if (GetRace() == Race::Scarecrow)
 				return true;
 			break;
 
@@ -8560,9 +8550,6 @@ void Mob::SendCastRestrictionMessage(int requirement_id, bool target_requirement
 		break;
 	case IS_FROSTCRYPT_SHADE:
 		Message(Chat::Red, fmt::format("{} This spell will only work on undead creatures or the Shades of Frostcrypt.", msg).c_str());
-		break;
-	case IS_DRAKKIN:
-		Message(Chat::Red, fmt::format("{} This spell will only work on Drakkin.", msg).c_str());
 		break;
 	case IS_UNDEAD_OR_VALDEHOLM_GIANT:
 		Message(Chat::Red, fmt::format("{} This spell will only work on undead creatures or the inhabitants of Valdeholm.", msg).c_str());
@@ -10446,7 +10433,7 @@ void Mob::ApplySpellEffectIllusion(int32 spell_id, Mob *caster, int buffslot, in
 			gender_id
 		);
 
-		if (base != Race::Elemental && base != Race::Drakkin) {
+		if (base != Race::Elemental) {
 			if (max > 0) {
 				if (limit == 0) {
 					SendIllusionPacket(
@@ -10494,28 +10481,6 @@ void Mob::ApplySpellEffectIllusion(int32 spell_id, Mob *caster, int buffslot, in
 					.texture = static_cast<uint8>(limit),
 				}
 			);
-		} else if (base == Race::Drakkin) {
-			FaceChange_Struct f{
-				.haircolor = GetHairColor(),
-				.beardcolor = GetBeardColor(),
-				.eyecolor1 = GetEyeColor1(),
-				.eyecolor2 = GetEyeColor2(),
-				.hairstyle = GetHairStyle(),
-				.beard = GetBeard(),
-				.face = GetLuclinFace(),
-				.drakkin_heritage = static_cast<uint32>(limit),
-				.drakkin_tattoo = GetDrakkinTattoo(),
-				.drakkin_details = GetDrakkinDetails(),
-			};
-
-			SendIllusionPacket(
-				AppearanceStruct{
-					.gender_id = static_cast<uint8>(gender_id),
-					.race_id = static_cast<uint16>(base),
-				}
-			);
-
-			SetFaceAppearance(f);
 		}
 
 		SendAppearancePacket(AppearanceType::Size, race_size);

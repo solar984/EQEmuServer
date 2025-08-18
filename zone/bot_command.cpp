@@ -98,14 +98,12 @@ int bot_command_init(void)
 		bot_command_add("botclone", "Creates a copy of a bot", AccountStatus::GMMgmt, bot_command_clone) ||
 		bot_command_add("botcreate", "Creates a new bot", AccountStatus::Player, bot_command_create) ||
 		bot_command_add("botdelete", "Deletes all record of a bot", AccountStatus::Player, bot_command_delete) ||
-		bot_command_add("botdetails", "Changes the Drakkin details of a bot", AccountStatus::Player, bot_command_details) ||
 		bot_command_add("botdyearmor", "Changes the color of a bot's (bots') armor", AccountStatus::Player, bot_command_dye_armor) ||
 		bot_command_add("boteyes", "Changes the eye colors of a bot", AccountStatus::Player, bot_command_eyes) ||
 		bot_command_add("botface", "Changes the facial appearance of your bot", AccountStatus::Player, bot_command_face) ||
 		bot_command_add("botfollowdistance", "Changes the follow distance(s) of a bot(s)", AccountStatus::Player, bot_command_follow_distance) ||
 		bot_command_add("bothaircolor", "Changes the hair color of a bot", AccountStatus::Player, bot_command_hair_color) ||
 		bot_command_add("bothairstyle", "Changes the hairstyle of a bot", AccountStatus::Player, bot_command_hairstyle) ||
-		bot_command_add("botheritage", "Changes the Drakkin heritage of a bot", AccountStatus::Player, bot_command_heritage) ||
 		bot_command_add("botinspectmessage", "Changes the inspect message of a bot", AccountStatus::Player, bot_command_inspect_message) ||
 		bot_command_add("botlist", "Lists the bots that you own", AccountStatus::Player, bot_command_list_bots) ||
 		bot_command_add("botreport", "Orders a bot to report its readiness", AccountStatus::Player, bot_command_report) ||
@@ -116,7 +114,6 @@ int bot_command_init(void)
 		bot_command_add("botsuffix", "Sets a bots suffix", AccountStatus::Player, bot_command_suffix) ||
 		bot_command_add("botsummon", "Summons bot(s) to your location", AccountStatus::Player, bot_command_summon) ||
 		bot_command_add("botsurname", "Sets a bots surname (last name)", AccountStatus::Player, bot_command_surname) ||
-		bot_command_add("bottattoo", "Changes the Drakkin tattoo of a bot", AccountStatus::Player, bot_command_tattoo) ||
 		bot_command_add("bottogglehelm", "Toggles the helm visibility of a bot between shown and hidden", AccountStatus::Player, bot_command_toggle_helm) ||
 		bot_command_add("bottoggleranged", "Toggles a ranged bot between melee and ranged weapon use", AccountStatus::Player, bot_command_toggle_ranged) ||
 		bot_command_add("bottitle", "Sets a bots title", AccountStatus::Player, bot_command_title) ||
@@ -429,9 +426,6 @@ void helper_bot_appearance_form_update(Bot *my_bot)
 		AppearanceStruct{
 			.beard = my_bot->GetBeard(),
 			.beard_color = my_bot->GetBeardColor(),
-			.drakkin_details = my_bot->GetDrakkinDetails(),
-			.drakkin_heritage = my_bot->GetDrakkinHeritage(),
-			.drakkin_tattoo = my_bot->GetDrakkinTattoo(),
 			.eye_color_one = my_bot->GetEyeColor1(),
 			.eye_color_two = my_bot->GetEyeColor2(),
 			.face = my_bot->GetLuclinFace(),

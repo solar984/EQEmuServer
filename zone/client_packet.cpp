@@ -1401,9 +1401,6 @@ void Client::Handle_Connect_OP_ZoneEntry(const EQApplicationPacket *app)
 	hairstyle = m_pp.hairstyle;
 	luclinface = m_pp.face;
 	beard = m_pp.beard;
-	drakkin_heritage = m_pp.drakkin_heritage;
-	drakkin_tattoo = m_pp.drakkin_tattoo;
-	drakkin_details = m_pp.drakkin_details;
 
 	// Load Data Buckets
 	ClearDataBucketCache();
@@ -1450,7 +1447,7 @@ void Client::Handle_Connect_OP_ZoneEntry(const EQApplicationPacket *app)
 		size = 8; break;
 	case VAHSHIR: case BARBARIAN:
 		size = 7; break;
-	case HUMAN: case HIGH_ELF: case ERUDITE: case IKSAR: case DRAKKIN:
+	case HUMAN: case HIGH_ELF: case ERUDITE:
 		size = 6; break;
 	case HALF_ELF:
 		size = 5.5; break;
@@ -5954,9 +5951,6 @@ void Client::Handle_OP_FaceChange(const EQApplicationPacket *app)
 	m_pp.hairstyle = fc->hairstyle;
 	m_pp.face = fc->face;
 	m_pp.beard = fc->beard;
-	m_pp.drakkin_heritage = fc->drakkin_heritage;
-	m_pp.drakkin_tattoo = fc->drakkin_tattoo;
-	m_pp.drakkin_details = fc->drakkin_details;
 	Save();
 	MessageString(Chat::Red, FACE_ACCEPTED);
 	return;

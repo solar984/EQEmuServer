@@ -100,9 +100,6 @@ Corpse::Corpse(
 	0, // in_hairstyle
 	0, // in_luclinface
 	0, // in_beard
-	0, // in_drakkin_heritage
-	0, // in_drakkin_tattoo
-	0, // in_drakkin_details
 	EQ::TintProfile(), // in_armor_tint
 	0xFF, // in_aa_title
 	0, // in_see_invis
@@ -219,9 +216,6 @@ Corpse::Corpse(Client *c, int32 rez_exp, KilledByTypes in_killed_by) : Mob(
 	c->GetPP().hairstyle, // in_hairstyle
 	c->GetPP().face, // in_luclinface
 	c->GetPP().beard, // in_beard
-	c->GetPP().drakkin_heritage, // in_drakkin_heritage
-	c->GetPP().drakkin_tattoo, // in_drakkin_tattoo
-	c->GetPP().drakkin_details, // in_drakkin_details
 	EQ::TintProfile(), // in_armor_tint
 	0xff, // in_aa_title
 	0, // in_see_invis
@@ -516,9 +510,6 @@ Corpse::Corpse(
 	0, // in_hairstyle
 	0, // in_luclinface
 	0, // in_beard
-	0, // in_drakkin_heritage
-	0, // in_drakkin_tattoo
-	0, // in_drakkin_details
 	EQ::TintProfile(), // in_armor_tint
 	0xFF, // in_aa_title
 	0, // in_see_invis
@@ -663,9 +654,6 @@ bool Corpse::Save()
 	ce.hairstyle        = hairstyle;
 	ce.face             = luclinface;
 	ce.beard            = beard;
-	ce.drakkin_heritage = drakkin_heritage;
-	ce.drakkin_tattoo   = drakkin_tattoo;
-	ce.drakkin_details  = drakkin_details;
 
 	{
 		json j;
@@ -2420,9 +2408,6 @@ Corpse *Corpse::LoadCharacterCorpse(
 	c->hairstyle                   = cc.hair_style;
 	c->luclinface                  = cc.face;
 	c->beard                       = cc.beard;
-	c->drakkin_heritage            = cc.drakkin_heritage;
-	c->drakkin_tattoo              = cc.drakkin_tattoo;
-	c->drakkin_details             = cc.drakkin_details;
 	c->m_become_npc                = false;
 	c->m_consented_guild_id        = cc.guild_consent_id;
 

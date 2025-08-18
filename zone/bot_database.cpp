@@ -424,9 +424,6 @@ bool BotDatabase::LoadBot(const uint32 bot_id, Bot*& loaded_bot)
 		e.eye_color_2,
 		e.beard,
 		e.beard_color,
-		e.drakkin_heritage,
-		e.drakkin_tattoo,
-		e.drakkin_details,
 		e.hp,
 		e.mana,
 		d->MR,
@@ -495,9 +492,6 @@ bool BotDatabase::SaveNewBot(Bot* b, uint32& bot_id)
 	e.beard_color            = b->GetBeardColor();
 	e.eye_color_1            = b->GetEyeColor1();
 	e.eye_color_2            = b->GetEyeColor2();
-	e.drakkin_heritage       = b->GetDrakkinHeritage();
-	e.drakkin_tattoo         = b->GetDrakkinTattoo();
-	e.drakkin_details        = b->GetDrakkinDetails();
 	e.ac                     = b->GetBaseAC();
 	e.atk                    = b->GetBaseATK();
 	e.hp                     = b->GetHP();
@@ -559,9 +553,6 @@ bool BotDatabase::SaveBot(Bot* b)
 	e.beard_color            = b->GetBeardColor();
 	e.eye_color_1            = b->GetEyeColor1();
 	e.eye_color_2            = b->GetEyeColor2();
-	e.drakkin_heritage       = b->GetDrakkinHeritage();
-	e.drakkin_tattoo         = b->GetDrakkinTattoo();
-	e.drakkin_details        = b->GetDrakkinDetails();
 	e.ac                     = b->GetBaseAC();
 	e.atk                    = b->GetBaseATK();
 	e.hp                     = b->GetHP();

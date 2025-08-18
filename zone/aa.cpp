@@ -1634,12 +1634,6 @@ bool Mob::CanUseAlternateAdvancementRank(AA::Rank *rank)
 		return false;
 	}
 
-	if (GetBaseRace() == Race::Drakkin) {
-		if (!(a->drakkin_heritage & (1 << GetDrakkinHeritage()))) {
-			return false;
-		}
-	}
-
 	return true;
 }
 
@@ -1795,7 +1789,6 @@ bool ZoneDatabase::LoadAlternateAdvancementAbilities(
 		a->classes            = e.classes << 1; // EQ client has classes left shifted by one bit
 		a->races              = e.races;
 		a->deities            = e.deities;
-		a->drakkin_heritage   = e.drakkin_heritage;
 		a->status             = e.status;
 		a->type               = e.type;
 		a->charges            = e.charges;

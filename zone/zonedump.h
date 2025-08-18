@@ -83,9 +83,6 @@ struct NPCType
 	uint8           hairstyle;
 	uint8           luclinface;            //
 	uint8           beard;                //
-	uint32          drakkin_heritage;
-	uint32          drakkin_tattoo;
-	uint32          drakkin_details;
 	EQ::TintProfile armor_tint;
 	uint32          min_dmg;
 	uint32          max_dmg;

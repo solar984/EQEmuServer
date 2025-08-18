@@ -76,9 +76,6 @@ struct AppearanceStruct {
 	uint8  aa_title         = UINT8_MAX;
 	uint8  beard            = UINT8_MAX;
 	uint8  beard_color      = UINT8_MAX;
-	uint32 drakkin_details  = UINT32_MAX;
-	uint32 drakkin_heritage = UINT32_MAX;
-	uint32 drakkin_tattoo   = UINT32_MAX;
 	uint8  eye_color_one    = UINT8_MAX;
 	uint8  eye_color_two    = UINT8_MAX;
 	uint8  face             = UINT8_MAX;
@@ -168,9 +165,6 @@ public:
 		uint8 in_hairstyle,
 		uint8 in_luclinface,
 		uint8 in_beard,
-		uint32 in_drakkin_heritage,
-		uint32 in_drakkin_tattoo,
-		uint32 in_drakkin_details,
 		EQ::TintProfile in_armor_tint,
 		uint8 in_aa_title,
 		uint16 in_see_invis, // see through invis
@@ -575,9 +569,6 @@ public:
 	inline uint8 GetHairStyle() const { return hairstyle; }
 	inline uint8 GetLuclinFace() const { return luclinface; }
 	inline uint8 GetBeard() const { return beard; }
-	inline uint8 GetDrakkinHeritage() const { return drakkin_heritage; }
-	inline uint8 GetDrakkinTattoo() const { return drakkin_tattoo; }
-	inline uint8 GetDrakkinDetails() const { return drakkin_details; }
 	inline void ChangeRace(uint16 in) { race = in; }
 	inline void ChangeGender(uint8 in) { gender = in;}
 	inline void ChangeTexture(uint8 in) { texture = in; }
@@ -589,9 +580,6 @@ public:
 	inline void ChangeHairStyle(uint8 in) { hairstyle = in; }
 	inline void ChangeLuclinFace(uint8 in) { luclinface = in; }
 	inline void ChangeBeard(uint8 in) { beard = in; }
-	inline void ChangeDrakkinHeritage(uint8 in) { drakkin_heritage = in; }
-	inline void ChangeDrakkinTattoo(uint8 in) { drakkin_tattoo = in; }
-	inline void ChangeDrakkinDetails(uint8 in) { drakkin_details = in; }
 	inline uint32 GetArmorTint(uint8 i) const { return armor_tint.Slot[(i < EQ::textures::materialCount) ? i : 0].Color; }
 	inline uint8 GetClass() const { return class_; }
 	inline uint8 GetLevel() const { return level; }
@@ -1767,9 +1755,6 @@ protected:
 	uint8 hairstyle;
 	uint8 luclinface; //
 	uint8 beard;
-	uint32 drakkin_heritage;
-	uint32 drakkin_tattoo;
-	uint32 drakkin_details;
 	EQ::TintProfile armor_tint;
 
 	uint8 aa_title;

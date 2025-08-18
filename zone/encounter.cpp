@@ -66,9 +66,6 @@ Encounter::Encounter(const char *enc_name) : Mob(
 	0, // in_hairstyle
 	0, // in_luclinface
 	0, // in_beard
-	0, // in_drakkin_heritage
-	0, // in_drakkin_tattoo
-	0, // in_drakkin_details
 	EQ::TintProfile(), // in_armor_tint
 	0, // in_aa_title
 	0, // in_see_invis

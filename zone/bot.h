@@ -942,9 +942,6 @@ public:
 	void SetLuclinFace(uint8 value) { luclinface = value; }
 	void SetHairColor(uint8 value) { haircolor = value; }
 	void SetHairStyle(uint8 value) { hairstyle = value; }
-	void SetDrakkinDetails(uint32 value) { drakkin_details = value; }
-	void SetDrakkinHeritage(uint32 value) { drakkin_heritage = value; }
-	void SetDrakkinTattoo(uint32 value) { drakkin_tattoo = value; }
 	bool DyeArmor(int16 slot_id, uint32 rgb, bool all_flag = false, bool save_flag = true);
 
 	int GetExpansionBitmask();
@@ -983,9 +980,6 @@ public:
 		uint32 eyeColor2,
 		uint32 beard,
 		uint32 beardColor,
-		uint32 drakkinHeritage,
-		uint32 drakkinTattoo,
-		uint32 drakkinDetails,
 		int32 hp,
 		int32 mana,
 		int32 mr,

@@ -902,9 +902,6 @@ float Mob::GetZOffset() const {
 		case Race::LavaSpider:
 			offset = 0.938f;
 			break;
-		case Race::Alligator2:
-			offset = 0.8f;
-			break;
 		case Race::LavaSpiderQueen:
 			offset = 0.816f;
 			break;
@@ -935,42 +932,17 @@ float Mob::GetZOffset() const {
 		case Race::DrachnidCocoon:
 			offset = 1.5f;
 			break;
-		case Race::Dragon5:
-			offset = 1.2f;
-			break;
-		case Race::Goo4:
-		case Race::Goo3:
-			offset = 0.5f;
-			break;
-		case Race::Goo2:
-			offset = 0.5f;
-			break;
-		case Race::Dracolich:
-			offset = 1.2f;
-			break;
-		case Race::Telmira:
-			offset = 5.9f;
-			break;
-		case Race::MorellThule:
-			offset = 4.0f;
-			break;
 		case Race::AnimatedArmor:
-		case Race::Amygdalan:
 			offset = 5.0f;
 			break;
 		case Race::IksarSpirit:
-		case Race::Sandman:
 			offset = 4.0f;
 			break;
 		case Race::LavaDragon:
-		case Race::AlaranSentryStone:
 			offset = 9.0f;
 			break;
-		case Race::Rabbit:
-			offset = 5.0f;
-			break;
+
 		case Race::Wurm:
-		case Race::BlindDreamer:
 			offset = 7.0f;
 			break;
 		case Race::Siren:
@@ -996,10 +968,6 @@ float Mob::GetZOffset() const {
 			break;
 		case Race::StatueOfRallosZek:
 			offset = 1.0f;
-			break;
-		case Race::Goral:
-		case Race::Selyrah:
-			offset = 2.0f;
 			break;
 		default:
 			offset = 3.125f;

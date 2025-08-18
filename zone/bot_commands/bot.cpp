@@ -226,20 +226,20 @@ void bot_command_create(Client *c, const Seperator *sep)
 		"MAG", "ENC", "BST", "BER"
 	};
 
-	const std::string race_substrs[17] = {
+	const std::string race_substrs[16] = {
 		"",
 		"HUM", "BAR", "ERU", "ELF",
 		"HIE", "DEF", "HEF", "DWF",
 		"TRL", "OGR", "HFL", "GNM",
-		"IKS", "VAH", "FRG", "DRK"
+		"IKS", "VAH", "FRG"
 	};
 
-	const uint16 race_values[17] = {
+	const uint16 race_values[16] = {
 		Race::Doug,
 		Race::Human, Race::Barbarian, Race::Erudite, Race::WoodElf,
 		Race::HighElf, Race::DarkElf, Race::HalfElf, Race::Dwarf,
 		Race::Troll, Race::Ogre, Race::Halfling, Race::Gnome,
-		Race::Iksar, Race::VahShir, Race::Froglok2, Race::Drakkin
+		Race::Iksar, Race::VahShir, Race::Froglok2
 	};
 
 	const std::string gender_substrs[2] = {

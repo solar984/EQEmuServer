@@ -479,9 +479,6 @@ bool Database::SaveCharacterCreate(uint32 character_id, uint32 account_id, Playe
 	c.pvp_type                = pp->pvptype;
 	c.autosplit_enabled       = pp->autosplit;
 	c.zone_change_count       = pp->zone_change_count;
-	c.drakkin_heritage        = pp->drakkin_heritage;
-	c.drakkin_tattoo          = pp->drakkin_tattoo;
-	c.drakkin_details         = pp->drakkin_details;
 	c.toxicity                = pp->toxicity;
 	c.hunger_level            = pp->hunger_level;
 	c.thirst_level            = pp->thirst_level;

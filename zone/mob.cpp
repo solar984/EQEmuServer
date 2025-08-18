@@ -78,9 +78,6 @@ Mob::Mob(
 	uint8 in_hairstyle,
 	uint8 in_luclinface,
 	uint8 in_beard,
-	uint32 in_drakkin_heritage,
-	uint32 in_drakkin_tattoo,
-	uint32 in_drakkin_details,
 	EQ::TintProfile in_armor_tint,
 	uint8 in_aa_title,
 	uint16 in_see_invis, // see through invis/ivu
@@ -237,9 +234,6 @@ Mob::Mob(
 	hairstyle                   = in_hairstyle;
 	luclinface                  = in_luclinface;
 	beard                       = in_beard;
-	drakkin_heritage            = in_drakkin_heritage;
-	drakkin_tattoo              = in_drakkin_tattoo;
-	drakkin_details             = in_drakkin_details;
 	attack_speed                = 0;
 	attack_delay                = 0;
 	slow_mitigation             = 0;
@@ -1324,9 +1318,6 @@ void Mob::FillSpawnStruct(NewSpawn_Struct* ns, Mob* ForWho)
 	ns->spawn.face = luclinface;
 	ns->spawn.beard = beard;
 	ns->spawn.StandState = GetAppearanceValue(_appearance);
-	ns->spawn.drakkin_heritage = drakkin_heritage;
-	ns->spawn.drakkin_tattoo = drakkin_tattoo;
-	ns->spawn.drakkin_details = drakkin_details;
 	ns->spawn.equip_chest2 = multitexture ? 0xff : texture;
 
 //	ns->spawn.invis2 = 0xff;//this used to be labeled beard.. if its not FF it will turn mob invis
@@ -2963,19 +2954,6 @@ void Mob::ShowStats(Client* c)
 			).c_str()
 		);
 
-		// Drakkin Features
-		if (t->GetRace() == Race::Drakkin) {
-			c->Message(
-				Chat::White,
-				fmt::format(
-					"Drakkin Features | Heritage: {} Tattoo: {} Details: {}",
-					t->GetDrakkinHeritage(),
-					t->GetDrakkinTattoo(),
-					t->GetDrakkinDetails()
-				).c_str()
-			);
-		}
-
 		// Textures
 		c->Message(
 			Chat::White,
@@ -3644,17 +3622,10 @@ void Mob::SendIllusionPacket(const AppearanceStruct& a)
 
 	uint8 new_face = a.face == UINT8_MAX ? GetLuclinFace() : a.face;
 
-	uint32 new_drakkin_details  = a.drakkin_details == UINT32_MAX ? GetDrakkinDetails() : a.drakkin_details;
-	uint32 new_drakkin_heritage = a.drakkin_heritage == UINT32_MAX ? GetDrakkinHeritage() : a.drakkin_heritage;
-	uint32 new_drakkin_tattoo   = a.drakkin_tattoo == UINT32_MAX ? GetDrakkinTattoo() : a.drakkin_tattoo;
-
 	// Reset features to Base from the Player Profile
 	if (IsClient() && a.race_id == Race::Doug) {
 		new_beard            = CastToClient()->GetBaseBeard();
 		new_beard_color      = CastToClient()->GetBaseBeardColor();
-		new_drakkin_details  = CastToClient()->GetBaseDetails();
-		new_drakkin_heritage = CastToClient()->GetBaseHeritage();
-		new_drakkin_tattoo   = CastToClient()->GetBaseTattoo();
 		new_eye_color_one    = CastToClient()->GetBaseEyeColor();
 		new_eye_color_two    = CastToClient()->GetBaseEyeColor();
 		new_face             = CastToClient()->GetBaseFace();
@@ -3669,9 +3640,6 @@ void Mob::SendIllusionPacket(const AppearanceStruct& a)
 
 	beard            = new_beard;
 	beardcolor       = new_beard_color;
-	drakkin_heritage = new_drakkin_heritage;
-	drakkin_tattoo   = new_drakkin_tattoo;
-	drakkin_details  = new_drakkin_details;
 	eyecolor1        = new_eye_color_one;
 	eyecolor2        = new_eye_color_two;
 	luclinface       = new_face;
@@ -3697,9 +3665,6 @@ void Mob::SendIllusionPacket(const AppearanceStruct& a)
 	strn0cpy(is->charname, GetCleanName(), sizeof(is->charname));
 	is->beardcolor       = new_beard_color;
 	is->beard            = new_beard;
-	is->drakkin_heritage = new_drakkin_heritage;
-	is->drakkin_tattoo   = new_drakkin_tattoo;
-	is->drakkin_details  = new_drakkin_details;
 	is->eyecolor1        = new_eye_color_one;
 	is->eyecolor2        = new_eye_color_two;
 	is->face             = new_face;
@@ -3727,7 +3692,7 @@ void Mob::SendIllusionPacket(const AppearanceStruct& a)
 	}
 
 	LogSpells(
-		"Illusion: Race [{}] Gender [{}] Texture [{}] HelmTexture [{}] HairColor [{}] BeardColor [{}] EyeColor1 [{}] EyeColor2 [{}] HairStyle [{}] Face [{}] DrakkinHeritage [{}] DrakkinTattoo [{}] DrakkinDetails [{}] Size [{}] Target [{}]",
+		"Illusion: Race [{}] Gender [{}] Texture [{}] HelmTexture [{}] HairColor [{}] BeardColor [{}] EyeColor1 [{}] EyeColor2 [{}] HairStyle [{}] Face [{}] Size [{}] Target [{}]",
 		race,
 		gender,
 		new_texture,
@@ -3738,9 +3703,6 @@ void Mob::SendIllusionPacket(const AppearanceStruct& a)
 		new_eye_color_two,
 		new_hair,
 		new_face,
-		new_drakkin_heritage,
-		new_drakkin_tattoo,
-		new_drakkin_details,
 		new_size,
 		target ? target->GetCleanName() : "No Target"
 	);
@@ -3755,9 +3717,6 @@ void Mob::SetFaceAppearance(const FaceChange_Struct& face, bool skip_sender)
 	hairstyle        = face.hairstyle;
 	luclinface       = face.face;
 	beard            = face.beard;
-	drakkin_heritage = face.drakkin_heritage;
-	drakkin_tattoo   = face.drakkin_tattoo;
-	drakkin_details  = face.drakkin_details;
 
 	EQApplicationPacket outapp(OP_SetFace, sizeof(FaceChange_Struct));
 	memcpy(outapp.pBuffer, &face, sizeof(FaceChange_Struct));
@@ -3783,9 +3742,6 @@ bool Mob::RandomizeFeatures(bool send_illusion, bool set_variables)
 	uint8  new_hair_style       = UINT8_MAX;
 	uint8  new_luclin_face      = zone->random.Int(0, 7);
 	uint8  new_beard            = UINT8_MAX;
-	uint32 new_drakkin_heritage = UINT32_MAX;
-	uint32 new_drakkin_tattoo   = UINT32_MAX;
-	uint32 new_drakkin_details  = UINT32_MAX;
 
 	// Adjust all settings based on the min and max for each feature of each race and gender
 	switch (GetRace()) {
@@ -3931,25 +3887,6 @@ bool Mob::RandomizeFeatures(bool send_illusion, bool set_variables)
 		case FROGLOK:
 			new_luclin_face = zone->random.Int(0, 9);
 			break;
-		case DRAKKIN:
-			new_hair_color       = zone->random.Int(0, 3);
-			new_beard_color      = new_hair_color;
-			new_eye_color_one    = zone->random.Int(0, 11);
-			new_eye_color_two    = zone->random.Int(0, 11);
-			new_luclin_face      = zone->random.Int(0, 6);
-			new_drakkin_heritage = zone->random.Int(0, 6);
-			new_drakkin_tattoo   = zone->random.Int(0, 7);
-			new_drakkin_details  = zone->random.Int(0, 7);
-
-			if (current_gender == Gender::Male) {
-				new_beard      = zone->random.Int(0, 12);
-				new_hair_style = zone->random.Int(0, 8);
-			} else if (current_gender == Gender::Female) {
-				new_beard      = zone->random.Int(0, 3);
-				new_hair_style = zone->random.Int(0, 7);
-			}
-
-			break;
 		default:
 			break;
 	}
@@ -3962,9 +3899,6 @@ bool Mob::RandomizeFeatures(bool send_illusion, bool set_variables)
 		hairstyle        = new_hair_style;
 		luclinface       = new_luclin_face;
 		beard            = new_beard;
-		drakkin_heritage = new_drakkin_heritage;
-		drakkin_tattoo   = new_drakkin_tattoo;
-		drakkin_details  = new_drakkin_details;
 	}
 
 	if (send_illusion) {
@@ -3972,9 +3906,6 @@ bool Mob::RandomizeFeatures(bool send_illusion, bool set_variables)
 			AppearanceStruct{
 				.beard = new_beard,
 				.beard_color = new_beard_color,
-				.drakkin_details = new_drakkin_details,
-				.drakkin_heritage = new_drakkin_heritage,
-				.drakkin_tattoo = new_drakkin_tattoo,
 				.eye_color_one = new_eye_color_one,
 				.eye_color_two = new_eye_color_two,
 				.face = new_luclin_face,
@@ -4038,16 +3969,7 @@ uint8 Mob::GetDefaultGender(uint16 in_race, uint8 in_gender) {
 		in_race == Race::Nihil ||
 		in_race == Race::Trusik ||
 		in_race == Race::Drachnid2 ||
-		in_race == Race::Zombie2 ||
-		in_race == Race::Elddar ||
-		in_race == Race::Vampire4 ||
-		in_race == Race::Kerran2 ||
-		in_race == Race::Brownie2 ||
-		in_race == Race::Human2 ||
-		in_race == Race::ElvenGhost ||
-		in_race == Race::HumanGhost ||
-		in_race == Race::Coldain2 ||
-		in_race == Race::Akheva
+		in_race == Race::Zombie2
 	) {
 		if (in_gender >= Gender::Neuter) { // Male default for PC Races
 			return Gender::Male;
@@ -4068,20 +3990,12 @@ uint8 Mob::GetDefaultGender(uint16 in_race, uint8 in_gender) {
 		in_race == Race::InvisibleMan ||
 		in_race == Race::Vampire2 ||
 		in_race == Race::Recuso ||
-		in_race == Race::BrokenSkullPirate ||
-		in_race == Race::InvisibleManOfZomm ||
-		in_race == Race::Ogre2 ||
-		in_race == Race::RoyalGuard ||
-		in_race == Race::Erudite2
+		in_race == Race::BrokenSkullPirate
 	) { // Male only races
 		return Gender::Male;
 	} else if (
 		in_race == Race::Fairy ||
-		in_race == Race::Pixie ||
-		in_race == Race::Banshee2 ||
-		in_race == Race::Banshee3 ||
-		in_race == Race::AyonaeRo ||
-		in_race == Race::SullonZek
+		in_race == Race::Pixie
 	) { // Female only races
 		return Gender::Female;
 	} else { // Neutral default for NPC Races
@@ -6973,19 +6887,14 @@ bool Mob::IsBoat() const {
 		race == Race::Ship ||
 		race == Race::Launch ||
 		race == Race::GhostShip ||
-		race == Race::DiscordShip ||
-		race == Race::MerchantShip ||
-		race == Race::PirateShip ||
-		race == Race::GhostShip2 ||
-		race == Race::Boat2
+		race == Race::DiscordShip
 	);
 }
 
 bool Mob::IsControllableBoat() const {
 
 	return (
-		race == Race::Boat ||
-		race == Race::Rowboat
+		race == Race::Boat
 	);
 }
 
@@ -8204,9 +8113,6 @@ void Mob::CloneAppearance(Mob* other, bool clone_name)
 		AppearanceStruct{
 			.beard = other->GetBeard(),
 			.beard_color = other->GetBeardColor(),
-			.drakkin_details = other->GetDrakkinDetails(),
-			.drakkin_heritage = other->GetDrakkinHeritage(),
-			.drakkin_tattoo = other->GetDrakkinTattoo(),
 			.eye_color_one = other->GetEyeColor1(),
 			.eye_color_two = other->GetEyeColor2(),
 			.face = other->GetLuclinFace(),
@@ -8342,8 +8248,6 @@ std::string Mob::GetRacePlural()
 			return "Vah Shir";
 		case Race::Froglok2:
 			return "Frogloks";
-		case Race::Drakkin:
-			return "Drakkin";
 		default:
 			return "Races";
 	}

@@ -1730,9 +1730,6 @@ bool Client::OPCharCreate(char *name, CharCreate_Struct *cc)
 	pp.haircolor        = cc->haircolor;
 	pp.beard            = cc->beard;
 	pp.beardcolor       = cc->beardcolor;
-	pp.drakkin_heritage = cc->drakkin_heritage;
-	pp.drakkin_tattoo   = cc->drakkin_tattoo;
-	pp.drakkin_details  = cc->drakkin_details;
 	pp.birthday         = bday;
 	pp.lastlogin        = bday;
 	pp.level            = 1;
@@ -1964,7 +1961,7 @@ bool CheckCharCreateInfoTitanium(CharCreate_Struct *cc)
 
 // if this is increased you'll have to add a column to the classrace
 // table below
-#define _TABLE_RACES 16
+#define _TABLE_RACES 15
 
 	static const int BaseRace[_TABLE_RACES][7] =
 	{            /* STR  STA  AGI  DEX  WIS  INT  CHR */
@@ -1982,8 +1979,7 @@ bool CheckCharCreateInfoTitanium(CharCreate_Struct *cc)
 	{ /*Gnome*/      60,  70,  85,  85,  67,  98,  60},
 	{ /*Iksar*/      70,  70,  90,  85,  80,  75,  55},
 	{ /*Vah Shir*/   90,  75,  90,  70,  70,  65,  65},
-	{ /*Froglok*/    70,  80, 100, 100,  75,  75,  50},
-	{ /*Drakkin*/    70,  80,  85,  75,  80,  85,  75}
+	{ /*Froglok*/    70,  80, 100, 100,  75,  75,  50}
 	};
 
 	static const int BaseClass[Class::PLAYER_CLASS_COUNT][8] =
@@ -2007,23 +2003,23 @@ bool CheckCharCreateInfoTitanium(CharCreate_Struct *cc)
 	};
 
 	static const bool ClassRaceLookupTable[Class::PLAYER_CLASS_COUNT][_TABLE_RACES]=
-	{                   /*Human  Barbarian Erudite Woodelf Highelf Darkelf Halfelf Dwarf  Troll  Ogre   Halfling Gnome  Iksar  Vahshir Froglok Drakkin*/
-	{ /*Warrior*/         true,  true,     false,  true,   false,  true,   true,   true,  true,  true,  true,    true,  true,  true,   true,   true},
-	{ /*Cleric*/          true,  false,    true,   false,  true,   true,   true,   true,  false, false, true,    true,  false, false,  true,   true},
-	{ /*Paladin*/         true,  false,    true,   false,  true,   false,  true,   true,  false, false, true,    true,  false, false,  true,   true},
-	{ /*Ranger*/          true,  false,    false,  true,   false,  false,  true,   false, false, false, true,    false, false, false,  false,  true},
-	{ /*ShadowKnight*/    true,  false,    true,   false,  false,  true,   false,  false, true,  true,  false,   true,  true,  false,  true,   true},
-	{ /*Druid*/           true,  false,    false,  true,   false,  false,  true,   false, false, false, true,    false, false, false,  false,  true},
-	{ /*Monk*/            true,  false,    false,  false,  false,  false,  false,  false, false, false, false,   false, true,  false,  false,  true},
-	{ /*Bard*/            true,  false,    false,  true,   false,  false,  true,   false, false, false, false,   false, false, true,   false,  true},
-	{ /*Rogue*/           true,  true,     false,  true,   false,  true,   true,   true,  false, false, true,    true,  false, true,   true,   true},
-	{ /*Shaman*/          false, true,     false,  false,  false,  false,  false,  false, true,  true,  false,   false, true,  true,   true,   false},
-	{ /*Necromancer*/     true,  false,    true,   false,  false,  true,   false,  false, false, false, false,   true,  true,  false,  true,   true},
-	{ /*Wizard*/          true,  false,    true,   false,  true,   true,   false,  false, false, false, false,   true,  false, false,  true,   true},
-	{ /*Magician*/        true,  false,    true,   false,  true,   true,   false,  false, false, false, false,   true,  false, false,  false,  true},
-	{ /*Enchanter*/       true,  false,    true,   false,  true,   true,   false,  false, false, false, false,   true,  false, false,  false,  true},
-	{ /*Beastlord*/       false, true,     false,  false,  false,  false,  false,  false, true,  true,  false,   false, true,  true,   false,  false},
-	{ /*Berserker*/       false, true,     false,  false,  false,  false,  false,  true,  true,  true,  false,   false, false, true,   false,  false}
+	{                   /*Human  Barbarian Erudite Woodelf Highelf Darkelf Halfelf Dwarf  Troll  Ogre   Halfling Gnome  Iksar  Vahshir Froglok*/
+	{ /*Warrior*/         true,  true,     false,  true,   false,  true,   true,   true,  true,  true,  true,    true,  true,  true,   true},
+	{ /*Cleric*/          true,  false,    true,   false,  true,   true,   true,   true,  false, false, true,    true,  false, false,  true},
+	{ /*Paladin*/         true,  false,    true,   false,  true,   false,  true,   true,  false, false, true,    true,  false, false,  true},
+	{ /*Ranger*/          true,  false,    false,  true,   false,  false,  true,   false, false, false, true,    false, false, false,  false},
+	{ /*ShadowKnight*/    true,  false,    true,   false,  false,  true,   false,  false, true,  true,  false,   true,  true,  false,  true},
+	{ /*Druid*/           true,  false,    false,  true,   false,  false,  true,   false, false, false, true,    false, false, false,  false},
+	{ /*Monk*/            true,  false,    false,  false,  false,  false,  false,  false, false, false, false,   false, true,  false,  false},
+	{ /*Bard*/            true,  false,    false,  true,   false,  false,  true,   false, false, false, false,   false, false, true,   false},
+	{ /*Rogue*/           true,  true,     false,  true,   false,  true,   true,   true,  false, false, true,    true,  false, true,   true},
+	{ /*Shaman*/          false, true,     false,  false,  false,  false,  false,  false, true,  true,  false,   false, true,  true,   true},
+	{ /*Necromancer*/     true,  false,    true,   false,  false,  true,   false,  false, false, false, false,   true,  true,  false,  true},
+	{ /*Wizard*/          true,  false,    true,   false,  true,   true,   false,  false, false, false, false,   true,  false, false,  true},
+	{ /*Magician*/        true,  false,    true,   false,  true,   true,   false,  false, false, false, false,   true,  false, false,  false},
+	{ /*Enchanter*/       true,  false,    true,   false,  true,   true,   false,  false, false, false, false,   true,  false, false,  false},
+	{ /*Beastlord*/       false, true,     false,  false,  false,  false,  false,  false, true,  true,  false,   false, true,  true,   false},
+	{ /*Berserker*/       false, true,     false,  false,  false,  false,  false,  true,  true,  true,  false,   false, false, true,   false}
 	};
 
 	if (!cc)
@@ -2037,7 +2033,6 @@ bool CheckCharCreateInfoTitanium(CharCreate_Struct *cc)
 	if (cc->race == FROGLOK) racetemp = 14;
 	if (cc->race == VAHSHIR) racetemp = 13;
 	if (cc->race == IKSAR) racetemp = 12;
-	if (cc->race == DRAKKIN) racetemp = 15;
 
 	// if out of range looking it up in the table would crash stuff
 	// so we return from these
@@ -2147,7 +2142,6 @@ void Client::SetRaceStartingSkills( PlayerProfile_Struct *pp )
 	case HUMAN:
 	case OGRE:
 	case TROLL:
-	case DRAKKIN:	//Drakkin are supposed to get a starting AA Skill
 		{
 			// No Race Specific Skills
 			break;
@@ -2286,12 +2280,6 @@ void Client::SetRacialLanguages( PlayerProfile_Struct *pp )
 			pp->languages[Language::CommonTongue] = Language::MaxValue;
 			pp->languages[Language::Froglok]      = Language::MaxValue;
 			pp->languages[Language::Troll]        = 25;
-			break;
-		}
-		case Race::Drakkin: {
-			pp->languages[Language::CommonTongue] = Language::MaxValue;
-			pp->languages[Language::ElderDragon]  = Language::MaxValue;
-			pp->languages[Language::Dragon]       = Language::MaxValue;
 			break;
 		}
 		default: {

@@ -262,9 +262,6 @@ struct MercInfo {
 	uint8	luclinEyeColor2;
 	uint8	luclinBeardColor;
 	uint8	luclinBeard;
-	uint32	drakkinHeritage;
-	uint32	drakkinTattoo;
-	uint32	drakkinDetails;
 };
 
 struct MercSpellEntry {
@@ -327,9 +324,6 @@ struct CharacterCorpseEntry
 	uint8 killed_by;
 	bool rezzable;
 	uint32 rez_time;
-	uint32 drakkin_heritage;
-	uint32 drakkin_tattoo;
-	uint32 drakkin_details;
 	std::vector<CharacterCorpseItemEntry> items;
 	std::string entity_variables;
 };

@@ -582,9 +582,6 @@ void command_npcedit(Client *c, const Seperator *sep)
 		n.luclin_eyecolor2 = t->GetEyeColor2();
 		n.luclin_beardcolor = t->GetBeardColor();
 		n.luclin_beard = t->GetBeard();
-		n.drakkin_heritage = t->GetDrakkinHeritage();
-		n.drakkin_tattoo = t->GetDrakkinTattoo();
-		n.drakkin_details = t->GetDrakkinDetails();
 	} else if (!strcasecmp(sep->arg[1], "armortint_id")) {
 		if (sep->IsNumber(2)) {
 			auto armor_tint_id = Strings::ToUnsignedInt(sep->arg[2]);

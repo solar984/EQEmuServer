@@ -118,9 +118,6 @@ public:
 	int GetHairStyle();
 	int GetLuclinFace();
 	int GetBeard();
-	int GetDrakkinHeritage();
-	int GetDrakkinTattoo();
-	int GetDrakkinDetails();
 	int GetClass();
 	int GetLevel();
 	const char *GetCleanName();
@@ -371,9 +368,6 @@ public:
 	void ChangeHairStyle(int in);
 	void ChangeLuclinFace(int in);
 	void ChangeBeard(int in);
-	void ChangeDrakkinHeritage(int in);
-	void ChangeDrakkinTattoo(int in);
-	void ChangeDrakkinDetails(int in);
 	void CameraEffect(uint32 duration, float intensity);
 	void CameraEffect(uint32 duration, float intensity, Lua_Client c);
 	void CameraEffect(uint32 duration, float intensity, Lua_Client c, bool global);

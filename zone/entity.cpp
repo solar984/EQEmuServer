@@ -5599,7 +5599,7 @@ void EntityList::DespawnGridNodes(int32 grid_id) {
 		Mob *mob = m.second;
 		if (
 			mob->IsNPC() &&
-			mob->GetRace() == Race::Node &&
+			mob->GetRace() == Race::Tribunal &&
 			mob->EntityVariableExists("grid_id") &&
 			Strings::ToInt(mob->GetEntityVariable("grid_id")) == grid_id)
 		{

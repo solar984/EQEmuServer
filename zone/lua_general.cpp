@@ -5715,9 +5715,6 @@ void lua_create_npc(luabind::adl::object table, float x, float y, float z, float
 	LuaCreateNPCParse(hairstyle, uint8, 0);
 	LuaCreateNPCParse(luclinface, uint8, 0);
 	LuaCreateNPCParse(beard, uint8, 0);
-	LuaCreateNPCParse(drakkin_heritage, uint32, 0);
-	LuaCreateNPCParse(drakkin_tattoo, uint32, 0);
-	LuaCreateNPCParse(drakkin_details, uint32, 0);
 	LuaCreateNPCParse(armor_tint.Head.Color, uint32, 0);
 	LuaCreateNPCParse(armor_tint.Chest.Color, uint32, 0);
 	LuaCreateNPCParse(armor_tint.Arms.Color, uint32, 0);

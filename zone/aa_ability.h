@@ -46,7 +46,6 @@ public:
 	int classes;
 	int races;
 	int deities;
-	int drakkin_heritage;
 	int status;
 	bool grant_only;
 	bool reset_on_death;

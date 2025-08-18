@@ -684,9 +684,6 @@ NPCType *Bot::FillNPCTypeStruct(
 	uint32 eyeColor2,
 	uint32 beard,
 	uint32 beardColor,
-	uint32 drakkinHeritage,
-	uint32 drakkinTattoo,
-	uint32 drakkinDetails,
 	int32 hp,
 	int32 mana,
 	int32 mr,
@@ -744,9 +741,6 @@ NPCType *Bot::FillNPCTypeStruct(
 	n->hairstyle = hairStyle;
 	n->luclinface = face;
 	n->beard = beard;
-	n->drakkin_heritage = drakkinHeritage;
-	n->drakkin_tattoo = drakkinTattoo;
-	n->drakkin_details = drakkinDetails;
 	n->hp_regen = 1;
 	n->mana_regen = 1;
 	n->trackable = true;
@@ -1097,19 +1091,6 @@ void Bot::GenerateBaseStats()
 			MagicResist -= 5;
 			FireResist -= 5;
 			break;
-		case DRAKKIN:
-			Strength -= 5;
-			Stamina += 5;
-			Agility += 10;
-			Intelligence += 10;
-			Wisdom += 5;
-			BotSize = 5.0;
-			PoisonResist += 2;
-			DiseaseResist += 2;
-			MagicResist += 2;
-			FireResist += 2;
-			ColdResist += 2;
-			break;
 		default:
 			break;
 	}
@@ -1152,11 +1133,7 @@ void Bot::GenerateAppearance() {
 	int iHair = 0;
 	int iBeard = 0;
 	int iBeardColor = 1;
-	if (GetRace() == DRAKKIN) {
-		iHair = zone->random.Int(0, 8);
-		iBeard = zone->random.Int(0, 11);
-		iBeardColor = zone->random.Int(0, 3);
-	} else if (GetGender()) {
+	if (GetGender()) {
 		iHair = zone->random.Int(0, 2);
 		if (GetRace() == DWARF && zone->random.Int(1, 100) < 50) {
 			iFace += 10;
@@ -1168,30 +1145,16 @@ void Bot::GenerateAppearance() {
 	}
 
 	int iHairColor = 0;
-	if (GetRace() == DRAKKIN) {
-		iHairColor = zone->random.Int(0, 3);
-	} else {
-		iHairColor = zone->random.Int(0, 19);
-	}
+	iHairColor = zone->random.Int(0, 19);
 
 	auto iEyeColor1 = (uint8)zone->random.Int(0, 9);
 	uint8 iEyeColor2 = 0;
-	if (GetRace() == DRAKKIN) {
-		iEyeColor1 = iEyeColor2 = (uint8)zone->random.Int(0, 11);
-	} else if (zone->random.Int(1, 100) > 96) {
+	if (zone->random.Int(1, 100) > 96) {
 		iEyeColor2 = zone->random.Int(0, 9);
 	} else {
 		iEyeColor2 = iEyeColor1;
 	}
 
-	int iHeritage = 0;
-	int iTattoo = 0;
-	int iDetails = 0;
-	if (GetRace() == DRAKKIN) {
-		iHeritage = zone->random.Int(0, 6);
-		iTattoo = zone->random.Int(0, 7);
-		iDetails = zone->random.Int(0, 7);
-	}
 	luclinface = iFace;
 	hairstyle = iHair;
 	beard = iBeard;
@@ -1199,9 +1162,6 @@ void Bot::GenerateAppearance() {
 	haircolor = iHairColor;
 	eyecolor1 = iEyeColor1;
 	eyecolor2 = iEyeColor2;
-	drakkin_heritage = iHeritage;
-	drakkin_tattoo = iTattoo;
-	drakkin_details = iDetails;
 }
 
 uint16 Bot::GetPrimarySkillValue() {

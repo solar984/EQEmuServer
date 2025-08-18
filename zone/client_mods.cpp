@@ -1005,15 +1005,6 @@ int32	Client::CalcMR()
 		case FROGLOK:
 			MR = 30;
 			break;
-		case DRAKKIN:
-		{
-			MR = 25;
-			if (GetDrakkinHeritage() == 2)
-				MR += 10;
-			else if (GetDrakkinHeritage() == 5)
-				MR += 2;
-			break;
-		}
 		default:
 			MR = 20;
 	}
@@ -1079,15 +1070,6 @@ int32	Client::CalcFR()
 		case FROGLOK:
 			FR = 25;
 			break;
-		case DRAKKIN:
-		{
-			FR = 25;
-			if (GetDrakkinHeritage() == 0)
-				FR += 10;
-			else if (GetDrakkinHeritage() == 5)
-				FR += 2;
-			break;
-		}
 		default:
 			FR = 20;
 	}
@@ -1165,15 +1147,6 @@ int32	Client::CalcDR()
 		case FROGLOK:
 			DR = 15;
 			break;
-		case DRAKKIN:
-		{
-			DR = 15;
-			if (GetDrakkinHeritage() == 1)
-				DR += 10;
-			else if (GetDrakkinHeritage() == 5)
-				DR += 2;
-			break;
-		}
 		default:
 			DR = 15;
 	}
@@ -1257,15 +1230,6 @@ int32	Client::CalcPR()
 		case FROGLOK:
 			PR = 30;
 			break;
-		case DRAKKIN:
-		{
-			PR = 15;
-			if (GetDrakkinHeritage() == 3)
-				PR += 10;
-			else if (GetDrakkinHeritage() == 5)
-				PR += 2;
-			break;
-		}
 		default:
 			PR = 15;
 	}
@@ -1349,15 +1313,6 @@ int32	Client::CalcCR()
 		case FROGLOK:
 			CR = 25;
 			break;
-		case DRAKKIN:
-		{
-			CR = 25;
-			if (GetDrakkinHeritage() == 4)
-				CR += 10;
-			else if (GetDrakkinHeritage() == 5)
-				CR += 2;
-			break;
-		}
 		default:
 			CR = 25;
 	}

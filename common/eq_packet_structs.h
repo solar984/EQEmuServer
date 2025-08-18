@@ -168,10 +168,6 @@ struct CharacterSelectEntry_Struct
 	/*0000*/	uint8 EyeColor1;			//
 	/*0000*/	uint8 BeardColor;			//
 	/*0000*/	uint8 EyeColor2;			//
-	/*0000*/	uint32 DrakkinHeritage;		// Drakkin Heritage
-	/*0000*/	uint32 DrakkinTattoo;		// Drakkin Tattoo
-	/*0000*/	uint32 DrakkinDetails;		// Drakkin Details (Facial Spikes)
-	/*0000*/	uint8 Unknown;				// New field to Underfoot
 };
 
 struct CharacterSelect_Struct
@@ -243,9 +239,6 @@ struct Spawn_Struct {
 /*0114*/ uint8	eyecolor1;			// Player's left eye color
 /*0115*/ uint8	unknown0115[11];	// Was [24]
 /*0126*/ uint8	StandState;	// stand state for SoF+ 0x64 for normal animation
-/*0127*/ uint32	drakkin_heritage;	// Added for SoF
-/*0131*/ uint32	drakkin_tattoo;		// Added for SoF
-/*0135*/ uint32	drakkin_details;	// Added for SoF
 /*0139*/ uint8	showhelm;			// 0=no, 1=yes
 /*0140*/ uint8	unknown0140[4];
 /*0144*/ uint8	is_npc;				// 0=no, 1=yes
@@ -696,9 +689,6 @@ struct CharCreate_Struct
 /*0064*/	uint32	face;		// Could be unknown0076
 /*0068*/	uint32	eyecolor1;	//its possiable we could have these switched
 /*0073*/	uint32	eyecolor2;	//since setting one sets the other we really can't check
-/*0076*/	uint32	drakkin_heritage;	// added for SoF
-/*0080*/	uint32	drakkin_tattoo;		// added for SoF
-/*0084*/	uint32	drakkin_details;	// added for SoF
 /*0088*/	uint32	tutorial;
 };
 
@@ -1032,9 +1022,6 @@ struct PlayerProfile_Struct
 /*5412*/	uint8				unknown5448[8];
 /*5420*/	uint32				zone_change_count;	// Number of times user has zoned in their career (guessing)
 /*5424*/	uint8				unknown5460[16];	//
-/*5440*/	uint32				drakkin_heritage;	//
-/*5444*/	uint32				drakkin_tattoo;		//
-/*5448*/	uint32				drakkin_details;	//
 /*5452*/	uint32				expansions;			// expansion setting, bit field of expansions avaliable
 /*5456*/	int32				toxicity;			//from drinking potions, seems to increase by 3 each time you drink
 /*5460*/	char				unknown5496[16];	//
@@ -2380,9 +2367,6 @@ struct Illusion_Struct { //size: 256 - SoF
 /*086*/    uint8           beard;            //
 /*087*/    uint8           beardcolor;        //
 /*088*/    float           size;            //
-/*092*/    uint32          drakkin_heritage;    //
-/*096*/    uint32          drakkin_tattoo;        //
-/*100*/    uint32          drakkin_details;    //
 /*104*/    EQ::TintProfile armor_tint;    //
 /*140*/    uint8           eyecolor1;        // Field Not Identified in any Illusion Struct
 /*141*/    uint8           eyecolor2;        // Field Not Identified in any Illusion Struct
@@ -2553,9 +2537,6 @@ struct FaceChange_Struct {
 /*005*/	uint8	beard;
 /*006*/	uint8	face;
 /*007*/ uint8  unused_padding;
-/*008*/ uint32 drakkin_heritage;
-/*012*/ uint32 drakkin_tattoo;
-/*016*/ uint32 drakkin_details;
 /*020*/ uint32 entity_id;
 /*024*/
 //there are only 10 faces for barbs changing woad just

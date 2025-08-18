@@ -2505,9 +2505,6 @@ void QuestManager::playerfeature(const char* feature, int setting)
 	uint8  HairStyle       = initiator->GetHairStyle();
 	uint8  LuclinFace      = initiator->GetLuclinFace();
 	uint8  Beard           = initiator->GetBeard();
-	uint32 DrakkinHeritage = initiator->GetDrakkinHeritage();
-	uint32 DrakkinTattoo   = initiator->GetDrakkinTattoo();
-	uint32 DrakkinDetails  = initiator->GetDrakkinDetails();
 	float  Size            = initiator->GetSize();
 
 	if (!strcasecmp(feature, "race")) {
@@ -2532,12 +2529,6 @@ void QuestManager::playerfeature(const char* feature, int setting)
 		LuclinFace = setting;
 	} else if (!strcasecmp(feature, "beard")) {
 		Beard = setting;
-	} else if (!strcasecmp(feature, "heritage")) {
-		DrakkinHeritage = setting;
-	} else if (!strcasecmp(feature, "tattoo")) {
-		DrakkinTattoo = setting;
-	} else if (!strcasecmp(feature, "details")) {
-		DrakkinDetails = setting;
 	} else if (!strcasecmp(feature, "size")) {
 		Size = (float) setting / 10;    //dividing by 10 to allow 1 decimal place for adjusting size
 	} else {
@@ -2548,9 +2539,6 @@ void QuestManager::playerfeature(const char* feature, int setting)
 		AppearanceStruct{
 			.beard = Beard,
 			.beard_color = BeardColor,
-			.drakkin_details = DrakkinDetails,
-			.drakkin_heritage = DrakkinHeritage,
-			.drakkin_tattoo = DrakkinTattoo,
 			.eye_color_one = EyeColor1,
 			.eye_color_two = EyeColor2,
 			.face = LuclinFace,
@@ -2584,9 +2572,6 @@ void QuestManager::npcfeature(const char* feature, int setting)
 	uint8  HairStyle       = owner->GetHairStyle();
 	uint8  LuclinFace      = owner->GetLuclinFace();
 	uint8  Beard           = owner->GetBeard();
-	uint32 DrakkinHeritage = owner->GetDrakkinHeritage();
-	uint32 DrakkinTattoo   = owner->GetDrakkinTattoo();
-	uint32 DrakkinDetails  = owner->GetDrakkinDetails();
 	float  Size            = owner->GetSize();
 
 	if (!strcasecmp(feature, "race")) {
@@ -2611,12 +2596,6 @@ void QuestManager::npcfeature(const char* feature, int setting)
 		LuclinFace = setting;
 	} else if (!strcasecmp(feature, "beard")) {
 		Beard = setting;
-	} else if (!strcasecmp(feature, "heritage")) {
-		DrakkinHeritage = setting;
-	} else if (!strcasecmp(feature, "tattoo")) {
-		DrakkinTattoo = setting;
-	} else if (!strcasecmp(feature, "details")) {
-		DrakkinDetails = setting;
 	} else if (!strcasecmp(feature, "size")) {
 		Size = (float) setting / 10;    //dividing by 10 to allow 1 decimal place for adjusting size
 	} else {
@@ -2627,9 +2606,6 @@ void QuestManager::npcfeature(const char* feature, int setting)
 		AppearanceStruct{
 			.beard = Beard,
 			.beard_color = BeardColor,
-			.drakkin_details = DrakkinDetails,
-			.drakkin_heritage = DrakkinHeritage,
-			.drakkin_tattoo = DrakkinTattoo,
 			.eye_color_one = EyeColor1,
 			.eye_color_two = EyeColor2,
 			.face = LuclinFace,

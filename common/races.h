@@ -62,7 +62,6 @@ namespace Gender {
 // TODO: check all clients for (BYTE) usage of '/who all' class and remove FROGLOK2, if possible (330 - 74 = 256 .. WORD->BYTE conversion loss...)
 #define FROGLOK2 74	// Not sure why /who all reports race as 74 for frogloks
 #define FAIRY 473
-#define DRAKKIN 522 // 32768
 #define EMU_RACE_NPC 131069 // was 65533
 #define EMU_RACE_PET 131070 // was 65534
 #define EMU_RACE_UNKNOWN 131071 // was 65535
@@ -85,14 +84,13 @@ namespace Gender {
 #define PLAYER_RACE_IKSAR 13
 #define PLAYER_RACE_VAHSHIR 14
 #define PLAYER_RACE_FROGLOK 15
-#define PLAYER_RACE_DRAKKIN 16
 
-#define PLAYER_RACE_COUNT 16
+#define PLAYER_RACE_COUNT 15
 
 
-#define PLAYER_RACE_EMU_NPC 17
-#define PLAYER_RACE_EMU_PET 18
-#define PLAYER_RACE_EMU_COUNT 19
+#define PLAYER_RACE_EMU_NPC 16
+#define PLAYER_RACE_EMU_PET 17
+#define PLAYER_RACE_EMU_COUNT 18
 
 
 // player race bits
@@ -112,9 +110,8 @@ namespace Gender {
 #define PLAYER_RACE_IKSAR_BIT 4096
 #define PLAYER_RACE_VAHSHIR_BIT 8192
 #define PLAYER_RACE_FROGLOK_BIT 16384
-#define PLAYER_RACE_DRAKKIN_BIT 32768
 
-#define PLAYER_RACE_ALL_MASK 65535
+#define PLAYER_RACE_ALL_MASK 32767
 
 const char* GetRaceIDName(uint16 race_id);
 const char* GetPlayerRaceName(uint32 player_race_value);
@@ -142,8 +139,6 @@ namespace PlayerAppearance
 	bool IsValidHair(uint16 race_id, uint8 gender_id, uint8 hair_value, bool use_luclin = true);
 	bool IsValidHairColor(uint16 race_id, uint8 gender_id, uint8 hair_color_value, bool use_luclin = true);
 	bool IsValidHead(uint16 race_id, uint8 gender_id, uint8 head_value, bool use_luclin = true);
-	bool IsValidHeritage(uint16 race_id, uint8 gender_id, uint32 heritage_value, bool use_luclin = true);
-	bool IsValidTattoo(uint16 race_id, uint8 gender_id, uint32 tattoo_value, bool use_luclin = true);
 	bool IsValidTexture(uint16 race_id, uint8 gender_id, uint8 texture_value, bool use_luclin = true);
 	bool IsValidWoad(uint16 race_id, uint8 gender_id, uint8 woad_value, bool use_luclin = true);
 }
@@ -624,266 +619,6 @@ namespace Race {
 	constexpr uint16 ClockworkBoar            = 472;
 	constexpr uint16 Fairy2                   = 473;
 	constexpr uint16 Witheran2                = 474;
-	constexpr uint16 AirElemental2            = 475;
-	constexpr uint16 EarthElemental2          = 476;
-	constexpr uint16 FireElemental2           = 477;
-	constexpr uint16 WaterElemental2          = 478;
-	constexpr uint16 Alligator2               = 479;
-	constexpr uint16 Bear3                    = 480;
-	constexpr uint16 ScaledWolf               = 481;
-	constexpr uint16 Wolf2                    = 482;
-	constexpr uint16 SpiritWolf               = 483;
-	constexpr uint16 Skeleton3                = 484;
-	constexpr uint16 Spectre2                 = 485;
-	constexpr uint16 Bolvirk                  = 486;
-	constexpr uint16 Banshee2                 = 487;
-	constexpr uint16 Banshee3                 = 488;
-	constexpr uint16 Elddar                   = 489;
-	constexpr uint16 ForestGiant2             = 490;
-	constexpr uint16 BoneGolem2               = 491;
-	constexpr uint16 Horse2                   = 492;
-	constexpr uint16 Pegasus2                 = 493;
-	constexpr uint16 ShamblingMound           = 494;
-	constexpr uint16 Scrykin                  = 495;
-	constexpr uint16 Treant3                  = 496;
-	constexpr uint16 Vampire4                 = 497;
-	constexpr uint16 AyonaeRo                 = 498;
-	constexpr uint16 SullonZek                = 499;
-	constexpr uint16 Banner                   = 500;
-	constexpr uint16 Flag                     = 501;
-	constexpr uint16 Rowboat                  = 502;
-	constexpr uint16 BearTrap                 = 503;
-	constexpr uint16 ClockworkBomb            = 504;
-	constexpr uint16 DynamiteKeg              = 505;
-	constexpr uint16 PressurePlate            = 506;
-	constexpr uint16 PufferSpore              = 507;
-	constexpr uint16 StoneRing                = 508;
-	constexpr uint16 RootTentacle             = 509;
-	constexpr uint16 RunicSymbol              = 510;
-	constexpr uint16 SaltpetterBomb           = 511;
-	constexpr uint16 FloatingSkull            = 512;
-	constexpr uint16 SpikeTrap                = 513;
-	constexpr uint16 Totem2                   = 514;
-	constexpr uint16 Web                      = 515;
-	constexpr uint16 WickerBasket             = 516;
-	constexpr uint16 Unicorn2                 = 517;
-	constexpr uint16 Horse3                   = 518;
-	constexpr uint16 Unicorn3                 = 519;
-	constexpr uint16 Bixie2                   = 520;
-	constexpr uint16 Centaur2                 = 521;
-	constexpr uint16 Drakkin                  = 522;
-	constexpr uint16 Giant3                   = 523;
-	constexpr uint16 Gnoll2                   = 524;
-	constexpr uint16 Griffin2                 = 525;
-	constexpr uint16 GiantShade               = 526;
-	constexpr uint16 Harpy2                   = 527;
-	constexpr uint16 Mammoth2                 = 528;
-	constexpr uint16 Satyr                    = 529;
-	constexpr uint16 Dragon5                  = 530;
-	constexpr uint16 Dragon6                  = 531;
-	constexpr uint16 Dynleth                  = 532;
-	constexpr uint16 Boat2                    = 533;
-	constexpr uint16 WeaponRack2              = 534;
-	constexpr uint16 ArmorRack                = 535;
-	constexpr uint16 HoneyPot                 = 536;
-	constexpr uint16 JumJumBucket             = 537;
-	constexpr uint16 Plant                    = 538;
-	constexpr uint16 StoneJug                 = 539;
-	constexpr uint16 Plant2                   = 540;
-	constexpr uint16 Toolbox                  = 541;
-	constexpr uint16 WineCask                 = 542;
-	constexpr uint16 StoneJug2                = 543;
-	constexpr uint16 ElvenBoat                = 544;
-	constexpr uint16 GnomishBoat              = 545;
-	constexpr uint16 UndeadBoat               = 546;
-	constexpr uint16 Goo2                     = 547;
-	constexpr uint16 Goo3                     = 548;
-	constexpr uint16 Goo4                     = 549;
-	constexpr uint16 MerchantShip             = 550;
-	constexpr uint16 PirateShip               = 551;
-	constexpr uint16 GhostShip2               = 552;
-	constexpr uint16 Banner2                  = 553;
-	constexpr uint16 Banner3                  = 554;
-	constexpr uint16 Banner4                  = 555;
-	constexpr uint16 Banner5                  = 556;
-	constexpr uint16 Banner6                  = 557;
-	constexpr uint16 Aviak2                   = 558;
-	constexpr uint16 Beetle2                  = 559;
-	constexpr uint16 Gorilla2                 = 560;
-	constexpr uint16 Kedge                    = 561;
-	constexpr uint16 Kerran2                  = 562;
-	constexpr uint16 Shissar2                 = 563;
-	constexpr uint16 Siren2                   = 564;
-	constexpr uint16 Sphinx2                  = 565;
-	constexpr uint16 Human2                   = 566;
-	constexpr uint16 Campfire                 = 567;
-	constexpr uint16 Brownie2                 = 568;
-	constexpr uint16 Dragon7                  = 569;
-	constexpr uint16 Exoskeleton              = 570;
-	constexpr uint16 Ghoul2                   = 571;
-	constexpr uint16 ClockworkGuardian        = 572;
-	constexpr uint16 Unknown5                 = 573;
-	constexpr uint16 Minotaur4                = 574;
-	constexpr uint16 Scarecrow2               = 575;
-	constexpr uint16 Shade3                   = 576;
-	constexpr uint16 Rotocopter               = 577;
-	constexpr uint16 TentacleTerror2          = 578;
-	constexpr uint16 Wereorc                  = 579;
-	constexpr uint16 Worg                     = 580;
-	constexpr uint16 Wyvern2                  = 581;
-	constexpr uint16 Chimera2                 = 582;
-	constexpr uint16 Kirin2                   = 583;
-	constexpr uint16 Puma3                    = 584;
-	constexpr uint16 Boulder                  = 585;
-	constexpr uint16 Banner7                  = 586;
-	constexpr uint16 ElvenGhost               = 587;
-	constexpr uint16 HumanGhost               = 588;
-	constexpr uint16 Chest2                   = 589;
-	constexpr uint16 Chest3                   = 590;
-	constexpr uint16 Crystal                  = 591;
-	constexpr uint16 Coffin2                  = 592;
-	constexpr uint16 GuardianCpu              = 593;
-	constexpr uint16 Worg2                    = 594;
-	constexpr uint16 Mansion                  = 595;
-	constexpr uint16 FloatingIsland           = 596;
-	constexpr uint16 Cragslither              = 597;
-	constexpr uint16 Wrulon2                  = 598;
-	constexpr uint16 SpellParticle            = 599;
-	constexpr uint16 InvisibleManOfZomm       = 600;
-	constexpr uint16 RobocopterOfZomm         = 601;
-	constexpr uint16 Burynai2                 = 602;
-	constexpr uint16 Frog2                    = 603;
-	constexpr uint16 Dracolich                = 604;
-	constexpr uint16 IksarGhost               = 605;
-	constexpr uint16 IksarSkeleton            = 606;
-	constexpr uint16 Mephit                   = 607;
-	constexpr uint16 Muddite                  = 608;
-	constexpr uint16 Raptor2                  = 609;
-	constexpr uint16 Sarnak2                  = 610;
-	constexpr uint16 Scorpion2                = 611;
-	constexpr uint16 Tsetsian                 = 612;
-	constexpr uint16 Wurm2                    = 613;
-	constexpr uint16 Nekhon                   = 614;
-	constexpr uint16 HydraCrystal             = 615;
-	constexpr uint16 CrystalSphere            = 616;
-	constexpr uint16 Gnoll3                   = 617;
-	constexpr uint16 Sokokar                  = 618;
-	constexpr uint16 StonePylon               = 619;
-	constexpr uint16 DemonVulture             = 620;
-	constexpr uint16 Wagon                    = 621;
-	constexpr uint16 GodOfDiscord             = 622;
-	constexpr uint16 FeranMount               = 623;
-	constexpr uint16 Ogre2                    = 624;
-	constexpr uint16 SokokarMount             = 625;
-	constexpr uint16 Giant4                   = 626;
-	constexpr uint16 SokokarMount2            = 627;
-	constexpr uint16 TenthAnniversaryBanner   = 628;
-	constexpr uint16 TenthAnniversaryCake     = 629;
-	constexpr uint16 WineCask2                = 630;
-	constexpr uint16 HydraMount               = 631;
-	constexpr uint16 Hydra                    = 632;
-	constexpr uint16 WeddingFlowers           = 633;
-	constexpr uint16 WeddingArbor             = 634;
-	constexpr uint16 WeddingAltar             = 635;
-	constexpr uint16 PowderKeg                = 636;
-	constexpr uint16 Apexus                   = 637;
-	constexpr uint16 Bellikos                 = 638;
-	constexpr uint16 BrellsFirstCreation      = 639;
-	constexpr uint16 Brell                    = 640;
-	constexpr uint16 CrystalskinAmbuloid      = 641;
-	constexpr uint16 CliknarQueen             = 642;
-	constexpr uint16 CliknarSoldier           = 643;
-	constexpr uint16 CliknarWorker            = 644;
-	constexpr uint16 Coldain2                 = 645;
-	constexpr uint16 Coldain3                 = 646;
-	constexpr uint16 CrystalskinSessiloid     = 647;
-	constexpr uint16 Genari                   = 648;
-	constexpr uint16 Gigyn                    = 649;
-	constexpr uint16 GrekenYoungAdult         = 650;
-	constexpr uint16 GrekenYoung              = 651;
-	constexpr uint16 CliknarMount             = 652;
-	constexpr uint16 Telmira                  = 653;
-	constexpr uint16 SpiderMount              = 654;
-	constexpr uint16 BearMount                = 655;
-	constexpr uint16 RatMount                 = 656;
-	constexpr uint16 SessiloidMount           = 657;
-	constexpr uint16 MorellThule              = 658;
-	constexpr uint16 Marionette               = 659;
-	constexpr uint16 BookDervish              = 660;
-	constexpr uint16 TopiaryLion              = 661;
-	constexpr uint16 RotDog                   = 662;
-	constexpr uint16 Amygdalan                = 663;
-	constexpr uint16 Sandman                  = 664;
-	constexpr uint16 GrandfatherClock         = 665;
-	constexpr uint16 GingerbreadMan           = 666;
-	constexpr uint16 RoyalGuard               = 667;
-	constexpr uint16 Rabbit                   = 668;
-	constexpr uint16 BlindDreamer             = 669;
-	constexpr uint16 CazicThule2              = 670;
-	constexpr uint16 TopiaryLionMount         = 671;
-	constexpr uint16 RotDogMount              = 672;
-	constexpr uint16 GoralMount               = 673;
-	constexpr uint16 SelyrahMount             = 674;
-	constexpr uint16 ScleraMount              = 675;
-	constexpr uint16 BraxiMount               = 676;
-	constexpr uint16 KangonMount              = 677;
-	constexpr uint16 Erudite2                 = 678;
-	constexpr uint16 WurmMount                = 679;
-	constexpr uint16 RaptorMount              = 680;
-	constexpr uint16 InvisibleMan2            = 681;
-	constexpr uint16 Whirligig                = 682;
-	constexpr uint16 GnomishBalloon           = 683;
-	constexpr uint16 GnomishRocketPack        = 684;
-	constexpr uint16 GnomishHoveringTransport = 685;
-	constexpr uint16 Selyrah                  = 686;
-	constexpr uint16 Goral                    = 687;
-	constexpr uint16 Braxi                    = 688;
-	constexpr uint16 Kangon                   = 689;
-	constexpr uint16 InvisibleMan3            = 690;
-	constexpr uint16 FloatingTower            = 691;
-	constexpr uint16 ExplosiveCart            = 692;
-	constexpr uint16 BlimpShip                = 693;
-	constexpr uint16 Tumbleweed               = 694;
-	constexpr uint16 Alaran                   = 695;
-	constexpr uint16 Swinetor                 = 696;
-	constexpr uint16 Triumvirate              = 697;
-	constexpr uint16 Hadal                    = 698;
-	constexpr uint16 HoveringPlatform         = 699;
-	constexpr uint16 ParasiticScavenger       = 700;
-	constexpr uint16 Grendlaen                = 701;
-	constexpr uint16 ShipInABottle            = 702;
-	constexpr uint16 AlaranSentryStone        = 703;
-	constexpr uint16 Dervish4                 = 704;
-	constexpr uint16 RegenerationPool         = 705;
-	constexpr uint16 TeleportationStand       = 706;
-	constexpr uint16 RelicCase                = 707;
-	constexpr uint16 AlaranGhost              = 708;
-	constexpr uint16 Skystrider               = 709;
-	constexpr uint16 WaterSpout               = 710;
-	constexpr uint16 AviakPullAlong           = 711;
-	constexpr uint16 GelatinousCube2          = 712;
-	constexpr uint16 Cat                      = 713;
-	constexpr uint16 ElkHead                  = 714;
-	constexpr uint16 Holgresh2                = 715;
-	constexpr uint16 Beetle3                  = 716;
-	constexpr uint16 VineMaw                  = 717;
-	constexpr uint16 Ratman2                  = 718;
-	constexpr uint16 FallenKnight             = 719;
-	constexpr uint16 FlyingCarpet             = 720;
-	constexpr uint16 CarrierHand              = 721;
-	constexpr uint16 Akheva                   = 722;
-	constexpr uint16 ServantOfShadow          = 723;
-	constexpr uint16 Luclin                   = 724;
-	constexpr uint16 Xaric                    = 725;
-	constexpr uint16 Dervish5                 = 726;
-	constexpr uint16 Dervish6                 = 727;
-	constexpr uint16 Luclin2                  = 728;
-	constexpr uint16 Luclin3                  = 729;
-	constexpr uint16 Orb                      = 730;
-	constexpr uint16 Luclin4                  = 731;
-	constexpr uint16 Pegasus3                 = 732;
-	constexpr uint16 InteractiveObject        = 2250;
-	constexpr uint16 Node                     = 2254;
 
 	constexpr uint16 ALL_RACES_BITMASK = 65535;
 }

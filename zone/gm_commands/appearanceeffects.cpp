@@ -70,9 +70,6 @@ void command_appearanceeffects(Client *c, const Seperator *sep)
 			AppearanceStruct{
 				.beard = t->GetBeard(),
 				.beard_color = t->GetBeardColor(),
-				.drakkin_details = t->GetDrakkinDetails(),
-				.drakkin_heritage = t->GetDrakkinHeritage(),
-				.drakkin_tattoo = t->GetDrakkinTattoo(),
 				.eye_color_one = t->GetEyeColor1(),
 				.eye_color_two = t->GetEyeColor2(),
 				.face = t->GetLuclinFace(),

@@ -507,9 +507,6 @@ bool ZoneDatabase::LoadCharacterData(uint32 character_id, PlayerProfile_Struct* 
 	pp->pvptype                  = e.pvp_type;
 	pp->autosplit                = e.autosplit_enabled;
 	pp->zone_change_count        = e.zone_change_count;
-	pp->drakkin_heritage         = e.drakkin_heritage;
-	pp->drakkin_tattoo           = e.drakkin_tattoo;
-	pp->drakkin_details          = e.drakkin_details;
 	pp->toxicity                 = e.toxicity;
 	pp->hunger_level             = e.hunger_level;
 	pp->thirst_level             = e.thirst_level;
@@ -1105,9 +1102,6 @@ bool ZoneDatabase::SaveCharacterData(
 	e.pvp_type                = pp->pvptype;
 	e.autosplit_enabled       = pp->autosplit;
 	e.zone_change_count       = pp->zone_change_count;
-	e.drakkin_heritage        = pp->drakkin_heritage;
-	e.drakkin_tattoo          = pp->drakkin_tattoo;
-	e.drakkin_details         = pp->drakkin_details;
 	e.toxicity                = pp->toxicity;
 	e.hunger_level            = pp->hunger_level;
 	e.thirst_level            = pp->thirst_level;
@@ -1765,9 +1759,6 @@ const NPCType *ZoneDatabase::LoadNPCTypesData(uint32 npc_type_id, bool bulk_load
 		t->eyecolor2        = n.luclin_eyecolor2;
 		t->beardcolor       = n.luclin_beardcolor;
 		t->beard            = n.luclin_beard;
-		t->drakkin_heritage = n.drakkin_heritage;
-		t->drakkin_tattoo   = n.drakkin_tattoo;
-		t->drakkin_details  = n.drakkin_details;
 
 		if (t->npc_faction_id > 0) {
 			if (
@@ -3082,9 +3073,6 @@ uint32 ZoneDatabase::UpdateCharacterCorpse(
 	e.hair_style       = c.hairstyle;
 	e.face             = c.face;
 	e.beard            = c.beard;
-	e.drakkin_heritage = c.drakkin_heritage;
-	e.drakkin_details  = c.drakkin_details;
-	e.drakkin_tattoo   = c.drakkin_tattoo;
 	e.wc_1             = c.item_tint.Head.Color;
 	e.wc_2             = c.item_tint.Chest.Color;
 	e.wc_3             = c.item_tint.Arms.Color;
@@ -3153,9 +3141,6 @@ uint32 ZoneDatabase::SaveCharacterCorpse(
 	e.hair_style       = c.hairstyle;
 	e.face             = c.face;
 	e.beard            = c.beard;
-	e.drakkin_heritage = c.drakkin_heritage;
-	e.drakkin_tattoo   = c.drakkin_tattoo;
-	e.drakkin_details  = c.drakkin_details;
 	e.wc_1             = c.item_tint.Head.Color;
 	e.wc_2             = c.item_tint.Chest.Color;
 	e.wc_3             = c.item_tint.Arms.Color;

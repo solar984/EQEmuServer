@@ -146,8 +146,6 @@ void WorldDatabase::GetCharSelectInfo(uint32 account_id, EQApplicationPacket **o
 
 		cse->Unknown15       = 0xFF;
 		cse->Unknown19       = 0xFF;
-		cse->DrakkinTattoo   = e.drakkin_tattoo;
-		cse->DrakkinDetails  = e.drakkin_details;
 		cse->Deity           = e.deity;
 		cse->PrimaryIDFile   = 0;                            // Processed Below
 		cse->SecondaryIDFile = 0;                        // Processed Below
@@ -159,7 +157,6 @@ void WorldDatabase::GetCharSelectInfo(uint32 account_id, EQApplicationPacket **o
 		cse->Beard           = e.beard;
 		cse->GoHome          = 0;                                // Processed Below
 		cse->Tutorial        = 0;                                // Processed Below
-		cse->DrakkinHeritage = e.drakkin_heritage;
 
 		if (RuleB(World, EnableReturnHomeButton)) {
 			int now = time(nullptr);

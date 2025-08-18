@@ -35,15 +35,9 @@ void command_fixmob(Client *c, const Seperator *sep)
 	uint8  hair_style       = t->GetHairStyle();
 	uint8  face             = t->GetLuclinFace();
 	uint8  beard_style      = t->GetBeard();
-	uint8  drakkin_heritage = t->GetDrakkinHeritage();
-	uint8  drakkin_tattoo   = t->GetDrakkinTattoo();
-	uint8  drakkin_details  = t->GetDrakkinDetails();
 
 	const bool is_beard            = Strings::EqualFold(type, "beard");
 	const bool is_beard_color      = Strings::EqualFold(type, "beard_color");
-	const bool is_drakkin_details  = Strings::EqualFold(type, "drakkin_details");
-	const bool is_drakkin_heritage = Strings::EqualFold(type, "drakkin_heritage");
-	const bool is_drakkin_tattoo   = Strings::EqualFold(type, "drakkin_tattoo");
 	const bool is_face             = Strings::EqualFold(type, "face");
 	const bool is_gender           = Strings::EqualFold(type, "gender");
 	const bool is_hair             = Strings::EqualFold(type, "hair");
@@ -55,9 +49,6 @@ void command_fixmob(Client *c, const Seperator *sep)
 	if (
 		!is_beard &&
 		!is_beard_color &&
-		!is_drakkin_details &&
-		!is_drakkin_heritage &&
-		!is_drakkin_tattoo &&
 		!is_face &&
 		!is_gender &&
 		!is_hair &&
@@ -172,48 +163,15 @@ void command_fixmob(Client *c, const Seperator *sep)
 
 		change_type  = "Beard Color";
 		change_value = std::to_string(beard_color);
-	} else if (is_drakkin_heritage) {
-		if (drakkin_heritage == 0 && is_previous) {
-			drakkin_heritage = 6;
-		} else if (drakkin_heritage >= 6 && is_next) {
-			drakkin_heritage = 0;
-		} else {
-			drakkin_heritage += adjustment;
-		}
-
-		change_type  = "Drakkin Heritage";
-		change_value = std::to_string(drakkin_heritage);
-	} else if (is_drakkin_tattoo) {
-		if (drakkin_tattoo == 0 && is_previous) {
-			drakkin_tattoo = 8;
-		} else if (drakkin_tattoo >= 8 && is_next) {
-			drakkin_tattoo = 0;
-		} else {
-			drakkin_tattoo += adjustment;
-		}
-
-		change_type  = "Drakkin Tattoo";
-		change_value = std::to_string(drakkin_tattoo);
-	} else if (is_drakkin_details) {
-		if (drakkin_details == 0 && is_previous) {
-			drakkin_details = 7;
-		} else if (drakkin_details >= 7 && is_next) {
-			drakkin_details = 0;
-		} else {
-			drakkin_details += adjustment;
-		}
-
-		change_type  = "Drakkin Details";
-		change_value = std::to_string(drakkin_details);
 	}
 
 	switch (race_id) {
 		case Race::Barbarian: {
 			if (face > 10) {
-				face -= ((drakkin_tattoo - 1) * 10);
+				face -= ((beard_style - 1) * 10);
 			}
 
-			face += (drakkin_tattoo * 10);
+			face += (beard_style * 10);
 			break;
 		}
 		case Race::Erudite: {
@@ -243,9 +201,6 @@ void command_fixmob(Client *c, const Seperator *sep)
 		AppearanceStruct{
 			.beard = beard_style,
 			.beard_color = beard_color,
-			.drakkin_details = drakkin_details,
-			.drakkin_heritage = drakkin_heritage,
-			.drakkin_tattoo = drakkin_tattoo,
 			.eye_color_one = eye_color_1,
 			.eye_color_two = eye_color_2,
 			.face = face,
@@ -273,9 +228,6 @@ void SendFixMobSubCommands(Client *c)
 {
 	c->Message(Chat::White, "Usage: #fixmob beard [Next|Previous]");
 	c->Message(Chat::White, "Usage: #fixmob beard_color [Next|Previous]");
-	c->Message(Chat::White, "Usage: #fixmob drakkin_details [Next|Previous]");
-	c->Message(Chat::White, "Usage: #fixmob drakkin_heritage [Next|Previous]");
-	c->Message(Chat::White, "Usage: #fixmob drakkin_tattoo [Next|Previous]");
 	c->Message(Chat::White, "Usage: #fixmob face [Next|Previous]");
 	c->Message(Chat::White, "Usage: #fixmob gender [Next|Previous]");
 	c->Message(Chat::White, "Usage: #fixmob hair [Next|Previous]");

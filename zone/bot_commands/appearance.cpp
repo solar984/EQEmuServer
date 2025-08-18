@@ -122,12 +122,8 @@ void bot_command_details(Client *c, const Seperator *sep)
 	uint32 uvalue = Strings::ToInt(sep->arg[1]);
 
 	auto fail_type = AFT_None;
-	if (my_bot->GetRace() != DRAKKIN)
-		fail_type = AFT_Race;
-	else if (!PlayerAppearance::IsValidDetail(my_bot->GetRace(), my_bot->GetGender(), uvalue))
+	if (!PlayerAppearance::IsValidDetail(my_bot->GetRace(), my_bot->GetGender(), uvalue))
 		fail_type = AFT_Value;
-	else
-		my_bot->SetDrakkinDetails(uvalue);
 
 	if (helper_bot_appearance_fail(c, my_bot, fail_type, "details"))
 		return;
@@ -409,84 +405,6 @@ void bot_command_hairstyle(Client *c, const Seperator *sep)
 		my_bot->SetHairStyle(uvalue);
 
 	if (helper_bot_appearance_fail(c, my_bot, fail_type, "hair style"))
-		return;
-
-	helper_bot_appearance_form_final(c, my_bot);
-}
-
-void bot_command_heritage(Client *c, const Seperator *sep)
-{
-	// TODO: Trouble-shoot model update issue
-
-	if (helper_command_alias_fail(c, "bot_command_heritage", sep->arg[0], "botheritage"))
-		return;
-	if (helper_is_help_or_usage(sep->arg[1])) {
-		c->Message(Chat::White, "usage: <target_bot> %s [value: 0-n] (Drakkin bots only)", sep->arg[0]);
-		c->Message(Chat::White, "note: Actual limit is filter-based");
-		return;
-	}
-
-	auto my_bot = ActionableBots::AsTarget_ByBot(c);
-	if (!my_bot) {
-		c->Message(Chat::White, "You must <target> a bot that you own to use this command");
-		return;
-	}
-
-	if (!sep->IsNumber(1)) {
-		c->Message(Chat::White, "A numeric [value] is required to use this command");
-		return;
-	}
-
-	uint32 uvalue = Strings::ToInt(sep->arg[1]);
-
-	auto fail_type = AFT_None;
-	if (my_bot->GetRace() != DRAKKIN)
-		fail_type = AFT_Race;
-	else if (!PlayerAppearance::IsValidHeritage(my_bot->GetRace(), my_bot->GetGender(), uvalue))
-		fail_type = AFT_Value;
-	else
-		my_bot->SetDrakkinHeritage(uvalue);
-
-	if (helper_bot_appearance_fail(c, my_bot, fail_type, "heritage"))
-		return;
-
-	helper_bot_appearance_form_final(c, my_bot);
-}
-
-void bot_command_tattoo(Client *c, const Seperator *sep)
-{
-	// TODO: Trouble-shoot model update issue
-
-	if (helper_command_alias_fail(c, "bot_command_tattoo", sep->arg[0], "bottattoo"))
-		return;
-	if (helper_is_help_or_usage(sep->arg[1])) {
-		c->Message(Chat::White, "usage: <target_bot> %s [value: 0-n] (Drakkin bots only)", sep->arg[0]);
-		c->Message(Chat::White, "note: Actual limit is filter-based");
-		return;
-	}
-
-	auto my_bot = ActionableBots::AsTarget_ByBot(c);
-	if (!my_bot) {
-		c->Message(Chat::White, "You must <target> a bot that you own to use this command");
-		return;
-	}
-
-	if (!sep->IsNumber(1)) {
-		c->Message(Chat::White, "A numeric [value] is required to use this command");
-		return;
-	}
-
-	uint32 uvalue = Strings::ToInt(sep->arg[1]);
-
-	auto fail_type = AFT_None;
-	if (my_bot->GetRace() != DRAKKIN)
-		fail_type = AFT_Race;
-	else if (!PlayerAppearance::IsValidTattoo(my_bot->GetRace(), my_bot->GetGender(), uvalue))
-		fail_type = AFT_Value;
-	else
-		my_bot->SetDrakkinTattoo(uvalue);
-
-	if (helper_bot_appearance_fail(c, my_bot, fail_type, "tattoo"))
 		return;
 
 	helper_bot_appearance_form_final(c, my_bot);

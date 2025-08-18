@@ -124,9 +124,6 @@ Client::Client() : Mob(
 	0, // in_hairstyle
 	0, // in_luclinface
 	0, // in_beard
-	0, // in_drakkin_heritage
-	0, // in_drakkin_tattoo
-	0, // in_drakkin_details
 	EQ::TintProfile(), // in_armor_tint
 	0xff, // in_aa_title
 	0, // in_see_invis
@@ -403,9 +400,6 @@ Client::Client(EQStreamInterface *ieqs) : Mob(
 	0, // in_hairstyle
 	0, // in_luclinface
 	0, // in_beard
-	0, // in_drakkin_heritage
-	0, // in_drakkin_tattoo
-	0, // in_drakkin_details
 	EQ::TintProfile(), // in_armor_tint
 	0xff, // in_aa_title
 	0, // in_see_invis
@@ -6987,9 +6981,6 @@ void Client::Doppelganger(uint16 spell_id, Mob *target, const char *name_overrid
 	made_npc->hairstyle = GetHairStyle();
 	made_npc->luclinface = GetLuclinFace();
 	made_npc->beard = GetBeard();
-	made_npc->drakkin_heritage = GetDrakkinHeritage();
-	made_npc->drakkin_tattoo = GetDrakkinTattoo();
-	made_npc->drakkin_details = GetDrakkinDetails();
 	made_npc->d_melee_texture1 = GetEquipmentMaterial(EQ::textures::weaponPrimary);
 	made_npc->d_melee_texture2 = GetEquipmentMaterial(EQ::textures::weaponSecondary);
 	for (int i = EQ::textures::textureBegin; i <= EQ::textures::LastTexture; i++)	{
