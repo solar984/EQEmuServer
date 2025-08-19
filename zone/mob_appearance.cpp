@@ -298,7 +298,6 @@ void Mob::SendWearChange(uint8 material_slot, Client *one_client)
 		uint64_t key = 0;
 
 		key |= static_cast<uint64_t>(s.material & 0xFFF)             << 0;   // 12 bits
-		key |= static_cast<uint64_t>(s.elite_material & 0x1)         << 12;  // 1 bit
 		key |= static_cast<uint64_t>(GetRace() & 0xFFFF)             << 33;  // 16 bits
 
 		// Optional: Fold in color for appearance differences
@@ -349,8 +348,6 @@ void Mob::SendTextureWC(
 	w->spawn_id         = GetID();
 	w->material         = texture;
 	w->wear_slot_id     = slot;
-	w->unknown06        = unknown06;
-	w->elite_material   = elite_material;
 
 	SetMobTextureProfile(slot, texture, w->color.Color, hero_forge_model);
 

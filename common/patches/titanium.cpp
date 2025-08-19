@@ -3303,8 +3303,6 @@ namespace Titanium
 		IN(material);
 		IN(color.Color);
 		IN(wear_slot_id);
-		emu->unknown06 = 0;
-		emu->elite_material = 0;
 
 		FINISH_DIRECT_DECODE();
 	}

@@ -1215,19 +1215,11 @@ struct SpecialMesgHeader_Struct
 /*xx*/ // message
 };
 
-/*
-** When somebody changes what they're wearing or give a pet a weapon (model changes)
-** Length: 19 Bytes
-*/
-
 struct WearChange_Struct {
 	/*000*/ uint16 spawn_id;
-	/*002*/ uint32 material;
-	/*006*/ uint32 unknown06;
-	/*010*/ uint32 elite_material;	// 1 for Drakkin Elite Material
-	/*014*/ EQ::textures::Tint_Struct color;
-	/*018*/ uint8 wear_slot_id;
-	/*019*/
+	/*002*/ uint16 material;
+	/*004*/ EQ::textures::Tint_Struct color;
+	/*009*/ uint8 wear_slot_id;
 };
 
 /*
