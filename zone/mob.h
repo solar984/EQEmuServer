@@ -338,7 +338,7 @@ public:
 		uint32 value3slot = 1, uint32 value3ground = 1, uint32 value4slot = 1, uint32 value4ground = 1, uint32 value5slot = 1, uint32 value5ground = 1);
 	void SendLevelAppearance();
 	void SendTargetable(bool on, Client *specific_target = nullptr);
-	void SetMobTextureProfile(uint8 material_slot, uint32 texture, uint32 color = 0, uint32 hero_forge_model = 0);
+	void SetMobTextureProfile(uint8 material_slot, uint32 texture, uint32 color = 0);
 
 	//Spell
 	void SendSpellEffect(uint32 effect_id, uint32 duration, uint32 finish_delay, bool zone_wide,

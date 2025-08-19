@@ -33,17 +33,15 @@
 void Mob::SetMobTextureProfile(
 	uint8 material_slot,
 	uint32 texture,
-	uint32 color,
-	uint32 hero_forge_model
+	uint32 color
 )
 {
 	LogMobAppearanceDetail(
-		"[{}] material_slot [{}] texture [{}] color [{}] hero_forge_model [{}]",
+		"[{}] material_slot [{}] texture [{}] color [{}]",
 		GetCleanName(),
 		material_slot,
 		texture,
-		color,
-		hero_forge_model
+		color
 	);
 
 	switch (material_slot) {
@@ -349,7 +347,7 @@ void Mob::SendTextureWC(
 	w->material         = texture;
 	w->wear_slot_id     = slot;
 
-	SetMobTextureProfile(slot, texture, w->color.Color, hero_forge_model);
+	SetMobTextureProfile(slot, texture, w->color.Color);
 
 	entity_list.QueueClients(this, outapp);
 	safe_delete(outapp);
@@ -387,7 +385,7 @@ void Mob::WearChange(
 {
 	armor_tint.Slot[material_slot].Color = color;
 
-	SetMobTextureProfile(material_slot, texture, color, hero_forge_model);
+	SetMobTextureProfile(material_slot, texture, color);
 
 	auto outapp = new EQApplicationPacket(OP_WearChange, sizeof(WearChange_Struct));
 	auto w      = (WearChange_Struct *) outapp->pBuffer;
