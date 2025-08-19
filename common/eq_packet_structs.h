@@ -1599,11 +1599,9 @@ struct InventorySlot_Struct
 {
 	/*000*/	int32	Type;		// Worn and Normal inventory = 0, Bank = 1, Shared Bank = 2, Trade = 3, World = 4, Limbo = 5
 	/*004*/	int32	Slot;
-	/*008*/	int32	SubIndex;
-	/*012*/	int32	AugIndex;
-	/*016*/	int32	Unknown01;
+	/*008*/	int32	SubIndex;	// no aug index in Tit
+	/*012*/	int32	Unknown01;
 };
-
 
 struct MultiMoveItemSub_Struct
 {
