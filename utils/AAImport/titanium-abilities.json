@@ -1071,6 +1071,102 @@
         ]
     },
     {
+        "name": "First Aid",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 74,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 269,
+                        "base1": 10
+                    }
+                ]
+            },
+            {
+                "id": 75,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 269,
+                        "base1": 20
+                    }
+                ]
+            },
+            {
+                "id": 76,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 269,
+                        "base1": 30
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Combat Agility",
+        "type": 2,
+        "Ranks": [
+            {
+                "id": 125,
+                "cost": 2,
+                "level_req": 55,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 172,
+                        "base1": 2
+                    }
+                ]
+            },
+            {
+                "id": 126,
+                "cost": 4,
+                "level_req": 55,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 172,
+                        "base1": 5
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -1,
+                        "points": 6
+                    }
+                ]
+            },
+            {
+                "id": 127,
+                "cost": 6,
+                "level_req": 55,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 172,
+                        "base1": 10
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "New Tanaan Crafting Mastery",
         "type": 1,
         "Ranks": [
