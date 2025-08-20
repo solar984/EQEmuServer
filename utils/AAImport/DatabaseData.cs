@@ -22,6 +22,7 @@ namespace AAImport
                 var rank = GetRank(ability.first_rank_id);
                 while (rank != null)
                 {
+                    rank.ability = ability;
                     ability.Ranks.Add(rank);
                     rank = GetRank(rank.next_id);
                 }

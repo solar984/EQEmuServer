@@ -22,5 +22,7 @@ namespace AAImport
 
         public List<AA_Rank_Effects> Effects { get; set; } = new List<AA_Rank_Effects>();
         public List<AA_Rank_Prereqs> Prereqs { get; set; } = new List<AA_Rank_Prereqs>();
+
+        public AA_Ability? ability; // only used to suppress serializing default title_sid and desc_sid values
     }
 }

@@ -20,7 +20,7 @@ namespace AAImport
 
         static async Task Main()
         {
-            //await ExportToJson("data-export.json");
+            await ExportToJson("data-export.json");
             await ImportFromJson("titanium-abilities.json");
         }
 
@@ -36,11 +36,14 @@ namespace AAImport
             foreach (var ability in abilties)
             {
                 AA_Ranks? prevRank = null;
+                AA_Ranks? firstRank = null;
                 foreach (var rank in ability.Ranks)
                 {
+                    if (firstRank == null)
+                        firstRank = rank;
                     // The AA id in the first rank is the main base ability id and the string database title and description generally use the same ID so it can be defaulted.
-                    if (rank.title_sid == 0) rank.title_sid = (int)rank.id;
-                    if (rank.desc_sid == 0) rank.desc_sid = (int)rank.id;
+                    if (rank.title_sid == 0) rank.title_sid = (int)firstRank.id;
+                    if (rank.desc_sid == 0) rank.desc_sid = (int)firstRank.id;
                     rank.next_id = -1;
 
                     if (prevRank == null)

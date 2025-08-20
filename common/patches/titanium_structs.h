@@ -3226,7 +3226,7 @@ struct UseAA_Struct {
 };
 
 struct AA_Ability {
-/*00*/	uint32 skill_id;
+/*00*/	uint32 effect_id;
 /*04*/	uint32 base_value;
 /*08*/	uint32 limit_value;
 /*12*/	uint32 slot;
@@ -3253,9 +3253,9 @@ struct SendAA_Struct {
 /*0068*/	uint32 max_level;
 /*0072*/	uint32 last_id;
 /*0076*/	uint32 next_id;
-/*0080*/	uint32 cost2;
+/*0080*/	uint32 total_cost;
 /*0084*/	uint32 unknown80[2]; //0s
-/*0088*/	uint32 total_abilities;
+/*0088*/	uint32 total_effects;
 /*0092*/	AA_Ability abilities[0];
 };
 

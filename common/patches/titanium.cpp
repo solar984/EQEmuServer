@@ -1797,11 +1797,11 @@ namespace Titanium
 		eq->max_level = emu->max_level;
 		eq->last_id = emu->prev_id;
 		eq->next_id = emu->next_id;
-		eq->cost2 = emu->total_cost;
-		eq->total_abilities = emu->total_effects;
+		eq->total_cost = emu->total_cost;
+		eq->total_effects = emu->total_effects;
 
-		for(auto i = 0; i < eq->total_abilities; ++i) {
-			eq->abilities[i].skill_id = inapp->ReadUInt32();
+		for(auto i = 0; i < eq->total_effects; ++i) {
+			eq->abilities[i].effect_id = inapp->ReadUInt32();
 			eq->abilities[i].base_value = inapp->ReadUInt32();
 			eq->abilities[i].limit_value = inapp->ReadUInt32();
 			eq->abilities[i].slot = inapp->ReadUInt32();

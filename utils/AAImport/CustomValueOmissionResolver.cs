@@ -83,14 +83,14 @@ namespace AAImport
                     {
                         propertyInfo.ShouldSerialize = (instance, value) =>
                         {
-                            return ((AA_Ranks)instance).id == 1 || (value != null && ((int)value) != ((AA_Ranks)instance).id);
+                            return ((AA_Ranks)instance).id == 1 || (value != null && ((int)value) != ((AA_Ranks)instance).ability!.Ranks[0].id);
                         };
                     }
                     if (propertyInfo.Name == "desc_sid")
                     {
                         propertyInfo.ShouldSerialize = (instance, value) =>
                         {
-                            return ((AA_Ranks)instance).id == 1 || (value != null && ((int)value) != ((AA_Ranks)instance).id);
+                            return ((AA_Ranks)instance).id == 1 || (value != null && ((int)value) != ((AA_Ranks)instance).ability!.Ranks[0].id);
                         };
                     }
                     if (propertyInfo.Name == "spell")

@@ -59,8 +59,6 @@
             },
             {
                 "id": 3,
-                "title_sid": 2,
-                "desc_sid": 2,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -76,8 +74,6 @@
             },
             {
                 "id": 4,
-                "title_sid": 2,
-                "desc_sid": 2,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -93,8 +89,6 @@
             },
             {
                 "id": 5,
-                "title_sid": 2,
-                "desc_sid": 2,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -110,8 +104,6 @@
             },
             {
                 "id": 6,
-                "title_sid": 2,
-                "desc_sid": 2,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -148,8 +140,6 @@
             },
             {
                 "id": 8,
-                "title_sid": 7,
-                "desc_sid": 7,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -165,8 +155,6 @@
             },
             {
                 "id": 9,
-                "title_sid": 7,
-                "desc_sid": 7,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -182,8 +170,6 @@
             },
             {
                 "id": 10,
-                "title_sid": 7,
-                "desc_sid": 7,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -199,8 +185,6 @@
             },
             {
                 "id": 11,
-                "title_sid": 7,
-                "desc_sid": 7,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -237,8 +221,6 @@
             },
             {
                 "id": 13,
-                "title_sid": 12,
-                "desc_sid": 12,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -254,8 +236,6 @@
             },
             {
                 "id": 14,
-                "title_sid": 12,
-                "desc_sid": 12,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -271,8 +251,6 @@
             },
             {
                 "id": 15,
-                "title_sid": 12,
-                "desc_sid": 12,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -288,8 +266,6 @@
             },
             {
                 "id": 16,
-                "title_sid": 12,
-                "desc_sid": 12,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -326,8 +302,6 @@
             },
             {
                 "id": 18,
-                "title_sid": 17,
-                "desc_sid": 17,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -343,8 +317,6 @@
             },
             {
                 "id": 19,
-                "title_sid": 17,
-                "desc_sid": 17,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -360,8 +332,6 @@
             },
             {
                 "id": 20,
-                "title_sid": 17,
-                "desc_sid": 17,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -377,8 +347,6 @@
             },
             {
                 "id": 21,
-                "title_sid": 17,
-                "desc_sid": 17,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -415,8 +383,6 @@
             },
             {
                 "id": 23,
-                "title_sid": 22,
-                "desc_sid": 22,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -432,8 +398,6 @@
             },
             {
                 "id": 24,
-                "title_sid": 22,
-                "desc_sid": 22,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -449,8 +413,6 @@
             },
             {
                 "id": 25,
-                "title_sid": 22,
-                "desc_sid": 22,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -466,8 +428,6 @@
             },
             {
                 "id": 26,
-                "title_sid": 22,
-                "desc_sid": 22,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -504,8 +464,6 @@
             },
             {
                 "id": 28,
-                "title_sid": 27,
-                "desc_sid": 27,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -521,8 +479,6 @@
             },
             {
                 "id": 29,
-                "title_sid": 27,
-                "desc_sid": 27,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -538,8 +494,6 @@
             },
             {
                 "id": 30,
-                "title_sid": 27,
-                "desc_sid": 27,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -555,8 +509,6 @@
             },
             {
                 "id": 31,
-                "title_sid": 27,
-                "desc_sid": 27,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -593,8 +545,6 @@
             },
             {
                 "id": 33,
-                "title_sid": 32,
-                "desc_sid": 32,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -610,8 +560,6 @@
             },
             {
                 "id": 34,
-                "title_sid": 32,
-                "desc_sid": 32,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -627,8 +575,6 @@
             },
             {
                 "id": 35,
-                "title_sid": 32,
-                "desc_sid": 32,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -644,8 +590,6 @@
             },
             {
                 "id": 36,
-                "title_sid": 32,
-                "desc_sid": 32,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -682,8 +626,6 @@
             },
             {
                 "id": 38,
-                "title_sid": 37,
-                "desc_sid": 37,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -699,8 +641,6 @@
             },
             {
                 "id": 39,
-                "title_sid": 37,
-                "desc_sid": 37,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -716,8 +656,6 @@
             },
             {
                 "id": 40,
-                "title_sid": 37,
-                "desc_sid": 37,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -733,8 +671,6 @@
             },
             {
                 "id": 41,
-                "title_sid": 37,
-                "desc_sid": 37,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -771,8 +707,6 @@
             },
             {
                 "id": 43,
-                "title_sid": 42,
-                "desc_sid": 42,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -788,8 +722,6 @@
             },
             {
                 "id": 44,
-                "title_sid": 42,
-                "desc_sid": 42,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -805,8 +737,6 @@
             },
             {
                 "id": 45,
-                "title_sid": 42,
-                "desc_sid": 42,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -822,8 +752,6 @@
             },
             {
                 "id": 46,
-                "title_sid": 42,
-                "desc_sid": 42,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -860,8 +788,6 @@
             },
             {
                 "id": 48,
-                "title_sid": 47,
-                "desc_sid": 47,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -877,8 +803,6 @@
             },
             {
                 "id": 49,
-                "title_sid": 47,
-                "desc_sid": 47,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -894,8 +818,6 @@
             },
             {
                 "id": 50,
-                "title_sid": 47,
-                "desc_sid": 47,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -911,8 +833,6 @@
             },
             {
                 "id": 51,
-                "title_sid": 47,
-                "desc_sid": 47,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -949,8 +869,6 @@
             },
             {
                 "id": 53,
-                "title_sid": 52,
-                "desc_sid": 52,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -966,8 +884,6 @@
             },
             {
                 "id": 54,
-                "title_sid": 52,
-                "desc_sid": 52,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -983,8 +899,6 @@
             },
             {
                 "id": 55,
-                "title_sid": 52,
-                "desc_sid": 52,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1000,8 +914,6 @@
             },
             {
                 "id": 56,
-                "title_sid": 52,
-                "desc_sid": 52,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1038,8 +950,6 @@
             },
             {
                 "id": 58,
-                "title_sid": 57,
-                "desc_sid": 57,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1055,8 +965,6 @@
             },
             {
                 "id": 59,
-                "title_sid": 57,
-                "desc_sid": 57,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1072,8 +980,6 @@
             },
             {
                 "id": 60,
-                "title_sid": 57,
-                "desc_sid": 57,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1089,8 +995,6 @@
             },
             {
                 "id": 61,
-                "title_sid": 57,
-                "desc_sid": 57,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1127,8 +1031,6 @@
             },
             {
                 "id": 63,
-                "title_sid": 62,
-                "desc_sid": 62,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1144,8 +1046,6 @@
             },
             {
                 "id": 64,
-                "title_sid": 62,
-                "desc_sid": 62,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1182,8 +1082,6 @@
             },
             {
                 "id": 66,
-                "title_sid": 65,
-                "desc_sid": 65,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1199,8 +1097,6 @@
             },
             {
                 "id": 67,
-                "title_sid": 65,
-                "desc_sid": 65,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1237,8 +1133,6 @@
             },
             {
                 "id": 69,
-                "title_sid": 68,
-                "desc_sid": 68,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1254,8 +1148,6 @@
             },
             {
                 "id": 70,
-                "title_sid": 68,
-                "desc_sid": 68,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1292,8 +1184,6 @@
             },
             {
                 "id": 72,
-                "title_sid": 71,
-                "desc_sid": 71,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1309,8 +1199,6 @@
             },
             {
                 "id": 73,
-                "title_sid": 71,
-                "desc_sid": 71,
                 "cost": 1,
                 "level_req": 51,
                 "expansion": 3,
@@ -1352,8 +1240,6 @@
             },
             {
                 "id": 673,
-                "title_sid": 672,
-                "desc_sid": 672,
                 "cost": 5,
                 "level_req": 61,
                 "expansion": 7,
@@ -1382,7 +1268,7 @@
                     {
                         "slot": 1,
                         "effect_id": 246,
-                        "base1": 325,
+                        "base1": 25,
                         "base2": 0
                     }
                 ],
@@ -1395,8 +1281,6 @@
             },
             {
                 "id": 677,
-                "title_sid": 676,
-                "desc_sid": 676,
                 "cost": 3,
                 "level_req": 61,
                 "expansion": 7,
@@ -1404,7 +1288,7 @@
                     {
                         "slot": 1,
                         "effect_id": 246,
-                        "base1": 350,
+                        "base1": 50,
                         "base2": 0
                     }
                 ],
