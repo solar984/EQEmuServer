@@ -1,0 +1,1447 @@
+[
+    {
+        "name": "Example AA",
+        "classes": 65535,
+        "races": 65535,
+        "deities": 131071,
+        "type": 1,
+        "grant_only": 0,
+        "enabled": 0,
+        "reset_on_death": 0,
+        "Ranks": [
+            {
+                "id": 1,
+                "upper_hotkey_sid": -1,
+                "lower_hotkey_sid": -1,
+                "title_sid": 1,
+                "desc_sid": 1,
+                "cost": 5,
+                "level_req": 68,
+                "spell": -1,
+                "spell_type": 0,
+                "recast_time": 0,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 246,
+                        "base1": 350,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": 676,
+                        "points": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Innate Strength",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 2,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 4,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 3,
+                "title_sid": 2,
+                "desc_sid": 2,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 4,
+                        "base1": 4,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 4,
+                "title_sid": 2,
+                "desc_sid": 2,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 4,
+                        "base1": 6,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 5,
+                "title_sid": 2,
+                "desc_sid": 2,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 4,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 6,
+                "title_sid": 2,
+                "desc_sid": 2,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 4,
+                        "base1": 10,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Stamina",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 7,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 7,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 8,
+                "title_sid": 7,
+                "desc_sid": 7,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 7,
+                        "base1": 4,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 9,
+                "title_sid": 7,
+                "desc_sid": 7,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 7,
+                        "base1": 6,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 10,
+                "title_sid": 7,
+                "desc_sid": 7,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 7,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 11,
+                "title_sid": 7,
+                "desc_sid": 7,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 7,
+                        "base1": 10,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Agility",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 12,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 6,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 13,
+                "title_sid": 12,
+                "desc_sid": 12,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 6,
+                        "base1": 4,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 14,
+                "title_sid": 12,
+                "desc_sid": 12,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 6,
+                        "base1": 6,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 15,
+                "title_sid": 12,
+                "desc_sid": 12,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 6,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 16,
+                "title_sid": 12,
+                "desc_sid": 12,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 6,
+                        "base1": 10,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Dexterity",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 17,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 5,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 18,
+                "title_sid": 17,
+                "desc_sid": 17,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 5,
+                        "base1": 4,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 19,
+                "title_sid": 17,
+                "desc_sid": 17,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 5,
+                        "base1": 6,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 20,
+                "title_sid": 17,
+                "desc_sid": 17,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 5,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 21,
+                "title_sid": 17,
+                "desc_sid": 17,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 5,
+                        "base1": 10,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Intelligence",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 22,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 8,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 23,
+                "title_sid": 22,
+                "desc_sid": 22,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 8,
+                        "base1": 4,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 24,
+                "title_sid": 22,
+                "desc_sid": 22,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 8,
+                        "base1": 6,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 25,
+                "title_sid": 22,
+                "desc_sid": 22,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 8,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 26,
+                "title_sid": 22,
+                "desc_sid": 22,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 8,
+                        "base1": 10,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Wisdom",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 27,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 9,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 28,
+                "title_sid": 27,
+                "desc_sid": 27,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 9,
+                        "base1": 4,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 29,
+                "title_sid": 27,
+                "desc_sid": 27,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 9,
+                        "base1": 6,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 30,
+                "title_sid": 27,
+                "desc_sid": 27,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 9,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 31,
+                "title_sid": 27,
+                "desc_sid": 27,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 9,
+                        "base1": 10,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Charisma",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 32,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 10,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 33,
+                "title_sid": 32,
+                "desc_sid": 32,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 10,
+                        "base1": 4,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 34,
+                "title_sid": 32,
+                "desc_sid": 32,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 10,
+                        "base1": 6,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 35,
+                "title_sid": 32,
+                "desc_sid": 32,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 10,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 36,
+                "title_sid": 32,
+                "desc_sid": 32,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 10,
+                        "base1": 10,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Fire Protection",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 37,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 46,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 38,
+                "title_sid": 37,
+                "desc_sid": 37,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 46,
+                        "base1": 4,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 39,
+                "title_sid": 37,
+                "desc_sid": 37,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 46,
+                        "base1": 6,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 40,
+                "title_sid": 37,
+                "desc_sid": 37,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 46,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 41,
+                "title_sid": 37,
+                "desc_sid": 37,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 46,
+                        "base1": 10,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Cold Protection",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 42,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 47,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 43,
+                "title_sid": 42,
+                "desc_sid": 42,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 47,
+                        "base1": 4,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 44,
+                "title_sid": 42,
+                "desc_sid": 42,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 47,
+                        "base1": 6,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 45,
+                "title_sid": 42,
+                "desc_sid": 42,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 47,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 46,
+                "title_sid": 42,
+                "desc_sid": 42,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 47,
+                        "base1": 10,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Magic Protection",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 47,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 50,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 48,
+                "title_sid": 47,
+                "desc_sid": 47,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 50,
+                        "base1": 4,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 49,
+                "title_sid": 47,
+                "desc_sid": 47,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 50,
+                        "base1": 6,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 50,
+                "title_sid": 47,
+                "desc_sid": 47,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 50,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 51,
+                "title_sid": 47,
+                "desc_sid": 47,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 50,
+                        "base1": 10,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Poison Protection",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 52,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 48,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 53,
+                "title_sid": 52,
+                "desc_sid": 52,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 48,
+                        "base1": 4,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 54,
+                "title_sid": 52,
+                "desc_sid": 52,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 48,
+                        "base1": 6,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 55,
+                "title_sid": 52,
+                "desc_sid": 52,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 48,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 56,
+                "title_sid": 52,
+                "desc_sid": 52,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 48,
+                        "base1": 10,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Disease Protection",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 57,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 49,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 58,
+                "title_sid": 57,
+                "desc_sid": 57,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 49,
+                        "base1": 4,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 59,
+                "title_sid": 57,
+                "desc_sid": 57,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 49,
+                        "base1": 6,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 60,
+                "title_sid": 57,
+                "desc_sid": 57,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 49,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 61,
+                "title_sid": 57,
+                "desc_sid": 57,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 49,
+                        "base1": 10,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Run Speed",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 62,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 271,
+                        "base1": 8,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 63,
+                "title_sid": 62,
+                "desc_sid": 62,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 271,
+                        "base1": 14,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 64,
+                "title_sid": 62,
+                "desc_sid": 62,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 271,
+                        "base1": 21,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Regeneration",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 65,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 0,
+                        "base1": 1,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 66,
+                "title_sid": 65,
+                "desc_sid": 65,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 0,
+                        "base1": 2,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 67,
+                "title_sid": 65,
+                "desc_sid": 65,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 0,
+                        "base1": 3,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Metabolism",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 68,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 233,
+                        "base1": 110,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 69,
+                "title_sid": 68,
+                "desc_sid": 68,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 233,
+                        "base1": 125,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 70,
+                "title_sid": 68,
+                "desc_sid": 68,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 233,
+                        "base1": 150,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Innate Lung Capacity",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 71,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 246,
+                        "base1": 110,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 72,
+                "title_sid": 71,
+                "desc_sid": 71,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 246,
+                        "base1": 125,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            },
+            {
+                "id": 73,
+                "title_sid": 71,
+                "desc_sid": 71,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 246,
+                        "base1": 150,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Swift Journey",
+        "type": 6,
+        "Ranks": [
+            {
+                "id": 672,
+                "cost": 5,
+                "level_req": 61,
+                "expansion": 7,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 271,
+                        "base1": 7,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": 62,
+                        "points": 3
+                    }
+                ]
+            },
+            {
+                "id": 673,
+                "title_sid": 672,
+                "desc_sid": 672,
+                "cost": 5,
+                "level_req": 61,
+                "expansion": 7,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 271,
+                        "base1": 14,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Lasting Breath",
+        "type": 6,
+        "Ranks": [
+            {
+                "id": 676,
+                "cost": 2,
+                "level_req": 61,
+                "expansion": 7,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 246,
+                        "base1": 325,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": 71,
+                        "points": 3
+                    }
+                ]
+            },
+            {
+                "id": 677,
+                "title_sid": 676,
+                "desc_sid": 676,
+                "cost": 3,
+                "level_req": 61,
+                "expansion": 7,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 246,
+                        "base1": 350,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": []
+            }
+        ]
+    },
+    {
+        "name": "Eternal Breath",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 978,
+                "cost": 5,
+                "level_req": 68,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 14,
+                        "base1": 1,
+                        "base2": 0
+                    },
+                    {
+                        "slot": 2,
+                        "effect_id": 246,
+                        "base1": 350,
+                        "base2": 0
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": 676,
+                        "points": 2
+                    }
+                ]
+            }
+        ]
+    }
+]

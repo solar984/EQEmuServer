@@ -1,0 +1,124 @@
+﻿using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
+
+namespace AAImport
+{
+    public class CustomValueOmissionResolver : IJsonTypeInfoResolver
+    {
+        private readonly DefaultJsonTypeInfoResolver _defaultResolver = new();
+
+        public JsonTypeInfo? GetTypeInfo(Type type, JsonSerializerOptions options)
+        {
+            JsonTypeInfo? typeInfo = _defaultResolver.GetTypeInfo(type, options);
+
+            if (typeInfo == null)
+                return null;
+
+            // this omits some properties with default values when generating the json export
+            typeInfo.Properties.ToList().ForEach(propertyInfo =>
+            {
+                if (type.Name == "AA_Ability")
+                {
+                    if (propertyInfo.Name == "deities")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ability)instance).id == 1 || (value != null && ((int)value) != 0x1FFFF);
+                        };
+                    }
+                    if (propertyInfo.Name == "classes")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ability)instance).id == 1 || (value != null && ((int)value) != 0xFFFF);
+                        };
+                    }
+                    if (propertyInfo.Name == "races")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ability)instance).id == 1 || (value != null && ((int)value) != 0xFFFF);
+                        };
+                    }
+                    if (propertyInfo.Name == "grant_only")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ability)instance).id == 1 || (value != null && ((byte)value) != 0);
+                        };
+                    }
+                    if (propertyInfo.Name == "enabled")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ability)instance).id == 1 || (value != null && ((byte)value) != 1);
+                        };
+                    }
+                    if (propertyInfo.Name == "reset_on_death")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ability)instance).id == 1 || (value != null && ((byte)value) != 0);
+                        };
+                    }
+                }
+
+                if (type.Name == "AA_Ranks")
+                {
+                    if (propertyInfo.Name == "upper_hotkey_sid")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ranks)instance).id == 1 || (value != null && ((int)value) != -1);
+                        };
+                    }
+                    if (propertyInfo.Name == "lower_hotkey_sid")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ranks)instance).id == 1 || (value != null && ((int)value) != -1);
+                        };
+                    }
+                    if (propertyInfo.Name == "title_sid")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ranks)instance).id == 1 || (value != null && ((int)value) != ((AA_Ranks)instance).id);
+                        };
+                    }
+                    if (propertyInfo.Name == "desc_sid")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ranks)instance).id == 1 || (value != null && ((int)value) != ((AA_Ranks)instance).id);
+                        };
+                    }
+                    if (propertyInfo.Name == "spell")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ranks)instance).id == 1 || (value != null && ((int)value) != -1);
+                        };
+                    }
+                    if (propertyInfo.Name == "spell_type")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ranks)instance).id == 1 || (value != null && ((int)value) != 0);
+                        };
+                    }
+                    if (propertyInfo.Name == "recast_time")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ranks)instance).id == 1 || (value != null && ((int)value) != 0);
+                        };
+                    }
+
+                }
+            });
+
+            return typeInfo;
+        }
+    }
+}
