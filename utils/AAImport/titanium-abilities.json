@@ -49,7 +49,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 4,
                         "base1": 2
                     }
@@ -62,7 +61,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 4,
                         "base1": 4
                     }
@@ -75,7 +73,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 4,
                         "base1": 6
                     }
@@ -88,7 +85,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 4,
                         "base1": 8
                     }
@@ -101,7 +97,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 4,
                         "base1": 10
                     }
@@ -120,7 +115,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 7,
                         "base1": 2
                     }
@@ -133,7 +127,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 7,
                         "base1": 4
                     }
@@ -146,7 +139,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 7,
                         "base1": 6
                     }
@@ -159,7 +151,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 7,
                         "base1": 8
                     }
@@ -172,7 +163,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 7,
                         "base1": 10
                     }
@@ -191,7 +181,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 6,
                         "base1": 2
                     }
@@ -204,7 +193,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 6,
                         "base1": 4
                     }
@@ -217,7 +205,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 6,
                         "base1": 6
                     }
@@ -230,7 +217,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 6,
                         "base1": 8
                     }
@@ -243,7 +229,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 6,
                         "base1": 10
                     }
@@ -262,7 +247,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 5,
                         "base1": 2
                     }
@@ -275,7 +259,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 5,
                         "base1": 4
                     }
@@ -288,7 +271,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 5,
                         "base1": 6
                     }
@@ -301,7 +283,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 5,
                         "base1": 8
                     }
@@ -314,7 +295,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 5,
                         "base1": 10
                     }
@@ -333,7 +313,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 8,
                         "base1": 2
                     }
@@ -346,7 +325,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 8,
                         "base1": 4
                     }
@@ -359,7 +337,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 8,
                         "base1": 6
                     }
@@ -372,7 +349,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 8,
                         "base1": 8
                     }
@@ -385,7 +361,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 8,
                         "base1": 10
                     }
@@ -404,7 +379,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 9,
                         "base1": 2
                     }
@@ -417,7 +391,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 9,
                         "base1": 4
                     }
@@ -430,7 +403,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 9,
                         "base1": 6
                     }
@@ -443,7 +415,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 9,
                         "base1": 8
                     }
@@ -456,7 +427,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 9,
                         "base1": 10
                     }
@@ -475,7 +445,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 10,
                         "base1": 2
                     }
@@ -488,7 +457,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 10,
                         "base1": 4
                     }
@@ -501,7 +469,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 10,
                         "base1": 6
                     }
@@ -514,7 +481,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 10,
                         "base1": 8
                     }
@@ -527,7 +493,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 10,
                         "base1": 10
                     }
@@ -546,7 +511,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 46,
                         "base1": 2
                     }
@@ -559,7 +523,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 46,
                         "base1": 4
                     }
@@ -572,7 +535,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 46,
                         "base1": 6
                     }
@@ -585,7 +547,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 46,
                         "base1": 8
                     }
@@ -598,7 +559,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 46,
                         "base1": 10
                     }
@@ -617,7 +577,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 47,
                         "base1": 2
                     }
@@ -630,7 +589,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 47,
                         "base1": 4
                     }
@@ -643,7 +601,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 47,
                         "base1": 6
                     }
@@ -656,7 +613,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 47,
                         "base1": 8
                     }
@@ -669,7 +625,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 47,
                         "base1": 10
                     }
@@ -688,7 +643,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 50,
                         "base1": 2
                     }
@@ -701,7 +655,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 50,
                         "base1": 4
                     }
@@ -714,7 +667,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 50,
                         "base1": 6
                     }
@@ -727,7 +679,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 50,
                         "base1": 8
                     }
@@ -740,7 +691,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 50,
                         "base1": 10
                     }
@@ -759,7 +709,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 48,
                         "base1": 2
                     }
@@ -772,7 +721,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 48,
                         "base1": 4
                     }
@@ -785,7 +733,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 48,
                         "base1": 6
                     }
@@ -798,7 +745,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 48,
                         "base1": 8
                     }
@@ -811,7 +757,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 48,
                         "base1": 10
                     }
@@ -830,7 +775,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 49,
                         "base1": 2
                     }
@@ -843,7 +787,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 49,
                         "base1": 4
                     }
@@ -856,7 +799,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 49,
                         "base1": 6
                     }
@@ -869,7 +811,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 49,
                         "base1": 8
                     }
@@ -882,7 +823,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 49,
                         "base1": 10
                     }
@@ -901,7 +841,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 271,
                         "base1": 8
                     }
@@ -914,7 +853,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 271,
                         "base1": 14
                     }
@@ -927,7 +865,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 271,
                         "base1": 21
                     }
@@ -946,7 +883,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 0,
                         "base1": 1
                     }
@@ -959,7 +895,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 0,
                         "base1": 2
                     }
@@ -972,7 +907,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 0,
                         "base1": 3
                     }
@@ -991,7 +925,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 233,
                         "base1": 110
                     }
@@ -1004,7 +937,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 233,
                         "base1": 125
                     }
@@ -1017,7 +949,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 233,
                         "base1": 150
                     }
@@ -1036,7 +967,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 246,
                         "base1": 110
                     }
@@ -1049,7 +979,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 246,
                         "base1": 125
                     }
@@ -1062,7 +991,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 246,
                         "base1": 150
                     }
@@ -1081,7 +1009,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 269,
                         "base1": 10
                     }
@@ -1094,7 +1021,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 269,
                         "base1": 20
                     }
@@ -1107,7 +1033,6 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 269,
                         "base1": 30
                     }
@@ -1126,22 +1051,8 @@
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 172,
                         "base1": 2
-                    }
-                ]
-            },
-            {
-                "id": 126,
-                "cost": 4,
-                "level_req": 55,
-                "expansion": 3,
-                "Effects": [
-                    {
-                        "slot": 1,
-                        "effect_id": 172,
-                        "base1": 5
                     }
                 ],
                 "Prereqs": [
@@ -1152,13 +1063,24 @@
                 ]
             },
             {
+                "id": 126,
+                "cost": 4,
+                "level_req": 55,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 172,
+                        "base1": 5
+                    }
+                ]
+            },
+            {
                 "id": 127,
                 "cost": 6,
                 "level_req": 55,
                 "expansion": 3,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 172,
                         "base1": 10
                     }
@@ -1177,7 +1099,6 @@
                 "expansion": 4,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 263,
                         "base1": 1
                     }
@@ -1190,7 +1111,6 @@
                 "expansion": 4,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 263,
                         "base1": 2
                     }
@@ -1203,7 +1123,6 @@
                 "expansion": 4,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 263,
                         "base1": 3
                     }
@@ -1216,7 +1135,6 @@
                 "expansion": 4,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 263,
                         "base1": 4
                     }
@@ -1229,7 +1147,6 @@
                 "expansion": 4,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 263,
                         "base1": 5
                     }
@@ -1242,7 +1159,6 @@
                 "expansion": 4,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 263,
                         "base1": 6
                     }
@@ -1261,7 +1177,6 @@
                 "expansion": 7,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 271,
                         "base1": 7
                     }
@@ -1280,7 +1195,6 @@
                 "expansion": 7,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 271,
                         "base1": 14
                     }
@@ -1299,7 +1213,6 @@
                 "expansion": 7,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 0,
                         "base1": 1
                     }
@@ -1318,7 +1231,6 @@
                 "expansion": 7,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 0,
                         "base1": 2
                     }
@@ -1337,7 +1249,6 @@
                 "expansion": 7,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 246,
                         "base1": 25
                     }
@@ -1356,7 +1267,6 @@
                 "expansion": 7,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 246,
                         "base1": 50
                     }
@@ -1375,14 +1285,8 @@
                 "expansion": 8,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 14,
                         "base1": 1
-                    },
-                    {
-                        "slot": 2,
-                        "effect_id": 246,
-                        "base1": 350
                     }
                 ],
                 "Prereqs": [
@@ -1405,7 +1309,6 @@
                 "expansion": 8,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 0,
                         "base1": 1
                     }
@@ -1424,7 +1327,6 @@
                 "expansion": 8,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 0,
                         "base1": 2
                     }
@@ -1437,7 +1339,6 @@
                 "expansion": 8,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 0,
                         "base1": 3
                     }
@@ -1450,7 +1351,6 @@
                 "expansion": 8,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 0,
                         "base1": 4
                     }
@@ -1463,7 +1363,6 @@
                 "expansion": 8,
                 "Effects": [
                     {
-                        "slot": 1,
                         "effect_id": 0,
                         "base1": 5
                     }

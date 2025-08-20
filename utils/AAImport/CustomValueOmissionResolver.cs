@@ -131,6 +131,13 @@ namespace AAImport
                 }
                 if (type.Name == "AA_Rank_Effects")
                 {
+                    if (propertyInfo.Name == "slot") // rely on the ordering in the json to number effect slots
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Rank_Effects)instance).rank_id == 1;
+                        };
+                    }
                     if (propertyInfo.Name == "base1")
                     {
                         propertyInfo.ShouldSerialize = (instance, value) =>
