@@ -14,7 +14,7 @@ namespace AAImport
             var data = this;
             foreach (var rank in data.AA_Ranks)
             {
-                rank.Effects.AddRange(data.AA_Rank_Effects.FindAll(r => r.rank_id == rank.id));
+                rank.Effects.AddRange(data.AA_Rank_Effects.FindAll(r => r.rank_id == rank.id).OrderBy(e => e.slot));
                 rank.Prereqs.AddRange(data.AA_Rank_Prereqs.FindAll(p => p.rank_id == rank.id));
             }
             foreach (var ability in data.AA_Abilities)
@@ -26,7 +26,9 @@ namespace AAImport
                     ability.Ranks.Add(rank);
                     rank = GetRank(rank.next_id);
                 }
+                ability.Ranks = ability.Ranks.OrderBy(r=>r.id).ToList();
             }
+            data.AA_Abilities = data.AA_Abilities.OrderBy(a=>a.id).ToList();
         }
 
         AA_Ranks? GetRank(int id)

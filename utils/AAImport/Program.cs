@@ -58,8 +58,10 @@ namespace AAImport
                         prevRank.next_id = (int)rank.id;
                     }
 
+                    uint effect_slot = 1;
                     foreach (var effect in rank.Effects)
                     {
+                        effect.slot = effect_slot++;
                         effect.rank_id = rank.id;
                         effects.Add(effect);
                     }
