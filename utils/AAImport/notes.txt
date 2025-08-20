@@ -1,0 +1,26 @@
+AA Tabs - the 'type' field in the json
+1  General
+2  Archetype
+3  Class
+4  PoP Advance
+5  PoP Ability
+6  Gates
+7  Omens
+8  Veteran
+9  Monster Innates
+10 Monster Abilities
+11 Darkhollow
+
+Expansions - the 'expansion' field in the json
+0		Classic
+1		TheRuinsOfKunark
+2		TheScarsOfVelious
+3		TheShadowsOfLuclin
+4		ThePlanesOfPower
+5		TheLegacyOfYkesha
+6		LostDungeonsOfNorrath
+7		GatesOfDiscord
+8		OmensOfWar
+9		DragonsOfNorrath
+10		DepthsOfDarkhollow
+

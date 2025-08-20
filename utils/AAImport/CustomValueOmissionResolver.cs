@@ -114,7 +114,37 @@ namespace AAImport
                             return ((AA_Ranks)instance).id == 1 || (value != null && ((int)value) != 0);
                         };
                     }
-
+                    if (propertyInfo.Name == "Effects")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ranks)instance).id == 1 || (value != null && ((List<AA_Rank_Effects>)value).Count > 0);
+                        };
+                    }
+                    if (propertyInfo.Name == "Prereqs")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Ranks)instance).id == 1 || (value != null && ((List<AA_Rank_Prereqs>)value).Count > 0);
+                        };
+                    }
+                }
+                if (type.Name == "AA_Rank_Effects")
+                {
+                    if (propertyInfo.Name == "base1")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Rank_Effects)instance).rank_id == 1 || (value != null && ((int)value) != 0);
+                        };
+                    }
+                    if (propertyInfo.Name == "base2")
+                    {
+                        propertyInfo.ShouldSerialize = (instance, value) =>
+                        {
+                            return ((AA_Rank_Effects)instance).rank_id == 1 || (value != null && ((int)value) != 0);
+                        };
+                    }
                 }
             });
 

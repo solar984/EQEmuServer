@@ -51,11 +51,9 @@
                     {
                         "slot": 1,
                         "effect_id": 4,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 3,
@@ -66,11 +64,9 @@
                     {
                         "slot": 1,
                         "effect_id": 4,
-                        "base1": 4,
-                        "base2": 0
+                        "base1": 4
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 4,
@@ -81,11 +77,9 @@
                     {
                         "slot": 1,
                         "effect_id": 4,
-                        "base1": 6,
-                        "base2": 0
+                        "base1": 6
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 5,
@@ -96,11 +90,9 @@
                     {
                         "slot": 1,
                         "effect_id": 4,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 6,
@@ -111,11 +103,9 @@
                     {
                         "slot": 1,
                         "effect_id": 4,
-                        "base1": 10,
-                        "base2": 0
+                        "base1": 10
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -132,11 +122,9 @@
                     {
                         "slot": 1,
                         "effect_id": 7,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 8,
@@ -147,11 +135,9 @@
                     {
                         "slot": 1,
                         "effect_id": 7,
-                        "base1": 4,
-                        "base2": 0
+                        "base1": 4
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 9,
@@ -162,11 +148,9 @@
                     {
                         "slot": 1,
                         "effect_id": 7,
-                        "base1": 6,
-                        "base2": 0
+                        "base1": 6
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 10,
@@ -177,11 +161,9 @@
                     {
                         "slot": 1,
                         "effect_id": 7,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 11,
@@ -192,11 +174,9 @@
                     {
                         "slot": 1,
                         "effect_id": 7,
-                        "base1": 10,
-                        "base2": 0
+                        "base1": 10
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -213,11 +193,9 @@
                     {
                         "slot": 1,
                         "effect_id": 6,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 13,
@@ -228,11 +206,9 @@
                     {
                         "slot": 1,
                         "effect_id": 6,
-                        "base1": 4,
-                        "base2": 0
+                        "base1": 4
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 14,
@@ -243,11 +219,9 @@
                     {
                         "slot": 1,
                         "effect_id": 6,
-                        "base1": 6,
-                        "base2": 0
+                        "base1": 6
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 15,
@@ -258,11 +232,9 @@
                     {
                         "slot": 1,
                         "effect_id": 6,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 16,
@@ -273,11 +245,9 @@
                     {
                         "slot": 1,
                         "effect_id": 6,
-                        "base1": 10,
-                        "base2": 0
+                        "base1": 10
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -294,11 +264,9 @@
                     {
                         "slot": 1,
                         "effect_id": 5,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 18,
@@ -309,11 +277,9 @@
                     {
                         "slot": 1,
                         "effect_id": 5,
-                        "base1": 4,
-                        "base2": 0
+                        "base1": 4
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 19,
@@ -324,11 +290,9 @@
                     {
                         "slot": 1,
                         "effect_id": 5,
-                        "base1": 6,
-                        "base2": 0
+                        "base1": 6
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 20,
@@ -339,11 +303,9 @@
                     {
                         "slot": 1,
                         "effect_id": 5,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 21,
@@ -354,11 +316,9 @@
                     {
                         "slot": 1,
                         "effect_id": 5,
-                        "base1": 10,
-                        "base2": 0
+                        "base1": 10
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -375,11 +335,9 @@
                     {
                         "slot": 1,
                         "effect_id": 8,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 23,
@@ -390,11 +348,9 @@
                     {
                         "slot": 1,
                         "effect_id": 8,
-                        "base1": 4,
-                        "base2": 0
+                        "base1": 4
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 24,
@@ -405,11 +361,9 @@
                     {
                         "slot": 1,
                         "effect_id": 8,
-                        "base1": 6,
-                        "base2": 0
+                        "base1": 6
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 25,
@@ -420,11 +374,9 @@
                     {
                         "slot": 1,
                         "effect_id": 8,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 26,
@@ -435,11 +387,9 @@
                     {
                         "slot": 1,
                         "effect_id": 8,
-                        "base1": 10,
-                        "base2": 0
+                        "base1": 10
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -456,11 +406,9 @@
                     {
                         "slot": 1,
                         "effect_id": 9,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 28,
@@ -471,11 +419,9 @@
                     {
                         "slot": 1,
                         "effect_id": 9,
-                        "base1": 4,
-                        "base2": 0
+                        "base1": 4
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 29,
@@ -486,11 +432,9 @@
                     {
                         "slot": 1,
                         "effect_id": 9,
-                        "base1": 6,
-                        "base2": 0
+                        "base1": 6
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 30,
@@ -501,11 +445,9 @@
                     {
                         "slot": 1,
                         "effect_id": 9,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 31,
@@ -516,11 +458,9 @@
                     {
                         "slot": 1,
                         "effect_id": 9,
-                        "base1": 10,
-                        "base2": 0
+                        "base1": 10
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -537,11 +477,9 @@
                     {
                         "slot": 1,
                         "effect_id": 10,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 33,
@@ -552,11 +490,9 @@
                     {
                         "slot": 1,
                         "effect_id": 10,
-                        "base1": 4,
-                        "base2": 0
+                        "base1": 4
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 34,
@@ -567,11 +503,9 @@
                     {
                         "slot": 1,
                         "effect_id": 10,
-                        "base1": 6,
-                        "base2": 0
+                        "base1": 6
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 35,
@@ -582,11 +516,9 @@
                     {
                         "slot": 1,
                         "effect_id": 10,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 36,
@@ -597,11 +529,9 @@
                     {
                         "slot": 1,
                         "effect_id": 10,
-                        "base1": 10,
-                        "base2": 0
+                        "base1": 10
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -618,11 +548,9 @@
                     {
                         "slot": 1,
                         "effect_id": 46,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 38,
@@ -633,11 +561,9 @@
                     {
                         "slot": 1,
                         "effect_id": 46,
-                        "base1": 4,
-                        "base2": 0
+                        "base1": 4
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 39,
@@ -648,11 +574,9 @@
                     {
                         "slot": 1,
                         "effect_id": 46,
-                        "base1": 6,
-                        "base2": 0
+                        "base1": 6
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 40,
@@ -663,11 +587,9 @@
                     {
                         "slot": 1,
                         "effect_id": 46,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 41,
@@ -678,11 +600,9 @@
                     {
                         "slot": 1,
                         "effect_id": 46,
-                        "base1": 10,
-                        "base2": 0
+                        "base1": 10
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -699,11 +619,9 @@
                     {
                         "slot": 1,
                         "effect_id": 47,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 43,
@@ -714,11 +632,9 @@
                     {
                         "slot": 1,
                         "effect_id": 47,
-                        "base1": 4,
-                        "base2": 0
+                        "base1": 4
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 44,
@@ -729,11 +645,9 @@
                     {
                         "slot": 1,
                         "effect_id": 47,
-                        "base1": 6,
-                        "base2": 0
+                        "base1": 6
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 45,
@@ -744,11 +658,9 @@
                     {
                         "slot": 1,
                         "effect_id": 47,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 46,
@@ -759,11 +671,9 @@
                     {
                         "slot": 1,
                         "effect_id": 47,
-                        "base1": 10,
-                        "base2": 0
+                        "base1": 10
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -780,11 +690,9 @@
                     {
                         "slot": 1,
                         "effect_id": 50,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 48,
@@ -795,11 +703,9 @@
                     {
                         "slot": 1,
                         "effect_id": 50,
-                        "base1": 4,
-                        "base2": 0
+                        "base1": 4
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 49,
@@ -810,11 +716,9 @@
                     {
                         "slot": 1,
                         "effect_id": 50,
-                        "base1": 6,
-                        "base2": 0
+                        "base1": 6
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 50,
@@ -825,11 +729,9 @@
                     {
                         "slot": 1,
                         "effect_id": 50,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 51,
@@ -840,11 +742,9 @@
                     {
                         "slot": 1,
                         "effect_id": 50,
-                        "base1": 10,
-                        "base2": 0
+                        "base1": 10
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -861,11 +761,9 @@
                     {
                         "slot": 1,
                         "effect_id": 48,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 53,
@@ -876,11 +774,9 @@
                     {
                         "slot": 1,
                         "effect_id": 48,
-                        "base1": 4,
-                        "base2": 0
+                        "base1": 4
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 54,
@@ -891,11 +787,9 @@
                     {
                         "slot": 1,
                         "effect_id": 48,
-                        "base1": 6,
-                        "base2": 0
+                        "base1": 6
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 55,
@@ -906,11 +800,9 @@
                     {
                         "slot": 1,
                         "effect_id": 48,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 56,
@@ -921,11 +813,9 @@
                     {
                         "slot": 1,
                         "effect_id": 48,
-                        "base1": 10,
-                        "base2": 0
+                        "base1": 10
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -942,11 +832,9 @@
                     {
                         "slot": 1,
                         "effect_id": 49,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 58,
@@ -957,11 +845,9 @@
                     {
                         "slot": 1,
                         "effect_id": 49,
-                        "base1": 4,
-                        "base2": 0
+                        "base1": 4
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 59,
@@ -972,11 +858,9 @@
                     {
                         "slot": 1,
                         "effect_id": 49,
-                        "base1": 6,
-                        "base2": 0
+                        "base1": 6
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 60,
@@ -987,11 +871,9 @@
                     {
                         "slot": 1,
                         "effect_id": 49,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 61,
@@ -1002,11 +884,9 @@
                     {
                         "slot": 1,
                         "effect_id": 49,
-                        "base1": 10,
-                        "base2": 0
+                        "base1": 10
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -1023,11 +903,9 @@
                     {
                         "slot": 1,
                         "effect_id": 271,
-                        "base1": 8,
-                        "base2": 0
+                        "base1": 8
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 63,
@@ -1038,11 +916,9 @@
                     {
                         "slot": 1,
                         "effect_id": 271,
-                        "base1": 14,
-                        "base2": 0
+                        "base1": 14
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 64,
@@ -1053,11 +929,9 @@
                     {
                         "slot": 1,
                         "effect_id": 271,
-                        "base1": 21,
-                        "base2": 0
+                        "base1": 21
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -1074,11 +948,9 @@
                     {
                         "slot": 1,
                         "effect_id": 0,
-                        "base1": 1,
-                        "base2": 0
+                        "base1": 1
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 66,
@@ -1089,11 +961,9 @@
                     {
                         "slot": 1,
                         "effect_id": 0,
-                        "base1": 2,
-                        "base2": 0
+                        "base1": 2
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 67,
@@ -1104,11 +974,9 @@
                     {
                         "slot": 1,
                         "effect_id": 0,
-                        "base1": 3,
-                        "base2": 0
+                        "base1": 3
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -1125,11 +993,9 @@
                     {
                         "slot": 1,
                         "effect_id": 233,
-                        "base1": 110,
-                        "base2": 0
+                        "base1": 110
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 69,
@@ -1140,11 +1006,9 @@
                     {
                         "slot": 1,
                         "effect_id": 233,
-                        "base1": 125,
-                        "base2": 0
+                        "base1": 125
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 70,
@@ -1155,11 +1019,9 @@
                     {
                         "slot": 1,
                         "effect_id": 233,
-                        "base1": 150,
-                        "base2": 0
+                        "base1": 150
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -1176,11 +1038,9 @@
                     {
                         "slot": 1,
                         "effect_id": 246,
-                        "base1": 110,
-                        "base2": 0
+                        "base1": 110
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 72,
@@ -1191,11 +1051,9 @@
                     {
                         "slot": 1,
                         "effect_id": 246,
-                        "base1": 125,
-                        "base2": 0
+                        "base1": 125
                     }
-                ],
-                "Prereqs": []
+                ]
             },
             {
                 "id": 73,
@@ -1206,11 +1064,93 @@
                     {
                         "slot": 1,
                         "effect_id": 246,
-                        "base1": 150,
-                        "base2": 0
+                        "base1": 150
                     }
-                ],
-                "Prereqs": []
+                ]
+            }
+        ]
+    },
+    {
+        "name": "New Tanaan Crafting Mastery",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 412,
+                "cost": 3,
+                "level_req": 51,
+                "expansion": 4,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 263,
+                        "base1": 1
+                    }
+                ]
+            },
+            {
+                "id": 413,
+                "cost": 3,
+                "level_req": 51,
+                "expansion": 4,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 263,
+                        "base1": 2
+                    }
+                ]
+            },
+            {
+                "id": 414,
+                "cost": 3,
+                "level_req": 51,
+                "expansion": 4,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 263,
+                        "base1": 3
+                    }
+                ]
+            },
+            {
+                "id": 415,
+                "cost": 3,
+                "level_req": 51,
+                "expansion": 4,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 263,
+                        "base1": 4
+                    }
+                ]
+            },
+            {
+                "id": 416,
+                "cost": 3,
+                "level_req": 51,
+                "expansion": 4,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 263,
+                        "base1": 5
+                    }
+                ]
+            },
+            {
+                "id": 417,
+                "cost": 3,
+                "level_req": 51,
+                "expansion": 4,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 263,
+                        "base1": 6
+                    }
+                ]
             }
         ]
     },
@@ -1227,8 +1167,7 @@
                     {
                         "slot": 1,
                         "effect_id": 271,
-                        "base1": 7,
-                        "base2": 0
+                        "base1": 7
                     }
                 ],
                 "Prereqs": [
@@ -1247,11 +1186,47 @@
                     {
                         "slot": 1,
                         "effect_id": 271,
-                        "base1": 14,
-                        "base2": 0
+                        "base1": 14
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Convalescence",
+        "type": 6,
+        "Ranks": [
+            {
+                "id": 674,
+                "cost": 3,
+                "level_req": 61,
+                "expansion": 7,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 0,
+                        "base1": 1
                     }
                 ],
-                "Prereqs": []
+                "Prereqs": [
+                    {
+                        "aa_id": 65,
+                        "points": 3
+                    }
+                ]
+            },
+            {
+                "id": 675,
+                "cost": 3,
+                "level_req": 61,
+                "expansion": 7,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 0,
+                        "base1": 2
+                    }
+                ]
             }
         ]
     },
@@ -1268,8 +1243,7 @@
                     {
                         "slot": 1,
                         "effect_id": 246,
-                        "base1": 25,
-                        "base2": 0
+                        "base1": 25
                     }
                 ],
                 "Prereqs": [
@@ -1288,11 +1262,9 @@
                     {
                         "slot": 1,
                         "effect_id": 246,
-                        "base1": 50,
-                        "base2": 0
+                        "base1": 50
                     }
-                ],
-                "Prereqs": []
+                ]
             }
         ]
     },
@@ -1309,14 +1281,12 @@
                     {
                         "slot": 1,
                         "effect_id": 14,
-                        "base1": 1,
-                        "base2": 0
+                        "base1": 1
                     },
                     {
                         "slot": 2,
                         "effect_id": 246,
-                        "base1": 350,
-                        "base2": 0
+                        "base1": 350
                     }
                 ],
                 "Prereqs": [
@@ -1325,6 +1295,209 @@
                         "points": 2
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "name": "Healthy Aura",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 1031,
+                "cost": 3,
+                "level_req": 66,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 0,
+                        "base1": 1
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": 674,
+                        "points": 2
+                    }
+                ]
+            },
+            {
+                "id": 1032,
+                "cost": 3,
+                "level_req": 67,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 0,
+                        "base1": 2
+                    }
+                ]
+            },
+            {
+                "id": 1033,
+                "cost": 3,
+                "level_req": 68,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 0,
+                        "base1": 3
+                    }
+                ]
+            },
+            {
+                "id": 1034,
+                "cost": 3,
+                "level_req": 69,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 0,
+                        "base1": 4
+                    }
+                ]
+            },
+            {
+                "id": 1035,
+                "cost": 3,
+                "level_req": 70,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "slot": 1,
+                        "effect_id": 0,
+                        "base1": 5
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Lesson of the Devoted",
+        "type": 8,
+        "grant_only": 1,
+        "Ranks": [
+            {
+                "id": 1371,
+                "upper_hotkey_sid": 1371,
+                "lower_hotkey_sid": 1371,
+                "cost": 0,
+                "level_req": 1,
+                "spell": 6880,
+                "spell_type": 23,
+                "recast_time": 72000,
+                "expansion": 9
+            }
+        ]
+    },
+    {
+        "name": "Infusion of the Faithful",
+        "type": 8,
+        "grant_only": 1,
+        "Ranks": [
+            {
+                "id": 1372,
+                "upper_hotkey_sid": 1372,
+                "lower_hotkey_sid": 1372,
+                "cost": 0,
+                "level_req": 1,
+                "spell": 6881,
+                "spell_type": 24,
+                "recast_time": 72000,
+                "expansion": 9
+            }
+        ]
+    },
+    {
+        "name": "Chaotic Jester",
+        "type": 8,
+        "grant_only": 1,
+        "Ranks": [
+            {
+                "id": 1373,
+                "upper_hotkey_sid": 1373,
+                "lower_hotkey_sid": 1373,
+                "cost": 0,
+                "level_req": 1,
+                "spell": 6882,
+                "spell_type": 25,
+                "recast_time": 72000,
+                "expansion": 9
+            }
+        ]
+    },
+    {
+        "name": "Expedient Recovery",
+        "type": 8,
+        "grant_only": 1,
+        "Ranks": [
+            {
+                "id": 1374,
+                "upper_hotkey_sid": 1374,
+                "lower_hotkey_sid": 1374,
+                "cost": 0,
+                "level_req": 1,
+                "spell": 6883,
+                "spell_type": 26,
+                "recast_time": 590400,
+                "expansion": 9
+            }
+        ]
+    },
+    {
+        "name": "Steadfast Servant",
+        "type": 8,
+        "grant_only": 1,
+        "Ranks": [
+            {
+                "id": 1375,
+                "upper_hotkey_sid": 1375,
+                "lower_hotkey_sid": 1375,
+                "cost": 0,
+                "level_req": 1,
+                "spell": 6884,
+                "spell_type": 27,
+                "recast_time": 72000,
+                "expansion": 9
+            }
+        ]
+    },
+    {
+        "name": "Staunch Recovery",
+        "type": 8,
+        "grant_only": 1,
+        "Ranks": [
+            {
+                "id": 1376,
+                "upper_hotkey_sid": 1376,
+                "lower_hotkey_sid": 1376,
+                "cost": 0,
+                "level_req": 1,
+                "spell": 6885,
+                "spell_type": 28,
+                "recast_time": 244800,
+                "expansion": 9
+            }
+        ]
+    },
+    {
+        "name": "Intensity of the Resolute",
+        "type": 8,
+        "grant_only": 1,
+        "Ranks": [
+            {
+                "id": 1377,
+                "upper_hotkey_sid": 1377,
+                "lower_hotkey_sid": 1377,
+                "cost": 0,
+                "level_req": 1,
+                "spell": 6886,
+                "spell_type": 29,
+                "recast_time": 14400,
+                "expansion": 9
             }
         ]
     }
