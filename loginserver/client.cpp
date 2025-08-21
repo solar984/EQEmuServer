@@ -462,12 +462,12 @@ void Client::DoSuccessfulLogin(LoginAccountsRepository::LoginAccounts &a)
 	r.lsid                       = a.id;
 	r.failed_attempts            = 0;
 	r.show_player_count          = server.options.IsShowPlayerCountEnabled();
-	r.offer_min_days             = 99;
+	r.expansion_owned_bits       = 0;
 	r.offer_min_views            = -1;
 	r.offer_cooldown_minutes     = 0;
 	r.web_offer_number           = 0;
 	r.web_offer_min_days         = 99;
-	r.web_offer_min_views        = -1;
+	r.expansion_total_count      = 0;
 	r.web_offer_cooldown_minutes = 0;
 	memcpy(r.key, m_key.c_str(), m_key.size());
 
@@ -536,7 +536,8 @@ void Client::SendExpansionPacketData(PlayerLoginReply &plrs)
 		}
 		else if (m_client_version == cv_titanium) {
 			// Titanium shipped with 10 expansions.  Set owned expansions to be max 10.
-			plrs.web_offer_min_views = ((EQ::expansions::bitDoD << 2) | 1) - 2;
+			plrs.expansion_total_count = 0x400; // 10 expansions available
+			plrs.expansion_owned_bits = 0x7FF; // 10 expansions owned
 		}
 	}
 }

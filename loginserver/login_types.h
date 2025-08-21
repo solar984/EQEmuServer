@@ -35,12 +35,12 @@ struct PlayerLoginReply {
 	char    key[11];                    // client reads until null (variable length)
 	int32_t failed_attempts;
 	bool    show_player_count;          // admin flag, enables admin button and shows server player counts (default: false)
-	int32_t offer_min_days;             // guess, needs more investigation, maybe expansion offers (default: 99)
+	int32_t expansion_owned_bits;       // set bit for each expansion owned
 	int32_t offer_min_views;            // guess (default: -1)
 	int32_t offer_cooldown_minutes;     // guess (default: 0)
 	int32_t web_offer_number;           // web order view number, 0 nothing (default: 0)
 	int32_t web_offer_min_days;         // number of days to show offer (based on first offer time in client eqls ini) (default: 99)
-	int32_t web_offer_min_views;        // mininum views, -1 for no minimum, 0 for never shows (based on client eqls ini) (default: -1)
+	int32_t expansion_total_count;      // 1 << count, 0x400 for 10 expansions the max for titanium
 	int32_t web_offer_cooldown_minutes; // minimum minutes between offers (based on last offer time in client eqls ini) (default: 0)
 	char    username[1];                // variable length, if not empty client attempts to re-login to server select when quitting from char select and sends this in a struct
 	char    unknown[1];                 // variable length, password unlikely? client doesn't send this on re-login from char select
