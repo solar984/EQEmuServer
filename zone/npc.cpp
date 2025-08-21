@@ -4385,8 +4385,14 @@ bool NPC::CheckHandin(
 	if (IsMultiQuestEnabled()) {
 		for (auto &h_item: m_hand_in.items) {
 			for (const auto &r_item: r.items) {
-				if (h_item.item_id == r_item.item_id && h_item.count == r_item.count) {
+				LogNpcHandin("h_item.item_id [{}] r_item.item_id [{}] and h_item.count [{}] r_item.count [{}]", 
+					h_item.item_id, r_item.item_id, h_item.count, r_item.count);
+				if (h_item.item_id == r_item.item_id && h_item.count != r_item.count) {
+					LogNpcHandin("Is true");
 					h_item.is_multiquest_item = true;
+				}
+				else {
+					LogNpcHandin("Is false");
 				}
 			}
 		}
