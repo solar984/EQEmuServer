@@ -4410,39 +4410,25 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 	if (ppu->spawn_id && ppu->spawn_id != GetID()) {
 		Mob *cmob = entity_list.GetMob(ppu->spawn_id);
 
-		if (!cmob) {
-			return;
-		}
-
-		if (cmob->IsControllableBoat()) {
-			// Controllable boats
-			auto boat_delta = glm::vec4(ppu->delta_x, ppu->delta_y, ppu->delta_z, EQ10toFloat(ppu->delta_heading));
-			cmob->SetDelta(boat_delta);
-
-			static EQApplicationPacket outapp(OP_ClientUpdate, sizeof(PlayerPositionUpdateServer_Struct));
-			auto *ppus = (PlayerPositionUpdateServer_Struct *) outapp.pBuffer;
-			cmob->MakeSpawnUpdate(ppus);
-			entity_list.QueueCloseClients(cmob, &outapp, true, 300, this, false);
-
-			/* Update the boat's position on the server, without sending an update */
-			cmob->GMMove(ppu->x_pos, ppu->y_pos, ppu->z_pos, EQ12toFloat(ppu->heading));
-			return;
-		}
-		else {
+		if (cmob && (cmob->IsControllableBoat() || cmob->GetID() == controlled_mob_id)) {
 			// Eye of Zomm needs code here to track position of the eye on server
 			// so that other clients see it.  I could add a check here for eye of zomm
 			// race, to limit this code, but this should handle any client controlled
 			// mob that gets updates from OP_ClientUpdate
-			if (!cmob->IsControllableBoat() && ppu->spawn_id == controlled_mob_id) {
-				cmob->SetPosition(ppu->x_pos, ppu->y_pos, ppu->z_pos);
-				cmob->SetHeading(EQ12toFloat(ppu->heading));
-				mMovementManager->SendCommandToClients(cmob, 0.0, 0.0, 0.0,
-						0.0, 0, ClientRangeAny, nullptr, this);
-				cmob->CastToNPC()->SaveGuardSpot(glm::vec4(ppu->x_pos,
-						ppu->y_pos, ppu->z_pos, EQ12toFloat(ppu->heading)));
-			}
+
+			// Controllable boats also
+
+			// update controlled entity position
+			cmob->SetPosition(ppu->x_pos, ppu->y_pos, ppu->z_pos);
+			cmob->SetHeading(EQ12toFloat(ppu->heading));
+			//cmob->SetDelta(glm::vec4(ppu->delta_x, ppu->delta_y, ppu->delta_z, EQ10toFloat(ppu->delta_heading)));
+			//cmob->SetAnimation(ppu->animation);
+			cmob->CastToNPC()->SaveGuardSpot(cmob->GetPosition());
+			mMovementManager->SendCommandToClients(cmob, ppu->delta_x, ppu->delta_y, ppu->delta_z,
+				EQ10toFloat(ppu->delta_heading), ppu->animation, ClientRangeAny, nullptr, this);
 		}
-	return;
+
+		return;
 	}
 
 	// At this point, all that's left is a client update.
@@ -4529,11 +4515,6 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 		m_Proximity = glm::vec3(cx, cy, cz);
 	}
 
-	if (RuleB(Skills, TrackingAutoRefreshSkillUps) && IsTracking() && ((m_Position.x != cx) || (m_Position.y != cy))) {
-		if (zone->random.Real(0, 100) < 70)//should be good
-			CheckIncreaseSkill(EQ::skills::SkillTracking, nullptr, -20);
-	}
-
 	if (cy != m_Position.y || cx != m_Position.x) {
 		// End trader mode if we move
 		if (IsTrader()) {
@@ -4617,12 +4598,11 @@ void Client::Handle_OP_ClientUpdate(const EQApplicationPacket *app) {
 		}
 	}
 
-	if (zone->watermap) {
-		if (zone->watermap->InLiquid(glm::vec3(m_Position)) && IsMoving()) {
-			CheckIncreaseSkill(EQ::skills::SkillSwimming, nullptr, -17);
-		}
-		CheckRegionTypeChanges();
+	// they can be swimming on the surface and not be underwater but still should gain skill
+	if (IsSwimming() && (m_Delta.x != 0.0f || m_Delta.y != 0.0f) && GetRawSkill(EQ::skills::SkillSwimming) < MaxSkill(EQ::skills::SkillSwimming)) {
+		CheckIncreaseSkill(EQ::skills::SkillSwimming, nullptr, 8);
 	}
+	CheckRegionTypeChanges();
 
 	CheckVirtualZoneLines();
 }

@@ -843,6 +843,12 @@ void MobMovementManager::SendCommandToClients(
 				continue;
 			}
 
+			// don't send boat position updates to the client controlling the boat
+			if (mob->IsControllableBoat() && mob->GetTarget() == c && mob->GetHateAmount(c) == 0)
+			{
+				continue;
+			}
+
 			_impl->Stats.TotalSent++;
 
 			if (anim != 0) {
@@ -884,6 +890,12 @@ void MobMovementManager::SendCommandToClients(
 			}
 
 			if (c->IsIdle()) {
+				continue;
+			}
+
+			// don't send boat position updates to the client controlling the boat
+			if (mob->IsControllableBoat() && mob->GetTarget() == c && mob->GetHateAmount(c) == 0)
+			{
 				continue;
 			}
 

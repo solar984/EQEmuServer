@@ -12157,3 +12157,25 @@ bool Client::UncompleteTask(int task_id)
 
 	return task_state->UncompleteTask(task_id);
 }
+
+bool Client::IsSwimming()
+{
+	if (!zone->watermap) {
+		return false;
+	}
+
+	if (zone->GetZoneID() == Zones::KEDGE) {
+		return true;
+	}
+
+	if (zone->GetZoneID() == Zones::POWATER && GetZ() < 0.0f) {
+		return true;
+	}
+
+	auto inwater = glm::vec3(GetX(), GetY(), GetZ());
+	if (zone->watermap->InLiquid(inwater)) {
+		return true;
+	}
+
+	return false;
+}
