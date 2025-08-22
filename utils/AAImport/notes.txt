@@ -24,3 +24,33 @@ Expansions - the 'expansion' field in the json
 9		DragonsOfNorrath
 10		DepthsOfDarkhollow
 
+Healing Adept 125 SE_ImprovedHeal additive
+Healing Gift 274 SE_CriticalHealChance additive
+Spell Casting Mastery SE_ReduceManaCost focus overwrite with last
+
+Spell Casting Reinforcement 128 SE_IncreaseSpellDuration focus
+Limit Min duration 1, Type Beneficial
+Exclude spells
+2741 Sacred Barrier
+16843 Bestowed Divine Aura I
+16192 Bestowed Divine Aura IX
+
+Mental Clarity 15 SE_CurrentMana additive
+Spell Casting Fury 294 SE_CriticalSpellChance additive
+Channeling Focus 235 SE_ChannelChanceSpells additive
+Spell Casting Subtlety 114 SE_ChangeAggro additive
+Spell Casting Expertise 265 SE_MasteryofPast highest
+
+Spell Casting Deftness 127 SE_IncreaseSpellHaste focus
+Limit Type Beneficial, Min duration 1, Min cast time 3000
+
+Natural Durability 214 SE_MaxHPChange additive
+Natural Healing 0 SE_CurrentHP additive
+Combat Fury 169 SE_CriticalHitChance additive
+Fear Resistance 181 SE_ResistFearChance additive
+Finishing Blow 278 SE_FinishingBlow and 440 SE_FinishingBlowLvl highest
+Combat Stability 259 SE_CombatStability additive
+
+
+
+
