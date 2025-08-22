@@ -701,14 +701,12 @@ Json::Value ApiGetClientListDetail(EQ::Net::WebsocketServerConnection *connectio
 		row["is_dragging_corpse"]                      = client->IsDraggingCorpse();
 		row["is_dueling"]                              = client->IsDueling();
 		row["is_guild_banker"]                         = client->IsGuildBanker();
-		row["is_hovering_for_respawn"]                 = client->IsHoveringForRespawn();
 		row["is_in_a_guild"]                           = client->IsInAGuild();
 		row["is_ld"]                                   = client->IsLD();
 		row["is_leadership_exp_on"]                    = client->IsLeadershipEXPOn();
 		row["is_lfp"]                                  = client->IsLFP();
 		row["is_medding"]                              = client->IsMedding();
 		row["is_on_adventure"]                         = client->IsOnAdventure();
-		row["is_rezz_pending"]                         = client->IsRezzPending();
 		row["is_sitting"]                              = client->IsSitting();
 		row["is_starved"]                              = client->IsStarved();
 		row["is_tracking"]                             = client->IsTracking();

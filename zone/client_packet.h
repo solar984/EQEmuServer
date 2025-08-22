@@ -259,7 +259,6 @@
 	void Handle_OP_Report(const EQApplicationPacket *app);
 	void Handle_OP_RequestDuel(const EQApplicationPacket *app);
 	void Handle_OP_RequestTitles(const EQApplicationPacket *app);
-	void Handle_OP_RespawnWindow(const EQApplicationPacket *app);
 	void Handle_OP_Rewind(const EQApplicationPacket *app);
 	void Handle_OP_RezzAnswer(const EQApplicationPacket *app);
 	void Handle_OP_Sacrifice(const EQApplicationPacket *app);

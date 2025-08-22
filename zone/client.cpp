@@ -168,7 +168,6 @@ Client::Client() : Mob(
 				   charm_cast_timer(3500),
 				   qglobal_purge_timer(30000),
 				   TrackingTimer(2000),
-				   RespawnFromHoverTimer(0),
 				   ItemQuestTimer(500),
 				   anon_toggle_timer(250),
 				   afk_toggle_timer(250),
@@ -255,7 +254,6 @@ Client::Client() : Mob(
 	delaytimer = false;
 	PendingRezzXP = -1;
 	PendingRezzDBID = 0;
-	PendingRezzSpellID = 0;
 	numclients++;
 	// emuerror;
 	UpdateWindowTitle(nullptr);
@@ -445,7 +443,6 @@ Client::Client(EQStreamInterface *ieqs) : Mob(
 	charm_cast_timer(3500),
 	qglobal_purge_timer(30000),
 	TrackingTimer(2000),
-	RespawnFromHoverTimer(0),
 	ItemQuestTimer(500),
 	anon_toggle_timer(250),
 	afk_toggle_timer(250),
@@ -535,7 +532,6 @@ Client::Client(EQStreamInterface *ieqs) : Mob(
 	delaytimer = false;
 	PendingRezzXP = -1;
 	PendingRezzDBID = 0;
-	PendingRezzSpellID = 0;
 	numclients++;
 	// emuerror;
 	UpdateWindowTitle(nullptr);
@@ -711,15 +707,6 @@ Client::~Client() {
 		LeaveGroup();
 
 	UpdateWho(2);
-
-	if(IsHoveringForRespawn())
-	{
-		m_pp.zone_id = m_pp.binds[0].zone_id;
-		m_pp.zoneInstance = m_pp.binds[0].instance_id;
-		m_Position.x = m_pp.binds[0].x;
-		m_Position.y = m_pp.binds[0].y;
-		m_Position.z = m_pp.binds[0].z;
-	}
 
 	// we save right now, because the client might be zoning and the world
 	// will need this data right away
@@ -7823,9 +7810,6 @@ void Client::SendItemScale(EQ::ItemInstance *inst) {
 
 void Client::AddRespawnOption(std::string option_name, uint32 zoneid, uint16 instance_id, float x, float y, float z, float heading, bool initial_selection, int8 position)
 {
-	//If respawn window is already open, any changes would create an inconsistency with the client
-	if (IsHoveringForRespawn()) { return; }
-
 	if (zoneid == 0)
 		zoneid = zone->GetZoneID();
 
@@ -7875,7 +7859,7 @@ void Client::AddRespawnOption(std::string option_name, uint32 zoneid, uint16 ins
 bool Client::RemoveRespawnOption(std::string option_name)
 {
 	//If respawn window is already open, any changes would create an inconsistency with the client
-	if (IsHoveringForRespawn() || respawn_options.empty()) { return false; }
+	if (respawn_options.empty()) { return false; }
 
 	bool had = false;
 	RespawnOption* opt = nullptr;
@@ -7896,7 +7880,7 @@ bool Client::RemoveRespawnOption(std::string option_name)
 bool Client::RemoveRespawnOption(uint8 position)
 {
 	//If respawn window is already open, any changes would create an inconsistency with the client
-	if (IsHoveringForRespawn() || respawn_options.empty()) { return false; }
+	if (respawn_options.empty()) { return false; }
 
 	//Easy cases first...
 	if (position == 0)

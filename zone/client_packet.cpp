@@ -352,7 +352,6 @@ void MapOpcodes()
 	ConnectedOpcodes[OP_Report] = &Client::Handle_OP_Report;
 	ConnectedOpcodes[OP_RequestDuel] = &Client::Handle_OP_RequestDuel;
 	ConnectedOpcodes[OP_RequestTitles] = &Client::Handle_OP_RequestTitles;
-	ConnectedOpcodes[OP_RespawnWindow] = &Client::Handle_OP_RespawnWindow;
 	ConnectedOpcodes[OP_Rewind] = &Client::Handle_OP_Rewind;
 	ConnectedOpcodes[OP_RezzAnswer] = &Client::Handle_OP_RezzAnswer;
 	ConnectedOpcodes[OP_Sacrifice] = &Client::Handle_OP_Sacrifice;
@@ -12485,23 +12484,6 @@ void Client::Handle_OP_RequestTitles(const EQApplicationPacket *app)
 	if (outapp) {
 		FastQueuePacket(&outapp);
 	}
-}
-
-void Client::Handle_OP_RespawnWindow(const EQApplicationPacket *app)
-{
-	// This opcode is sent by the client when the player choses which bind to return to.
-	// The client sends just a 4 byte packet with the selection number in it
-	//
-	if (app->size != 4)
-	{
-		LogDebug("Size mismatch in OP_RespawnWindow expected [{}] got [{}]", 4, app->size);
-		DumpPacket(app);
-		return;
-	}
-	char *Buffer = (char *)app->pBuffer;
-
-	uint32 Option = VARSTRUCT_DECODE_TYPE(uint32, Buffer);
-	HandleRespawnFromHover(Option);
 }
 
 void Client::Handle_OP_Rewind(const EQApplicationPacket *app)

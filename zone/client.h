@@ -377,7 +377,7 @@ public:
 	void CancelTraderTradeWindow();
 
 	void FillSpawnStruct(NewSpawn_Struct* ns, Mob* ForWho);
-	bool ShouldISpawnFor(Client *c) { return !GMHideMe(c) && !IsHoveringForRespawn(); }
+	bool ShouldISpawnFor(Client *c) { return !GMHideMe(c); }
 	virtual bool Process();
 	void QueuePacket(const EQApplicationPacket* app, bool ack_req = true, CLIENT_CONN_STATUS = CLIENT_CONNECTINGALL, eqFilterType filter=FilterNone);
 	void FastQueuePacket(EQApplicationPacket** app, bool ack_req = true, CLIENT_CONN_STATUS = CLIENT_CONNECTINGALL);
@@ -1621,16 +1621,12 @@ public:
 	void LocateCorpse();
 	void SendTargetCommand(uint32 EntityID);
 	bool MoveItemToInventory(EQ::ItemInstance *BInst, bool UpdateClient = false);
-	void HandleRespawnFromHover(uint32 Option);
-	bool IsHoveringForRespawn() { return RespawnFromHoverTimer.Enabled(); }
 	std::list<RespawnOption> respawn_options;
 	void AddRespawnOption(std::string option_name, uint32 zoneid, uint16 instance_id, float x, float y, float z, float h = 0, bool initial_selection = false, int8 position = -1);
 	bool RemoveRespawnOption(std::string option_name);
 	bool RemoveRespawnOption(uint8 position);
 	void ClearRespawnOptions() { respawn_options.clear(); }
-	void SetPendingRezzData(int XP, uint32 DBID, uint16 SpellID, const char *CorpseName) { PendingRezzXP = XP; PendingRezzDBID = DBID; PendingRezzSpellID = SpellID; PendingRezzCorpseName = CorpseName; }
-	bool IsRezzPending() { return PendingRezzSpellID > 0; }
-	void ClearHover();
+	void SetPendingRezzData(int XP, uint32 DBID, uint16 SpellID, const char *CorpseName) { PendingRezzXP = XP; PendingRezzDBID = DBID; }
 	inline bool IsBlockedBuff(int32 SpellID) { return PlayerBlockedBuffs.find(SpellID) != PlayerBlockedBuffs.end(); }
 	inline bool IsBlockedPetBuff(int32 SpellID) { return PetBlockedBuffs.find(SpellID) != PetBlockedBuffs.end(); }
 	bool IsDraggingCorpse(uint16 CorpseID);
@@ -2053,7 +2049,6 @@ private:
 	Timer charm_cast_timer;
 	Timer qglobal_purge_timer;
 	Timer TrackingTimer;
-	Timer RespawnFromHoverTimer;
 	Timer anon_toggle_timer;
 	Timer afk_toggle_timer;
 	Timer helm_toggle_timer;
@@ -2167,8 +2162,6 @@ private:
 	bool PendingGuildInvitation;
 	int PendingRezzXP;
 	uint32 PendingRezzDBID;
-	uint16 PendingRezzSpellID; // Only used for resurrect while hovering.
-	std::string PendingRezzCorpseName; // Only used for resurrect while hovering.
 
 	std::set<uint32> PlayerBlockedBuffs;
 	std::set<uint32> PetBlockedBuffs;

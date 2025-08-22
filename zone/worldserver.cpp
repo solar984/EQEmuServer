@@ -917,17 +917,6 @@ void WorldServer::HandleMessage(uint16 opcode, const EQ::Net::Packet &p)
 			Client* client = entity_list.GetClientByName(srs->rez.your_name);
 			if (client)
 			{
-				if (client->IsRezzPending())
-				{
-					auto Response = new ServerPacket(ServerOP_RezzPlayerReject,
-						strlen(srs->rez.rezzer_name) + 1);
-
-					char *Buffer = (char *)Response->pBuffer;
-					sprintf(Buffer, "%s", srs->rez.rezzer_name);
-					worldserver.SendPacket(Response);
-					safe_delete(Response);
-					break;
-				}
 				//pendingrezexp is the amount of XP on the corpse. Setting it to a value >= 0
 				//also serves to inform Client::OPRezzAnswer to expect a packet.
 				client->SetPendingRezzData(srs->exp, srs->dbid, srs->rez.spellid, srs->rez.corpse_name);

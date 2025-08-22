@@ -382,7 +382,6 @@ bool Mob::CheckWillAggro(Mob *mob) {
 	if (mob->IsClient()) {
 		if (
 			!mob->CastToClient()->ClientFinishedLoading() ||
-			mob->CastToClient()->IsHoveringForRespawn() ||
 			mob->CastToClient()->bZoning
 		) {
 			return false;

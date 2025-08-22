@@ -2112,24 +2112,24 @@ bool Client::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::Skil
 	*/
 
 	if (isgrouped) {
-		auto* g = GetGroup();
+		auto *g = GetGroup();
 		if (g) {
 			g->MemberZoned(this);
 		}
-
-		auto* r = entity_list.GetRaidByClient(this);
-
-		if (r) {
-			r->MemberZoned(this);
-		}
-
-		dead_timer.Start(5000, true);
-		m_pp.zone_id = m_pp.binds[0].zone_id;
-		m_pp.zoneInstance = m_pp.binds[0].instance_id;
-		database.MoveCharacterToZone(CharacterID(), m_pp.zone_id);
-		Save();
-		GoToDeath();
 	}
+
+	auto* r = entity_list.GetRaidByClient(this);
+
+	if (r) {
+		r->MemberZoned(this);
+	}
+
+	dead_timer.Start(5000, true);
+	m_pp.zone_id = m_pp.binds[0].zone_id;
+	m_pp.zoneInstance = m_pp.binds[0].instance_id;
+	database.MoveCharacterToZone(CharacterID(), m_pp.zone_id);
+	Save();
+	GoToDeath();
 
 	if (PlayerEventLogs::Instance()->IsEventEnabled(PlayerEvent::DEATH)) {
 		auto e = PlayerEvent::DeathEvent{

@@ -3909,10 +3909,6 @@ bool Mob::SpellOnTarget(
 		return false;
 	}
 
-	if (spelltar->IsClient() && spelltar->CastToClient()->IsHoveringForRespawn()) {
-		return false;
-	}
-
 	if (!IsValidSpell(spell_id)) {
 		return false;
 	}
