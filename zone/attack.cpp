@@ -2477,7 +2477,7 @@ bool NPC::Death(Mob* killer_mob, int64 damage, uint16 spell, EQ::skills::SkillTy
 		return false;
 	}
 
-	if (IsMultiQuestEnabled()) {
+	if (IsMultiQuestEnabled() || RuleB(NPC, AllowGlobalMultiQuest)) {
 		for (auto &i: m_hand_in.items) {
 			if (i.is_multiquest_item && i.item->GetItem()->NoDrop != 0) {
 				auto lde = LootdropEntriesRepository::NewNpcEntity();

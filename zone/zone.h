@@ -122,7 +122,6 @@ public:
 	uint32 GetSecondsBeforeIdle() const;
 	void SetSecondsBeforeIdle(uint32 seconds_before_idle);
 	bool AggroLimitReached() { return (aggroedmobs > 10) ? true : false; }
-	bool AllowMercs() const { return (allow_mercs); }
 	bool CanBind() const { return (can_bind); }
 	bool CanCastOutdoor() const { return (can_castoutdoor); } //qadar
 	bool CanDoCombat() const { return (can_combat); }

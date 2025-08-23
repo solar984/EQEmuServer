@@ -769,7 +769,6 @@ Json::Value ApiGetZoneAttributes(EQ::Net::WebsocketServerConnection *connection,
 	Json::Value row;
 
 	row["aggro_limit_reached"]     = zone->AggroLimitReached();
-	row["allow_mercs"]             = zone->AllowMercs();
 	row["buff_timers_suspended"]   = zone->BuffTimersSuspended();
 	row["can_bind"]                = zone->CanBind();
 	row["can_cast_outdoor"]        = zone->CanCastOutdoor();

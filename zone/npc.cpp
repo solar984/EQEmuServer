@@ -4293,13 +4293,15 @@ bool NPC::CheckHandin(
 
 	std::string log_handin_prefix = fmt::format("[{}] -> [{}]", c->GetCleanName(), GetCleanName());
 
-	// if the npc is a multi-quest npc, we want to re-use our previously set hand-in bucket
-	if (!m_handin_started && IsMultiQuestEnabled()) {
-		h = m_hand_in;
+	bool allow_multiquest = false;
+	if (IsMultiQuestEnabled() || RuleB(NPC, AllowGlobalMultiQuest)) {
+		allow_multiquest = true;
+		LogNpcHandin("{} Multi-Quest hand-in enabled", log_handin_prefix);
 	}
 
-	if (IsMultiQuestEnabled()) {
-		LogNpcHandin("{} Multi-Quest hand-in enabled", log_handin_prefix);
+	// if the npc is a multi-quest npc, we want to re-use our previously set hand-in bucket
+	if (!m_handin_started && allow_multiquest) {
+		h = m_hand_in;
 	}
 
 	std::vector<std::pair<const std::map<std::string, uint32>&, Handin&>> datasets = {};
@@ -4382,7 +4384,7 @@ bool NPC::CheckHandin(
 	std::vector<HandinEntry> items_to_remove;
 
 	// multi-quest
-	if (IsMultiQuestEnabled()) {
+	if (allow_multiquest) {
 		for (auto &h_item: m_hand_in.items) {
 			for (const auto &r_item: r.items) {
 				if (h_item.item_id == r_item.item_id && h_item.count <= r_item.count) {
@@ -4410,7 +4412,7 @@ bool NPC::CheckHandin(
 				if (id_match) {
 					uint32 used_count = std::min(remaining_requirement, h_item.count);
 					// If the item is a multi-quest item, we don't want to consume it for the hand-in bucket
-					if (!IsMultiQuestEnabled()) {
+					if (!allow_multiquest) {
 						h_item.count -= used_count;
 					}
 					remaining_requirement -= used_count;
@@ -4644,7 +4646,7 @@ bool NPC::CheckHandin(
 	}
 
 	// when we meet requirements under multi-quest, we want to reset the hand-in bucket
-	if (requirement_met && IsMultiQuestEnabled()) {
+	if (requirement_met && allow_multiquest) {
 		ResetMultiQuest();
 	}
 
@@ -4781,7 +4783,7 @@ NPC::Handin NPC::ReturnHandinItems(Client *c)
 		return_money.platinum = m_hand_in.money.platinum;
 
 		// if multi-quest and we returned money, reset the hand-in bucket
-		if (IsMultiQuestEnabled()) {
+		if (IsMultiQuestEnabled() || RuleB(NPC, AllowGlobalMultiQuest)) {
 			m_hand_in.money = {};
 			m_hand_in.original_money = {};
 		}
@@ -4843,7 +4845,7 @@ void NPC::ResetHandin()
 	LogNpcHandin("Resetting hand-in bucket for [{}]", GetCleanName());
 	m_has_processed_handin_return = false;
 	m_handin_started              = false;
-	if (!IsMultiQuestEnabled()) {
+	if (!IsMultiQuestEnabled() && !RuleB(NPC, AllowGlobalMultiQuest)) {
 		for (auto &i: m_hand_in.original_items) {
 			safe_delete(i.item);
 		}
