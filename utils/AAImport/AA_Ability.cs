@@ -4,7 +4,6 @@ namespace AAImport
 {
     public class AA_Ability
     {
-        [JsonIgnore]
         public uint id { get; set; } = 0;
         public string name { get; set; } = "";
         [JsonIgnore]

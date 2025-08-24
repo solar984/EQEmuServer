@@ -1,44 +1,6 @@
 [
     {
-        "name": "Example AA",
-        "classes": 65535,
-        "races": 65535,
-        "deities": 131071,
-        "type": 1,
-        "grant_only": 0,
-        "enabled": 0,
-        "reset_on_death": 0,
-        "Ranks": [
-            {
-                "id": 1,
-                "upper_hotkey_sid": -1,
-                "lower_hotkey_sid": -1,
-                "title_sid": 1,
-                "desc_sid": 1,
-                "cost": 5,
-                "level_req": 68,
-                "spell": -1,
-                "spell_type": 0,
-                "recast_time": 0,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "slot": 1,
-                        "effect_id": 246,
-                        "base1": 350,
-                        "base2": 0
-                    }
-                ],
-                "Prereqs": [
-                    {
-                        "aa_id": 676,
-                        "points": 2
-                    }
-                ]
-            }
-        ]
-    },
-    {
+        "id": 1,
         "name": "Innate Strength",
         "type": 1,
         "Ranks": [
@@ -105,6 +67,7 @@
         ]
     },
     {
+        "id": 2,
         "name": "Innate Stamina",
         "type": 1,
         "Ranks": [
@@ -171,6 +134,7 @@
         ]
     },
     {
+        "id": 3,
         "name": "Innate Agility",
         "type": 1,
         "Ranks": [
@@ -237,6 +201,7 @@
         ]
     },
     {
+        "id": 4,
         "name": "Innate Dexterity",
         "type": 1,
         "Ranks": [
@@ -303,6 +268,7 @@
         ]
     },
     {
+        "id": 5,
         "name": "Innate Intelligence",
         "type": 1,
         "Ranks": [
@@ -369,6 +335,7 @@
         ]
     },
     {
+        "id": 6,
         "name": "Innate Wisdom",
         "type": 1,
         "Ranks": [
@@ -435,6 +402,7 @@
         ]
     },
     {
+        "id": 7,
         "name": "Innate Charisma",
         "type": 1,
         "Ranks": [
@@ -501,6 +469,7 @@
         ]
     },
     {
+        "id": 8,
         "name": "Innate Fire Protection",
         "type": 1,
         "Ranks": [
@@ -567,6 +536,7 @@
         ]
     },
     {
+        "id": 9,
         "name": "Innate Cold Protection",
         "type": 1,
         "Ranks": [
@@ -633,6 +603,7 @@
         ]
     },
     {
+        "id": 10,
         "name": "Innate Magic Protection",
         "type": 1,
         "Ranks": [
@@ -699,6 +670,7 @@
         ]
     },
     {
+        "id": 11,
         "name": "Innate Poison Protection",
         "type": 1,
         "Ranks": [
@@ -765,6 +737,7 @@
         ]
     },
     {
+        "id": 12,
         "name": "Innate Disease Protection",
         "type": 1,
         "Ranks": [
@@ -831,6 +804,7 @@
         ]
     },
     {
+        "id": 13,
         "name": "Innate Run Speed",
         "type": 1,
         "Ranks": [
@@ -873,48 +847,7 @@
         ]
     },
     {
-        "name": "Innate Regeneration",
-        "type": 1,
-        "Ranks": [
-            {
-                "id": 65,
-                "cost": 1,
-                "level_req": 51,
-                "expansion": 3,
-                "Effects": [
-                    {
-                        "effect_id": 0,
-                        "base1": 1
-                    }
-                ]
-            },
-            {
-                "id": 66,
-                "cost": 1,
-                "level_req": 51,
-                "expansion": 3,
-                "Effects": [
-                    {
-                        "effect_id": 0,
-                        "base1": 2
-                    }
-                ]
-            },
-            {
-                "id": 67,
-                "cost": 1,
-                "level_req": 51,
-                "expansion": 3,
-                "Effects": [
-                    {
-                        "effect_id": 0,
-                        "base1": 3
-                    }
-                ]
-            }
-        ]
-    },
-    {
+        "id": 15,
         "name": "Innate Metabolism",
         "type": 1,
         "Ranks": [
@@ -957,6 +890,7 @@
         ]
     },
     {
+        "id": 16,
         "name": "Innate Lung Capacity",
         "type": 1,
         "Ranks": [
@@ -999,6 +933,7 @@
         ]
     },
     {
+        "id": 17,
         "name": "First Aid",
         "type": 1,
         "Ranks": [
@@ -1041,6 +976,7 @@
         ]
     },
     {
+        "id": 18,
         "name": "Healing Adept",
         "classes": 16942,
         "type": 2,
@@ -1177,6 +1113,7 @@
         ]
     },
     {
+        "id": 19,
         "name": "Healing Gift",
         "classes": 16942,
         "type": 2,
@@ -1226,6 +1163,7 @@
         ]
     },
     {
+        "id": 20,
         "name": "Spell Casting Mastery",
         "classes": 15906,
         "type": 2,
@@ -1278,6 +1216,7 @@
         ]
     },
     {
+        "id": 21,
         "name": "Spell Casting Reinforcement",
         "classes": 25150,
         "type": 2,
@@ -1366,55 +1305,7 @@
         ]
     },
     {
-        "name": "Mental Clarity",
-        "classes": 32446,
-        "type": 2,
-        "Ranks": [
-            {
-                "id": 89,
-                "cost": 2,
-                "level_req": 55,
-                "expansion": 3,
-                "Effects": [
-                    {
-                        "effect_id": 15,
-                        "base1": 1
-                    }
-                ],
-                "Prereqs": [
-                    {
-                        "aa_id": -1,
-                        "points": 6
-                    }
-                ]
-            },
-            {
-                "id": 90,
-                "cost": 4,
-                "level_req": 55,
-                "expansion": 3,
-                "Effects": [
-                    {
-                        "effect_id": 15,
-                        "base1": 2
-                    }
-                ]
-            },
-            {
-                "id": 91,
-                "cost": 6,
-                "level_req": 55,
-                "expansion": 3,
-                "Effects": [
-                    {
-                        "effect_id": 15,
-                        "base1": 3
-                    }
-                ]
-            }
-        ]
-    },
-    {
+        "id": 23,
         "name": "Spell Casting Fury",
         "classes": 32446,
         "type": 2,
@@ -1467,6 +1358,7 @@
         ]
     },
     {
+        "id": 24,
         "name": "Channeling Focus",
         "classes": 32446,
         "type": 2,
@@ -1516,6 +1408,7 @@
         ]
     },
     {
+        "id": 25,
         "name": "Spell Casting Subtlety",
         "classes": 15504,
         "type": 2,
@@ -1565,6 +1458,7 @@
         ]
     },
     {
+        "id": 26,
         "name": "Spell Casting Expertise",
         "classes": 15504,
         "type": 2,
@@ -1614,8 +1508,9 @@
         ]
     },
     {
+        "id": 27,
         "name": "Spell Casting Deftness",
-        "classes": 7184,
+        "classes": 15376,
         "type": 2,
         "Ranks": [
             {
@@ -1702,6 +1597,7 @@
         ]
     },
     {
+        "id": 28,
         "name": "Natural Durability",
         "type": 2,
         "Ranks": [
@@ -1750,6 +1646,7 @@
         ]
     },
     {
+        "id": 29,
         "name": "Natural Healing",
         "classes": 49629,
         "type": 2,
@@ -1799,6 +1696,7 @@
         ]
     },
     {
+        "id": 30,
         "name": "Combat Fury",
         "classes": 49629,
         "type": 2,
@@ -1851,6 +1749,7 @@
         ]
     },
     {
+        "id": 31,
         "name": "Fear Resistance",
         "classes": 49629,
         "type": 2,
@@ -1900,6 +1799,7 @@
         ]
     },
     {
+        "id": 32,
         "name": "Finishing Blow",
         "classes": 49629,
         "type": 2,
@@ -1967,6 +1867,7 @@
         ]
     },
     {
+        "id": 33,
         "name": "Combat Stability",
         "type": 2,
         "Ranks": [
@@ -2015,6 +1916,7 @@
         ]
     },
     {
+        "id": 34,
         "name": "Combat Agility",
         "type": 2,
         "Ranks": [
@@ -2063,6 +1965,375 @@
         ]
     },
     {
+        "id": 35,
+        "name": "Mass Group Buff",
+        "classes": 30254,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 128,
+                "upper_hotkey_sid": 128,
+                "lower_hotkey_sid": 128,
+                "cost": 9,
+                "level_req": 59,
+                "spell": 5228,
+                "spell_type": 1,
+                "recast_time": 4320,
+                "expansion": 3
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "name": "Divine Resurrection",
+        "classes": 2,
+        "type": 3,
+        "enabled": 0,
+        "Ranks": [
+            {
+                "id": 129,
+                "upper_hotkey_sid": 129,
+                "lower_hotkey_sid": 129,
+                "cost": 5,
+                "level_req": 59,
+                "spell": 2738,
+                "spell_type": 2,
+                "recast_time": 64800,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": 19,
+                        "points": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "name": "Innate Invis to Undead",
+        "classes": 1026,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 130,
+                "upper_hotkey_sid": 130,
+                "lower_hotkey_sid": 130,
+                "cost": 3,
+                "level_req": 59,
+                "spell": 2739,
+                "spell_type": 3,
+                "recast_time": 7,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "name": "Celestial Regeneration",
+        "classes": 2,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 131,
+                "upper_hotkey_sid": 131,
+                "lower_hotkey_sid": 131,
+                "cost": 5,
+                "level_req": 59,
+                "spell": 2740,
+                "spell_type": 4,
+                "recast_time": 900,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": 19,
+                        "points": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "name": "Bestow Divine Aura",
+        "classes": 2,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 132,
+                "upper_hotkey_sid": 132,
+                "lower_hotkey_sid": 132,
+                "cost": 6,
+                "level_req": 59,
+                "spell": 2741,
+                "spell_type": 5,
+                "recast_time": 600,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "name": "Turn Undead",
+        "classes": 2,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 133,
+                "upper_hotkey_sid": 1383,
+                "lower_hotkey_sid": 1383,
+                "title_sid": 1383,
+                "desc_sid": 1383,
+                "cost": 3,
+                "level_req": 59,
+                "spell": 8048,
+                "spell_type": 6,
+                "recast_time": 300,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 134,
+                "upper_hotkey_sid": 1383,
+                "lower_hotkey_sid": 1383,
+                "title_sid": 1383,
+                "desc_sid": 1383,
+                "cost": 6,
+                "level_req": 59,
+                "spell": 8049,
+                "spell_type": 6,
+                "recast_time": 300,
+                "expansion": 3
+            },
+            {
+                "id": 135,
+                "upper_hotkey_sid": 1383,
+                "lower_hotkey_sid": 1383,
+                "title_sid": 1383,
+                "desc_sid": 1383,
+                "cost": 9,
+                "level_req": 59,
+                "spell": 8050,
+                "spell_type": 6,
+                "recast_time": 300,
+                "expansion": 3
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "name": "Purify Soul",
+        "classes": 2,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 136,
+                "upper_hotkey_sid": 136,
+                "cost": 5,
+                "level_req": 59,
+                "spell": 2742,
+                "spell_type": 7,
+                "recast_time": 1800,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": 19,
+                        "points": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 42,
+        "name": "Quick Evacuation",
+        "classes": 2080,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 137,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 127,
+                        "base1": 10,
+                        "base2": 10
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 88
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 138,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 127,
+                        "base1": 25,
+                        "base2": 25
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 88
+                    }
+                ]
+            },
+            {
+                "id": 139,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 127,
+                        "base1": 50,
+                        "base2": 50
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 88
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 56,
+        "name": "Jewel Craft Mastery - Enchanter only",
+        "classes": 8192,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 159,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 4,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 68
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 160,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 68
+                    }
+                ]
+            },
+            {
+                "id": 161,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 68
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 103,
+        "name": "Poison Mastery",
+        "classes": 256,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 244,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 4,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 56
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 245,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 56
+                    }
+                ]
+            },
+            {
+                "id": 246,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 56
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 141,
         "name": "New Tanaan Crafting Mastery",
         "type": 1,
         "Ranks": [
@@ -2135,6 +2406,204 @@
                     {
                         "effect_id": 263,
                         "base1": 6
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Alchemy Mastery",
+        "classes": 512,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 150,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 59
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 151,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 59
+                    }
+                ]
+            },
+            {
+                "id": 152,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 59
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 224,
+        "name": "Mental Clarity",
+        "classes": 32446,
+        "type": 2,
+        "Ranks": [
+            {
+                "id": 89,
+                "cost": 2,
+                "level_req": 55,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 15,
+                        "base1": 1
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -1,
+                        "points": 6
+                    }
+                ]
+            },
+            {
+                "id": 90,
+                "cost": 4,
+                "level_req": 55,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 15,
+                        "base1": 2
+                    }
+                ]
+            },
+            {
+                "id": 91,
+                "cost": 6,
+                "level_req": 55,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 15,
+                        "base1": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 225,
+        "name": "Innate Regeneration",
+        "type": 1,
+        "Ranks": [
+            {
+                "id": 65,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 0,
+                        "base1": 1
+                    }
+                ]
+            },
+            {
+                "id": 66,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 0,
+                        "base1": 2
+                    }
+                ]
+            },
+            {
+                "id": 67,
+                "cost": 1,
+                "level_req": 51,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 0,
+                        "base1": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 576,
+        "name": "Jewel Craft Mastery - All except Enchanter",
+        "classes": 57343,
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 4675,
+                "title_sid": 159,
+                "desc_sid": 159,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 68
+                    }
+                ]
+            },
+            {
+                "id": 4676,
+                "title_sid": 159,
+                "desc_sid": 159,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 68
+                    }
+                ]
+            },
+            {
+                "id": 4677,
+                "title_sid": 159,
+                "desc_sid": 159,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 68
                     }
                 ]
             }
@@ -2249,6 +2718,72 @@
         ]
     },
     {
+        "name": "Packrat",
+        "type": 6,
+        "Ranks": [
+            {
+                "id": 678,
+                "cost": 3,
+                "level_req": 61,
+                "expansion": 7,
+                "Effects": [
+                    {
+                        "effect_id": 221,
+                        "base1": 3
+                    }
+                ]
+            },
+            {
+                "id": 679,
+                "cost": 3,
+                "level_req": 62,
+                "expansion": 7,
+                "Effects": [
+                    {
+                        "effect_id": 221,
+                        "base1": 6
+                    }
+                ]
+            },
+            {
+                "id": 680,
+                "cost": 3,
+                "level_req": 63,
+                "expansion": 7,
+                "Effects": [
+                    {
+                        "effect_id": 221,
+                        "base1": 9
+                    }
+                ]
+            },
+            {
+                "id": 681,
+                "cost": 3,
+                "level_req": 64,
+                "expansion": 7,
+                "Effects": [
+                    {
+                        "effect_id": 221,
+                        "base1": 12
+                    }
+                ]
+            },
+            {
+                "id": 682,
+                "cost": 3,
+                "level_req": 65,
+                "expansion": 7,
+                "Effects": [
+                    {
+                        "effect_id": 221,
+                        "base1": 15
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Eternal Breath",
         "type": 7,
         "Ranks": [
@@ -2267,6 +2802,318 @@
                     {
                         "aa_id": 676,
                         "points": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Blacksmithing Mastery",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 979,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 63
+                    }
+                ]
+            },
+            {
+                "id": 980,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 63
+                    }
+                ]
+            },
+            {
+                "id": 981,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 63
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Baking Mastery",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 982,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 60
+                    }
+                ]
+            },
+            {
+                "id": 983,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 60
+                    }
+                ]
+            },
+            {
+                "id": 984,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 60
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Brewing Mastery",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 985,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 65
+                    }
+                ]
+            },
+            {
+                "id": 986,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 65
+                    }
+                ]
+            },
+            {
+                "id": 987,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 65
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Fletching Mastery",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 988,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 64
+                    }
+                ]
+            },
+            {
+                "id": 989,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 64
+                    }
+                ]
+            },
+            {
+                "id": 990,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 64
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Pottery Mastery",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 991,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 69
+                    }
+                ]
+            },
+            {
+                "id": 992,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 69
+                    }
+                ]
+            },
+            {
+                "id": 993,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 69
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Tailoring Mastery",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 994,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 61
+                    }
+                ]
+            },
+            {
+                "id": 995,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 61
+                    }
+                ]
+            },
+            {
+                "id": 996,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 61
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Salvage",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 997,
+                "cost": 5,
+                "level_req": 60,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 331,
+                        "base1": 5
+                    }
+                ]
+            },
+            {
+                "id": 998,
+                "cost": 5,
+                "level_req": 65,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 331,
+                        "base1": 15
+                    }
+                ]
+            },
+            {
+                "id": 999,
+                "cost": 5,
+                "level_req": 70,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 331,
+                        "base1": 25
                     }
                 ]
             }
@@ -2339,6 +3186,52 @@
                     {
                         "effect_id": 0,
                         "base1": 5
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Arcane Tongues",
+        "classes": 15360,
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 1089,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 58
+                    }
+                ]
+            },
+            {
+                "id": 1090,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 58
+                    }
+                ]
+            },
+            {
+                "id": 1091,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 58
                     }
                 ]
             }
@@ -2467,6 +3360,37 @@
                 "spell_type": 29,
                 "recast_time": 14400,
                 "expansion": 9
+            }
+        ]
+    },
+    {
+        "id": 10000,
+        "name": "Example AA",
+        "classes": 65535,
+        "races": 65535,
+        "deities": 131071,
+        "type": 1,
+        "grant_only": 0,
+        "enabled": 0,
+        "reset_on_death": 0,
+        "Ranks": [
+            {
+                "id": 1,
+                "cost": 5,
+                "level_req": 68,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 246,
+                        "base1": 350
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": 676,
+                        "points": 2
+                    }
+                ]
             }
         ]
     }

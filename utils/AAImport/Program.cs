@@ -48,7 +48,7 @@ namespace AAImport
 
                     if (prevRank == null)
                     {
-                        ability.id = rank.id;
+                        ability.id = ability.id == 0 ? rank.id : ability.id;
                         ability.first_rank_id = (int)rank.id;
                         rank.prev_id = -1;
                     }

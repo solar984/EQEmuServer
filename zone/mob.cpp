@@ -2481,32 +2481,6 @@ void Mob::SendStatsWindow(Client* c, bool use_window)
 		);
 	}
 
-	// Clairvoyance
-	const auto clairvoyance  = IsBot() ? CastToBot()->GetClair() : CastToClient()->GetClair();
-	if (clairvoyance) {
-		final_string += fmt::format(
-			"Clairvoyance: {} / {}{}",
-			Strings::Commify(clairvoyance),
-			Strings::Commify(RuleI(Character, ItemClairvoyanceCap)),
-			DialogueWindow::Break(1)
-		);
-	}
-
-	// Damage Shield Mitigation
-	const auto ds_mitigation = IsBot() ? CastToBot()->GetDSMit() : CastToClient()->GetDSMit();
-	if (ds_mitigation) {
-		final_string += fmt::format(
-			"DS Mitigation: {} / {}{}",
-			Strings::Commify(ds_mitigation),
-			Strings::Commify(RuleI(Character, ItemDSMitigationCap)),
-			DialogueWindow::Break(1)
-		);
-	}
-
-	if (clairvoyance || ds_mitigation) {
-		final_string += DialogueWindow::Break(1);
-	}
-
 	// Bard Modifiers
 	if (GetClass() == Class::Bard) {
 		final_string += bard_info + DialogueWindow::Break(1);
@@ -2762,17 +2736,6 @@ void Mob::SendStatsWindow(Client* c, bool use_window)
 				"Heal Amount: {} Spell Damage: {}",
 				Strings::Commify(GetHealAmt()),
 				Strings::Commify(GetSpellDmg())
-			).c_str()
-		);
-	}
-
-	if (clairvoyance || ds_mitigation) {
-		c->Message(
-			Chat::White,
-			fmt::format(
-				"Clairvoyance: {} Damage Shield Mitigation: {}",
-				Strings::Commify(clairvoyance),
-				Strings::Commify(ds_mitigation)
 			).c_str()
 		);
 	}

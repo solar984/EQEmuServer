@@ -1772,7 +1772,7 @@ namespace Titanium
 		AARankInfo_Struct *emu = (AARankInfo_Struct*)inapp->pBuffer;
 
 		auto outapp = new EQApplicationPacket(
-		    OP_SendAATable, sizeof(structs::SendAA_Struct) + emu->total_effects * sizeof(structs::AA_Ability));
+		    OP_SendAATable, sizeof(structs::SendAA_Struct) + emu->total_effects * sizeof(structs::AA_Effect));
 		structs::SendAA_Struct *eq = (structs::SendAA_Struct*)outapp->pBuffer;
 
 		inapp->SetReadPosition(sizeof(AARankInfo_Struct));
@@ -1780,33 +1780,37 @@ namespace Titanium
 
 		eq->id = emu->id;
 		eq->unknown004 = 1;
-		eq->id = emu->id;
 		eq->hotkey_sid = emu->upper_hotkey_sid;
 		eq->hotkey_sid2 = emu->lower_hotkey_sid;
-		eq->desc_sid = emu->desc_sid;
 		eq->title_sid = emu->title_sid;
-		eq->class_type = emu->level_req;
+		eq->desc_sid = emu->desc_sid;
+		eq->level_req = emu->level_req;
 		eq->cost = emu->cost;
 		eq->seq = emu->seq;
 		eq->current_level = emu->current_level;
+		eq->prereq_skill = 0;
+		eq->prereq_minpoints = 0;
 		eq->type = emu->type;
 		eq->spellid = emu->spell;
 		eq->spell_type = emu->spell_type;
 		eq->spell_refresh = emu->spell_refresh;
 		eq->classes = emu->classes;
 		eq->max_level = emu->max_level;
-		eq->last_id = emu->prev_id;
+		eq->prev_id = emu->prev_id;
 		eq->next_id = emu->next_id;
 		eq->total_cost = emu->total_cost;
+		eq->unknown80[0] = 0;
+		eq->unknown80[1] = 0;
 		eq->total_effects = emu->total_effects;
 
 		for(auto i = 0; i < eq->total_effects; ++i) {
-			eq->abilities[i].effect_id = inapp->ReadUInt32();
-			eq->abilities[i].base_value = inapp->ReadUInt32();
-			eq->abilities[i].limit_value = inapp->ReadUInt32();
-			eq->abilities[i].slot = inapp->ReadUInt32();
+			eq->effects[i].effect_id = inapp->ReadUInt32();
+			eq->effects[i].base_value = inapp->ReadUInt32();
+			eq->effects[i].limit_value = inapp->ReadUInt32();
+			eq->effects[i].slot = inapp->ReadUInt32();
 		}
 
+		// only one prereq supported by client
 		if(emu->total_prereqs > 0) {
 			eq->prereq_skill = inapp->ReadUInt32();
 			eq->prereq_minpoints = inapp->ReadUInt32();

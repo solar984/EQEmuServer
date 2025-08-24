@@ -3225,7 +3225,7 @@ struct UseAA_Struct {
 	uint32 end;
 };
 
-struct AA_Ability {
+struct AA_Effect {
 /*00*/	uint32 effect_id;
 /*04*/	uint32 base_value;
 /*08*/	uint32 limit_value;
@@ -3239,7 +3239,7 @@ struct SendAA_Struct {
 /*0012*/	uint32 hotkey_sid2;
 /*0016*/	uint32 title_sid;
 /*0020*/	uint32 desc_sid;
-/*0024*/	uint32 class_type;
+/*0024*/	uint32 level_req;
 /*0028*/	uint32 cost;
 /*0032*/	uint32 seq;
 /*0036*/	uint32 current_level; //1s, MQ2 calls this AARankRequired
@@ -3251,12 +3251,12 @@ struct SendAA_Struct {
 /*0060*/	uint32 spell_refresh;
 /*0064*/	uint32 classes;
 /*0068*/	uint32 max_level;
-/*0072*/	uint32 last_id;
+/*0072*/	uint32 prev_id;
 /*0076*/	uint32 next_id;
 /*0080*/	uint32 total_cost;
 /*0084*/	uint32 unknown80[2]; //0s
 /*0088*/	uint32 total_effects;
-/*0092*/	AA_Ability abilities[0];
+/*0092*/	AA_Effect effects[0];
 };
 
 struct AA_List {

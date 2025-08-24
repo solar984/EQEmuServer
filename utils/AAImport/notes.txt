@@ -24,6 +24,7 @@ Expansions - the 'expansion' field in the json
 9		DragonsOfNorrath
 10		DepthsOfDarkhollow
 
+Packrat 221 SE_Packrat additive
 Healing Adept 125 SE_ImprovedHeal additive
 Healing Gift 274 SE_CriticalHealChance additive
 Spell Casting Mastery SE_ReduceManaCost focus overwrite with last
@@ -50,6 +51,8 @@ Combat Fury 169 SE_CriticalHitChance additive
 Fear Resistance 181 SE_ResistFearChance additive
 Finishing Blow 278 SE_FinishingBlow and 440 SE_FinishingBlowLvl highest
 Combat Stability 259 SE_CombatStability additive
+Tradeskill Mastery 268 SE_ReduceTradeskillFail additive
+
 
 
 
