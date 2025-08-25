@@ -5027,16 +5027,16 @@ struct UseAA_Struct {
 //reference only
 struct AARankInfo_Struct
 {
-	uint32 id;
+	int32 id;
 	int32 upper_hotkey_sid;
 	int32 lower_hotkey_sid;
 	int32 title_sid;
 	int32 desc_sid;
 	int32 level_req;
 	int32 cost;
-	uint32 seq;
-	uint32 current_level;
-	uint32 type;
+	int32 ability_id;
+	int32 current_level;
+	int32 type;
 	int32 spell;
 	int32 spell_type;
 	int32 spell_refresh;
@@ -5045,12 +5045,12 @@ struct AARankInfo_Struct
 	int32 prev_id;
 	int32 next_id;
 	int32 total_cost;
-	int32 expansion;
-	int32 category;
-	uint32 charges;
-	uint8 grant_only;
-	uint32 total_effects;
-	uint32 total_prereqs;
+	//int32 expansion;
+	//int32 category;
+	//int32 charges;
+	int8 grant_only;
+	int32 total_effects;
+	int32 total_prereqs;
 };
 
 struct AARankPrereq_Struct

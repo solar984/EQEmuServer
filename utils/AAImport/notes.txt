@@ -52,6 +52,11 @@ Fear Resistance 181 SE_ResistFearChance additive
 Finishing Blow 278 SE_FinishingBlow and 440 SE_FinishingBlowLvl highest
 Combat Stability 259 SE_CombatStability additive
 Tradeskill Mastery 268 SE_ReduceTradeskillFail additive
+Enhanced Root 244 SE_RootBreakChance additive
+Improved Reclaim Energy 241 SE_ImprovedReclaimEnergy highest
+Slay Undead 219 SE_SlayUndead highest
+Ambidexterity 276 SE_Ambidexterity additive
+Archery Mastery 301 SE_ArcheryDamageModifier additive
 
 
 

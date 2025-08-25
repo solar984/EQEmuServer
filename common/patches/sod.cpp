@@ -1849,7 +1849,7 @@ namespace SoD
 		eq->title_sid = emu->title_sid;
 		eq->class_type = emu->level_req;
 		eq->cost = emu->cost;
-		eq->seq = emu->seq;
+		eq->seq = emu->ability_id;
 		eq->current_level = emu->current_level;
 		eq->type = emu->type;
 		eq->spellid = emu->spell;

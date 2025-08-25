@@ -1415,7 +1415,7 @@
         "Ranks": [
             {
                 "id": 98,
-                "cost": 3,
+                "cost": 2,
                 "level_req": 55,
                 "expansion": 3,
                 "Effects": [
@@ -1433,7 +1433,7 @@
             },
             {
                 "id": 99,
-                "cost": 3,
+                "cost": 4,
                 "level_req": 55,
                 "expansion": 3,
                 "Effects": [
@@ -1445,7 +1445,7 @@
             },
             {
                 "id": 100,
-                "cost": 3,
+                "cost": 6,
                 "level_req": 55,
                 "expansion": 3,
                 "Effects": [
@@ -1979,7 +1979,13 @@
                 "spell": 5228,
                 "spell_type": 1,
                 "recast_time": 4320,
-                "expansion": 3
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
             }
         ]
     },
@@ -1988,7 +1994,6 @@
         "name": "Divine Resurrection",
         "classes": 2,
         "type": 3,
-        "enabled": 0,
         "Ranks": [
             {
                 "id": 129,
@@ -2227,6 +2232,444 @@
         ]
     },
     {
+        "id": 43,
+        "name": "Exodus",
+        "classes": 2080,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 140,
+                "upper_hotkey_sid": 140,
+                "cost": 6,
+                "level_req": 59,
+                "spell": 2771,
+                "spell_type": 3,
+                "recast_time": 4320,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 44,
+        "name": "Quick Damage",
+        "classes": 6176,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 141,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 127,
+                        "base1": 2,
+                        "base2": 2
+                    },
+                    {
+                        "effect_id": 137
+                    },
+                    {
+                        "effect_id": 138
+                    },
+                    {
+                        "effect_id": 141,
+                        "base1": 1
+                    },
+                    {
+                        "effect_id": 143,
+                        "base1": 3000
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": 23,
+                        "points": 3
+                    }
+                ]
+            },
+            {
+                "id": 142,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 127,
+                        "base1": 5,
+                        "base2": 5
+                    },
+                    {
+                        "effect_id": 137
+                    },
+                    {
+                        "effect_id": 138
+                    },
+                    {
+                        "effect_id": 141,
+                        "base1": 1
+                    },
+                    {
+                        "effect_id": 143,
+                        "base1": 3000
+                    }
+                ]
+            },
+            {
+                "id": 143,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 127,
+                        "base1": 10,
+                        "base2": 10
+                    },
+                    {
+                        "effect_id": 137
+                    },
+                    {
+                        "effect_id": 138
+                    },
+                    {
+                        "effect_id": 141,
+                        "base1": 1
+                    },
+                    {
+                        "effect_id": 143,
+                        "base1": 3000
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 45,
+        "name": "Enhanced Root",
+        "classes": 32,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 144,
+                "cost": 5,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 244,
+                        "base1": 50
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 46,
+        "name": "Dire Charm - Enchanter",
+        "classes": 8192,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 145,
+                "upper_hotkey_sid": 145,
+                "lower_hotkey_sid": 145,
+                "cost": 9,
+                "level_req": 59,
+                "spell": 2761,
+                "spell_type": 2,
+                "recast_time": 4320,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 47,
+        "name": "Cannibalization",
+        "classes": 512,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 146,
+                "upper_hotkey_sid": 146,
+                "lower_hotkey_sid": 146,
+                "cost": 5,
+                "level_req": 59,
+                "spell": 2749,
+                "spell_type": 2,
+                "recast_time": 180,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": 224,
+                        "points": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 48,
+        "name": "Quick Buff",
+        "classes": 8704,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 147,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 127,
+                        "base1": 10,
+                        "base2": 10
+                    },
+                    {
+                        "effect_id": 138,
+                        "base1": 1
+                    },
+                    {
+                        "effect_id": 140,
+                        "base1": 1
+                    },
+                    {
+                        "effect_id": 143,
+                        "base1": 3000
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 148,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 127,
+                        "base1": 25,
+                        "base2": 25
+                    },
+                    {
+                        "effect_id": 138,
+                        "base1": 1
+                    },
+                    {
+                        "effect_id": 140,
+                        "base1": 1
+                    },
+                    {
+                        "effect_id": 143,
+                        "base1": 3000
+                    }
+                ]
+            },
+            {
+                "id": 149,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 127,
+                        "base1": 50,
+                        "base2": 50
+                    },
+                    {
+                        "effect_id": 138,
+                        "base1": 1
+                    },
+                    {
+                        "effect_id": 140,
+                        "base1": 1
+                    },
+                    {
+                        "effect_id": 143,
+                        "base1": 3000
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 49,
+        "name": "Alchemy Mastery",
+        "classes": 512,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 150,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 59
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 151,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 59
+                    }
+                ]
+            },
+            {
+                "id": 152,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 59
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 50,
+        "name": "Rabid Bear",
+        "classes": 512,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 153,
+                "upper_hotkey_sid": 153,
+                "lower_hotkey_sid": 153,
+                "cost": 5,
+                "level_req": 59,
+                "spell": 2750,
+                "spell_type": 3,
+                "recast_time": 2160,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 52,
+        "name": "Improved Familiar",
+        "classes": 2048,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 155,
+                "upper_hotkey_sid": 155,
+                "lower_hotkey_sid": 155,
+                "cost": 9,
+                "level_req": 59,
+                "spell": 2758,
+                "spell_type": 8,
+                "recast_time": 60,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 53,
+        "name": "Nexus Gate",
+        "classes": 2048,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 156,
+                "upper_hotkey_sid": 156,
+                "lower_hotkey_sid": 156,
+                "cost": 6,
+                "level_req": 59,
+                "spell": 2734,
+                "spell_type": 2,
+                "recast_time": 4320,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 55,
+        "name": "Permanent Illusion",
+        "classes": 8192,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 158,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 238,
+                        "base1": 1
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "id": 56,
         "name": "Jewel Craft Mastery - Enchanter only",
         "classes": 8192,
@@ -2274,6 +2717,1005 @@
                         "effect_id": 268,
                         "base1": 50,
                         "base2": 68
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 57,
+        "name": "Gather Mana",
+        "classes": 8192,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 162,
+                "upper_hotkey_sid": 162,
+                "lower_hotkey_sid": 162,
+                "cost": 5,
+                "level_req": 59,
+                "spell": 2753,
+                "spell_type": 3,
+                "recast_time": 8640,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": 224,
+                        "points": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 58,
+        "name": "Mend Companion",
+        "classes": 21504,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 163,
+                "upper_hotkey_sid": 163,
+                "lower_hotkey_sid": 163,
+                "cost": 5,
+                "level_req": 59,
+                "spell": 2752,
+                "spell_type": 2,
+                "recast_time": 2160,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": 224,
+                        "points": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 60,
+        "name": "Frenzied Burnout",
+        "classes": 4096,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 167,
+                "upper_hotkey_sid": 167,
+                "lower_hotkey_sid": 167,
+                "cost": 6,
+                "level_req": 59,
+                "spell": 2754,
+                "spell_type": 14,
+                "recast_time": 900,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 61,
+        "name": "Elemental Form: Fire",
+        "classes": 4096,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 168,
+                "upper_hotkey_sid": 168,
+                "lower_hotkey_sid": 168,
+                "cost": 3,
+                "level_req": 59,
+                "spell": 2795,
+                "spell_type": 4,
+                "recast_time": 10,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 169,
+                "upper_hotkey_sid": 168,
+                "lower_hotkey_sid": 168,
+                "cost": 6,
+                "level_req": 59,
+                "spell": 2796,
+                "spell_type": 4,
+                "recast_time": 10,
+                "expansion": 3
+            },
+            {
+                "id": 170,
+                "upper_hotkey_sid": 168,
+                "lower_hotkey_sid": 168,
+                "cost": 9,
+                "level_req": 59,
+                "spell": 2797,
+                "spell_type": 4,
+                "recast_time": 10,
+                "expansion": 3
+            }
+        ]
+    },
+    {
+        "id": 62,
+        "name": "Elemental Form: Water",
+        "classes": 4096,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 171,
+                "upper_hotkey_sid": 171,
+                "lower_hotkey_sid": 171,
+                "cost": 3,
+                "level_req": 59,
+                "spell": 2798,
+                "spell_type": 4,
+                "recast_time": 10,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 172,
+                "upper_hotkey_sid": 171,
+                "lower_hotkey_sid": 171,
+                "cost": 6,
+                "level_req": 59,
+                "spell": 2799,
+                "spell_type": 4,
+                "recast_time": 10,
+                "expansion": 3
+            },
+            {
+                "id": 173,
+                "upper_hotkey_sid": 171,
+                "lower_hotkey_sid": 171,
+                "cost": 9,
+                "level_req": 59,
+                "spell": 2800,
+                "spell_type": 4,
+                "recast_time": 10,
+                "expansion": 3
+            }
+        ]
+    },
+    {
+        "id": 63,
+        "name": "Elemental Form: Earth",
+        "classes": 4096,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 174,
+                "upper_hotkey_sid": 174,
+                "lower_hotkey_sid": 174,
+                "cost": 3,
+                "level_req": 59,
+                "spell": 2792,
+                "spell_type": 4,
+                "recast_time": 10,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 175,
+                "upper_hotkey_sid": 174,
+                "lower_hotkey_sid": 174,
+                "cost": 6,
+                "level_req": 59,
+                "spell": 2793,
+                "spell_type": 4,
+                "recast_time": 10,
+                "expansion": 3
+            },
+            {
+                "id": 176,
+                "upper_hotkey_sid": 174,
+                "lower_hotkey_sid": 174,
+                "cost": 9,
+                "level_req": 59,
+                "spell": 2794,
+                "spell_type": 4,
+                "recast_time": 10,
+                "expansion": 3
+            }
+        ]
+    },
+    {
+        "id": 64,
+        "name": "Elemental Form: Air",
+        "classes": 4096,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 177,
+                "upper_hotkey_sid": 177,
+                "lower_hotkey_sid": 177,
+                "cost": 3,
+                "level_req": 59,
+                "spell": 2789,
+                "spell_type": 4,
+                "recast_time": 10,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 178,
+                "upper_hotkey_sid": 177,
+                "lower_hotkey_sid": 177,
+                "cost": 6,
+                "level_req": 59,
+                "spell": 2790,
+                "spell_type": 4,
+                "recast_time": 10,
+                "expansion": 3
+            },
+            {
+                "id": 179,
+                "upper_hotkey_sid": 177,
+                "lower_hotkey_sid": 177,
+                "cost": 9,
+                "level_req": 59,
+                "spell": 2791,
+                "spell_type": 4,
+                "recast_time": 10,
+                "expansion": 3
+            }
+        ]
+    },
+    {
+        "id": 65,
+        "name": "Improved Reclaim Energy",
+        "classes": 4096,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 180,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 241,
+                        "base1": 95
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 66,
+        "name": "Turn Summoned",
+        "classes": 4096,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 181,
+                "upper_hotkey_sid": 181,
+                "lower_hotkey_sid": 181,
+                "cost": 3,
+                "level_req": 59,
+                "spell": 8133,
+                "spell_type": 5,
+                "recast_time": 300,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": 23,
+                        "points": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 67,
+        "name": "Elemental Pact",
+        "classes": 4096,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 182,
+                "cost": 5,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 131,
+                        "base1": 100
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 33
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 68,
+        "name": "Life Burn",
+        "classes": 1024,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 183,
+                "upper_hotkey_sid": 183,
+                "lower_hotkey_sid": 183,
+                "cost": 9,
+                "level_req": 59,
+                "spell": 2755,
+                "spell_type": 4,
+                "recast_time": 8640,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 69,
+        "name": "Dead Mesmerization",
+        "classes": 1024,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 184,
+                "upper_hotkey_sid": 184,
+                "lower_hotkey_sid": 184,
+                "cost": 3,
+                "level_req": 59,
+                "spell": 2756,
+                "spell_type": 5,
+                "recast_time": 4320,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 70,
+        "name": "Fearstorm",
+        "classes": 1024,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 185,
+                "upper_hotkey_sid": 185,
+                "lower_hotkey_sid": 185,
+                "cost": 5,
+                "level_req": 59,
+                "spell": 2757,
+                "spell_type": 6,
+                "recast_time": 4320,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 71,
+        "name": "Flesh to Bone",
+        "classes": 1024,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 186,
+                "upper_hotkey_sid": 186,
+                "lower_hotkey_sid": 186,
+                "cost": 3,
+                "level_req": 59,
+                "spell": 2772,
+                "spell_type": 7,
+                "recast_time": 7,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 72,
+        "name": "Call to Corpse",
+        "classes": 1024,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 187,
+                "upper_hotkey_sid": 187,
+                "lower_hotkey_sid": 187,
+                "cost": 6,
+                "level_req": 59,
+                "spell": 2764,
+                "spell_type": 8,
+                "recast_time": 4320,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 73,
+        "name": "Divine Stun",
+        "classes": 4,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 188,
+                "upper_hotkey_sid": 188,
+                "lower_hotkey_sid": 188,
+                "cost": 9,
+                "level_req": 59,
+                "spell": 2190,
+                "spell_type": 2,
+                "recast_time": 30,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 74,
+        "name": "Improved Lay Hands",
+        "classes": 4,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 189,
+                "cost": 5,
+                "level_req": 59,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 75,
+        "name": "Slay Undead",
+        "classes": 4,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 190,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 219,
+                        "base1": 225,
+                        "base2": 680
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": 30,
+                        "points": 3
+                    }
+                ]
+            },
+            {
+                "id": 191,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 219,
+                        "base1": 235,
+                        "base2": 1190
+                    }
+                ]
+            },
+            {
+                "id": 192,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 219,
+                        "base1": 240,
+                        "base2": 1700
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 76,
+        "name": "Act of Valor",
+        "classes": 4,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 193,
+                "upper_hotkey_sid": 193,
+                "lower_hotkey_sid": 193,
+                "cost": 3,
+                "level_req": 59,
+                "spell": 2775,
+                "spell_type": 3,
+                "recast_time": 4320,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 77,
+        "name": "Holy Steed",
+        "classes": 4,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 194,
+                "upper_hotkey_sid": 194,
+                "lower_hotkey_sid": 194,
+                "cost": 5,
+                "level_req": 59,
+                "spell": 2874,
+                "recast_time": 1,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 78,
+        "name": "Fearless",
+        "classes": 20,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 195,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 181,
+                        "base1": 100
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": 31,
+                        "points": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 79,
+        "name": "2 Hand Bash",
+        "classes": 20,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 196,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 226,
+                        "base1": 1
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 80,
+        "name": "Innate Camouflage",
+        "classes": 40,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 197,
+                "upper_hotkey_sid": 197,
+                "lower_hotkey_sid": 197,
+                "cost": 5,
+                "level_req": 59,
+                "spell": 2765,
+                "spell_type": 2,
+                "recast_time": 7,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 81,
+        "name": "Ambidexterity",
+        "classes": 16841,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 198,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 276,
+                        "base1": 32
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 82,
+        "name": "Archery Mastery",
+        "classes": 8,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 199,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 301,
+                        "base1": 30
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 200,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 301,
+                        "base1": 60
+                    }
+                ]
+            },
+            {
+                "id": 201,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 301,
+                        "base1": 100
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 84,
+        "name": "Endless Quiver",
+        "classes": 8,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 205,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 251,
+                        "base1": 100
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 85,
+        "name": "Unholy Steed",
+        "classes": 16,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 206,
+                "upper_hotkey_sid": 206,
+                "lower_hotkey_sid": 206,
+                "cost": 5,
+                "level_req": 59,
+                "spell": 2875,
+                "recast_time": 1,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 86,
+        "name": "Improved Harm Touch - TODO fix timer",
+        "classes": 16,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 207,
+                "upper_hotkey_sid": 207,
+                "lower_hotkey_sid": 207,
+                "cost": 6,
+                "level_req": 59,
+                "spell": 2774,
+                "spell_type": 2,
+                "recast_time": 4320,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 87,
+        "name": "Leech Touch",
+        "classes": 16,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 208,
+                "upper_hotkey_sid": 208,
+                "lower_hotkey_sid": 208,
+                "cost": 6,
+                "level_req": 59,
+                "spell": 2766,
+                "spell_type": 2,
+                "recast_time": 4320,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 89,
+        "name": "Soul Abrasion - TODO add focus and limit to lifetap proc spells",
+        "classes": 16,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 210,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 211,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 3
+            },
+            {
+                "id": 212,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 3
+            }
+        ]
+    },
+    {
+        "id": 90,
+        "name": "Instrument Mastery",
+        "classes": 128,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 213,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 260,
+                        "base1": 2,
+                        "base2": 23
+                    },
+                    {
+                        "effect_id": 260,
+                        "base1": 2,
+                        "base2": 24
+                    },
+                    {
+                        "effect_id": 260,
+                        "base1": 2,
+                        "base2": 25
+                    },
+                    {
+                        "effect_id": 260,
+                        "base1": 2,
+                        "base2": 26
+                    }
+                ],
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            },
+            {
+                "id": 214,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 260,
+                        "base1": 4,
+                        "base2": 23
+                    },
+                    {
+                        "effect_id": 260,
+                        "base1": 4,
+                        "base2": 24
+                    },
+                    {
+                        "effect_id": 260,
+                        "base1": 4,
+                        "base2": 25
+                    },
+                    {
+                        "effect_id": 260,
+                        "base1": 4,
+                        "base2": 26
+                    }
+                ]
+            },
+            {
+                "id": 215,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 3,
+                "Effects": [
+                    {
+                        "effect_id": 260,
+                        "base1": 6,
+                        "base2": 23
+                    },
+                    {
+                        "effect_id": 260,
+                        "base1": 6,
+                        "base2": 24
+                    },
+                    {
+                        "effect_id": 260,
+                        "base1": 6,
+                        "base2": 25
+                    },
+                    {
+                        "effect_id": 260,
+                        "base1": 6,
+                        "base2": 26
                     }
                 ]
             }
@@ -2412,20 +3854,56 @@
         ]
     },
     {
-        "name": "Alchemy Mastery",
-        "classes": 512,
+        "id": 223,
+        "name": "Quick Summoning",
+        "classes": 4096,
         "type": 3,
         "Ranks": [
             {
-                "id": 150,
+                "id": 164,
                 "cost": 3,
                 "level_req": 59,
-                "expansion": 8,
+                "expansion": 3,
                 "Effects": [
                     {
-                        "effect_id": 268,
+                        "effect_id": 127,
                         "base1": 10,
-                        "base2": 59
+                        "base2": 10
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 32
+                    },
+                    {
+                        "effect_id": 127,
+                        "base1": 10,
+                        "base2": 10
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 33
+                    },
+                    {
+                        "effect_id": 127,
+                        "base1": 10,
+                        "base2": 10
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 82
+                    },
+                    {
+                        "effect_id": 127,
+                        "base1": 2,
+                        "base2": 2
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 152
+                    },
+                    {
+                        "effect_id": 143,
+                        "base1": 3000
                     }
                 ],
                 "Prereqs": [
@@ -2436,28 +3914,98 @@
                 ]
             },
             {
-                "id": 151,
+                "id": 165,
                 "cost": 6,
                 "level_req": 59,
-                "expansion": 8,
+                "expansion": 3,
                 "Effects": [
                     {
-                        "effect_id": 268,
+                        "effect_id": 127,
                         "base1": 25,
-                        "base2": 59
+                        "base2": 25
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 32
+                    },
+                    {
+                        "effect_id": 127,
+                        "base1": 25,
+                        "base2": 25
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 33
+                    },
+                    {
+                        "effect_id": 127,
+                        "base1": 25,
+                        "base2": 25
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 82
+                    },
+                    {
+                        "effect_id": 127,
+                        "base1": 5,
+                        "base2": 5
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 152
+                    },
+                    {
+                        "effect_id": 143,
+                        "base1": 3000
                     }
                 ]
             },
             {
-                "id": 152,
+                "id": 166,
                 "cost": 9,
                 "level_req": 59,
-                "expansion": 8,
+                "expansion": 3,
                 "Effects": [
                     {
-                        "effect_id": 268,
+                        "effect_id": 127,
                         "base1": 50,
-                        "base2": 59
+                        "base2": 50
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 32
+                    },
+                    {
+                        "effect_id": 127,
+                        "base1": 50,
+                        "base2": 50
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 33
+                    },
+                    {
+                        "effect_id": 127,
+                        "base1": 50,
+                        "base2": 50
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 82
+                    },
+                    {
+                        "effect_id": 127,
+                        "base1": 10,
+                        "base2": 10
+                    },
+                    {
+                        "effect_id": 137,
+                        "base1": 152
+                    },
+                    {
+                        "effect_id": 143,
+                        "base1": 3000
                     }
                 ]
             }
@@ -2557,6 +4105,418 @@
         ]
     },
     {
+        "id": 226,
+        "name": "Mana Burn",
+        "classes": 2048,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 154,
+                "upper_hotkey_sid": 154,
+                "lower_hotkey_sid": 154,
+                "cost": 5,
+                "level_req": 59,
+                "spell": 2751,
+                "spell_type": 7,
+                "recast_time": 4320,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": 224,
+                        "points": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 317,
+        "name": "Dire Charm - Druid",
+        "classes": 32,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 960,
+                "upper_hotkey_sid": 960,
+                "lower_hotkey_sid": 960,
+                "cost": 9,
+                "level_req": 59,
+                "spell": 2760,
+                "spell_type": 7,
+                "recast_time": 4320,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 318,
+        "name": "Dire Charm - Necromancer",
+        "classes": 1024,
+        "type": 3,
+        "Ranks": [
+            {
+                "id": 961,
+                "upper_hotkey_sid": 961,
+                "lower_hotkey_sid": 961,
+                "cost": 9,
+                "level_req": 59,
+                "spell": 2759,
+                "spell_type": 11,
+                "recast_time": 4320,
+                "expansion": 3,
+                "Prereqs": [
+                    {
+                        "aa_id": -2,
+                        "points": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 324,
+        "name": "Blacksmithing Mastery",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 979,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 63
+                    }
+                ]
+            },
+            {
+                "id": 980,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 63
+                    }
+                ]
+            },
+            {
+                "id": 981,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 63
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 325,
+        "name": "Baking Mastery",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 982,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 60
+                    }
+                ]
+            },
+            {
+                "id": 983,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 60
+                    }
+                ]
+            },
+            {
+                "id": 984,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 60
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 326,
+        "name": "Brewing Mastery",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 985,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 65
+                    }
+                ]
+            },
+            {
+                "id": 986,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 65
+                    }
+                ]
+            },
+            {
+                "id": 987,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 65
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 327,
+        "name": "Fletching Mastery",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 988,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 64
+                    }
+                ]
+            },
+            {
+                "id": 989,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 64
+                    }
+                ]
+            },
+            {
+                "id": 990,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 64
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 328,
+        "name": "Pottery Mastery",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 991,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 69
+                    }
+                ]
+            },
+            {
+                "id": 992,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 69
+                    }
+                ]
+            },
+            {
+                "id": 993,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 69
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 329,
+        "name": "Tailoring Mastery",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 994,
+                "cost": 3,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 10,
+                        "base2": 61
+                    }
+                ]
+            },
+            {
+                "id": 995,
+                "cost": 6,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 25,
+                        "base2": 61
+                    }
+                ]
+            },
+            {
+                "id": 996,
+                "cost": 9,
+                "level_req": 59,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 268,
+                        "base1": 50,
+                        "base2": 61
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 330,
+        "name": "Salvage",
+        "type": 7,
+        "Ranks": [
+            {
+                "id": 997,
+                "cost": 5,
+                "level_req": 60,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 331,
+                        "base1": 5
+                    }
+                ]
+            },
+            {
+                "id": 998,
+                "cost": 5,
+                "level_req": 65,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 331,
+                        "base1": 15
+                    }
+                ]
+            },
+            {
+                "id": 999,
+                "cost": 5,
+                "level_req": 70,
+                "expansion": 8,
+                "Effects": [
+                    {
+                        "effect_id": 331,
+                        "base1": 25
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 331,
+        "name": "Origin",
+        "type": 7,
+        "grant_only": 1,
+        "Ranks": [
+            {
+                "id": 1000,
+                "upper_hotkey_sid": 1000,
+                "cost": 0,
+                "level_req": 5,
+                "spell": 5824,
+                "spell_type": 20,
+                "recast_time": 1080,
+                "expansion": 8
+            }
+        ]
+    },
+    {
         "id": 576,
         "name": "Jewel Craft Mastery - All except Enchanter",
         "classes": 57343,
@@ -2626,7 +4586,7 @@
                 ],
                 "Prereqs": [
                     {
-                        "aa_id": 62,
+                        "aa_id": 13,
                         "points": 3
                     }
                 ]
@@ -2662,7 +4622,7 @@
                 ],
                 "Prereqs": [
                     {
-                        "aa_id": 65,
+                        "aa_id": 225,
                         "points": 3
                     }
                 ]
@@ -2698,7 +4658,7 @@
                 ],
                 "Prereqs": [
                     {
-                        "aa_id": 71,
+                        "aa_id": 16,
                         "points": 3
                     }
                 ]
@@ -2802,318 +4762,6 @@
                     {
                         "aa_id": 676,
                         "points": 2
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "Blacksmithing Mastery",
-        "type": 7,
-        "Ranks": [
-            {
-                "id": 979,
-                "cost": 3,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 10,
-                        "base2": 63
-                    }
-                ]
-            },
-            {
-                "id": 980,
-                "cost": 6,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 25,
-                        "base2": 63
-                    }
-                ]
-            },
-            {
-                "id": 981,
-                "cost": 9,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 50,
-                        "base2": 63
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "Baking Mastery",
-        "type": 7,
-        "Ranks": [
-            {
-                "id": 982,
-                "cost": 3,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 10,
-                        "base2": 60
-                    }
-                ]
-            },
-            {
-                "id": 983,
-                "cost": 6,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 25,
-                        "base2": 60
-                    }
-                ]
-            },
-            {
-                "id": 984,
-                "cost": 9,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 50,
-                        "base2": 60
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "Brewing Mastery",
-        "type": 7,
-        "Ranks": [
-            {
-                "id": 985,
-                "cost": 3,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 10,
-                        "base2": 65
-                    }
-                ]
-            },
-            {
-                "id": 986,
-                "cost": 6,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 25,
-                        "base2": 65
-                    }
-                ]
-            },
-            {
-                "id": 987,
-                "cost": 9,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 50,
-                        "base2": 65
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "Fletching Mastery",
-        "type": 7,
-        "Ranks": [
-            {
-                "id": 988,
-                "cost": 3,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 10,
-                        "base2": 64
-                    }
-                ]
-            },
-            {
-                "id": 989,
-                "cost": 6,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 25,
-                        "base2": 64
-                    }
-                ]
-            },
-            {
-                "id": 990,
-                "cost": 9,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 50,
-                        "base2": 64
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "Pottery Mastery",
-        "type": 7,
-        "Ranks": [
-            {
-                "id": 991,
-                "cost": 3,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 10,
-                        "base2": 69
-                    }
-                ]
-            },
-            {
-                "id": 992,
-                "cost": 6,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 25,
-                        "base2": 69
-                    }
-                ]
-            },
-            {
-                "id": 993,
-                "cost": 9,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 50,
-                        "base2": 69
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "Tailoring Mastery",
-        "type": 7,
-        "Ranks": [
-            {
-                "id": 994,
-                "cost": 3,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 10,
-                        "base2": 61
-                    }
-                ]
-            },
-            {
-                "id": 995,
-                "cost": 6,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 25,
-                        "base2": 61
-                    }
-                ]
-            },
-            {
-                "id": 996,
-                "cost": 9,
-                "level_req": 59,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 268,
-                        "base1": 50,
-                        "base2": 61
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "Salvage",
-        "type": 7,
-        "Ranks": [
-            {
-                "id": 997,
-                "cost": 5,
-                "level_req": 60,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 331,
-                        "base1": 5
-                    }
-                ]
-            },
-            {
-                "id": 998,
-                "cost": 5,
-                "level_req": 65,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 331,
-                        "base1": 15
-                    }
-                ]
-            },
-            {
-                "id": 999,
-                "cost": 5,
-                "level_req": 70,
-                "expansion": 8,
-                "Effects": [
-                    {
-                        "effect_id": 331,
-                        "base1": 25
                     }
                 ]
             }

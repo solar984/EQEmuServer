@@ -944,7 +944,7 @@ void Client::SendAlternateAdvancementRank(int aa_id, int level) {
 	aai->title_sid = rank->title_sid;
 	aai->desc_sid = rank->desc_sid;
 	aai->cost = rank->cost;
-	aai->seq = aa_id;
+	aai->ability_id = aa_id;
 	aai->type = ability->type;
 	aai->spell = rank->spell;
 	aai->spell_type = rank->spell_type;
@@ -961,9 +961,9 @@ void Client::SendAlternateAdvancementRank(int aa_id, int level) {
 		aai->next_id = rank->next_id;
 	}
 	aai->total_cost = rank->total_cost;
-	aai->expansion = rank->expansion;
-	aai->category = ability->category;
-	aai->charges = ability->charges;
+	//aai->expansion = rank->expansion;
+	//aai->category = ability->category;
+	//aai->charges = ability->charges;
 	aai->grant_only = ability->grant_only;
 	aai->total_effects = rank->effects.size();
 	aai->total_prereqs = rank->prereqs.size();
@@ -1849,8 +1849,7 @@ bool ZoneDatabase::LoadAlternateAdvancementAbilities(
 	const auto& aa_rank_effects = AaRankEffectsRepository::All(*this);
 
 	if (aa_rank_effects.empty()) {
-		LogError("Failed to load Alternate Advancement Ability Rank Effects.");
-		return false;
+		LogWarning("Failed to load any Alternate Advancement Ability Rank Effects.");
 	}
 
 	for (const auto &e : aa_rank_effects) {
@@ -1880,15 +1879,10 @@ bool ZoneDatabase::LoadAlternateAdvancementAbilities(
 	const auto& aa_rank_prereqs = AaRankPrereqsRepository::All(*this);
 
 	if (aa_rank_prereqs.empty()) {
-		LogError("Failed to load Alternate Advancement Ability Rank Prerequisites.");
-		return false;
+		LogWarning("Failed to load any Alternate Advancement Ability Rank Prerequisites.");
 	}
 
 	for (const auto& e : aa_rank_prereqs) {
-		if (e.aa_id <= 0 || e.points <= 0) {
-			continue;
-		}
-
 		if (ranks.count(e.rank_id) > 0) {
 			AA::Rank* rank = ranks[e.rank_id].get();
 			rank->prereqs[e.aa_id] = e.points;

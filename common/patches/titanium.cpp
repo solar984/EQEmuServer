@@ -1786,7 +1786,7 @@ namespace Titanium
 		eq->desc_sid = emu->desc_sid;
 		eq->level_req = emu->level_req;
 		eq->cost = emu->cost;
-		eq->seq = emu->seq;
+		eq->ability_id = emu->ability_id;
 		eq->current_level = emu->current_level;
 		eq->prereq_skill = 0;
 		eq->prereq_minpoints = 0;
@@ -1799,21 +1799,21 @@ namespace Titanium
 		eq->prev_id = emu->prev_id;
 		eq->next_id = emu->next_id;
 		eq->total_cost = emu->total_cost;
-		eq->unknown80[0] = 0;
-		eq->unknown80[1] = 0;
+		eq->alt_timer = 0;
+		eq->grant_only = emu->grant_only;
 		eq->total_effects = emu->total_effects;
 
 		for(auto i = 0; i < eq->total_effects; ++i) {
-			eq->effects[i].effect_id = inapp->ReadUInt32();
-			eq->effects[i].base_value = inapp->ReadUInt32();
-			eq->effects[i].limit_value = inapp->ReadUInt32();
-			eq->effects[i].slot = inapp->ReadUInt32();
+			eq->effects[i].effect_id = inapp->ReadSInt32();
+			eq->effects[i].base_value = inapp->ReadSInt32();
+			eq->effects[i].limit_value = inapp->ReadSInt32();
+			eq->effects[i].slot = inapp->ReadSInt32();
 		}
 
 		// only one prereq supported by client
 		if(emu->total_prereqs > 0) {
-			eq->prereq_skill = inapp->ReadUInt32();
-			eq->prereq_minpoints = inapp->ReadUInt32();
+			eq->prereq_skill = inapp->ReadSInt32();
+			eq->prereq_minpoints = inapp->ReadSInt32();
 		}
 
 		dest->FastQueuePacket(&outapp);

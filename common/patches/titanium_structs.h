@@ -3226,37 +3226,39 @@ struct UseAA_Struct {
 };
 
 struct AA_Effect {
-/*00*/	uint32 effect_id;
-/*04*/	uint32 base_value;
-/*08*/	uint32 limit_value;
-/*12*/	uint32 slot;
+/*00*/	int32 effect_id;
+/*04*/	int32 base_value;
+/*08*/	int32 limit_value;
+/*12*/	int32 slot;
 };
 
 struct SendAA_Struct {
-/*0000*/	uint32 id;
-/*0004*/	uint32 unknown004;		//set to 1.
-/*0008*/	uint32 hotkey_sid;
-/*0012*/	uint32 hotkey_sid2;
-/*0016*/	uint32 title_sid;
-/*0020*/	uint32 desc_sid;
-/*0024*/	uint32 level_req;
-/*0028*/	uint32 cost;
-/*0032*/	uint32 seq;
-/*0036*/	uint32 current_level; //1s, MQ2 calls this AARankRequired
-/*0040*/	uint32 prereq_skill;		//is < 0, abs() is category #
-/*0044*/	uint32 prereq_minpoints; //min points in the prereq
-/*0048*/	uint32 type;
-/*0052*/	uint32 spellid;
-/*0056*/	uint32 spell_type;
-/*0060*/	uint32 spell_refresh;
-/*0064*/	uint32 classes;
-/*0068*/	uint32 max_level;
-/*0072*/	uint32 prev_id;
-/*0076*/	uint32 next_id;
-/*0080*/	uint32 total_cost;
-/*0084*/	uint32 unknown80[2]; //0s
-/*0088*/	uint32 total_effects;
-/*0092*/	AA_Effect effects[0];
+/*0000*/	int32 id;
+/*0004*/	int32 unknown004;		//set to 1.
+/*0008*/	int32 hotkey_sid;
+/*0012*/	int32 hotkey_sid2;
+/*0016*/	int32 title_sid;
+/*0020*/	int32 desc_sid;
+/*0024*/	int32 level_req;
+/*0028*/	int32 cost;
+/*0032*/	int32 ability_id;
+/*0036*/	int32 current_level; //1s, MQ2 calls this AARankRequired
+/*0040*/	int32 prereq_skill;		//is < 0, abs() is category #
+/*0044*/	int32 prereq_minpoints; //min points in the prereq
+/*0048*/	int32 type;
+/*0052*/	int32 spellid;
+/*0056*/	int32 spell_type;
+/*0060*/	int32 spell_refresh;
+/*0064*/	int32 classes;
+/*0068*/	int32 max_level;
+/*0072*/	int32 prev_id;
+/*0076*/	int32 next_id;
+/*0080*/	int32 total_cost;
+/*0084*/	int32 alt_timer;
+/*0088*/	int32 grant_only;
+/*0092*/	int32 total_effects;
+/*0096*/	AA_Effect effects[0];
+/*0112*/
 };
 
 struct AA_List {
