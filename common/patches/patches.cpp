@@ -21,8 +21,6 @@
 #include "patches.h"
 
 #include "titanium.h"
-#include "sof.h"
-#include "sod.h"
 
 
 void RegisterAllPatches(EQStreamIdentifier &into)
